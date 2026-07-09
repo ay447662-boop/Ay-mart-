@@ -1,1 +1,17 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Admin</title><style>body{font-family:sans-serif;padding:20px}input,button{width:100%;padding:10px;margin:5px 0}button{background:#2874f0;color:#fff;border:0}.hide{display:none}</style></head><body><div id="a"><h2>Login</h2><input type="password" id="p" placeholder="Password"><button onclick="l()">Login</button></div><div id="b" class="hide"><h2>Add Product</h2><input id="n" placeholder="Name"><input id="pr" type="number" placeholder="Price"><input id="i" type="file"><button onclick="s()">Add</button></div><script>function l(){if(p.value=="Anil@123"){a.classList.add('hide');b.classList.remove('hide')}else alert('Wrong')}function s(){alert('Product Added! Main site refresh karo')}</script></body></html>
+<script>
+// Admin se add kiye product dikhao
+const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
+if(myProducts.length > 0) {
+  const productBox = document.querySelector('.products') || document.querySelector('#products') || document.body;
+  let html = '<h2 style="padding:10px">Your Products</h2>';
+  myProducts.forEach(p => {
+    html += `<div style="border:1px solid #ddd;margin:10px;padding:10px;border-radius:8px">
+      <img src="${p.img}" style="width:100%;max-width:200px;height:150px;object-fit:cover">
+      <h3>${p.name}</h3>
+      <p style="color:green;font-weight:bold">₹${p.price}</p>
+      <button style="background:#ff9f00;color:#fff;border:0;padding:8px 15px;border-radius:4px">Add to Cart</button>
+    </div>`;
+  });
+  productBox.insertAdjacentHTML('afterbegin', html);
+}
+</script>
