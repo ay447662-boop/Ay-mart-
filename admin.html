@@ -1,105 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ay Mart Pro - Admin Panel</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ay Mart Pro - Admin</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f5f5f5;padding:20px}
-.login-box,.admin-box{max-width:500px;margin:50px auto;background:white;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-h1{color:#2874f0;margin-bottom:20px;text-align:center}
-input,select,button{width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:5px;font-size:16px}
-button{background:#2874f0;color:white;border:none;cursor:pointer;font-weight:bold}
+body{font-family:Arial;background:#f5f5f5;padding:20px}
+.login,.admin{max-width:400px;margin:50px auto;background:#fff;padding:25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+h2{color:#2874f0;text-align:center;margin-bottom:20px}
+input,select,button{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:5px;font-size:16px;box-sizing:border-box}
+button{background:#2874f0;color:#fff;border:none;cursor:pointer;font-weight:bold}
 button:hover{background:#1a5fc2}
-.logout{float:right;background:#ff6161;padding:8px 15px;font-size:14px;width:auto}
-.logout:hover{background:#e54545}
-#productList{margin-top:30px}
-.product-item{background:#f9f9f9;padding:15px;margin:10px 0;border-radius:5px;display:flex;justify-content:space-between;align-items:center}
-.product-item img{width:60px;height:60px;object-fit:cover;border-radius:5px}
-.del-btn{background:#ff6161;padding:5px 10px;font-size:12px;width:auto}
-.del-btn:hover{background:#e54545}
 .hidden{display:none}
-</style>
-</head>
+.logout{float:right;background:#ff6161;padding:6px 12px;font-size:12px;width:auto}
+.item{background:#f9f9f9;padding:10px;margin:8px 0;border-radius:5px;display:flex;justify-content:space-between;align-items:center}
+.item img{width:50px;height:50px;object-fit:cover;border-radius:4px}
+.del{background:#ff6161;padding:4px 8px;font-size:11px;width:auto}
+</style></head>
 <body>
-<div class="login-box" id="loginBox">
-<h1>🔐 Admin Login</h1>
-<input type="password" id="passInput" placeholder="Enter Admin Password">
+<div class="login" id="loginBox">
+<h2>🔐 Admin Login</h2>
+<input type="password" id="pass" placeholder="Password">
 <button onclick="login()">Login</button>
 </div>
-<div class="admin-box hidden" id="adminBox">
+<div class="admin hidden" id="adminBox">
 <button class="logout" onclick="logout()">Logout</button>
-<h1>📦 Add New Product</h1>
-<input type="text" id="pName" placeholder="Product Name" required>
-<input type="number" id="pPrice" placeholder="Price in ₹" required>
-<select id="pCat" required>
-<option value="">Select Category</option>
-<option value="All">All</option>
-<option value="Mobiles">Mobiles</option>
-<option value="Fashion">Fashion</option>
-<option value="Electronics">Electronics</option>
-<option value="Home">Home</option>
-<option value="Beauty">Beauty</option>
-</select>
-<input type="file" id="pImg" accept="image/*" required>
-<button onclick="addProduct()">Add Product to Store</button>
-<div id="productList"></div>
+<h2>📦 Add Product</h2>
+<input id="name" placeholder="Product Name">
+<input id="price" type="number" placeholder="Price ₹">
+<select id="cat"><option value="">Category</option><option>All</option><option>Mobiles</option><option>Fashion</option><option>Electronics</option><option>Home</option><option>Beauty</option></select>
+<input id="img" type="file" accept="image/*">
+<button onclick="addP()">Add Product to Store</button>
+<div id="list"></div>
 </div>
 <script>
-const ADMIN_PASS = "Anil@123";
-let products = JSON.parse(localStorage.getItem('aymart_products')) || [];
-function login(){
-if(document.getElementById('passInput').value === ADMIN_PASS){
-document.getElementById('loginBox').classList.add('hidden');
-document.getElementById('adminBox').classList.remove('hidden');
-loadProducts();
-}else{
-alert('Wrong Password!');
-}
-}
-function logout(){
-document.getElementById('loginBox').classList.remove('hidden');
-document.getElementById('adminBox').classList.add('hidden');
-document.getElementById('passInput').value = '';
-}
-function addProduct(){
-const name = document.getElementById('pName').value;
-const price = document.getElementById('pPrice').value;
-const cat = document.getElementById('pCat').value;
-const imgFile = document.getElementById('pImg').files[0];
-if(!name ||!price ||!cat ||!imgFile){alert('Sab bharo!');return;}
-const reader = new FileReader();
-reader.onload = function(e){
-products.unshift({id:Date.now(),name:name,price:price,cat:cat,img:e.target.result});
-localStorage.setItem('aymart_products',JSON.stringify(products));
-alert('Product Added! Main site refresh karo.');
-document.getElementById('pName').value='';
-document.getElementById('pPrice').value='';
-document.getElementById('pCat').value='';
-document.getElementById('pImg').value='';
-loadProducts();
-}
-reader.readAsDataURL(imgFile);
-}
-function loadProducts(){
-const list = document.getElementById('productList');
-list.innerHTML = '<h3>Existing Products:</h3>';
-products.forEach(p=>{
-list.innerHTML += `<div class="product-item">
-<img src="${p.img}">
-<div><b>${p.name}</b><br>₹${p.price} - ${p.cat}</div>
-<button class="del-btn" onclick="delProduct(${p.id})">Delete</button>
-</div>`;
-});
-}
-function delProduct(id){
-if(confirm('Delete this product?')){
-products = products.filter(p=>p.id!==id);
-localStorage.setItem('aymart_products',JSON.stringify(products));
-loadProducts();
-}
-}
-</script>
-</body>
-</html>
+const P="Anil@123";let D=JSON.parse(localStorage.getItem('aymart_products'))||[];
+function login(){if(document.getElementById('pass').value===P){document.getElementById('loginBox').classList.add('hidden');document.getElementById('adminBox').classList.remove('hidden');showP()}else alert('Wrong Password!')}
+function logout(){document.getElementById('loginBox').classList.remove('hidden');document.getElementById('adminBox').classList.add('hidden');document.getElementById('pass').value=''}
+function addP(){const n=document.getElementById('name').value,p=document.getElementById('price').value,c=document.getElementById('cat').value,f=document.getElementById('img').files[0];if(!n||!p||!c||!f){alert('Sab bharo!');return}const r=new FileReader();r.onload=e=>{D.unshift({id:Date.now(),name:n,price:p,cat:c,img:e.target.result});localStorage.setItem('aymart_products',JSON.stringify(D));alert('Product Added! Main site refresh karo.');document.getElementById('name').value='';document.getElementById('price').value='';document.getElementById('cat').value='';document.getElementById('img').value='';showP()};r.readAsDataURL(f)}
+function showP(){const l=document.getElementById('list');l.innerHTML='<h3>Products:</h3>';D.forEach(x=>{l.innerHTML+=`<div class="item"><img src="${x.img}"><div><b>${x.name}</b><br>₹${x.price}-${x.cat}</div><button class="del" onclick="delP(${x.id})">Del</button></div>`})}
+function delP(id){if(confirm('Delete?')){D=D.filter(x=>x.id!==id);localStorage.setItem('aymart_products',JSON.stringify(D));showP()}}
+</script></body></html>
