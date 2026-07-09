@@ -75,7 +75,60 @@ body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;backg
 .spin-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center}
 .spin-box{background:#15151f;padding:30px;border-radius:20px;border:2px solid #00f5ff;text-align:center}
 </style></head>
-<body>
+<body<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+<script>
+function generateOrder(productName, price, mrp) {
+  const orderId = 'AY' + Date.now();
+  const date = new Date().toLocaleDateString('en-IN');
+  
+  const customerName = prompt("Customer ka Naam:");
+  if(!customerName) return;
+  const customerAddress = prompt("Full Address Jabalpur:");
+  if(!customerAddress) return;
+  const customerPhone = prompt("Customer ka Mobile Number:");
+  if(!customerPhone) return;
+  
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  doc.setFontSize(22);
+  doc.text("AY MART 2050 - INVOICE", 105, 20, null, null, "center");
+  doc.setFontSize(12);
+  doc.text("Jabalpur, MP | WhatsApp: +91 8770840326", 105, 28, null, null, "center");
+  doc.line(20, 32, 190, 32);
+  
+  doc.setFontSize(14);
+  doc.text(`Order ID: ${orderId}`, 20, 45);
+  doc.text(`Date: ${date}`, 20, 53);
+  
+  doc.text("Customer Details:", 20, 68);
+  doc.setFontSize(12);
+  doc.text(`Name: ${customerName}`, 20, 76);
+  doc.text(`Phone: ${customerPhone}`, 20, 84);
+  doc.text(`Address: ${customerAddress}`, 20, 92);
+  
+  doc.setFontSize(14);
+  doc.text("Order Details:", 20, 110);
+  doc.autoTable({
+    startY: 115,
+    head: [['Product', 'Price', 'MRP', 'You Save']],
+    body: [[productName, `Rs ${price}`, `Rs ${mrp}`, `Rs ${mrp-price}`]],
+  });
+  
+  doc.setFontSize(16);
+  doc.text(`Total Payable: Rs ${price} - COD`, 20, doc.lastAutoTable.finalY + 15);
+  doc.setFontSize(10);
+  doc.text("Thank you for shopping with Ay Mart! 7 Day Easy Return", 105, 280, null, null, "center");
+  
+  doc.save(`AyMart-Invoice-${orderId}.pdf`);
+  
+  const msg = `🔥 NEW ORDER - AY MART 2050 🔥%0A%0AOrder ID: ${orderId}%0AProduct: ${productName}%0APrice: Rs ${price} COD%0A%0ACustomer: ${customerName}%0APhone: ${customerPhone}%0AAddress: ${customerAddress}%0A%0A✅ Invoice PDF download ho gaya hai`;
+  
+  window.open(`https://wa.me/918770840326?text=${msg}`, '_blank');
+}
+</script>
+  
 <div class="header">
 <img src="logopng.webp" class="logo">
 <div>
@@ -301,61 +354,3 @@ show();updateCart();
 <a href="https://wa.me/918770840326?text=Bhai%20Ay%20Mart%20se%20Shirt%20order%20karni%20hai%20🔥%0A%0AProduct%20ka%20naam%20likh%20do:" class="ay-whatsapp">
   💬
 </a>
-.ay-product{position:relative;background:white;border-radius:12px;padding:15px;margin:15px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.ay-off-tag{position:absolute;top:10px;right:10px;background:#e74c3c;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-.
-function generateOrder(productName, price, mrp) {
-  // 1. Order ID banao
-  const orderId = 'AY' + Date.now();
-  const date = new Date().toLocaleDateString('en-IN');
-  
-  // 2. Customer se details maango
-  const customerName = prompt("Customer ka Naam:");
-  if(!customerName) return;
-  const customerAddress = prompt("Full Address Jabalpur:");
-  if(!customerAddress) return;
-  const customerPhone = prompt("Customer ka Mobile Number:");
-  if(!customerPhone) return;
-  
-  // 3. Invoice PDF banao
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  doc.setFontSize(22);
-  doc.text("AY MART 2050 - INVOICE", 105, 20, null, "center");
-  doc.setFontSize(12);
-  doc.text("Jabalpur, MP | WhatsApp: +91 8770840326", 105, 28, null, null, "center");
-  doc.line(20, 32, 190, 32);
-  
-  doc.setFontSize(14);
-  doc.text(`Order ID: ${orderId}`, 20, 45);
-  doc.text(`Date: ${date}`, 20, 53);
-  
-  doc.text("Customer Details:", 20, 68);
-  doc.setFontSize(12);
-  doc.text(`Name: ${customerName}`, 20, 76);
-  doc.text(`Phone: ${customerPhone}`, 20, 84);
-  doc.text(`Address: ${customerAddress}`, 20, 92);
-  
-  doc.setFontSize(14);
-  doc.text("Order Details:", 20, 110);
-  doc.autoTable({
-    startY: 115,
-    head: [['Product', 'Price', 'MRP', 'You Save']],
-    body: [[productName, `Rs ${price}`, `Rs ${mrp}`, `Rs ${mrp-price}`]],
-  });
-  
-  doc.setFontSize(16);
-  doc.text(`Total Payable: Rs ${price} - COD`, 20, doc.lastAutoTable.finalY + 15);
-  doc.setFontSize(10);
-  doc.text("Thank you for shopping with Ay Mart! 7 Day Easy Return", 105, 280, null, null, "center");
-  
-  // 4. PDF download karo
-  doc.save(`AyMart-Invoice-${orderId}.pdf`);
-  
-  // 5. WhatsApp pe order bhej do
-  const msg = `🔥 NEW ORDER - AY MART 2050 🔥%0A%0AOrder ID: ${orderId}%0AProduct: ${productName}%0APrice: Rs ${price} COD%0A%0ACustomer: ${customerName}%0APhone: ${customerPhone}%0AAddress: ${customerAddress}%0A%0A✅ Invoice PDF download ho gaya hai`;
-  
-  window.open(`https://wa.me/918770840326?text=${msg}`, '_blank');
-}
-  </script>
