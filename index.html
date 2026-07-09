@@ -1,88 +1,394 @@
-DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-    <title>Ay-Mart</title>
-    <style>
-        .shop-container { 
-            padding: 20px; 
-            font-family: Arial, sans-serif; 
-        }
-        .shop-container h2 { 
-            text-align: center; 
-            color: #333; 
-        }
-        .product-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 20px; 
-            justify-content: center; 
-            margin-top: 20px; 
-        }
-        .product-card { 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            padding: 15px; 
-            width: 200px; 
-            text-align: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-        }
-        .product-card img { 
-            width: 100%; 
-            border-radius: 5px; 
-        }
-        .product-card h3 { 
-            font-size: 18px; 
-            margin: 10px 0 5px 0; 
-        }
-        .price { 
-            color: green; 
-            font-weight: bold; 
-            font-size: 16px; 
-        }
-        .buy-btn { 
-            background-color: #ff6b00; 
-            color: white; 
-            border: none; 
-            padding: 10px 15px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            width: 100%; 
-        }
-        .buy-btn:hover { 
-            background-color: #e55f00; 
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ay Mart - Sab Kuch Ek Jagah | Anil Yadav</title>
+<meta name="description" content="Ay Mart - India ka apna online store. Mobile, Fashion, Grocery, Electronics sab kuch ek jagah.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#ff7a00;
+  --orange-dark:#e56a00;
+  --green:#16a34a;
+  --green-dark:#0f7a36;
+  --bg:#fffefb;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --muted:#6b7280;
+  --border:#f0e9e0;
+  --shadow:0 10px 30px rgba(255,122,0,0.08);
+  --shadow-lg:0 20px 40px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;border:none;background:none;cursor:pointer}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar{display:flex;align-items:center;gap:12px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;white-space:nowrap}
+.logo-icon{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--orange) 0%, #ffb347 40%, var(--green) 100%);
+  display:grid;place-items:center;color:white;font-weight:800;box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.logo-icon::after{content:'';position:absolute;inset:2px;border-radius:10px;border:2px solid rgba(255,255,255,0.3)}
+.logo-text{background:linear-gradient(90deg,var(--orange),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.by{font-size:10px;color:var(--muted);font-weight:500;margin-top:-4px}
+
+.search-wrap{flex:1;max-width:580px;position:relative;display:none}
+@media(min-width:768px){.search-wrap{display:block}}
+.search-input{
+  width:100%;padding:13px 48px 13px 16px;border:2px solid #ffe7d1;border-radius:14px;
+  background:#fff;outline:none;font-size:14px;transition:all .2s;
+}
+.search-input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,0.15)}
+.search-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#9a6a3f}
+
+.actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.action-btn{
+  position:relative;display:flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:12px;border:2px solid var(--border);background:#fff;
+  font-weight:600;font-size:14px;transition:.2s;
+}
+.action-btn:hover{border-color:var(--orange);transform:translateY(-1px);box-shadow:var(--shadow)}
+.cart-count{
+  position:absolute;top:-8px;right:-8px;background:var(--green);color:white;
+  min-width:22px;height:22px;padding:0 6px;border-radius:999px;font-size:11px;font-weight:700;
+  display:grid;place-items:center;border:2px solid white;box-shadow:0 4px 10px rgba(22,163,74,0.3);
+  transition:transform .2s;
+}
+.cart-count.bump{transform:scale(1.2)}
+
+.mobile-search{padding:0 0 12px;display:block}
+.mobile-search .search-input{border-radius:12px}
+@media(min-width:768px){.mobile-search{display:none}}
+
+/* Hero */
+.hero{
+  position:relative;overflow:hidden;
+  background:radial-gradient(1200px 600px at 80% -20%, #dcfce7 0%, transparent 60%),
+             radial-gradient(800px 400px at -10% 0%, #ffedd5 0%, transparent 50%),
+             linear-gradient(180deg,#fff 0%,#fffaf3 100%);
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:36px 0 28px}
+@media(min-width:900px){.hero-inner{grid-template-columns:1.1fr 0.9fr;padding:56px 0 40px;gap:40px}}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ffe4cc;
+  padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;color:#b45309;box-shadow:var(--shadow)
+}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{
+  font-size:clamp(28px,5vw,48px);line-height:1.1;font-weight:800;margin:14px 0 12px;
+  letter-spacing:-0.02em;
+}
+h1 .hi{color:var(--orange)}
+h1 .en{display:block;font-size:clamp(16px,2.5vw,20px);font-weight:600;color:var(--muted);margin-top:6px}
+.hero-sub{font-size:16px;color:#4b5563;max-width:560px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{
+  padding:13px 20px;border-radius:12px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;
+  transition:all .2s;border:2px solid transparent;
+}
+.btn-primary{background:var(--orange);color:white;box-shadow:0 8px 20px rgba(255,122,0,0.25)}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 12px 24px rgba(255,122,0,0.3)}
+.btn-ghost{background:#fff;border-color:var(--border);color:#1f2937}
+.btn-ghost:hover{border-color:var(--green);color:var(--green-dark);transform:translateY(-2px)}
+
+.hero-visual{
+  position:relative;background:linear-gradient(135deg,#fff,#fff7ed);border:1px solid #ffe4cc;
+  border-radius:24px;padding:18px;box-shadow:var(--shadow-lg);
+}
+.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hero-card{
+  aspect-ratio:1;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #f5e8d8;
+  position:relative;transition:transform .3s;
+}
+.hero-card:hover{transform:translateY(-4px) rotate(-1deg)}
+.hero-card img{width:100%;height:100%;object-fit:cover}
+.hero-badge{
+  position:absolute;bottom:10px;left:10px;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);
+  padding:4px 8px;border-radius:8px;font-size:11px;font-weight:700;color:#92400e;border:1px solid #fed7aa
+}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.trust-item{
+  background:#fff;border:1px dashed #fcd9b8;border-radius:12px;padding:10px;text-align:center;font-size:12px;font-weight:600;color:#7c3f0a
+}
+.trust-item span{display:block;font-size:11px;color:var(--muted);font-weight:500}
+
+/* Categories */
+.section{padding:36px 0}
+@media(min-width:768px){.section{padding:48px 0}}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.section-title{font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-0.01em}
+.section-sub{color:var(--muted);font-size:14px;margin-top:4px}
+.view-all{font-weight:600;color:var(--orange);font-size:14px}
+
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:600px){.cats{grid-template-columns:repeat(4,1fr)}}
+.cat{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;
+  display:flex;align-items:center;gap:12px;transition:.25s;box-shadow:0 4px 12px rgba(0,0,0,0.03);
+  cursor:pointer;
+}
+.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#ffd7b3}
+.cat-icon{
+  width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;
+  background:linear-gradient(135deg,#fff7ed,#e8f9f0);border:1px solid #ffe4cc;flex-shrink:0;
+}
+.cat h3{font-size:15px;font-weight:700}
+.cat p{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Products */
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:700px){.products{grid-template-columns:repeat(3,1fr);gap:18px}}
+@media(min-width:1024px){.products{grid-template-columns:repeat(3,1fr)}}
+
+.product{
+  background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;
+  display:flex;flex-direction:column;transition:.25s;position:relative;
+}
+.product:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#ffd6aa}
+.product-media{position:relative;background:#fcf7f0;aspect-ratio:4/3;overflow:hidden}
+.product-media img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product:hover .product-media img{transform:scale(1.05)}
+.badge{
+  position:absolute;top:10px;left:10px;background:var(--green);color:white;font-size:11px;font-weight:700;
+  padding:4px 8px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.1)
+}
+.wishlist{
+  position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,0.9);
+  display:grid;place-items:center;border:1px solid #f0e0d0;transition:.2s
+}
+.wishlist:hover{background:#fff;transform:scale(1.05)}
+.p-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p-title{font-weight:700;font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
+.p-hi{font-size:12px;color:#b45309;font-weight:600;background:#fff7ed;padding:2px 6px;border-radius:6px;align-self:flex-start}
+.p-price{display:flex;align-items:baseline;gap:8px;margin-top:auto}
+.p-now{font-size:18px;font-weight:800;color:#111}
+.p-old{font-size:13px;color:var(--muted);text-decoration:line-through}
+.p-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.rating{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#92400e;background:#fff7ed;padding:4px 6px;border-radius:8px}
+.add-btn{
+  flex:1;background:var(--orange);color:white;font-weight:700;padding:10px 12px;border-radius:10px;
+  font-size:13px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.add-btn:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.add-btn.added{background:var(--green)}
+
+/* About */
+.about{
+  background:linear-gradient(180deg,#fff,#f8fff9);border-top:1px solid var(--border);border-bottom:1px solid var(--border)
+}
+.about-wrap{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media(min-width:900px){.about-wrap{grid-template-columns:0.9fr 1.1fr}}
+.about-card{
+  background:#fff;border:1px solid var(--border);border-radius:24px;padding:22px;box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.about-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,#ffedd5,transparent 60%);
+}
+.owner{display:flex;align-items:center;gap:14px}
+.avatar{
+  width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--orange),var(--green));
+  display:grid;place-items:center;color:white;font-weight:800;font-size:20px;box-shadow:var(--shadow)
+}
+.owner h4{font-size:18px;font-weight:800}
+.owner p{font-size:13px;color:var(--muted)}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.point{background:#fffaf3;border:1px solid #ffe4cc;border-radius:14px;padding:12px;font-size:13px;font-weight:600;color:#7c3f0a}
+
+/* Footer */
+footer{background:#11160f;color:#d1d5db;margin-top:40px}
+.foot-top{padding:36px 0;display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:768px){.foot-top{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.foot-brand .logo-text{filter:brightness(1.2)}
+.foot-desc{font-size:14px;color:#9ca3af;margin-top:10px;max-width:340px}
+.foot-title{font-weight:700;color:white;margin-bottom:12px;font-size:15px}
+.foot-links{display:grid;gap:8px;font-size:14px;color:#b8c0b1}
+.foot-links a:hover{color:white}
+.foot-bottom{border-top:1px solid #1f2918;padding:16px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:13px;color:#8b9484}
+.pay{display:flex;align-items:center;gap:8px}
+.pay-badge{background:#1c2415;border:1px solid #2a341f;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:600}
+
+/* Toast */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+  background:#111;color:white;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);opacity:0;pointer-events:none;transition:.3s;z-index:200;
+  display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:calc(100vw - 32px)
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .tick{width:20px;height:20px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-size:12px}
+
+/* Utilities */
+.chip{display:inline-flex;align-items:center;gap:6px;background:#e8f9f0;color:#065f34;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid #bbf7d0}
+</style>
 </head>
 <body>
-    <h1>Welcome to Ay-Mart</h1>
-    <p>Ye meri pehli website hai</p>
-    <p>GitHub Pages se bani hai</p>
-    
-    <!-- Product Section -->
-    <div class="shop-container">
-        <h2>Our Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https:                                         
-                <h3>Cool T-Shirt</h3>
-                <p class="price">₹399</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Shoes">
-                <h3>Sports Shoes</h3>
-                <p class="price">₹999</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https:                                       
-                <h3>Smart Watch</h3>
-                <p class="price">₹1,499</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
+<header>
+  <div class="container">
+    <div class="topbar">
+      <a href="#" class="logo" aria-label="Ay Mart Home">
+        <div class="logo-icon">A</div>
+        <div>
+          <div class="logo-text">Ay Mart</div>
+          <div class="by">by Anil Yadav</div>
         </div>
+      </a>
+
+      <div class="search-wrap">
+        <input id="searchDesktop" class="search-input" type="search" placeholder="Search for mobiles, kurtas, atta... खोजें" aria-label="Search products">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn" id="cartBtn" aria-label="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6l-2-3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+          <span class="hide-mobile" style="display:none">Cart</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
     </div>
-    <!-- Product Section End -->
-    
-</body>
-</html>
+    <div class="mobile-search">
+      <div style="position:relative">
+        <input id="searchMobile" class="search-input" type="search" placeholder="Kya chahiye aapko? Search karo..." aria-label="Search products mobile">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Made in Bharat • Desi Prices</div>
+        <h1>
+          Welcome to <span class="hi">Ay Mart</span>
+          <span class="en">Sab Kuch Ek Jagah</span>
+        </h1>
+        <p class="hero-sub">Anil Yadav ka bharosemand store. Mobile se masale tak, fashion se electronics tak — best quality, sabse kam daam, fast delivery!</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5v14"/></svg>
+            Shop Now
+          </a>
+          <a href="#categories" class="btn btn-ghost">Categories Dekho</a>
+        </div>
+        <div class="trust">
+          <div class="trust-item">Free Delivery<span>₹299+ par</span></div>
+          <div class="trust-item">7 Din Return<span>No tension</span></div>
+          <div class="trust-item">100% Original<span>Pakka promise</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-grid">
+          <div class="hero-card"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&auto=format&fit=crop&q=80" alt="Mobile phones"><span class="hero-badge">Mobiles</span></div>
+          <div class="hero-card"><img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop&q=80" alt="Indian fashion"><span class="hero-badge">Fashion</span></div>
+          <div class="hero-card"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80" alt="Grocery"><span class="hero-badge">Grocery</span></div>
+          <div class="hero-card"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80" alt="Headphones"><span class="hero-badge">Electronics</span></div>
+          <div class="hero-card"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80" alt="Saree"><span class="hero-badge">Sarees</span></div>
+          <div class="hero-card"><img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=500&auto=format&fit=crop&q=80" alt="Home essentials"><span class="hero-badge">Home</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section id="categories" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Shop by Category</h2>
+          <p class="section-sub">Jo chahiye, wohi milega – quick and easy</p>
+        </div>
+        <a href="#products" class="view-all">View all →</a>
+      </div>
+      <div class="cats">
+        <div class="cat" data-cat="Mobile">
+          <div class="cat-icon">📱</div>
+          <div><h3>Mobile</h3><p>Latest smartphones</p></div>
+        </div>
+        <div class="cat" data-cat="Fashion">
+          <div class="cat-icon">👕</div>
+          <div><h3>Fashion</h3><p>Kurta, Saree & more</p></div>
+        </div>
+        <div class="cat" data-cat="Grocery">
+          <div class="cat-icon">🛒</div>
+          <div><h3>Grocery</h3><p>Roz ka rashan</p></div>
+        </div>
+        <div class="cat" data-cat="Electronics">
+          <div class="cat-icon">🎧</div>
+          <div><h3>Electronics</h3><p>Gadgets & accessories</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Featured Products</h2>
+          <p class="section-sub">Aaj ke top deals – jaldi karo, stock limited hai!</p>
+        </div>
+        <span class="chip">✨ Festive Sale Live</span>
+      </div>
+      <div class="products" id="productGrid">
+        <!-- Products injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about">
+    <div class="container about-wrap">
+      <div class="about-card">
+        <div class="owner">
+          <div class="avatar">AY</div>
+          <div>
+            <h4>Anil Yadav, Founder</h4>
+            <p>Ay Mart • Est. 2024</p>
+          </div>
+        </div>
+        <p style="margin-top:14px;color:#4b5563;font-size:14px">Namaste! Ay Mart mera sapna hai – har Indian ghar tak quality products pahunchana, woh bhi apni bhasha aur apne daam me. Hum seedha brands aur local artisans se judte hain.</p>
+        <div class="about-points">
+          <div class="point">✅ COD Available</div>
+          <div class="point">✅ 24x7 Support</div>
+          <div class="point">✅ Pan-India Delivery</div>
+          <div class="point">✅ Secure Payments</div>
+        </div>
+      <div>
+        <h2 class="section-title" style="margin-bottom:10px">Ay Mart ke baare me</h2>
+        <p class="section-sub" style="font-size:15px;line-height:1.7">Humara mission simple hai: <strong>"Sab Kuch Ek Jagah"</strong>. Aap time bachao, hum best deals laayenge. Mobile, Fashion, Grocery, Electronics – sab verified sellers se. Agar pasand na aaye, <strong>7 din me easy return</strong>. Gaon ho ya sheher, Ay Mart aapke saath.</p>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="chip">🇮🇳 Vocal for Local</span>
+          <span class="chip" style="background:#fff7ed;color:#9a3412;border-color:#fed7aa">💬 
