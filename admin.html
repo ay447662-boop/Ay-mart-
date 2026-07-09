@@ -1,17 +1,7 @@
-<script>
-// Admin se add kiye product dikhao
-const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
-if(myProducts.length > 0) {
-  const productBox = document.querySelector('.products') || document.querySelector('#products') || document.body;
-  let html = '<h2 style="padding:10px">Your Products</h2>';
-  myProducts.forEach(p => {
-    html += `<div style="border:1px solid #ddd;margin:10px;padding:10px;border-radius:8px">
-      <img src="${p.img}" style="width:100%;max-width:200px;height:150px;object-fit:cover">
-      <h3>${p.name}</h3>
-      <p style="color:green;font-weight:bold">₹${p.price}</p>
-      <button style="background:#ff9f00;color:#fff;border:0;padding:8px 15px;border-radius:4px">Add to Cart</button>
-    </div>`;
-  });
-  productBox.insertAdjacentHTML('afterbegin', html);
-}
-</script>
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Admin Chal Raha Hai</h1>
+<p>Password: Anil@123</p>
+</body>
+</html>
