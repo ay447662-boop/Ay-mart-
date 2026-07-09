@@ -230,15 +230,34 @@ deferredPrompt.prompt();
 deferredPrompt.userChoice.then((c)=>{deferredPrompt = null;});
 }
 
-  renderProducts();
+      renderProducts();
     </script>
-   <script>
-   // Admin se add kiye product dikhao   const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
-   if(myProducts.length > 0) {
-...
-...
-      productBox.insertAdjacentHTML('afterbegin', html);
-    }
+    
+    <!-- ANIL BHAI KA SPECIAL SECTION - ADMIN PRODUCTS -->
+    <div class="section" id="userProductsSection" style="display:none;">
+      <div class="sec-head"><h2>Your Added Products</h2></div>
+      <div class="product-grid" id="userProductGrid"></div>
+    </div>
+
+    <script>
+    // Admin se add kiye product dikhao
+    document.addEventListener('DOMContentLoaded', function() {
+      const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
+      if(myProducts.length > 0) {
+        document.getElementById('userProductsSection').style.display = 'block';
+        const grid = document.getElementById('userProductGrid');
+        grid.innerHTML = myProducts.map(p => `
+          <div class="card">
+            <img src="${p.img}" alt="${p.name}">
+            <div class="card-body">
+              <div class="card-title">${p.name}</div>
+              <div><span class="price">₹${p.price.toLocaleString()}</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
     </script>
-    </body>
- </html>
+</body>
+</html>
