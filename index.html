@@ -32,6 +32,7 @@
 .btn-buy{background:#ff0080;color:#fff}
 .footer{position:fixed;bottom:0;left:0;right:0;background:#131921;display:flex;border-top:2px solid #00f5ff}
 .f-item{flex:1;text-align:center;padding:7px 3px;color:#888;font-size:9px;cursor:pointer}
+.f-item.active{color:#00f5ff}
 .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center;overflow-y:auto;padding:20px 0}
 .modal-box{background:#15151f;border:2px solid #00f5ff;border-radius:10px;padding:15px;width:90%;max-width:400px;position:relative;margin:auto}
 .modal-box h3{color:#00f5ff;margin-bottom:10px;text-align:center}
@@ -61,7 +62,7 @@
   <div class="cat-item" onclick="filterCat('shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=100"><p>Shirt</p></div>
   <div class="cat-item" onclick="filterCat('jeans')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=100"><p>Jeans</p></div>
 </div>
-<div class="visitor-bar" id="visitorBar">🚚 Asort + Razorpay Live</div>
+<div class="visitor-bar">🚚 Asort + Razorpay Live</div>
 <div class="grid" id="grid"></div>
 <div class="footer">
   <div class="f-item">🏠<br>Home</div>
@@ -71,7 +72,6 @@
   <div class="f-item" onclick="adminPanel()">🔐<br>Admin</div>
 </div>
 
-<!-- BOOKING MODAL -->
 <div class="modal" id="bookingModal">
   <div class="modal-box">
     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -89,7 +89,6 @@
   </div>
 </div>
 
-<!-- TRACKING MODAL -->
 <div class="modal" id="trackModal">
   <div class="modal-box">
     <span class="close-btn" onclick="closeTrackModal()">&times;</span>
@@ -100,7 +99,6 @@
   </div>
 </div>
 
-<!-- ADMIN MODAL -->
 <div class="modal" id="adminModal">
   <div class="modal-box">
     <span class="close-btn" onclick="closeAdminModal()">&times;</span>
@@ -214,7 +212,6 @@ function openBooking(id){
 
 function closeModal(){document.getElementById('bookingModal').style.display='none';currentProduct=null;}
 
-// === 3. RAZORPAY + 1. PDF + 2. STOCK + 5. SMS + 6. ASORT ===
 function confirmBooking(){
   var name = document.getElementById('custName').value;
   var phone = document.getElementById('custPhone').value;
@@ -228,7 +225,6 @@ function confirmBooking(){
   var orderId = 'ASORT' + Date.now().toString().slice(-8);
   var asortAWB = 'AS' + Math.floor(Math.random()*10000000);
   
-  // 2. STOCK AUTO KAM KARO
   for(var i=0;i<PRODUCTS.length;i++){
     if(PRODUCTS[i].id==currentProduct.id){
       PRODUCTS[i].stock--;
@@ -252,7 +248,6 @@ function confirmBooking(){
     tracking: ['Order Placed','Asort Pickup Scheduled']
   };
 
-  // 3. RAZORPAY PAYMENT
   if(payMethod=='ONLINE'){
     var options = {
       "key": CONFIG.RAZORPAY_KEY,
@@ -279,33 +274,28 @@ function confirmBooking(){
 function processOrder(order){
   ORDERS.push(order);
   localStorage.setItem('ay_orders', JSON.stringify(ORDERS));
-  
-  // 1. PDF INVOICE
   generatePDF(order);
-  
-  // 5. SMS TO CUSTOMER - YAHAN SMS API LAGEGI
   sendSMS(order);
-  
-  // 6. ASORT API CALL
   asortAPI(order);
-  
-  // WhatsApp to Admin
   var msg='🚚 ASORT BOOKING%0A%0AOrder: '+order.id+'%0AAWB: '+order.asortAWB+'%0A%0AProduct: '+order.product+'%0APrice: ₹'+order.price+'%0APayment: '+order.payment+'%0A%0ACustomer: '+order.customer+'%0APhone: '+order.phone+'%0AAddress: '+order.address+', '+order.city;
   window.open('https://wa.me/'+CONFIG.WHATSAPP_NUMBER+'?text='+msg,'_blank');
-  
   closeModal();
   render();
   alert('✅ ORDER BOOKED!\n\nOrder ID: '+order.id+'\nAWB: '+order.asortAWB+'\n\nPDF Downloaded\nSMS Sent\nAsort API Called');
-  
   document.getElementById('custName').value='';
   document.getElementById('custPhone').value='';
   document.getElementById('custAddress').value='';
 }
 
-// 1. PDF GENERATE
 function generatePDF(order){
   var jsPDF = window.jspdf.jsPDF;
   var doc = new jsPDF();
   doc.setFontSize(18);doc.text('AY MART 2050 - INVOICE',105,20,{align:'center'});
   doc.setFontSize(10);doc.text('Asort Shipping | Ajaygarh, MP | +91'+CONFIG.WHATSAPP_NUMBER,105,28,{align:'center'});
-  doc.setFontSize(12
+  doc.setFontSize(12);doc.text('Order ID: '+order.id,20,40);
+  doc.text('Asort AWB: '+order.asortAWB,20,48);
+  doc.text('Date: '+order.date,20,56);
+  doc.text('Customer: '+order.customer,20,68);
+  doc.text('Phone: '+order.phone,20,76);
+  doc.text('Address: '+order.address+', '+order.city,20,84);
+  doc.autoTable({startY:95,head:[['Product'
