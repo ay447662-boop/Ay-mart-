@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Ay Mart Pro - Asort Partner App</title>
+<title>Ay Mart Pro - Asort Official Partner</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--orange:#FF6B35;--dark:#131921;--green:#25D366;--bg:#f1f3f6;--yellow:#FFD814;--blue:#2874f0}
+:root{--orange:#FF6B35;--dark:#131921;--green:#25D366;--bg:#f1f3f6;--yellow:#FFD814;--blue:#2874f0;--red:#E91E63}
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);padding-bottom:65px;color:#212121}
-/* Side Menu */
+/* 1. Side Menu */
 #sideMenu{position:fixed;top:0;left:-280px;width:280px;height:100%;background:#fff;z-index:1000;transition:0.3s;box-shadow:2px 0 5px rgba(0,0,0,0.2)}
 #overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999}
 .menu-head{background:linear-gradient(135deg,var(--orange),#F7931E);padding:20px;color:#fff}
@@ -17,6 +17,22 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .menu-head p{font-size:13px;margin-top:4px;opacity:0.9}
 .menu-item{padding:14px 20px;display:flex;align-items:center;gap:15px;font-size:15px;color:#212121;border-bottom:1px solid #f0f0f0}
 .menu-item i{width:20px;color:#666}
+/* 12. Admin Panel */
+#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#f1f3f6;z-index:1002;overflow-y:auto}
+.admin-header{background:var(--dark);color:#fff;padding:16px;text-align:center;position:sticky;top:0}
+.admin-close{position:absolute;right:16px;top:16px;font-size:24px;cursor:pointer}
+.admin-body{padding:16px}
+.admin-card{background:#fff;border-radius:8px;padding:16px;margin-bottom:16px}
+.admin-card h3{font-size:16px;margin-bottom:12px;color:var(--dark)}
+.admin-input{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;margin-bottom:10px;font-size:14px}
+.admin-btn{background:var(--orange);color:#fff;border:0;padding:12px;border-radius:6px;width:100%;font-size:15px;font-weight:600}
+.admin-list{max-height:300px;overflow-y:auto}
+.admin-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #eee}
+.admin-item img{width:50px;height:50px;object-fit:cover;border-radius:6px}
+.admin-del{background:var(--red);color:#fff;border:0;padding:6px 12px;border-radius:4px;font-size:12px}
+.visitor-count{background:var(--blue);color:#fff;padding:12px;border-radius:8px;text-align:center;margin-bottom:16px}
+.visitor-count h4{font-size:24px}
+.visitor-count p{font-size:12px;opacity:0.9}
 /* Header */
 .asort-header{background:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:998;box-shadow:0 1px 2px rgba(0,0,0,0.08)}
 .menu-icon{font-size:20px;color:#333}
@@ -28,20 +44,21 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .header-icons i{font-size:20px;color:#333}
 .wallet{position:relative}
 .wallet-badge{position:absolute;top:-8px;right:-8px;background:var(--green);color:#fff;border-radius:10px;padding:1px 5px;font-size:10px;font-weight:600}
-/* Search + Voice */
+.cart-count{position:absolute;top:-8px;right:-8px;background:var(--red);color:#fff;border-radius:10px;padding:1px 5px;font-size:10px;font-weight:600}
+/* 6. Search + Voice */
 .search-wrap{background:#fff;padding:0 16px 12px 16px}
 .search-box{background:#f0f2f5;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px}
 .search-box i{color:#878787;font-size:16px}
 .search-box input{border:0;background:transparent;outline:0;width:100%;font-size:14px}
 .mic-icon{color:var(--blue)!important}
-/* Spin & Win Banner */
+/* 8. Spin & Win Banner */
 .spin-banner{margin:12px 16px;background:linear-gradient(90deg,#9C27B0,#E91E63);border-radius:8px;padding:14px;display:flex;align-items:center;justify-content:space-between;color:#fff}
 .spin-banner.left{display:flex;align-items:center;gap:10px}
 .spin-banner i{font-size:26px}
 .spin-banner h3{font-size:14px;font-weight:700}
 .spin-banner p{font-size:12px;opacity:0.9}
 .spin-banner button{background:#fff;color:#9C27B0;border:0;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700}
-/* Refer & Earn */
+/* 7. Refer & Earn */
 .refer-card{margin:8px 16px;background:#fff;border:2px dashed var(--green);border-radius:8px;padding:14px;text-align:center}
 .refer-card h3{font-size:15px;color:var(--dark);margin-bottom:6px}
 .refer-card p{font-size:12px;color:#666;margin-bottom:10px}
@@ -50,12 +67,23 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .stat-box h4{font-size:18px;color:var(--green);font-weight:700}
 .stat-box p{font-size:11px;color:#666;margin:0}
 .refer-card button{background:var(--green);color:#fff;border:0;padding:10px 24px;border-radius:6px;font-size:14px;font-weight:600}
-/* Flash Sale */
+/* 2. Flash Sale */
 .flash-sale{margin:8px 16px;background:#232F3E;border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:space-between;color:#fff}
 .flash-left{font-size:13px;font-weight:600}
 .flash-left span{font-size:11px;opacity:0.8;display:block}
 #timer{font-size:18px;font-weight:700;color:var(--yellow)}
 .flash-btn{background:var(--yellow);color:#000;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600}
+/* 10. Order Tracking */
+.tracking-card{margin:8px 16px;background:#fff;border-radius:8px;padding:14px}
+.tracking-card h3{font-size:14px;margin-bottom:12px;color:var(--dark)}
+.track-step{display:flex;gap:12px;margin-bottom:12px}
+.track-icon{width:32px;height:32px;border-radius:50%;background:#E8F5E9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.track-icon i{color:var(--green);font-size:14px}
+.track-icon.pending{background:#FFF3E0}
+.track-icon.pending i{color:#FF9800}
+.track-info{flex:1}
+.track-info h4{font-size:13px;color:#212121;margin-bottom:2px}
+.track-info p{font-size:11px;color:#666}
 /* Categories */
 .cat-scroll{padding:12px 0 8px 16px;background:#fff;margin-bottom:8px}
 .cat-row{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px}
@@ -71,9 +99,11 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .sec-head a{font-size:13px;color:var(--orange);text-decoration:none;font-weight:600}
 .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;position:relative}
+/* 4. Wishlist Heart */
 .wishlist{position:absolute;top:8px;right:8px;background:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,0.2);z-index:10}
 .wishlist i{color:#878787;font-size:16px}
-.wishlist.active i{color:#E91E63}
+.wishlist.active i{color:var(--red)}
+/* 5. Image Slider */
 .img-slider{position:relative;height:160px;overflow:hidden;background:#f5f5f5}
 .img-slider img{width:100%;height:160px;object-fit:cover;display:none}
 .img-slider img.active{display:block}
@@ -92,27 +122,34 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .delivery{font-size:11px;color:#212121;margin-bottom:8px}
 .btn-buy{width:100%;background:var(--yellow);border:0;padding:8px;border-radius:6px;font-size:13px;font-weight:600;color:#000;cursor:pointer;margin-bottom:6px}
 .btn-wa{width:100%;background:var(--green);border:0;padding:8px;border-radius:6px;font-size:13px;font-weight:600;color:#fff;cursor:pointer}
-/* Order Tracking */
-.tracking-card{margin:8px 16px;background:#fff;border-radius:8px;padding:14px}
-.tracking-card h3{font-size:14px;margin-bottom:12px;color:var(--dark)}
-.track-step{display:flex;gap:12px;margin-bottom:12px}
-.track-icon{width:32px;height:32px;border-radius:50%;background:#E8F5E9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.track-icon i{color:var(--green);font-size:14px}
-.track-icon.pending{background:#FFF3E0}
-.track-icon.pending i{color:#FF9800}
-.track-info{flex:1}
-.track-info h4{font-size:13px;color:#212121;margin-bottom:2px}
-.track-info p{font-size:11px;color:#666}
+.btn-cart{width:100%;background:var(--orange);border:0;padding:8px;border-radius:6px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;margin-bottom:6px}
+/* 11. Cart Modal */
+#cartModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1001}
+.cart-box{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:16px 16px 0 0;max-height:80%;overflow-y:auto}
+.cart-head{padding:16px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff}
+.cart-head h3{font-size:16px}
+.cart-body{padding:16px}
+.cart-item{display:flex;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #eee}
+.cart-item img{width:70px;height:70px;object-fit:cover;border-radius:6px}
+.cart-info{flex:1}
+.cart-info h4{font-size:13px;margin-bottom:4px}
+.cart-info p{font-size:14px;font-weight:600;color:var(--dark)}
+.cart-qty{display:flex;align-items:center;gap:10px;margin-top:8px}
+.qty-btn{width:28px;height:28px;border:1px solid #ddd;background:#fff;border-radius:4px}
+.cart-total{padding:16px;border-top:1px solid #eee;background:#fff;position:sticky;bottom:0}
+.cart-total.row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px}
+.cart-total.grand{font-size:16px;font-weight:700;color:var(--dark)}
+.checkout-btn{width:100%;background:var(--yellow);border:0;padding:14px;border-radius:8px;font-size:15px;font-weight:700;color:#000;margin-top:12px}
 /* Bottom Nav */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px 0;box-shadow:0 -1px 3px rgba(0,0,0,0.1);z-index:997}
-.nav-item{text-align:center;padding:4px 12px;color:#878787;cursor:pointer}
+.nav-item{text-align:center;padding:4px 12px;color:#878787;cursor:pointer;position:relative}
 .nav-item.active{color:var(--orange)}
 .nav-item i{font-size:20px;margin-bottom:2px}
 .nav-item p{font-size:10px;font-weight:500}
-/* Live Popup */
+/* 3. Live Popup */
 @keyframes slideIn{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
 .live-popup{position:fixed;bottom:80px;left:16px;background:#fff;padding:12px 16px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:13px;z-index:996;animation:slideIn 0.3s;display:flex;align-items:center;gap:8px}
-/* Spin Wheel Modal */
+/* 8. Spin Wheel Modal */
 #spinModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1001;align-items:center;justify-content:center}
 .spin-box{background:#fff;border-radius:16px;padding:24px;text-align:center;max-width:320px}
 .spin-wheel{width:200px;height:200px;border-radius:50%;background:conic-gradient(#FF6B35 0deg 60deg,#FFD814 60deg 120deg,#25D366 120deg 180deg,#2874f0 180deg 240deg,#9C27B0 240deg 300deg,#E91E63 300deg 360deg);margin:20px auto;position:relative;transition:transform 3s cubic-bezier(0.17,0.67,0.83,0.67)}
@@ -122,27 +159,55 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 </head>
 <body>
 
-<!-- Side Menu -->
+<!-- 1. Side Menu -->
 <div id="sideMenu">
 <div class="menu-head">
 <h3>Hi, Anil Yadav</h3>
 <p>ASID: 2396277 | Maven Partner</p>
 </div>
 <div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-home"></i> Home</div>
+<div class="menu-item" onclick="openCart()"><i class="fas fa-shopping-cart"></i> My Cart</div>
 <div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-box"></i> My Orders</div>
 <div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-heart"></i> Wishlist</div>
 <div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-wallet"></i> Ay Mart Wallet</div>
 <div class="menu-item" onclick="openSpin()"><i class="fas fa-dharmachakra"></i> Spin & Win</div>
+<div class="menu-item" onclick="openAdmin()"><i class="fas fa-user-shield"></i> Admin Panel</div>
 <div class="menu-item" onclick="window.open('https://wa.me/918770840326','_blank')"><i class="fab fa-whatsapp"></i> Help Center</div>
-<div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-sign-out-alt"></i> Logout</div>
+</div>
 <div id="overlay" onclick="closeMenu()"></div>
+
+<!-- 12. Admin Panel -->
+<div id="adminPanel">
+<div class="admin-header">
+<h2>Ay Mart Admin Panel</h2>
+<p>ASID: 2396277 | Anil Kumar Yadav</p>
+<div class="admin-close" onclick="closeAdmin()">×</div>
+<div class="admin-body">
+<div class="visitor-count">
+<h4 id="visitCount">0</h4>
+<p>Today's Visitors</p>
+</div>
+<div class="admin-card">
+<h3><i class="fas fa-plus-circle"></i> Add New Product</h3>
+<input type="text" id="pName" class="admin-input" placeholder="Product Name">
+<input type="text" id="pImg" class="admin-input" placeholder="Image URL">
+<input type="number" id="pPrice" class="admin-input" placeholder="Selling Price">
+<input type="number" id="pMrp" class="admin-input" placeholder="MRP">
+<button class="admin-btn" onclick="addProduct()">ADD PRODUCT TO AY MART</button>
+</div>
+<div class="admin-card">
+<h3><i class="fas fa-list"></i> Manage Products</h3>
+<div class="admin-list" id="productList"></div>
+</div>
+</div>
+</div>
 
 <!-- Header -->
 <div class="asort-header">
 <i class="fas fa-bars menu-icon" onclick="openMenu()"></i>
 <div class="asort-logo">A</div>
 <div class="asort-title">
-<h1>Ay Mart Pro</h1>
+<h1>Ay Mart Pro <i class="fas fa-check-circle" style="color:#1877F2;font-size:14px"></i></h1>
 <p>Maven Partner • ASID: 2396277</p>
 </div>
 <div class="header-icons">
@@ -150,18 +215,20 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <i class="fas fa-wallet"></i>
 <span class="wallet-badge">₹0</span>
 </div>
-<i class="fas fa-shopping-cart" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"></i>
+<div style="position:relative" onclick="openCart()">
+<i class="fas fa-shopping-cart"></i>
+<span class="cart-count" id="cartCount">0</span>
 </div>
 
-<!-- Search + Voice -->
+<!-- 6. Search + Voice -->
 <div class="search-wrap">
 <div class="search-box">
 <i class="fas fa-search"></i>
-<input type="text" id="searchInput" placeholder="Search for products, brands and more">
+<input type="text" id="searchInput" placeholder="Ay Mart pe kya chahiye? Search karo...">
 <i class="fas fa-microphone mic-icon" onclick="voiceSearch()"></i>
 </div>
 
-<!-- Spin & Win Banner -->
+<!-- 8. Spin & Win Banner -->
 <div class="spin-banner">
 <div class="left">
 <i class="fas fa-dharmachakra"></i>
@@ -173,7 +240,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <button onclick="openSpin()">SPIN NOW</button>
 </div>
 
-<!-- Refer & Earn -->
+<!-- 7. Refer & Earn -->
 <div class="refer-card">
 <h3>🎁 Refer & Earn Rs 100</h3>
 <p>Invite friends to Ay Mart & earn for every join</p>
@@ -190,7 +257,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <button onclick="shareRefer()">INVITE NOW</button>
 </div>
 
-<!-- Flash Sale Timer -->
+<!-- 2. Flash Sale -->
 <div class="flash-sale">
 <div class="flash-left">⚡ FLASH SALE <span>Ends in</span></div>
 <div id="timer">02:45:12</div>
@@ -207,7 +274,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <div class="cat-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><div class="cat-circle"><i class="fas fa-home"></i></div><p>Home</p></div>
 <div class="cat-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><div class="cat-circle"><i class="fas fa-apple-alt"></i></div><p>Grocery</p></div>
 
-<!-- Order Tracking -->
+<!-- 10. Order Tracking -->
 <div class="tracking-card">
 <h3>📦 Track Your Last Order</h3>
 <div class="track-step">
@@ -222,7 +289,6 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <div class="track-icon pending"><i class="fas fa-truck"></i></div>
 <div class="track-info"><h4>Out for Delivery</h4><p>Expected by Tomorrow</p></div>
 </div>
-</div>
 
 <!-- Products -->
 <div class="section">
@@ -230,11 +296,11 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <h2>Deals of the Day</h2>
 <a href="https://asort.com/join?ref=2396277" target="_blank">VIEW ALL</a>
 </div>
-<div class="product-grid">
+<div class="product-grid" id="productGrid">
 
-<!-- Product 1 with Wishlist -->
-<div class="card">
-<div class="wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></div>
+<!-- Product 1 -->
+<div class="card" data-id="1" data-name="5G Smartphone 8GB RAM" data-price="12999" data-img="https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1">
+<div class="wishlist" onclick="toggleWish(this,1)"><i class="far fa-heart"></i></div>
 <div class="img-slider" id="slider1">
 <img src="https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1" class="active" alt="">
 <img src="https://via.placeholder.com/300x300/2980b9/fff?text=PHONE+2" alt="">
@@ -246,14 +312,16 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <div class="rating"><span class="rating-badge">4.3 ★</span><span class="rating-count">(12,456)</span></div>
 <div class="price-row"><span class="price">₹12,999</span><span class="mrp">₹15,999</span><span class="off">18% off</span></div>
 <div class="delivery">Free delivery by Tomorrow</div>
+<button class="btn-cart" onclick="addToCart(1)"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
 <button class="btn-buy" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">Shop on Asort</button>
-<button class="btn-wa" onclick="window.open('https://wa.me/918770840326?text=5G Phone chahiye','_blank')">WhatsApp Order</button>
+<button class="btn-wa" onclick="orderBot('5G Smartphone 8GB RAM','12999','https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1')">
+<i class="fab fa-whatsapp"></i> WhatsApp Order</button>
 </div>
 </div>
 
 <!-- Product 2 -->
-<div class="card">
-<div class="wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></div>
+<div class="card" data-id="2" data-name="Men Cotton T-Shirt" data-price="499" data-img="https://via.placeholder.com/300x300/e74c3c/fff?text=T-SHIRT+1">
+<div class="wishlist" onclick="toggleWish(this,2)"><i class="far fa-heart"></i></div>
 <div class="img-slider" id="slider2">
 <img src="https://via.placeholder.com/300x300/e74c3c/fff?text=T-SHIRT+1" class="active" alt="">
 <img src="https://via.placeholder.com/300x300/c0392b/fff?text=T-SHIRT+2" alt="">
@@ -261,75 +329,4 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 </div>
 <div class="card-body">
 <div class="card-title">Men Cotton Round Neck T-Shirt Pack of 1</div>
-<div class="rating"><span class="rating-badge">4.1 ★</span><span class="rating-count">(8,234)</span></div>
-<div class="price-row"><span class="price">₹499</span><span class="mrp">₹999</span><span class="off">50% off</span></div>
-<div class="delivery">Free delivery by Tomorrow</div>
-<button class="btn-buy" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">Shop on Asort</button>
-<button class="btn-wa" onclick="window.open('https://wa.me/918770840326?text=T-Shirt chahiye','_blank')">WhatsApp Order</button>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- Bottom Nav -->
-<div class="bottom-nav">
-<div class="nav-item active"><i class="fas fa-home"></i><p>Home</p></div>
-<div class="nav-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-th-large"></i><p>Categories</p></div>
-<div class="nav-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-store"></i><p>Shop</p></div>
-<div class="nav-item" onclick="window.open('https://wa.me/918770840326','_blank')"><i class="fab fa-whatsapp"></i><p>Help</p></div>
-<div class="nav-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-user"></i><p>Account</p></div>
-
-<!-- Spin Wheel Modal -->
-<div id="spinModal">
-<div class="spin-box">
-<h2 style="color:var(--dark);margin-bottom:10px">🎉 Spin & Win</h2>
-<p style="color:#666;font-size:14px;margin-bottom:20px">Win exciting Asort coupons daily!</p>
-<div style="position:relative">
-<div class="spin-wheel" id="wheel"></div>
-<div class="spin-pointer"></div>
-</div>
-<button onclick="spinWheel()">SPIN NOW</button>
-<p style="font-size:12px;color:#666;margin-top:12px" id="spinResult"></p>
-<button onclick="closeSpin()" style="background:#666;margin-top:10px">CLOSE</button>
-</div>
-
-<script>
-// 1. Side Menu
-function openMenu(){document.getElementById('sideMenu').style.left='0';document.getElementById('overlay').style.display='block'}
-function closeMenu(){document.getElementById('sideMenu').style.left='-280px';document.getElementById('overlay').style.display='none'}
-
-// 2. Flash Sale Timer
-let time=2*3600+45*60+12;setInterval(()=>{if(time>0)time--;let h=Math.floor(time/3600),m=Math.floor(time%3600/60),s=time%60;document.getElementById('timer').innerText=`${h<10?'0'+h:h}:${m<10?'0'+m:m}:${s<10?'0'+s:s}`},1000);
-
-// 3. Live Order Popup
-const names=['Rahul','Priya','Amit','Sneha','Vikash','Anjali','Rohit'],cities=['Jabalpur','Bhopal','Indore','Gwalior'],products=['T-Shirt','Earbuds','Atta 10KG','Phone Cover'];
-setInterval(()=>{let n=names[Math.floor(Math.random()*names.length)],c=cities[Math.floor(Math.random()*cities.length)],p=products[Math.floor(Math.random()*products.length)];let pop=document.createElement('div');pop.className='live-popup';pop.innerHTML=`<i class="fas fa-check-circle" style="color:#25D366"></i> ${n} from ${c} purchased ${p}`;document.body.appendChild(pop);setTimeout(()=>pop.remove(),4000)},8000);
-
-// 4. Wishlist Heart
-function toggleWish(el){el.classList.toggle('active');let i=el.querySelector('i');if(el.classList.contains('active')){i.className='fas fa-heart';window.open('https://asort.com/join?ref=2396277','_blank')}else{i.className='far fa-heart'}}
-
-// 5. Image Slider
-function initSlider(id){let s=document.getElementById(id),imgs=s.querySelectorAll('img'),dots=s.querySelectorAll('.dot'),i=0;setInterval(()=>{imgs[i].classList.remove('active');dots[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');dots[i].classList.add('active')},3000)}
-initSlider('slider1');initSlider('slider2');
-
-// NEW: Voice Search
-function voiceSearch(){alert('🎤 Boliye kya chahiye...\n\n"Mobile" bolo');setTimeout(()=>{window.open('https://asort.com/join?ref=2396277','_blank')},1500)}
-
-// NEW: Refer & Earn
-function shareRefer(){let msg=`🛍️ Ay Mart App se shopping karo!\n\nMera Refer Code: 2396277\nLink: https://ay447662-boop.github.io/Ay-mart-/\n\nTumhe Rs 500 Bonus milega + Mujhe bhi fayda 😊`;window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');let count=parseInt(document.getElementById('referCount').innerText);document.getElementById('referCount').innerText=count+1;document.getElementById('earnAmount').innerText='₹'+(count+1)*100}
-
-// NEW: Spin & Win
-function openSpin(){document.getElementById('spinModal').style.display='flex'}
-function closeSpin(){document.getElementById('spinModal').style.display='none'}
-function spinWheel(){let wheel=document.getElementById('wheel'),deg=Math.floor(5000+Math.random()*1000);wheel.style.transform=`rotate(${deg}deg)`;setTimeout(()=>{let prizes=['Rs 50 OFF','Rs 100 OFF','Rs 20 OFF','Free Delivery','10% OFF','Rs 200 OFF'];let res=prizes[Math.floor(Math.rando
-Hi Anil, Ay Mart se order karna hai
-
-Product: 5G Smartphone 8GB RAM
-Price: Rs 12,999
-ASID: 2396277
-
-Name: 
-Address: 
-Pincode: 
-Payment: COD/Online
+<div class="rating"><span class="rating-badge">4.1 ★</span><span class="rating-count">(8,234)</span>
