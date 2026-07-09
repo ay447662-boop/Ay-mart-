@@ -33,3 +33,5 @@ function add(){const n_=n.value,p_=p.value,c_=c.value,f=i.files[0];if(!n_||!p_||
 function show(){ls.innerHTML='<h3>Added Products:</h3>';DT.forEach(x=>{ls.innerHTML+=`<div class="item"><span><b>${x.name}</b> - ₹${x.price}</span><button class="del-btn" onclick="del(${x.id})">Delete</button></div>`})}
 function del(id){if(confirm('Pakka delete karna hai?')){DT=DT.filter(x=>x.id!=id);localStorage.setItem('aymart_products',JSON.stringify(DT));alert('Product Delete Ho Gaya! Site refresh karo');show()}}
 </script></body></html>
+   Nike Shoes - ₹1999 [Delete]
+   Adidas Shirt - ₹999 [Delete]
