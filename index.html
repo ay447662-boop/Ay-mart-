@@ -230,16 +230,15 @@ deferredPrompt.prompt();
 deferredPrompt.userChoice.then((c)=>{deferredPrompt = null;});
 }
 
-233   renderProducts();
-234    </script>
-235    <script>
-236    // Admin se add kiye product dikhao
-237    const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
-238    if(myProducts.length > 0) {
+  renderProducts();
+    </script>
+   <script>
+   // Admin se add kiye product dikhao   const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
+   if(myProducts.length > 0) {
 ...
 ...
-250      productBox.insertAdjacentHTML('afterbegin', html);
-251    }
-252    </script>
-253    </body>
-254    </html>
+      productBox.insertAdjacentHTML('afterbegin', html);
+    }
+    </script>
+    </body>
+ </html>
