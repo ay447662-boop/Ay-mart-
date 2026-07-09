@@ -1,261 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#FF6B35">
-<meta name="mobile-web-app-capable" content="yes">
-<title>Ay Mart Pro - Asort Official Partner</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ay Mart - Online Shopping</title>
 <style>
-:root{--orange:#FF6B35;--dark:#131921;--green:#25D366;--bg:#f1f3f6;--blue:#2874f0}
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);padding-bottom:65px}
-.asort-header{background:var(--blue);padding:10px 12px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:998;box-shadow:0 1px 2px rgba(0,0,0,0.08)}
-.menu-icon{font-size:20px;color:#fff;flex-shrink:0}
-.asort-logo{width:30px;height:30px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:800;font-size:16px;flex-shrink:0}
-.asort-title{flex:1;min-width:0}
-.asort-title h1{font-size:15px;color:#fff;font-weight:600;line-height:1.2;white-space:nowrap}
-.asort-title p{font-size:10px;color:#fff;font-weight:600;line-height:1.2;white-space:nowrap;opacity:0.9}
-.header-icons{display:flex;gap:16px;align-items:center;flex-shrink:0}
-.header-icons i{font-size:18px;color:#fff}
-.wallet{position:relative}
-.wallet-badge{position:absolute;top:-6px;right:-6px;background:#ff6161;color:#fff;border-radius:10px;padding:1px 4px;font-size:9px;font-weight:600}
-.cart-count{position:absolute;top:-6px;right:-8px;background:#ff6161;color:#fff;border-radius:10px;padding:1px 5px;font-size:10px;font-weight:700;min-width:16px;text-align:center}
-.search-wrap{background:var(--blue);padding:0 12px 8px}
-.search-box{background:#fff;border-radius:4px;padding:8px 12px;display:flex;align-items:center;gap:8px}
-.search-box i{color:var(--blue);font-size:15px}
-.search-box input{border:0;background:transparent;outline:0;width:100%;font-size:14px}
-.cat-scroll{display:flex;gap:8px;padding:8px 12px;background:#fff;overflow-x:auto;margin-bottom:8px}
-.cat-item{flex-shrink:0;text-align:center;cursor:pointer}
-.cat-item img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:1px solid #e0e0e0}
-.cat-item p{font-size:10px;margin-top:4px;font-weight:500}
-.banner{margin:8px;background:linear-gradient(135deg,var(--orange),#F7931E);padding:16px;border-radius:8px;color:#fff;text-align:center}
-.banner h2{font-size:17px;margin-bottom:6px}
-.banner p{font-size:13px;opacity:0.95;margin-bottom:10px}
-.banner button{background:#fff;color:var(--orange);border:0;padding:10px 24px;border-radius:6px;font-weight:700;font-size:14px;cursor:pointer}
-.section{background:#fff;margin:8px 0;padding:16px}
-.sec-head{margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-.sec-head h2{font-size:16px;font-weight:600}
-.sec-head a{font-size:12px;color:var(--blue);text-decoration:none;font-weight:600}
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;position:relative}
-.card img{width:100%;height:140px;object-fit:cover;background:#f5f5f5;display:block}
-.card-body{padding:10px}
-.card-title{font-size:12px;line-height:1.3;height:32px;overflow:hidden;margin-bottom:6px}
-.price{font-size:15px;font-weight:700;color:#000;margin-bottom:4px}
-.mrp{font-size:11px;color:#878787;text-decoration:line-through;margin-left:6px}
-.discount{font-size:11px;color:#388e3c;font-weight:600;margin-left:6px}
-.btn-add{width:100%;background:#ff9f00;color:#fff;border:0;padding:8px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;margin-top:6px}
-.btn-added{background:var(--green)!important}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px 0;box-shadow:0 -1px 3px rgba(0,0,0,0.1);z-index:997}
-.nav-item{text-align:center;padding:4px 12px;color:#878787;cursor:pointer;display:block;text-decoration:none}
-.nav-item.active{color:var(--blue)}
-.nav-item i{font-size:20px;margin-bottom:2px}
-.nav-item p{font-size:10px;font-weight:500}
-#cartModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1000;display:none}
-.cart-content{background:#fff;height:80%;margin-top:20%;border-radius:16px 16px 0 0;padding:16px;overflow-y:auto}
-.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
-.cart-header h3{font-size:18px}
-.close-cart{font-size:24px;cursor:pointer}
-.cart-item{display:flex;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #f0f0f0}
-.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:4px}
-.cart-item-details{flex:1}
-.cart-item-title{font-size:13px;margin-bottom:4px}
-.cart-item-price{font-size:14px;font-weight:700}
-.cart-total{background:#f8f8f8;padding:16px;margin:16px -16px;border-radius:0 0 16px 16px}
-.checkout-btn{width:100%;background:#fb641b;color:#fff;border:0;padding:14px;border-radius:4px;font-size:15px;font-weight:600;margin-top:12px}
-#installBtn{position:fixed;bottom:70px;right:15px;background:var(--orange);color:#fff;border:0;padding:12px 20px;border-radius:25px;font-weight:700;box-shadow:0 4px 12px rgba(255,107,53,0.4);z-index:999;display:none}
-</style>
-</head>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f1f3f6}
+.header{background:#2874f0;padding:10px 15px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
+.logo{width:35px;height:35px;border-radius:5px}
+.brand{color:#fff;font-size:20px;font-weight:bold}
+.search{flex:1;background:#fff;border-radius:4px;padding:8px 12px;border:none}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
+.card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.card img{width:100%;height:180px;object-fit:cover}
+.info{padding:10px}
+.name{font-size:14px;font-weight:600;margin-bottom:5px;height:35px;overflow:hidden}
+.price{font-size:16px;font-weight:bold;color:#212121;margin-bottom:8px}
+.btn{width:100%;background:#ff9f00;color:#fff;border:none;padding:10px;border-radius:4px;font-weight:bold;font-size:14px}
+.footer{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #e0e0e0}
+.f-item{flex:1;text-align:center;padding:10px 5px;color:#878787;font-size:12px}
+.f-item.active{color:#2874f0}
+.empty{text-align:center;padding:50px;color:#878787}
+</style></head>
 <body>
-<div class="asort-header">
-<i class="fas fa-bars menu-icon"></i>
-<div class="asort-logo">A</div>
-<div class="asort-title">
-<h1>Ay Mart Pro <i class="fas fa-check-circle" style="color:#fff;font-size:12px"></i></h1>
-<p>Maven Partner • ASID: 2396277</p>
-</div>
-<div class="header-icons">
-<div class="wallet"><i class="fas fa-wallet"></i><span class="wallet-badge">₹0</span></div>
-<div style="position:relative" onclick="openCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
-</div>
+<div class="header">
+<img src="logo.png" class="logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHJ4PSI1IiBmaWxsPSIjRkZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMjg3NEUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjE4Ij5BPC90ZXh0Pjwvc3ZnPg=='">
+<span class="brand">Ay Mart Pro</span>
+<input class="search" placeholder="Search for products..." id="srch">
 </div>
 
-<div class="search-wrap">
-<div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search for Products, Brands and More" onkeyup="searchProducts()"></div>
-</div>
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" style="display:none">Abhi koi product nahi hai</div>
 
-<div class="cat-scroll">
-<div class="cat-item" onclick="filterCat('all')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png"><p>All</p></div>
-<div class="cat-item" onclick="filterCat('mobile')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png"><p>Mobiles</p></div>
-<div class="cat-item" onclick="filterCat('fashion')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png"><p>Fashion</p></div>
-<div class="cat-item" onclick="filterCat('electronics')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9a.png"><p>Electronics</p></div>
-<div class="cat-item" onclick="filterCat('home')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg"><p>Home</p></div>
-<div class="cat-item" onclick="filterCat('beauty')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/dff3f7adcf3a90c6.png"><p>Beauty</p></div>
-</div>
-
-<div class="banner">
-<h2>🛍️ Mega Sale Live</h2>
-<p>Asort Products + Rs 500 Joining Bonus</p>
-<button onclick="window.open('https://asort.com/join?ref=2396277','_blank')">SHOP ON ASORT</button>
-</div>
-
-<!-- ANIL BHAI KE PRODUCTS YAHAN DIKHENGE -->
-<div class="section" id="userProductsSection" style="display:none;">
-<div class="sec-head"><h2>Your Added Products</h2></div>
-<div class="product-grid" id="userProductGrid"></div>
-</div>
-
-<div class="section">
-<div class="sec-head"><h2>Deals of the Day</h2><a href="#">View All</a></div>
-<div class="product-grid" id="productGrid"></div>
-</div>
-
-<button id="installBtn" onclick="installApp()"><i class="fas fa-download"></i> Install App</button>
-
-<div class="bottom-nav">
-<a class="nav-item active" href="#"><i class="fas fa-home"></i><p>Home</p></a>
-<a class="nav-item" href="#"><i class="fas fa-th-large"></i><p>Categories</p></a>
-<a class="nav-item" onclick="openCart()"><i class="fas fa-shopping-cart"></i><p>Cart</p></a>
-<a class="nav-item" href="https://asort.com/join?ref=2396277" target="_blank"><i class="fas fa-user"></i><p>Account</p></a>
-</div>
-
-<div id="cartModal">
-<div class="cart-content">
-<div class="cart-header"><h3>My Cart</h3><span class="close-cart" onclick="closeCart()">&times;</span></div>
-<div id="cartItems"></div>
-<div class="cart-total" id="cartTotal" style="display:none">
-<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span>Total Amount:</span><span id="totalAmt" style="font-weight:700">₹0</span></div>
-<button class="checkout-btn" onclick="checkoutWA()"><i class="fab fa-whatsapp"></i> Place Order on WhatsApp</button>
-</div>
-</div>
+<div class="footer">
+<div class="f-item active">🏠<br>Home</div>
+<div class="f-item">📱<br>Categories</div>
+<div class="f-item">🛒<br>Cart</div>
+<div class="f-item">👤<br>Account</div>
 </div>
 
 <script>
-const products = [
-{id:1,name:"5G Smartphone 8GB RAM 128GB ROM",price:12999,mrp:19999,cat:"mobile",img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"},
-{id:2,name:"Men Cotton T-Shirt Premium Quality",price:499,mrp:999,cat:"fashion",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400"},
-{id:3,name:"Bluetooth Earbuds with Mic",price:1299,mrp:2999,cat:"electronics",img:"https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"},
-{id:4,name:"Mixer Grinder 500W",price:1899,mrp:3499,cat:"home",img:"https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"},
-{id:5,name:"Ladies Cotton Suit Set",price:899,mrp:1999,cat:"fashion",img:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400"},
-{id:6,name:"Smart Watch Fitness Tracker",price:1999,mrp:4999,cat:"electronics",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"},
-{id:7,name:"Vitamin C Face Serum",price:399,mrp:799,cat:"beauty",img:"https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"},
-{id:8,name:"Bedsheet Double Bed King Size",price:699,mrp:1499,cat:"home",img:"https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400"},
-{id:9,name:"Power Bank 20000mAh",price:999,mrp:2499,cat:"electronics",img:"https://images.unsplash.com/photo-1609592806596-b43bada2f3d6?w=400"},
-{id:10,name:"Women Heels Sandal",price:799,mrp:1999,cat:"fashion",img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400"}
-];
+let DT=JSON.parse(localStorage.getItem('aymart_products'))||[];
+const grid=document.getElementById('grid'),empty=document.getElementById('empty');
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-function renderProducts(list=products){
-const grid = document.getElementById('productGrid');
-grid.innerHTML = list.map(p=>`
-<div class="card" data-cat="${p.cat}" data-name="${p.name.toLowerCase()}">
-<img src="${p.img}" alt="${p.name}">
-<div class="card-body">
-<div class="card-title">${p.name}</div>
-<div><span class="price">₹${p.price.toLocaleString()}</span><span class="mrp">₹${p.mrp.toLocaleString()}</span><span class="discount">${Math.round((p.mrp-p.price)/p.mrp*100)}% off</span></div>
-<button class="btn-add" onclick="addToCart(${p.id})" id="btn${p.id}">Add to Cart</button>
-</div></div>
-`).join('');
-updateCartCount();
+function show(list=DT){
+if(list.length==0){grid.innerHTML='';empty.style.display='block';return}
+empty.style.display='none';
+grid.innerHTML=list.map(x=>`
+<div class="card">
+<img src="${x.img}" onerror="this.src='https://via.placeholder.com/200x180/f1f3f6/878787?text=No+Image'">
+<div class="info">
+<div class="name">${x.name}</div>
+<div class="price">₹${x.price}</div>
+<button class="btn" onclick="order('${x.name}','${x.price}')">ORDER ON WHATSAPP</button>
+</div></div>`).join('')
 }
 
-function addToCart(id){
-const p = products.find(x=>x.id===id);
-if(!cart.find(x=>x.id===id)){
-cart.push(p);
-localStorage.setItem('cart',JSON.stringify(cart));
-document.getElementById(`btn${id}`).innerText='Added ✓';
-document.getElementById(`btn${id}`).classList.add('btn-added');
-updateCartCount();
-}
+function order(name,price){
+let msg=`*Ay Mart Order* 🛍️%0A%0A*Product:* ${name}%0A*Price:* ₹${price}%0A%0AName: %0AAddress: %0APincode: %0APayment: COD%0A%0AConfirm my order 👍`;
+window.open(`https://wa.me/918770840326?text=${msg}`,'_blank')
 }
 
-function updateCartCount(){
-document.getElementById('cartCount').innerText = cart.length;
-cart.forEach(item=>{
-const btn = document.getElementById(`btn${item.id}`);
-if(btn){btn.innerText='Added ✓';btn.classList.add('btn-added');}
-});
+srch.oninput=e=>{
+let v=e.target.value.toLowerCase();
+show(DT.filter(x=>x.name.toLowerCase().includes(v)))
 }
 
-function openCart(){
-const modal = document.getElementById('cartModal');
-const items = document.getElementById('cartItems');
-const total = document.getElementById('cartTotal');
-if(cart.length===0){
-items.innerHTML='<p style="text-align:center;padding:40px;color:#878787">Your cart is empty</p>';
-total.style.display='none';
-}else{
-items.innerHTML = cart.map(p=>`
-<div class="cart-item">
-<img src="${p.img}">
-<div class="cart-item-details">
-<div class="cart-item-title">${p.name}</div>
-<div class="cart-item-price">₹${p.price.toLocaleString()}</div>
-</div></div>`).join('');
-const sum = cart.reduce((a,b)=>a+b.price,0);
-document.getElementById('totalAmt').innerText = `₹${sum.toLocaleString()}`;
-total.style.display='block';
-}
-modal.style.display='block';
-}
-
-function closeCart(){document.getElementById('cartModal').style.display='none'}
-
-function checkoutWA(){
-const sum = cart.reduce((a,b)=>a+b.price,0);
-const items = cart.map(p=>`• ${p.name} - ₹${p.price}`).join('%0A');
-const msg = `Hi Anil Bhai, Ay Mart Pro se Order karna hai%0A%0AItems:%0A${items}%0A%0ATotal: ₹${sum}%0AASID: 2396277%0A%0AMera Naam:%0APura Address:%0APincode:%0AMobile:%0A%0APlease confirm karo`;
-window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');
-cart=[];localStorage.setItem('cart',JSON.stringify(cart));updateCartCount();closeCart();
-}
-
-function filterCat(cat){
-if(cat==='all')renderProducts();
-else renderProducts(products.filter(p=>p.cat===cat));
-}
-
-function searchProducts(){
-const q = document.getElementById('searchInput').value.toLowerCase();
-renderProducts(products.filter(p=>p.name.toLowerCase().includes(q)));
-}
-
-window.addEventListener('beforeinstallprompt', (e) => {
-e.preventDefault();deferredPrompt = e;installBtn.style.display = 'block';
-});
-
-function installApp(){
-installBtn.style.display = 'none';
-deferredPrompt.prompt();
-deferredPrompt.userChoice.then((c)=>{deferredPrompt = null;});
-}
-
-// ADMIN PRODUCTS DIKHAO
-document.addEventListener('DOMContentLoaded', function() {
-  renderProducts();
-  
-  const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
-  if(myProducts.length > 0) {
-    document.getElementById('userProductsSection').style.display = 'block';
-    const grid = document.getElementById('userProductGrid');
-    grid.innerHTML = myProducts.map(p => `
-      <div class="card">
-        <img src="${p.img}" alt="${p.name}">
-        <div class="card-body">
-          <div class="card-title">${p.name}</div>
-          <div><span class="price">₹${p.price.toLocaleString()}</span></div>
-          <button class="btn-add">Add to Cart</button>
-        </div>
-      </div>
-    `).join('');
-  }
-});
-</script>
-</body>
-</html>
+show();
+</script></body></html>
