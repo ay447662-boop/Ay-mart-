@@ -230,24 +230,16 @@ deferredPrompt.prompt();
 deferredPrompt.userChoice.then((c)=>{deferredPrompt = null;});
 }
 
-renderProducts();
-</script>
-</script>
-//  Admin se add kiye product dikhao
-const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
-if(myProducts.length > 0) {
-  const productBox = document.body;
-  let html = '<div style="padding:10px"><h2>Your Products</h2>';
-  myProducts.forEach(p => {
-    html += `<div style="border:1px solid #ddd;margin:10px;padding:10px;border-radius:8px">
-      <img src="${p.img}" style="width:100%;max-width:200px;height:150px;object-fit:cover">
-      <h3>${p.name}</h3>
-      <p style="color:green;font-weight:bold">₹${p.price}</p>
-      <button style="background:#ff9f00;color:#fff;border:0;padding:8px 15px;border-radius:4px">Add to Cart</button>
-    </div>`;
-  });
-  html += '</div>';
-  productBox.insertAdjacentHTML('afterbegin', html);
-}
-</body>
-</html>
+233   renderProducts();
+234    </script>
+235    <script>
+236    // Admin se add kiye product dikhao
+237    const myProducts = JSON.parse(localStorage.getItem('aymart_products')) || [];
+238    if(myProducts.length > 0) {
+...
+...
+250      productBox.insertAdjacentHTML('afterbegin', html);
+251    }
+252    </script>
+253    </body>
+254    </html>
