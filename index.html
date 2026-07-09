@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ay Mart 2050 - Asort</title>
+<title>Ay Mart 2050 - Full System</title>
 <style>
-body{font-family:Arial;background:#0a0a0f;color:#fff;margin:0;padding-bottom:70px}
-.header{background:#131921;padding:10px;display:flex;align-items:center;gap:8px;border-bottom:2px solid #00f5ff}
-.brand{font-size:16px;font-weight:bold;color:#00f5ff}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins;background:#0a0a0f;color:#fff;padding-bottom:70px}
+.header{background:#131921;padding:10px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:100;border-bottom:2px solid #00f5ff}
+.brand{font-family:Orbitron;font-size:16px;background:linear-gradient(90deg,#00f5ff,#ff0080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
 .search-wrap{flex:1;display:flex;background:#222;border:1px solid #00f5ff;border-radius:20px;overflow:hidden}
 .search{flex:1;border:none;padding:8px 12px;background:transparent;color:#fff;outline:none;font-size:13px}
-.cart-icon{position:relative;font-size:24px}
+.cart-icon{position:relative;font-size:24px;cursor:pointer}
 .cart-count{position:absolute;top:-5px;right:-5px;background:#ff0080;color:#fff;border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold}
 .banner{width:100%;height:140px;object-fit:cover}
 .cat-scroll{display:flex;gap:10px;padding:10px;overflow-x:auto;background:#15151f;margin:8px 0}
@@ -25,24 +26,31 @@ body{font-family:Arial;background:#0a0a0f;color:#fff;margin:0;padding-bottom:70p
 .name{font-size:11px;height:28px;overflow:hidden;margin-bottom:4px}
 .price{font-size:16px;color:#00f5ff;font-weight:bold}
 .mrp{font-size:10px;color:#777;text-decoration:line-through;margin-left:4px}
+.stock{color:#ff2a6d;font-size:10px;font-weight:bold}
 .delivery{font-size:10px;color:#0f0;margin:3px 0}
 .btn{background:#00f5ff;color:#000;border:none;padding:7px;border-radius:15px;font-size:10px;font-weight:bold;width:100%;margin-top:4px;cursor:pointer}
 .btn-buy{background:#ff0080;color:#fff}
 .footer{position:fixed;bottom:0;left:0;right:0;background:#131921;display:flex;border-top:2px solid #00f5ff}
 .f-item{flex:1;text-align:center;padding:7px 3px;color:#888;font-size:9px;cursor:pointer}
-.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center}
-.modal-box{background:#15151f;border:2px solid #00f5ff;border-radius:10px;padding:15px;width:90%;max-width:400px;position:relative}
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center;overflow-y:auto;padding:20px 0}
+.modal-box{background:#15151f;border:2px solid #00f5ff;border-radius:10px;padding:15px;width:90%;max-width:400px;position:relative;margin:auto}
 .modal-box h3{color:#00f5ff;margin-bottom:10px;text-align:center}
-.modal-box input,.modal-box textarea{width:100%;background:#222;border:1px solid #00f5ff;padding:8px;border-radius:5px;color:#fff;margin-bottom:8px;font-size:12px}
-.modal-box button{background:#ff0080;color:#fff;border:none;padding:10px;border-radius:5px;width:100%;font-weight:bold;cursor:pointer}
+.modal-box input,.modal-box textarea,.modal-box select{width:100%;background:#222;border:1px solid #00f5ff;padding:8px;border-radius:5px;color:#fff;margin-bottom:8px;font-size:12px}
+.modal-box button{background:#ff0080;color:#fff;border:none;padding:10px;border-radius:5px;width:100%;font-weight:bold;cursor:pointer;margin-top:5px}
 .close-btn{position:absolute;top:10px;right:15px;font-size:24px;cursor:pointer;color:#ff0080}
+.order-list{max-height:300px;overflow-y:auto;font-size:11px}
+.order-item{background:rgba(0,245,255,0.1);padding:8px;border-radius:5px;margin-bottom:8px;border-left:2px solid #00f5ff}
+.track-box{background:rgba(0,245,255,0.1);padding:10px;border-radius:5px;margin:10px 0;border:1px solid #00f5ff}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
 <div class="header">
   <div class="brand">AY MART 2050</div>
-  <div class="search-wrap"><input class="search" id="srch" placeholder="Search..."></div>
+  <div class="search-wrap"><input class="search" id="srch" placeholder="Search 50 items..."></div>
   <div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
 
@@ -53,79 +61,121 @@ body{font-family:Arial;background:#0a0a0f;color:#fff;margin:0;padding-bottom:70p
   <div class="cat-item" onclick="filterCat('shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=100"><p>Shirt</p></div>
   <div class="cat-item" onclick="filterCat('jeans')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=100"><p>Jeans</p></div>
 </div>
-<div class="visitor-bar">🚚 Asort Shipping Available in Ajaygarh</div>
+<div class="visitor-bar" id="visitorBar">🚚 Asort + Razorpay Live</div>
 <div class="grid" id="grid"></div>
-<div class="footer"><div class="f-item">🏠<br>Home</div><div class="f-item" onclick="showAll()">📦<br>Shop</div><div class="f-item" onclick="openCart()">🛒<br>Cart</div><div class="f-item" onclick="showOrders()">📋<br>Orders</div><div class="f-item" onclick="adminPanel()">🔐<br>Admin</div></div>
+<div class="footer">
+  <div class="f-item">🏠<br>Home</div>
+  <div class="f-item" onclick="showAll()">📦<br>Shop</div>
+  <div class="f-item" onclick="openCart()">🛒<br>Cart</div>
+  <div class="f-item" onclick="openTracking()">📍<br>Track</div>
+  <div class="f-item" onclick="adminPanel()">🔐<br>Admin</div>
+</div>
 
+<!-- BOOKING MODAL -->
 <div class="modal" id="bookingModal">
   <div class="modal-box">
     <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h3>🚚 Asort Booking</h3>
+    <h3>🚚 Asort Booking + Payment</h3>
     <div id="bookProduct" style="font-size:11px;margin-bottom:10px;color:#00f5ff"></div>
     <input id="custName" placeholder="Apka Naam *">
-    <input id="custPhone" placeholder="Mobile Number *">
-    <textarea id="custAddress" placeholder="Full Address + Pincode *" rows="3"></textarea>
+    <input id="custPhone" placeholder="Mobile Number *" type="tel">
+    <textarea id="custAddress" placeholder="Full Address + Pincode *" rows="2"></textarea>
     <input id="custCity" placeholder="City" value="Ajaygarh">
-    <button onclick="confirmBooking()">📦 BOOK TO ASORT</button>
+    <select id="payMethod">
+      <option value="COD">Cash on Delivery (COD)</option>
+      <option value="ONLINE">Pay Online - Razorpay</option>
+    </select>
+    <button onclick="confirmBooking()">📦 CONFIRM & BOOK</button>
+  </div>
+</div>
+
+<!-- TRACKING MODAL -->
+<div class="modal" id="trackModal">
+  <div class="modal-box">
+    <span class="close-btn" onclick="closeTrackModal()">&times;</span>
+    <h3>📍 Track Your Order</h3>
+    <input id="trackOrderId" placeholder="Enter Order ID (e.g. ASORT12345678)">
+    <button onclick="trackOrder()">🔍 TRACK NOW</button>
+    <div id="trackResult"></div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal" id="adminModal">
+  <div class="modal-box">
+    <span class="close-btn" onclick="closeAdminModal()">&times;</span>
+    <h3>📊 ADMIN PANEL</h3>
+    <div id="adminStats" style="font-size:12px;margin-bottom:10px"></div>
+    <div class="order-list" id="orderList"></div>
   </div>
 </div>
 
 <script>
+// ==================== CONFIG - YAHAN KEYS DAALO ====================
+var CONFIG = {
+  RAZORPAY_KEY: "rzp_test_1234567890", // <-- 3. YAHAN APNA RAZORPAY KEY DAALO
+  ASORT_API_URL: "https://api.asort.com/create_shipment", // <-- 6. ASORT KA URL
+  ASORT_API_KEY: "Bearer TERA_ASORT_API_KEY", // <-- 6. ASORT KI API KEY
+  WHATSAPP_NUMBER: "918770840326", // <-- APNA WHATSAPP NUMBER
+  SMS_API_KEY: "" // <-- 5. SMS GATEWAY KEY (OPTIONAL)
+};
+// ===================================================================
+
 var PRODUCTS = [
-{id:1,name:'Premium Cotton Kurta Black',price:999,mrp:2299,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta'},
-{id:2,name:'Maroon Festive Kurta',price:699,mrp:1799,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta'},
-{id:3,name:'Navy Blue Pathani Kurta',price:1199,mrp:2499,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'kurta'},
-{id:4,name:'White Linen Kurta',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',cat:'kurta'},
-{id:5,name:'Mustard Yellow Kurta',price:749,mrp:1699,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'kurta'},
-{id:6,name:'Olive Green Kurta',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400',cat:'kurta'},
-{id:7,name:'Royal Blue Kurta',price:1099,mrp:2299,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'kurta'},
-{id:8,name:'Beige Cotton Kurta',price:799,mrp:1799,img:'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400',cat:'kurta'},
-{id:9,name:'Black Designer Kurta',price:1299,mrp:2799,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'kurta'},
-{id:10,name:'Sky Blue Kurta',price:699,mrp:1599,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'kurta'},
-{id:11,name:'Pink Festive Kurta',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'kurta'},
-{id:12,name:'Grey Pathani Kurta',price:999,mrp:2199,img:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400',cat:'kurta'},
-{id:13,name:'Teal Green Kurta',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1614252235316-8c857d38b148?w=400',cat:'kurta'},
-{id:14,name:'Brown Cotton Kurta',price:749,mrp:1699,img:'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',cat:'kurta'},
-{id:15,name:'Purple Designer Kurta',price:1199,mrp:2599,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'kurta'},
-{id:16,name:'Formal Shirt White',price:599,mrp:1499,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'shirt'},
-{id:17,name:'Blue Checkered Shirt',price:649,mrp:1599,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'shirt'},
-{id:18,name:'Black Formal Shirt',price:699,mrp:1699,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt'},
-{id:19,name:'Pink Oxford Shirt',price:599,mrp:1399,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'shirt'},
-{id:20,name:'Grey Linen Shirt',price:749,mrp:1799,img:'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',cat:'shirt'},
-{id:21,name:'Navy Blue Shirt',price:649,mrp:1599,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'shirt'},
-{id:22,name:'White Printed Shirt',price:549,mrp:1299,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'shirt'},
-{id:23,name:'Maroon Casual Shirt',price:599,mrp:1499,img:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400',cat:'shirt'},
-{id:24,name:'Green Striped Shirt',price:679,mrp:1599,img:'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400',cat:'shirt'},
-{id:25,name:'Beige Formal Shirt',price:729,mrp:1799,img:'https://images.unsplash.com/photo-1614252235316-8c857d38b148?w=400',cat:'shirt'},
-{id:26,name:'Sky Blue Denim Shirt',price:799,mrp:1899,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'shirt'},
-{id:27,name:'Black Check Shirt',price:649,mrp:1499,img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',cat:'shirt'},
-{id:28,name:'Olive Casual Shirt',price:599,mrp:1399,img:'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400',cat:'shirt'},
-{id:29,name:'Purple Formal Shirt',price:749,mrp:1699,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'shirt'},
-{id:30,name:'Red Party Shirt',price:699,mrp:1599,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'shirt'},
-{id:31,name:'Black Round Neck Tee',price:299,mrp:699,img:'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',cat:'shirt'},
-{id:32,name:'White Graphic Tee',price:349,mrp:799,img:'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400',cat:'shirt'},
-{id:33,name:'Blue Polo T-Shirt',price:499,mrp:1199,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt'},
-{id:34,name:'Grey Oversized Tee',price:399,mrp:899,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt'},
-{id:35,name:'Red Printed Tee',price:329,mrp:749,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'shirt'},
-{id:36,name:'Green Cotton Tee',price:279,mrp:699,img:'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=400',cat:'shirt'},
-{id:37,name:'Yellow Summer Tee',price:299,mrp:749,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'shirt'},
-{id:38,name:'Navy Striped Tee',price:349,mrp:849,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'shirt'},
-{id:39,name:'Maroon V-Neck Tee',price:319,mrp:799,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'shirt'},
-{id:40,name:'Black Gym Tee',price:399,mrp:899,img:'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',cat:'shirt'},
-{id:41,name:'Slim Fit Blue Jeans',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans'},
-{id:42,name:'Black Ripped Jeans',price:999,mrp:2199,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans'},
-{id:43,name:'Grey Skinny Jeans',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans'},
-{id:44,name:'Light Blue Jeans',price:799,mrp:1799,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans'},
-{id:45,name:'Dark Wash Jeans',price:949,mrp:2099,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans'},
-{id:46,name:'Cargo Jeans Black',price:1099,mrp:2399,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans'},
-{id:47,name:'Stretchable Blue Jeans',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans'},
-{id:48,name:'Faded Grey Jeans',price:799,mrp:1799,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans'},
-{id:49,name:'Classic Straight Jeans',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans'},
-{id:50,name:'Designer Black Jeans',price:1199,mrp:2599,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans'}
+{id:1,name:'Premium Cotton Kurta Black',price:999,mrp:2299,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:5},
+{id:2,name:'Maroon Festive Kurta',price:699,mrp:1799,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta',stock:3},
+{id:3,name:'Navy Blue Pathani Kurta',price:1199,mrp:2499,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'kurta',stock:4},
+{id:4,name:'White Linen Kurta',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',cat:'kurta',stock:6},
+{id:5,name:'Mustard Yellow Kurta',price:749,mrp:1699,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'kurta',stock:7},
+{id:6,name:'Olive Green Kurta',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400',cat:'kurta',stock:5},
+{id:7,name:'Royal Blue Kurta',price:1099,mrp:2299,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'kurta',stock:3},
+{id:8,name:'Beige Cotton Kurta',price:799,mrp:1799,img:'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400',cat:'kurta',stock:8},
+{id:9,name:'Black Designer Kurta',price:1299,mrp:2799,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'kurta',stock:2},
+{id:10,name:'Sky Blue Kurta',price:699,mrp:1599,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'kurta',stock:6},
+{id:11,name:'Pink Festive Kurta',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'kurta',stock:4},
+{id:12,name:'Grey Pathani Kurta',price:999,mrp:2199,img:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400',cat:'kurta',stock:5},
+{id:13,name:'Teal Green Kurta',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1614252235316-8c857d38b148?w=400',cat:'kurta',stock:7},
+{id:14,name:'Brown Cotton Kurta',price:749,mrp:1699,img:'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',cat:'kurta',stock:6},
+{id:15,name:'Purple Designer Kurta',price:1199,mrp:2599,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'kurta',stock:3},
+{id:16,name:'Formal Shirt White',price:599,mrp:1499,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'shirt',stock:8},
+{id:17,name:'Blue Checkered Shirt',price:649,mrp:1599,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'shirt',stock:6},
+{id:18,name:'Black Formal Shirt',price:699,mrp:1699,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:5},
+{id:19,name:'Pink Oxford Shirt',price:599,mrp:1399,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'shirt',stock:7},
+{id:20,name:'Grey Linen Shirt',price:749,mrp:1799,img:'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',cat:'shirt',stock:4},
+{id:21,name:'Navy Blue Shirt',price:649,mrp:1599,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'shirt',stock:6},
+{id:22,name:'White Printed Shirt',price:549,mrp:1299,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'shirt',stock:9},
+{id:23,name:'Maroon Casual Shirt',price:599,mrp:1499,img:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400',cat:'shirt',stock:5},
+{id:24,name:'Green Striped Shirt',price:679,mrp:1599,img:'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400',cat:'shirt',stock:4},
+{id:25,name:'Beige Formal Shirt',price:729,mrp:1799,img:'https://images.unsplash.com/photo-1614252235316-8c857d38b148?w=400',cat:'shirt',stock:6},
+{id:26,name:'Sky Blue Denim Shirt',price:799,mrp:1899,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'shirt',stock:5},
+{id:27,name:'Black Check Shirt',price:649,mrp:1499,img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',cat:'shirt',stock:7},
+{id:28,name:'Olive Casual Shirt',price:599,mrp:1399,img:'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400',cat:'shirt',stock:8},
+{id:29,name:'Purple Formal Shirt',price:749,mrp:1699,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'shirt',stock:4},
+{id:30,name:'Red Party Shirt',price:699,mrp:1599,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'shirt',stock:5},
+{id:31,name:'Black Round Neck Tee',price:299,mrp:699,img:'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',cat:'shirt',stock:15},
+{id:32,name:'White Graphic Tee',price:349,mrp:799,img:'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400',cat:'shirt',stock:12},
+{id:33,name:'Blue Polo T-Shirt',price:499,mrp:1199,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:10},
+{id:34,name:'Grey Oversized Tee',price:399,mrp:899,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:14},
+{id:35,name:'Red Printed Tee',price:329,mrp:749,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'shirt',stock:11},
+{id:36,name:'Green Cotton Tee',price:279,mrp:699,img:'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=400',cat:'shirt',stock:13},
+{id:37,name:'Yellow Summer Tee',price:299,mrp:749,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'shirt',stock:12},
+{id:38,name:'Navy Striped Tee',price:349,mrp:849,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'shirt',stock:9},
+{id:39,name:'Maroon V-Neck Tee',price:319,mrp:799,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'shirt',stock:10},
+{id:40,name:'Black Gym Tee',price:399,mrp:899,img:'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',cat:'shirt',stock:8},
+{id:41,name:'Slim Fit Blue Jeans',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:7},
+{id:42,name:'Black Ripped Jeans',price:999,mrp:2199,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:5},
+{id:43,name:'Grey Skinny Jeans',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:6},
+{id:44,name:'Light Blue Jeans',price:799,mrp:1799,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:8},
+{id:45,name:'Dark Wash Jeans',price:949,mrp:2099,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:4},
+{id:46,name:'Cargo Jeans Black',price:1099,mrp:2399,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:5},
+{id:47,name:'Stretchable Blue Jeans',price:899,mrp:1999,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:6},
+{id:48,name:'Faded Grey Jeans',price:799,mrp:1799,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:7},
+{id:49,name:'Classic Straight Jeans',price:849,mrp:1899,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:5},
+{id:50,name:'Designer Black Jeans',price:1199,mrp:2599,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:3}
 ];
 
 var CART = [];
-var ORDERS = [];
+var ORDERS = JSON.parse(localStorage.getItem('ay_orders')) || [];
 var currentProduct = null;
 
 function render(list){
@@ -134,13 +184,16 @@ function render(list){
   var html = '';
   for(var i=0;i<list.length;i++){
     var p = list[i];
-    html += '<div class="card"><img src="'+p.img+'"><div class="info"><div class="name">'+p.name+'</div><div><span class="price">₹'+p.price+'</span><span class="mrp">₹'+p.mrp+'</span></div><div class="delivery">🚚 Asort Shipping</div><button class="btn" onclick="addToCart('+p.id+')">ADD CART</button><button class="btn btn-buy" onclick="openBooking('+p.id+')">BOOK NOW</button></div></div>';
+    var stockTxt = p.stock>0? (p.stock<5?'<div class="stock">Only '+p.stock+' Left!</div>':'') : '<div class="stock">Out of Stock</div>';
+    var btnDisabled = p.stock>0? '' : 'disabled style="opacity:0.5"';
+    html += '<div class="card"><img src="'+p.img+'"><div class="info"><div class="name">'+p.name+'</div><div><span class="price">₹'+p.price+'</span><span class="mrp">₹'+p.mrp+'</span></div>'+stockTxt+'<div class="delivery">🚚 Asort Shipping</div><button class="btn" onclick="addToCart('+p.id+')" '+btnDisabled+'>ADD CART</button><button class="btn btn-buy" onclick="openBooking('+p.id+')" '+btnDisabled+'>BOOK NOW</button></div></div>';
   }
   grid.innerHTML = html;
 }
 
 function addToCart(id){
   var p=null;for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].id==id){p=PRODUCTS[i];break;}}
+  if(p.stock==0){alert('Out of Stock!');return;}
   var c=null;for(var i=0;i<CART.length;i++){if(CART[i].id==id){c=CART[i];break;}}
   if(c)c.qty++;else CART.push({id:p.id,name:p.name,price:p.price,qty:1});
   updateCart();
@@ -154,60 +207,105 @@ function updateCart(){
 
 function openBooking(id){
   for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].id==id){currentProduct=PRODUCTS[i];break;}}
-  document.getElementById('bookProduct').innerHTML = '<b>'+currentProduct.name+'</b> - ₹'+currentProduct.price;
+  if(currentProduct.stock==0){alert('Out of Stock!');return;}
+  document.getElementById('bookProduct').innerHTML = '<b>'+currentProduct.name+'</b> - ₹'+currentProduct.price+' | Stock: '+currentProduct.stock;
   document.getElementById('bookingModal').style.display='flex';
 }
 
-function closeModal(){
-  document.getElementById('bookingModal').style.display='none';
-  currentProduct = null;
-}
+function closeModal(){document.getElementById('bookingModal').style.display='none';currentProduct=null;}
 
+// === 3. RAZORPAY + 1. PDF + 2. STOCK + 5. SMS + 6. ASORT ===
 function confirmBooking(){
   var name = document.getElementById('custName').value;
   var phone = document.getElementById('custPhone').value;
   var address = document.getElementById('custAddress').value;
   var city = document.getElementById('custCity').value;
+  var payMethod = document.getElementById('payMethod').value;
+  
   if(!name||!phone||!address){alert('Please fill all fields!');return;}
+  if(currentProduct.stock==0){alert('Sorry, Out of Stock!');closeModal();return;}
 
   var orderId = 'ASORT' + Date.now().toString().slice(-8);
-  var asortAWB = 'AS' + Math.floor(Math.random()*1000000);
+  var asortAWB = 'AS' + Math.floor(Math.random()*10000000);
+  
+  // 2. STOCK AUTO KAM KARO
+  for(var i=0;i<PRODUCTS.length;i++){
+    if(PRODUCTS[i].id==currentProduct.id){
+      PRODUCTS[i].stock--;
+      break;
+    }
+  }
+  
+  var order = {
+    id: orderId,
+    date: new Date().toLocaleString('en-IN'),
+    product: currentProduct.name,
+    productId: currentProduct.id,
+    price: currentProduct.price,
+    customer: name,
+    phone: phone,
+    address: address,
+    city: city,
+    payment: payMethod,
+    status: payMethod=='COD'?'Booked - COD':'Payment Pending',
+    asortAWB: asortAWB,
+    tracking: ['Order Placed','Asort Pickup Scheduled']
+  };
 
-  ORDERS.push({id:orderId,product:currentProduct.name,price:currentProduct.price,customer:name,phone:phone,address:address,city:city,asortAWB:asortAWB});
+  // 3. RAZORPAY PAYMENT
+  if(payMethod=='ONLINE'){
+    var options = {
+      "key": CONFIG.RAZORPAY_KEY,
+      "amount": currentProduct.price*100,
+      "currency": "INR",
+      "name": "Ay Mart 2050",
+      "description": currentProduct.name,
+      "handler": function(response){
+        order.status = 'Paid - Asort Shipping';
+        order.paymentId = response.razorpay_payment_id;
+        order.tracking.push('Payment Success - '+response.razorpay_payment_id);
+        processOrder(order);
+      },
+      "prefill": {"name":name,"contact":phone},
+      "theme": {"color": "#00f5ff"}
+    };
+    var rzp = new Razorpay(options);
+    rzp.open();
+  } else {
+    processOrder(order);
+  }
+}
 
-  var msg='🚚 ASORT BOOKING%0A%0AOrder ID: '+orderId+'%0AAWB: '+asortAWB+'%0A%0AProduct: '+currentProduct.name+'%0APrice: ₹'+currentProduct.price+'%0A%0ACustomer: '+name+'%0APhone: '+phone+'%0AAddress: '+address+', '+city+'%0A%0A✅ Booked for Asort';
-  window.open('https://wa.me/918770840326?text='+msg,'_blank');
-
+function processOrder(order){
+  ORDERS.push(order);
+  localStorage.setItem('ay_orders', JSON.stringify(ORDERS));
+  
+  // 1. PDF INVOICE
+  generatePDF(order);
+  
+  // 5. SMS TO CUSTOMER - YAHAN SMS API LAGEGI
+  sendSMS(order);
+  
+  // 6. ASORT API CALL
+  asortAPI(order);
+  
+  // WhatsApp to Admin
+  var msg='🚚 ASORT BOOKING%0A%0AOrder: '+order.id+'%0AAWB: '+order.asortAWB+'%0A%0AProduct: '+order.product+'%0APrice: ₹'+order.price+'%0APayment: '+order.payment+'%0A%0ACustomer: '+order.customer+'%0APhone: '+order.phone+'%0AAddress: '+order.address+', '+order.city;
+  window.open('https://wa.me/'+CONFIG.WHATSAPP_NUMBER+'?text='+msg,'_blank');
+  
   closeModal();
-  alert('✅ ORDER BOOKED!\n\nOrder ID: '+orderId+'\nAsort AWB: '+asortAWB+'\n\nSaman Asort me book ho gaya!');
-
+  render();
+  alert('✅ ORDER BOOKED!\n\nOrder ID: '+order.id+'\nAWB: '+order.asortAWB+'\n\nPDF Downloaded\nSMS Sent\nAsort API Called');
+  
   document.getElementById('custName').value='';
   document.getElementById('custPhone').value='';
   document.getElementById('custAddress').value='';
 }
 
-function openCart(){
-  if(CART.length==0){alert('Cart empty');return;}
-  var total=0;for(var i=0;i<CART.length;i++){total+=CART[i].price*CART[i].qty;}
-  var items='';for(var i=0;i<CART.length;i++){items+=CART[i].name+' x'+CART[i].qty+'%0A';}
-  window.open('https://wa.me/918770840326?text=Cart:%0A'+items+'%0A%0ATotal: ₹'+total,'_blank');
-}
-
-function showOrders(){
-  if(ORDERS.length==0){alert('No orders yet');return;}
-  var orderList='';for(var i=ORDERS.length-1;i>=0&&i>=ORDERS.length-5;i--){var o=ORDERS[i];orderList+=o.id+' - '+o.product+' - ₹'+o.price+'\n\n';}
-  alert('📋 LAST 5 ORDERS:\n\n'+orderList);
-}
-
-function showAll(){render(PRODUCTS);}
-function filterCat(cat){var filtered=[];for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].cat==cat)filtered.push(PRODUCTS[i]);}render(filtered);}
-document.getElementById('srch').oninput=function(e){var v=e.target.value.toLowerCase();var filtered=[];for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].name.toLowerCase().indexOf(v)>-1)filtered.push(PRODUCTS[i]);}render(filtered);};
-function spin(){alert('🎉 ₹100 OFF! Code: AJAY100');}
-function adminPanel(){var p=prompt('Admin Password:');if(p!=='AyMart2050'){if(p)alert('Wrong');return;}var totalOrders=ORDERS.length;var totalRevenue=0;for(var i=0;i<ORDERS.length;i++){totalRevenue+=ORDERS[i].price;}alert('📊 ADMIN\nTotal Orders: '+totalOrders+'\nRevenue: ₹'+totalRevenue);}
-
-// LOAD PRODUCTS IMMEDIATELY
-render();
-updateCart();
-</script>
-</body>
-</html>
+// 1. PDF GENERATE
+function generatePDF(order){
+  var jsPDF = window.jspdf.jsPDF;
+  var doc = new jsPDF();
+  doc.setFontSize(18);doc.text('AY MART 2050 - INVOICE',105,20,{align:'center'});
+  doc.setFontSize(10);doc.text('Asort Shipping | Ajaygarh, MP | +91'+CONFIG.WHATSAPP_NUMBER,105,28,{align:'center'});
+  doc.setFontSize(12
