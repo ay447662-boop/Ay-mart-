@@ -1,356 +1,238 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ay Mart Pro - Ultimate Shopping</title>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ay Mart 2050 - Final</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#0a0a0f;color:#fff;padding-bottom:70px}
-body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg,transparent 30%,rgba(0,245,255,0.02) 50%,transparent 70%);animation:scan 8s linear infinite;pointer-events:none;z-index:1}
-@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-.header{background:linear-gradient(135deg,#131921 0%,#0f0f1e 100%);padding:10px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;border-bottom:2px solid #00f5ff;box-shadow:0 0 20px rgba(0,245,255,0.3)}
-.logo{width:38px;height:38px;border-radius:8px;border:2px solid #00f5ff;box-shadow:0 0 15px #00f5ff;object-fit:cover}
-.brand{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;background:linear-gradient(90deg,#00f5ff,#ff0080);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.live{font-size:9px;color:#00f5ff;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
-.search-wrap{flex:1;display:flex;background:rgba(255,255,255,0.05);border:1px solid #00f5ff;border-radius:25px;overflow:hidden}
-.search{flex:1;border:none;padding:9px 15px;outline:none;background:transparent;color:#fff;font-size:13px}
-.voice-btn{background:#ff0080;border:none;padding:8px 12px;font-size:18px;cursor:pointer}
-.cart-icon{position:relative;font-size:28px;filter:drop-shadow(0 0 10px #00f5ff)}
-.cart-count{position:absolute;top:-8px;right:-8px;background:#ff0080;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;box-shadow:0 0 10px #ff0080}
-.banner{width:100%;height:170px;object-fit:cover}
-.deal-box{background:#15151f;margin:10px;border-radius:12px;padding:12px;border:1px solid #00f5ff;box-shadow:0 0 20px rgba(0,245,255,0.2)}
-.deal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.deal-title{font-size:17px;font-weight:bold;color:#cc0c39;font-family:'Orbitron'}
-.timer{background:#cc0c39;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:bold}
-.cat-scroll{display:flex;gap:12px;padding:15px;overflow-x:auto;background:#15151f;margin:10px 0}
-.cat-item{text-align:center;min-width:65px;cursor:pointer}
-.cat-item img{width:55px;height:55px;border-radius:50%;background:#0a0a0f;padding:5px;border:2px solid rgba(0,245,255,0.3)}
-.cat-item p{font-size:11px;margin-top:5px;color:#fff}
-.sort-bar{background:#15151f;padding:10px 15px;display:flex;gap:15px;border-bottom:1px solid rgba(0,245,255,0.2);font-size:13px;overflow-x:auto}
-.sort-item{color:#00f5ff;white-space:nowrap;cursor:pointer}
-.visitor-bar{background:rgba(255,0,128,0.1);border:1px solid #ff0080;margin:10px 15px;padding:8px;border-radius:8px;text-align:center;font-size:12px;color:#ff0080}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
-.card{background:#15151f;border-radius:12px;overflow:hidden;border:1px solid rgba(0,245,255,0.2);transition:all 0.3s;cursor:pointer;position:relative}
-.card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,245,255,0.4);border-color:#00f5ff}
-.card img{width:100%;height:165px;object-fit:cover;cursor:pointer}
-.holo-badge{position:absolute;top:8px;left:8px;background:#ff0080;color:#fff;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:bold;box-shadow:0 0 10px #ff0080}
-.info{padding:9px}
-.name{font-size:12px;color:#fff;height:30px;overflow:hidden;margin-bottom:5px}
-.rating{display:flex;align-items:center;gap:4px;margin-bottom:5px}
-.stars{color:#ffd700;font-size:12px;text-shadow:0 0 5px #ffd700}
-.reviews{color:#00f5ff;font-size:10px}
-.price-wrap{display:flex;align-items:baseline;gap:6px;margin-bottom:5px;flex-wrap:wrap}
-.price{font-size:17px;color:#00f5ff;font-weight:bold;text-shadow:0 0 10px #00f5ff}
-.mrp{font-size:11px;color:#666;text-decoration:line-through}
-.off{font-size:10px;color:#ff0080;background:rgba(255,0,128,0.2);padding:2px 5px;border-radius:4px}
-.prime{color:#00a8e1;font-weight:bold;font-size:10px}
-.delivery{font-size:11px;color:#00ff00;margin:4px 0}
-.btn{background:linear-gradient(90deg,#00f5ff,#00d4ff);color:#000;border:none;padding:9px;border-radius:20px;font-size:12px;font-weight:bold;width:100%;margin-top:5px;cursor:pointer;transition:0.3s}
-.btn:hover{box-shadow:0 0 20px #00f5ff;transform:scale(1.02)}
-.btn-buy{background:linear-gradient(90deg,#ff0080,#ff4da6);margin-top:5px}
-.review-box{background:#15151f;margin:10px;padding:12px;border-radius:12px;border:1px solid rgba(0,245,255,0.2)}
-.review-title{font-size:15px;font-weight:bold;margin-bottom:10px;font-family:'Orbitron'}
-.review{display:flex;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.1)}
-.review-ava{width:35px;height:35px;border-radius:50%;background:linear-gradient(135deg,#00f5ff,#ff0080);display:flex;align-items:center;justify-content:center;font-weight:bold;color:#000}
-.review-text{flex:1}
-.review-name{font-size:13px;font-weight:bold}
-.review-stars{color:#ffd700;font-size:12px}
-.review-msg{font-size:12px;color:#aaa;margin-top:3px}
-.zoom-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center}
-.zoom-modal img{max-width:95%;max-height:95%;border-radius:12px;border:2px solid #00f5ff}
-.zoom-close{position:absolute;top:20px;right:30px;color:#fff;font-size:40px;cursor:pointer}
-.wa-float{position:fixed;bottom:80px;right:15px;width:58px;height:58px;background:linear-gradient(135deg,#25d366,#128c7e);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px #25d366;z-index:99;cursor:pointer;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.wa-float img{width:32px;height:32px}
-.chat-bot{position:fixed;bottom:150px;right:15px;width:58px;height:58px;background:linear-gradient(135deg,#00f5ff,#ff0080);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:0 0 30px #00f5ff;z-index:98}
-.chat-window{display:none;position:fixed;bottom:220px;right:15px;width:300px;height:400px;background:#15151f;border:2px solid #00f5ff;border-radius:15px;z-index:97;box-shadow:0 0 40px rgba(0,245,255,0.5)}
-.chat-head{background:linear-gradient(90deg,#00f5ff,#ff0080);padding:12px;border-radius:13px 13px 0 0;font-weight:bold;color:#000;font-family:'Orbitron'}
-.chat-body{padding:12px;height:300px;overflow-y:auto;font-size:12px}
-.chat-msg{background:rgba(0,245,255,0.1);padding:8px;border-radius:8px;margin-bottom:8px;border-left:2px solid #00f5ff}
-.chat-input{display:flex;padding:8px;border-top:1px solid rgba(0,245,255,0.2)}
-.chat-input input{flex:1;background:rgba(255,255,255,0.05);border:1px solid #00f5ff;padding:8px;border-radius:20px;color:#fff;font-size:12px}
-.footer{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#131921 0%,#0f0f1e 100%);display:flex;border-top:2px solid #00f5ff;box-shadow:0 0 20px rgba(0,245,255,0.3)}
-.f-item{flex:1;text-align:center;padding:10px 5px;color:#888;font-size:10px;cursor:pointer;transition:0.3s}
-.f-item.active{color:#00f5ff;text-shadow:0 0 10px #00f5ff}
-.spin-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center}
-.spin-box{background:#15151f;padding:30px;border-radius:20px;border:2px solid #00f5ff;text-align:center}
-</style></head>
-<body<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins;background:#0a0a0f;color:#fff;padding-bottom:70px}
+.header{background:#131921;padding:10px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:100;border-bottom:2px solid #00f5ff}
+.logo{width:36px;height:36px;border-radius:8px;border:2px solid #00f5ff}
+.brand{font-family:Orbitron;font-size:16px;background:linear-gradient(90deg,#00f5ff,#ff0080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
+.search-wrap{flex:1;display:flex;background:rgba(255,255,255,0.06);border:1px solid #00f5ff;border-radius:20px;overflow:hidden}
+.search{flex:1;border:none;padding:8px 12px;background:transparent;color:#fff;outline:none;font-size:13px}
+.voice-btn{background:#ff0080;border:none;padding:8px 10px;cursor:pointer}
+.cart-icon{position:relative;font-size:24px;cursor:pointer}
+.cart-count{position:absolute;top:-5px;right:-5px;background:#ff0080;color:#fff;border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold}
+.banner{width:100%;height:140px;object-fit:cover}
+.deal-box{background:#15151f;margin:8px;padding:10px;border-radius:10px;border:1px solid #00f5ff}
+.deal-head{display:flex;justify-content:space-between}
+.deal-title{color:#ff2a6d;font-family:Orbitron;font-size:14px;font-weight:bold}
+.timer{background:#ff2a6d;color:#fff;padding:3px 7px;border-radius:4px;font-size:11px}
+.cat-scroll{display:flex;gap:10px;padding:10px;overflow-x:auto;background:#15151f;margin:8px 0}
+.cat-item{text-align:center;min-width:55px;cursor:pointer}
+.cat-item img{width:45px;height:45px;border-radius:50%;border:2px solid rgba(0,245,255,0.3)}
+.cat-item p{font-size:9px;margin-top:3px}
+.visitor-bar{background:rgba(255,0,128,0.1);border:1px solid #ff0080;margin:8px;padding:7px;border-radius:6px;text-align:center;font-size:11px;color:#ff6b9d}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:8px}
+.card{background:#15151f;border-radius:10px;overflow:hidden;border:1px solid rgba(0,245,255,0.2)}
+.card img{width:100%;height:150px;object-fit:cover}
+.info{padding:8px}
+.name{font-size:11px;height:28px;overflow:hidden;margin-bottom:4px}
+.price{font-size:16px;color:#00f5ff;font-weight:bold}
+.mrp{font-size:10px;color:#777;text-decoration:line-through;margin-left:4px}
+.off{font-size:9px;color:#ff2a6d;background:rgba(255,0,128,0.2);padding:1px 4px;border-radius:3px;margin-left:4px}
+.stock{color:#ff2a6d;font-size:10px;font-weight:bold;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.delivery{font-size:10px;color:#0f0;margin:3px 0}
+.btn{background:linear-gradient(90deg,#00f5ff,#00d4ff);color:#000;border:none;padding:7px;border-radius:15px;font-size:10px;font-weight:bold;width:100%;margin-top:4px;cursor:pointer}
+.btn-buy{background:linear-gradient(90deg,#ff0080,#ff4da6);color:#fff}
+.wa-float{position:fixed;bottom:75px;right:12px;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;cursor:pointer}
+.wa-float img{width:28px}
+.chat-bot{position:fixed;bottom:135px;right:12px;width:50px;height:50px;background:linear-gradient(135deg,#00f5ff,#ff0080);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:98}
+.chat-window{display:none;position:fixed;bottom:195px;right:12px;width:280px;height:320px;background:#15151f;border:2px solid #00f5ff;border-radius:10px;z-index:97}
+.chat-head{background:linear-gradient(90deg,#00f5ff,#ff0080);padding:8px;font-weight:bold;color:#000;text-align:center;font-size:13px}
+.chat-body{padding:8px;height:230px;overflow-y:auto;font-size:11px}
+.chat-msg{background:rgba(0,245,255,0.1);padding:6px;border-radius:5px;margin-bottom:5px;border-left:2px solid #00f5ff}
+.chat-input{display:flex;padding:6px}
+.chat-input input{flex:1;background:rgba(255,255,255,0.05);border:1px solid #00f5ff;padding:5px;border-radius:12px;color:#fff;font-size:11px}
+.footer{position:fixed;bottom:0;left:0;right:0;background:#131921;display:flex;border-top:2px solid #00f5ff}
+.f-item{flex:1;text-align:center;padding:7px 3px;color:#888;font-size:9px;cursor:pointer}
+.f-item.active{color:#00f5ff}
+.review-box{background:#15151f;margin:8px;padding:10px;border-radius:10px}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-<script>
-function generateOrder(productName, price, mrp) {
-  const orderId = 'AY' + Date.now();
-  const date = new Date().toLocaleDateString('en-IN');
-  
-  const customerName = prompt("Customer ka Naam:");
-  if(!customerName) return;
-  const customerAddress = prompt("Full Address Jabalpur:");
-  if(!customerAddress) return;
-  const customerPhone = prompt("Customer ka Mobile Number:");
-  if(!customerPhone) return;
-  
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  doc.setFontSize(22);
-  doc.text("AY MART 2050 - INVOICE", 105, 20, null, null, "center");
-  doc.setFontSize(12);
-  doc.text("Jabalpur, MP | WhatsApp: +91 8770840326", 105, 28, null, null, "center");
-  doc.line(20, 32, 190, 32);
-  
-  doc.setFontSize(14);
-  doc.text(`Order ID: ${orderId}`, 20, 45);
-  doc.text(`Date: ${date}`, 20, 53);
-  
-  doc.text("Customer Details:", 20, 68);
-  doc.setFontSize(12);
-  doc.text(`Name: ${customerName}`, 20, 76);
-  doc.text(`Phone: ${customerPhone}`, 20, 84);
-  doc.text(`Address: ${customerAddress}`, 20, 92);
-  
-  doc.setFontSize(14);
-  doc.text("Order Details:", 20, 110);
-  doc.autoTable({
-    startY: 115,
-    head: [['Product', 'Price', 'MRP', 'You Save']],
-    body: [[productName, `Rs ${price}`, `Rs ${mrp}`, `Rs ${mrp-price}`]],
-  });
-  
-  doc.setFontSize(16);
-  doc.text(`Total Payable: Rs ${price} - COD`, 20, doc.lastAutoTable.finalY + 15);
-  doc.setFontSize(10);
-  doc.text("Thank you for shopping with Ay Mart! 7 Day Easy Return", 105, 280, null, null, "center");
-  
-  doc.save(`AyMart-Invoice-${orderId}.pdf`);
-  
-  const msg = `🔥 NEW ORDER - AY MART 2050 🔥%0A%0AOrder ID: ${orderId}%0AProduct: ${productName}%0APrice: Rs ${price} COD%0A%0ACustomer: ${customerName}%0APhone: ${customerPhone}%0AAddress: ${customerAddress}%0A%0A✅ Invoice PDF download ho gaya hai`;
-  
-  window.open(`https://wa.me/918770840326?text=${msg}`, '_blank');
-}
-</script>
-  
+</head>
+<body>
+
 <div class="header">
-<img src="logopng.webp" class="logo">
-<div>
-<div class="brand">AY MART 2050</div>
-<div class="live">● LIVE</div>
-</div>
-<div class="search-wrap">
-<input class="search" placeholder="Search Ay-Mart.in" id="srch">
-<button class="voice-btn" onclick="voiceSearch()">🎤</button>
-</div>
-<div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
+  <img src="https://i.ibb.co/7jQJ7vL/logo-ay-mart.png" class="logo">
+  <div class="brand">AY MART</div>
+  <div class="search-wrap">
+    <input class="search" id="srch" placeholder="Search...">
+    <button class="voice-btn" onclick="voiceSearch()">🎤</button>
+  </div>
+  <div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
 
-<img class="banner" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=300&fit=crop">
+<img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800" class="banner">
 
 <div class="deal-box">
-<div class="deal-head">
-<span class="deal-title">⚡ Deal of the Day</span>
-<span class="timer" id="timer">Ends in 05:23:45</span>
-</div>
-<div style="font-size:13px;color:#fff">Up to 70% off on Fashion | <span style="color:#00f5ff;cursor:pointer" onclick="spinWin()">🎰 SPIN & WIN</span></div>
+  <div class="deal-head">
+    <div class="deal-title">⚡ DEAL</div>
+    <div class="timer" id="timer">04:51:32</div>
+  </div>
 </div>
 
 <div class="cat-scroll">
-<div class="cat-item"><img src="https://m.media-amazon.com/images/I/41W5-dG+-+L._AC_SY200_.jpg"><p>Mobiles</p></div>
-<div class="cat-item"><img src="https://m.media-amazon.com/images/I/71xb2xkN5qL._AC_SY200_.jpg"><p>Fashion</p></div>
-<div class="cat-item"><img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SY200_.jpg"><p>Electronics</p></div>
-<div class="cat-item"><img src="https://m.media-amazon.com/images/I/71cQWYVtcBL._AC_SY200_.jpg"><p>Home</p></div>
-<div class="cat-item"><img src="https://m.media-amazon.com/images/I/71d1ytcCntL._AC_SY200_.jpg"><p>Beauty</p></div>
-<div class="cat-item"><img src="https://m.media-amazon.com/images/I/61bGPj4caDL._AC_SY200_.jpg"><p>Grocery</p></div>
+  <div class="cat-item" onclick="showAll()"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331966.png"><p>All</p></div>
+  <div class="cat-item" onclick="filterCat('kurta')"><img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=100"><p>Kurta</p></div>
+  <div class="cat-item" onclick="filterCat('shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=100"><p>Shirt</p></div>
+  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833/833314.png"><p>Spin</p></div>
 </div>
 
-<div class="sort-bar">
-<span class="sort-item" onclick="sortBy('price')">Price: Low to High</span>
-<span class="sort-item" onclick="sortBy('rating')">Avg. Rating</span>
-<span class="sort-item" onclick="sortBy('new')">Newest</span>
-</div>
-
-<div class="visitor-bar" id="visitorBar">🔥 23 log abhi dekh rahe hain</div>
+<div class="visitor-bar" id="visitorBar">🔥 17 log dekh rahe hain</div>
 
 <div class="grid" id="grid"></div>
 
 <div class="review-box">
-<div class="review-title">⭐ CUSTOMER REVIEWS</div>
-<div class="review">
-<div class="review-ava">R</div>
-<div class="review-text">
-<div class="review-name">Rohit Sharma</div>
-<div class="review-stars">★★★★★ 5.0</div>
-<div class="review-msg">Bahut badhiya quality hai bhai. 2 din me delivery ho gayi. Ay Mart best hai! ❤️</div>
-</div></div>
-<div class="review">
-<div class="review-ava">P</div>
-<div class="review-text">
-<div class="review-name">Priya Singh</div>
-<div class="review-stars">★★★★★ 4.8</div>
-<div class="review-msg">Price Amazon se sasta hai aur quality same. COD available hai ye sabse best hai.</div>
-</div></div>
-<div class="review">
-<div class="review-ava">A</div>
-<div class="review-text">
-<div class="review-name">Amit Kumar</div>
-<div class="review-stars">★★★★☆ 4.5</div>
-<div class="review-msg">WhatsApp pe order karna easy hai. Reply bhi fast aata hai. Recommended!</div>
-</div></div>
+  <div style="font-weight:bold;font-size:13px;margin-bottom:6px">⭐ Reviews</div>
+  <div id="reviews"></div>
 </div>
 
-<div class="chat-bot" onclick="toggleChat()">🤖</div>
+<div class="wa-float" onclick="window.open('https://wa.me/918770840326')">
+  <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png">
+</div>
+
+<div class="chat-bot" onclick="toggleChat()">💬</div>
 <div class="chat-window" id="chatWin">
-<div class="chat-head">AY-MART AI <span style="float:right;cursor:pointer" onclick="toggleChat()">✖</span></div>
-<div class="chat-body" id="chatBody">
-<div class="chat-msg">👋 Hi! Main Ay-Mart AI hu. Sasta kurta chahiye? Ya premium phone?</div>
-</div>
-<div class="chat-input">
-<input id="chatInp" placeholder="Type karo..." onkeypress="if(event.key=='Enter')sendChat()">
-</div>
-</div>
-
-<div class="wa-float" onclick="openWA()">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-</div>
-
-<div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
-<span class="zoom-close">&times;</span>
-<img id="zoomImg" src="">
-</div>
-
-<div class="spin-modal" id="spinModal" onclick="closeSpin()">
-<div class="spin-box">
-<h2 style="font-family:'Orbitron';color:#00f5ff;margin-bottom:15px">🎰 SPIN & WIN</h2>
-<div id="spinResult" style="font-size:24px;color:#ff0080;margin:20px 0">Spinning...</div>
-<button class="btn" onclick="closeSpin()">Close</button>
-</div>
+  <div class="chat-head">AY MART AI</div>
+  <div class="chat-body" id="chatBody"><div class="chat-msg">Namaste! Kya chahiye?</div></div>
+  <div class="chat-input"><input id="chatInp" placeholder="Type..." onkeypress="if(event.key=='Enter')sendChat()"></div>
 </div>
 
 <div class="footer">
-<div class="f-item active">🏠<br>Home</div>
-<div class="f-item">🔥<br>Trending</div>
-<div class="f-item" onclick="openCart()">🛒<br>Cart</div>
-<div class="f-item">👤<br>Profile</div>
+  <div class="f-item active">🏠<br>Home</div>
+  <div class="f-item" onclick="showAll()">📦<br>Shop</div>
+  <div class="f-item" onclick="openCart()">🛒<br>Cart</div>
+  <div class="f-item" onclick="window.open('https://wa.me/918770840326')">💬<br>Help</div>
+  <div class="f-item" onclick="adminPanel()">🔐<br>Admin</div>
 </div>
 
 <script>
-let DT=JSON.parse(localStorage.getItem('aymart_products'))||[];
-let CART=JSON.parse(localStorage.getItem('aymart_cart'))||[];
-const grid=document.getElementById('grid'),cartCount=document.getElementById('cartCount');
+// === DATA ===
+const DEFAULT_PRODUCTS = [
+  {id:1,name:'Premium Kurta Black',price:999,mrp:2297,rating:4.9,reviews:797,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:2},
+  {id:2,name:'Formal Shirt White',price:599,mrp:1499,rating:4.8,reviews:456,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'shirt',stock:5},
+  {id:3,name:'Casual T-Shirt',price:299,mrp:799,rating:4.3,reviews:189,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:8},
+  {id:4,name:'Maroon Kurta',price:699,mrp:1799,rating:4.9,reviews:678,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta',stock:3}
+];
 
-DT=DT.map(x=>({...x,rating:(4.5+Math.random()*0.5).toFixed(1),reviews:Math.floor(Math.random()*10000)+500,mrp:x.mrp||Math.floor(x.price*2.3)}));
+let PRODUCTS = JSON.parse(localStorage.getItem('ay_products')) || DEFAULT_PRODUCTS;
+let CART = JSON.parse(localStorage.getItem('ay_cart')) || [];
 
-function show(list=DT){
-if(list.length==0){grid.innerHTML='<p style="text-align:center;padding:40px;color:#666">No products found</p>';return}
-grid.innerHTML=list.map(x=>{
-let off=Math.floor((x.mrp-x.price)/x.mrp*100);
-let delivery=Math.random()>0.5?'FREE Delivery Tomorrow':'FREE Delivery in 2 days';
-return`
-<div class="card">
-<div class="holo-badge">HOLO</div>
-<img src="${x.img}" onclick="zoomImg('${x.img}')" onerror="this.src='https://via.placeholder.com/200x165/15151f/00f5ff?text=No+Image'">
-<div class="info">
-<div class="name">${x.name}</div>
-<div class="rating"><span class="stars">★★★★★</span><span class="reviews">${x.rating} (${x.reviews})</span></div>
-<div class="price-wrap">
-<span class="price">₹${x.price}</span>
-<span class="mrp">₹${x.mrp}</span>
-<span class="off">${off}% OFF</span>
-</div>
-<div class="prime">✓ prime</div>
-<div class="delivery">${delivery}</div>
-<button class="btn" onclick="addCart(${x.id})">ADD TO CART</button>
-<button class="btn btn-buy" onclick="buyNow('${x.name}','${x.price}')">INSTANT BUY</button>
-</div></div>`}).join('')
+// === RENDER ===
+function render(list=PRODUCTS){
+  grid.innerHTML = list.map(p=>{
+    let off = Math.round((p.mrp-p.price)/p.mrp*100);
+    let stock = p.stock<4? `<div class="stock">Only ${p.stock} Left!</div>` : '';
+    return `<div class="card">
+      <img src="${p.img}">
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div><span class="price">₹${p.price}</span><span class="mrp">₹${p.mrp}</span><span class="off">${off}%</span></div>
+        ${stock}
+        <div class="delivery">FREE Delivery</div>
+        <button class="btn" onclick="addToCart(${p.id})">ADD CART</button>
+        <button class="btn btn-buy" onclick="buyNow('${p.name}',${p.price},${p.mrp})">BUY NOW</button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function zoomImg(src){zoomImg.src=src;zoomModal.style.display='flex'}
-function closeZoom(){zoomModal.style.display='none'}
-
-function addCart(id){
-let p=DT.find(x=>x.id==id);let c=CART.find(x=>x.id==id);
-if(c){c.qty++}else{CART.push({...p,qty:1})}
-localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();
-alert('⚡ Added to Cyber Cart!')
+function addToCart(id){
+  let p = PRODUCTS.find(x=>x.id===id);
+  let c = CART.find(x=>x.id===id);
+  if(c) c.qty++; else CART.push({...p,qty:1});
+  localStorage.setItem('ay_cart',JSON.stringify(CART));
+  updateCart();
+  alert('Added!');
 }
 
-function updateCart(){cartCount.textContent=CART.reduce((a,b)=>a+b.qty,0)}
-function buyNow(name,price){
-let msg=`*⚡ AY MART 2050 ORDER*%0A%0A*Product:* ${name}%0A*Price:* ₹${price}%0A%0AName: %0AAddress: %0APincode: %0A`; 
-window.open(`https://wa.me/918770840326?text=${msg}`,'_blank')
+function updateCart(){
+  cartCount.textContent = CART.reduce((a,b)=>a+b.qty,0);
 }
-function openCart(){alert('Cyber Cart - Add products first!')}
-function openWA(){window.open('https://wa.me/918770840326?text=Hi Ay Mart! Mujhe help chahiye','_blank')}
-function voiceSearch(){alert('🎤 Voice Search: "Kurta dikhao" bolo... (Demo mode)')}
-function spinWin(){
-spinModal.style.display='flex';
-setTimeout(()=>{
-let prizes=['₹50 OFF','₹100 OFF','₹500 OFF','Free Delivery','Better luck next time'];
-let win=prizes[Math.floor(Math.random()*prizes.length)];
-spinResult.textContent='🎉 '+win+'! 🎉';
-},1500)
+
+function buyNow(name,price,mrp){
+  const id = 'AY' + Date.now().toString().slice(-6);
+  const customer = prompt('Aapka Naam:'); if(!customer) return;
+  const phone = prompt('Mobile:'); if(!phone) return;
+  const address = prompt('Address:'); if(!address) return;
+
+  // stock update
+  let prod = PRODUCTS.find(p=>p.name===name);
+  if(prod && prod.stock>0){ prod.stock--; localStorage.setItem('ay_products',JSON.stringify(PRODUCTS)); render(); }
+
+  // PDF
+  const {jsPDF} = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(18); doc.text('AY MART 2050',105,20,{align:'center'});
+  doc.setFontSize(12); doc.text(`Order: ${id}`,20,35); doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}`,20,43);
+  doc.text(`Name: ${customer}`,20,55); doc.text(`Phone: ${phone}`,20,63); doc.text(`Address: ${address}`,20,71);
+  doc.autoTable({startY:80, head:[['Item','Price']], body:[[name,`Rs ${price}`]]});
+  doc.text(`Total: Rs ${price} COD`,20,doc.lastAutoTable.finalY+10);
+  doc.save(`Invoice-${id}.pdf`);
+
+  // WhatsApp
+  const msg = `⚡ ORDER ${id}%0A${name} - ₹${price}%0A%0A${customer}%0A${phone}%0A${address}`;
+  window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');
 }
-function closeSpin(){spinModal.style.display='none'}
-function toggleChat(){chatWin.style.display=chatWin.style.display=='block'?'none':'block'}
+
+function openCart(){
+  if(CART.length===0){ alert('Cart empty'); return; }
+  let total = CART.reduce((a,b)=>a+b.price*b.qty,0);
+  let items = CART.map(x=>`${x.name} x${x.qty}`).join('%0A');
+  window.open(`https://wa.me/918770840326?text=Cart:%0A${items}%0A%0ATotal: ₹${total}`,'_blank');
+}
+
+function showAll(){ render(PRODUCTS); }
+function filterCat(cat){ render(PRODUCTS.filter(p=>p.cat===cat)); }
+
+function voiceSearch(){
+  if(!('webkitSpeechRecognition' in window)){ alert('Voice not supported'); return; }
+  let r = new webkitSpeechRecognition(); r.lang='hi-IN'; r.start();
+  r.onresult = e => { srch.value = e.results[0][0].transcript; srch.dispatchEvent(new Event('input')); };
+}
+
+srch.oninput = e => {
+  let v = e.target.value.toLowerCase();
+  render(PRODUCTS.filter(p=>p.name.toLowerCase().includes(v)));
+};
+
+function spin(){ alert('🎉 You won ₹100 OFF! Code: AY100'); }
+function toggleChat(){ chatWin.style.display = chatWin.style.display==='block'?'none':'block'; }
 function sendChat(){
-let msg=chatInp.value;if(!msg)return;
-chatBody.innerHTML+=`<div class="chat-msg" style="background:rgba(255,0,128,0.1);border-left-color:#ff0080;text-align:right">${msg}</div>`;
-chatInp.value='';
-setTimeout(()=>{
-let reply='Bhai ₹'+(200+Math.random()*300|0)+' me best '+msg+' hai. INSTANT BUY dabao! ⚡';
-chatBody.innerHTML+=`<div class="chat-msg">${reply}</div>`;
-chatBody.scrollTop=chatBody.scrollHeight;
-},800)
+  let m = chatInp.value; if(!m) return;
+  chatBody.innerHTML += `<div class="chat-msg" style="text-align:right">${m}</div>`;
+  chatInp.value='';
+  setTimeout(()=>{ chatBody.innerHTML += `<div class="chat-msg">₹${299+Math.floor(Math.random()*300)} me milega. Buy karo!</div>`; },600);
 }
 
-function sortBy(type){
-if(type=='price')DT.sort((a,b)=>a.price-b.price);
-if(type=='rating')DT.sort((a,b)=>b.rating-a.rating);
-show(DT);
+function adminPanel(){
+  let pass = prompt('Password:');
+  if(pass!=='AyMart2050'){ if(pass) alert('Wrong'); return; }
+  let n = prompt('Product name:'); if(!n) return;
+  let p = Number(prompt('Price:')); let m = Number(prompt('MRP:'));
+  let img = prompt('Image URL:') || 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400';
+  let s = Number(prompt('Stock:')) || 5;
+  PRODUCTS.push({id:Date.now(),name:n,price:p,mrp:m,rating:4.5,reviews:0,img,cat:'shirt',stock:s});
+  localStorage.setItem('ay_products',JSON.stringify(PRODUCTS));
+  render(); alert('Added!');
 }
 
-srch.oninput=e=>{
-let v=e.target.value.toLowerCase();
-let f=DT.filter(x=>x.name.toLowerCase().includes(v));
-show(f);
-}
+// Init
+reviews.innerHTML = [
+  {n:'Rohit',t:'Best quality, 2 din delivery'},
+  {n:'Priya',t:'Price kam, COD best'},
+  {n:'Amit',t:'WhatsApp order easy'}
+].map(r=>`<div style="display:flex;gap:6px;margin-bottom:6px"><div style="width:24px;height:24px;border-radius:50%;background:#00f5ff;color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold">${r.n[0]}</div><div style="font-size:11px"><b>${r.n}</b><br><span style="color:#aaa">${r.t}</span></div></div>`).join('');
 
-setInterval(()=>{
-let h=Math.floor(Math.random()*5),m=Math.floor(Math.random()*60),s=Math.floor(Math.random()*60);
-timer.textContent=`Ends in ${String(h).padStart(2,0)}:${String(m).padStart(2,0)}:${String(s).padStart(2,0)}`;
-},1000);
+setInterval(()=>{ timer.textContent = `Ends in 04:${String(Math.floor(Math.random()*60)).padStart(2,'0')}:${String(Math.floor(Math.random()*60)).padStart(2,'0')}`; },1000);
+setInterval(()=>{ visitorBar.textContent = `🔥 ${15+Math.floor(Math.random()*8)} log dekh rahe`; },3000);
 
-setInterval(()=>{
-let v=15+Math.floor(Math.random()*20);
-visitorBar.textContent=`🔥 ${v} log abhi dekh rahe hain`;
-},3000);
-
-show();updateCart();
-</script></body></html> 
-<!-- CUSTOMER REVIEWS -->
-<div class="ay-reviews">
-  <h2 style="text-align:center;margin-bottom:20px;color:#2c3e50;">😊 Happy Customers</h2>
-  <div class="ay-review-card">
-    ⭐⭐⭐⭐⭐ <b>Rohit Sharma - Jabalpur</b><br>
-    "Bhai shirt ki quality ekdum mast hai. COD me mili, same day delivery. Ay Mart best hai! 3rd time order kar raha hu."
-  </div>
-  <div class="ay-review-card">
-    ⭐⭐⭐⭐⭐ <b>Priya Singh - Adhartal</b><br>
-    "Price sabse kam, quality premium. Husband ke liye 2 shirt li. Fitting perfect. Thank you Ay Mart!"
-  </div>
-  <div class="ay-review-card">
-    ⭐⭐⭐⭐⭐ <b>Amit Kumar - Ranjhi</b><br>
-    "70% OFF me itni badiya shirt? Vishwas nahi hua. COD kiya, delivery boy polite tha. 5 star!"
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="ay-footer">
-  <h3 style="margin-bottom:10px;">AY MART 2050</h3>
-  <p>📍 Jabalpur, Madhya Pradesh, India</p>
-  <p style="margin:10px 0;">📞 WhatsApp: +91 8770840326</p>
-  <p style="margin-top:15px;font-size:12px;opacity:0.7;">© 2026 Ay Mart. All Rights Reserved.</p>
-</div>
-
-<!-- FLOATING WHATSAPP BUTTON - TERA NUMBER ✅ -->
-<a href="https://wa.me/918770840326?text=Bhai%20Ay%20Mart%20se%20Shirt%20order%20karni%20hai%20🔥%0A%0AProduct%20ka%20naam%20likh%20do:" class="ay-whatsapp">
-  💬
-</a>
+render(); updateCart();
+</script>
+</body>
+</html>
