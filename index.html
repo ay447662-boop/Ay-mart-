@@ -34,8 +34,7 @@
 .price{font-size:16px;color:#00f5ff;font-weight:bold}
 .mrp{font-size:10px;color:#777;text-decoration:line-through;margin-left:4px}
 .off{font-size:9px;color:#ff2a6d;background:rgba(255,0,128,0.2);padding:1px 4px;border-radius:3px;margin-left:4px}
-.stock{color:#ff2a6d;font-size:10px;font-weight:bold;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.stock{color:#ff2a6d;font-size:10px;font-weight:bold}
 .delivery{font-size:10px;color:#0f0;margin:3px 0}
 .btn{background:linear-gradient(90deg,#00f5ff,#00d4ff);color:#000;border:none;padding:7px;border-radius:15px;font-size:10px;font-weight:bold;width:100%;margin-top:4px;cursor:pointer}
 .btn-buy{background:linear-gradient(90deg,#ff0080,#ff4da6);color:#fff}
@@ -72,7 +71,7 @@
   <div class="cat-item" onclick="filterCat('kurta')"><img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=100"><p>Kurta</p></div>
   <div class="cat-item" onclick="filterCat('shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=100"><p>Shirt</p></div>
   <div class="cat-item" onclick="filterCat('jeans')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=100"><p>Jeans</p></div>
-  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833314.png"><p>Spin</p></div>
+  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833/833314.png"><p>Spin</p></div>
 </div>
 <div class="visitor-bar" id="visitorBar">🔥 50 products live in Ajaygarh</div>
 <div class="grid" id="grid"></div>
@@ -83,7 +82,8 @@
 <div class="footer"><div class="f-item active">🏠<br>Home</div><div class="f-item" onclick="showAll()">📦<br>Shop</div><div class="f-item" onclick="openCart()">🛒<br>Cart</div><div class="f-item" onclick="window.open('https://wa.me/918770840326')">💬<br>Help</div><div class="f-item" onclick="adminPanel()">🔐<br>Admin</div></div>
 
 <script>
-const DEFAULT_PRODUCTS = [
+// === 50 PRODUCTS DIRECT LOAD - NO LOCALSTORAGE JHANJHAT ===
+const PRODUCTS = [
 {id:1,name:'Premium Cotton Kurta Black',price:999,mrp:2299,rating:4.9,reviews:797,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:5},
 {id:2,name:'Maroon Festive Kurta',price:699,mrp:1799,rating:4.8,reviews:678,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta',stock:3},
 {id:3,name:'Navy Blue Pathani Kurta',price:1199,mrp:2499,rating:4.9,reviews:445,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'kurta',stock:4},
@@ -136,7 +136,6 @@ const DEFAULT_PRODUCTS = [
 {id:50,name:'Designer Black Jeans',price:1199,mrp:2599,rating:4.8,reviews:389,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:3}
 ];
 
-let PRODUCTS = DEFAULT_PRODUCTS;
 let CART = JSON.parse(localStorage.getItem('ay_cart')) || [];
 
 function render(list=PRODUCTS){
@@ -148,7 +147,7 @@ function render(list=PRODUCTS){
 }
 function addToCart(id){let p=PRODUCTS.find(x=>x.id===id);let c=CART.find(x=>x.id===id);if(c)c.qty++;else CART.push({...p,qty:1});localStorage.setItem('ay_cart',JSON.stringify(CART));updateCart();alert('Added to cart!');}
 function updateCart(){cartCount.textContent=CART.reduce((a,b)=>a+b.qty,0);}
-function buyNow(name,price,mrp){const id='AY'+Date.now().toString().slice(-6);const customer=prompt('Aapka Naam:');if(!customer)return;const phone=prompt('Mobile Number:');if(!phone)return;const address=prompt('Full Address (Ajaygarh):');if(!address)return;let prod=PRODUCTS.find(p=>p.name===name);if(prod&&prod.stock>0)prod.stock--;const {jsPDF}=window.jspdf;const doc=new jsPDF();doc.setFontSize(18);doc.text('AY MART 2050 - AJAYGARH',105,20,{align:'center'});doc.setFontSize(10);doc.text('Ajaygarh, MP | +91 8770840326',105,28,{align:'center'});doc.setFontSize(12);doc.text(`Order: ${id}`,20,40);doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}`,20,48);doc.text(`Name: ${customer}`,20,60);doc.text(`Phone: ${phone}`,20,68);doc.text(`Address: ${address}`,20,76);doc.autoTable({startY:85,head:[['Product','Price','MRP']],body:[[name,`Rs ${price}`,`Rs ${mrp}`]]});doc.text(`Total: Rs ${price} COD`,20,doc.lastAutoTable.finalY+10);doc.save(`Ajaygarh-Invoice-${id}.pdf`);const msg=`⚡ AY MART AJAYGARH ⚡%0AOrder: ${id}%0A${name} - ₹${price}%0A%0A${customer}%0A${phone}%0A${address}`;window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');}
+function buyNow(name,price,mrp){const id='AY'+Date.now().toString().slice(-6);const customer=prompt('Aapka Naam:');if(!customer)return;const phone=prompt('Mobile Number:');if(!phone)return;const address=prompt('Full Address (Ajaygarh):');if(!address)return;const {jsPDF}=window.jspdf;const doc=new jsPDF();doc.setFontSize(18);doc.text('AY MART 2050 - AJAYGARH',105,20,{align:'center'});doc.setFontSize(10);doc.text('Ajaygarh, MP | +91 8770840326',105,28,{align:'center'});doc.setFontSize(12);doc.text(`Order: ${id}`,20,40);doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}`,20,48);doc.text(`Name: ${customer}`,20,60);doc.text(`Phone: ${phone}`,20,68);doc.text(`Address: ${address}`,20,76);doc.autoTable({startY:85,head:[['Product','Price','MRP']],body:[[name,`Rs ${price}`,`Rs ${mrp}`]]});doc.text(`Total: Rs ${price} COD`,20,doc.lastAutoTable.finalY+10);doc.save(`Ajaygarh-Invoice-${id}.pdf`);const msg=`⚡ AY MART AJAYGARH ⚡%0AOrder: ${id}%0A${name} - ₹${price}%0A%0A${customer}%0A${phone}%0A${address}`;window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');}
 function openCart(){if(CART.length===0){alert('Cart empty');return;}let total=CART.reduce((a,b)=>a+b.price*b.qty,0);let items=CART.map(x=>`${x.name} x${x.qty}`).join('%0A');window.open(`https://wa.me/918770840326?text=Ajaygarh Cart:%0A${items}%0A%0ATotal: ₹${total}`,'_blank');}
 function showAll(){render(PRODUCTS);}
 function filterCat(cat){render(PRODUCTS.filter(p=>p.cat===cat));}
@@ -157,5 +156,6 @@ srch.oninput=e=>{let v=e.target.value.toLowerCase();render(PRODUCTS.filter(p=>p.
 function spin(){alert('🎉 Ajaygarh Offer: ₹100 OFF! Code: AJAY100');}
 function toggleChat(){chatWin.style.display=chatWin.style.display==='block'?'none':'block';}
 function sendChat(){let m=chatInp.value;if(!m)return;chatBody.innerHTML+=`<div class="chat-msg" style="text-align:right">${m}</div>`;chatInp.value='';setTimeout(()=>{chatBody.innerHTML+=`<div class="chat-msg">Ajaygarh me ₹${299+Math.floor(Math.random()*300)} me milega!</div>`;chatBody.scrollTop=chatBody.scrollHeight;},600);}
-function adminPanel(){let p=prompt('Password:');if(p!=='AyMart2050'){if(p)alert('Wrong');return;}alert('50 products loaded! Admin se edit kar sakte ho');}
-reviews.innerHTML=[{n:'Rohit',t:'Ajaygarh me 2 din delivery'},{n:'Priya',t:'Price kam, best quality'},{n:'Amit',t:'WhatsApp order easy'}].map(r=>`<div style="display:flex;gap:6px;margin-bottom:6px"><div style="width:24px;height:24px;border-radius:50%;background:#00f5ff;color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold">${r.n[0]}</div><div style="font-size:11px"><b>${r.n}</b><br><span style="color:#aaa">${r.t
+function adminPanel(){let p=prompt('Password:');if(p!=='AyMart2050'){if(p)alert('Wrong');return;}alert('50 products already loaded! Admin se edit kar sakte ho');}
+reviews.innerHTML=[{n:'Rohit',t:'Ajaygarh me 2 din delivery'},{n:'Priya',t:'Price kam, best quality'},{n:'Amit',t:'WhatsApp order easy'}].map(r=>`<div style="display:flex;gap:6px;margin-bottom:6px"><div style="width:24px;height:24px;border-radius:50%;background:#00f5ff;color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold">${r.n[0]}</div><div style="font-size:11px"><b>${r.n}</b><br><span style="color:#aaa">${r.t}</span></div></div>`).join('');
+setInterval(()=>{timer.textContent=`Ends 04:${String(Math.floor(Math.random()*60)).padStart
