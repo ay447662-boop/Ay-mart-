@@ -3,66 +3,160 @@
 <title>Ay Mart - Online Shopping</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f1f3f6}
+body{background:#f1f3f6;padding-bottom:60px}
 .header{background:#2874f0;padding:10px 15px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
 .logo{width:35px;height:35px;border-radius:5px}
-.brand{color:#fff;font-size:20px;font-weight:bold}
+.brand{color:#fff;font-size:18px;font-weight:bold}
 .search{flex:1;background:#fff;border-radius:4px;padding:8px 12px;border:none}
+.cart-icon{position:relative;color:#fff;font-size:24px}
+.cart-count{position:absolute;top:-5px;right:-8px;background:#ff6161;color:#fff;border-radius:10px;padding:1px 6px;font-size:11px;font-weight:bold}
+.banner{width:100%;height:150px;object-fit:cover}
+.cat-scroll{display:flex;gap:10px;padding:15px;overflow-x:auto;background:#fff}
+.cat-item{text-align:center;min-width:70px}
+.cat-item img{width:50px;height:50px;border-radius:50%;background:#f0f0f0}
+.cat-item p{font-size:12px;margin-top:5px}
+.section-title{padding:15px 15px 5px 15px;font-size:18px;font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
 .card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
-.card img{width:100%;height:180px;object-fit:cover}
+.card img{width:100%;height:160px;object-fit:cover}
 .info{padding:10px}
-.name{font-size:14px;font-weight:600;margin-bottom:5px;height:35px;overflow:hidden}
+.name{font-size:13px;font-weight:600;margin-bottom:5px;height:32px;overflow:hidden}
 .price{font-size:16px;font-weight:bold;color:#212121;margin-bottom:8px}
-.btn{width:100%;background:#ff9f00;color:#fff;border:none;padding:10px;border-radius:4px;font-weight:bold;font-size:14px}
+.btn-row{display:flex;gap:5px}
+.btn{flex:1;background:#ff9f00;color:#fff;border:none;padding:8px;border-radius:4px;font-weight:bold;font-size:12px}
+.btn-buy{background:#fb641b}
 .footer{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #e0e0e0}
-.f-item{flex:1;text-align:center;padding:10px 5px;color:#878787;font-size:12px}
+.f-item{flex:1;text-align:center;padding:8px 5px;color:#878787;font-size:11px;cursor:pointer}
 .f-item.active{color:#2874f0}
 .empty{text-align:center;padding:50px;color:#878787}
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:200}
+.modal-box{background:#fff;margin:50px 20px;border-radius:8px;max-height:80vh;overflow-y:auto}
+.modal-header{padding:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;font-weight:bold}
+.modal-body{padding:15px}
+.cart-item{display:flex;gap:10px;margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid #f0f0f0}
+.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:4px}
+.cart-info{flex:1}
+.cart-name{font-size:14px;font-weight:600}
+.cart-price{font-size:15px;font-weight:bold;margin:5px 0}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:25px;height:25px;border:1px solid #ccc;background:#fff;border-radius:3px}
+.total{font-size:18px;font-weight:bold;text-align:right;padding:15px;border-top:2px solid #e0e0e0}
+.checkout{width:100%;background:#fb641b;color:#fff;border:none;padding:12px;border-radius:4px;font-weight:bold;font-size:15px;margin-top:10px}
 </style></head>
 <body>
 <div class="header">
 <img src="logo.png" class="logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHJ4PSI1IiBmaWxsPSIjRkZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMjg3NEUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjE4Ij5BPC90ZXh0Pjwvc3ZnPg=='">
 <span class="brand">Ay Mart Pro</span>
-<input class="search" placeholder="Search for products..." id="srch">
+<input class="search" placeholder="Search products..." id="srch">
+<div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
 
+<div class="cat-scroll">
+<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png"><p>Mobiles</p></div>
+<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png"><p>Fashion</p></div>
+<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9f.png"><p>Electronics</p></div>
+<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg"><p>Home</p></div>
+<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png"><p>Appliances</p></div>
+</div>
+
+<div class="section-title">Your Added Products</div>
 <div class="grid" id="grid"></div>
-<div class="empty" id="empty" style="display:none">Abhi koi product nahi hai</div>
+<div class="empty" id="empty" style="display:none">Abhi koi product nahi hai<br>Add from Admin Panel</div>
 
 <div class="footer">
-<div class="f-item active">🏠<br>Home</div>
-<div class="f-item">📱<br>Categories</div>
-<div class="f-item">🛒<br>Cart</div>
-<div class="f-item">👤<br>Account</div>
+<div class="f-item active" onclick="showHome()">🏠<br>Home</div>
+<div class="f-item" onclick="showCat()">📱<br>Categories</div>
+<div class="f-item" onclick="openCart()">🛒<br>Cart</div>
+<div class="f-item" onclick="showAccount()">👤<br>Account</div>
 </div>
+
+<div class="modal" id="cartModal">
+<div class="modal-box">
+<div class="modal-header">My Cart <span onclick="closeCart()" style="cursor:pointer">✖</span></div>
+<div class="modal-body" id="cartBody"></div>
+</div></div>
 
 <script>
 let DT=JSON.parse(localStorage.getItem('aymart_products'))||[];
-const grid=document.getElementById('grid'),empty=document.getElementById('empty');
+let CART=JSON.parse(localStorage.getItem('aymart_cart'))||[];
+const grid=document.getElementById('grid'),empty=document.getElementById('empty'),cartCount=document.getElementById('cartCount');
 
 function show(list=DT){
 if(list.length==0){grid.innerHTML='';empty.style.display='block';return}
 empty.style.display='none';
 grid.innerHTML=list.map(x=>`
 <div class="card">
-<img src="${x.img}" onerror="this.src='https://via.placeholder.com/200x180/f1f3f6/878787?text=No+Image'">
+<img src="${x.img}" onerror="this.src='https://via.placeholder.com/200x160/f1f3f6/878787?text=No+Image'">
 <div class="info">
 <div class="name">${x.name}</div>
 <div class="price">₹${x.price}</div>
-<button class="btn" onclick="order('${x.name}','${x.price}')">ORDER ON WHATSAPP</button>
-</div></div>`).join('')
+<div class="btn-row">
+<button class="btn" onclick="addCart(${x.id})">ADD TO CART</button>
+<button class="btn btn-buy" onclick="buyNow('${x.name}','${x.price}')">BUY NOW</button>
+</div></div></div>`).join('')
 }
 
-function order(name,price){
+function addCart(id){
+let p=DT.find(x=>x.id==id);let c=CART.find(x=>x.id==id);
+if(c){c.qty++}else{CART.push({...p,qty:1})}
+localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();alert('Added to Cart!')
+}
+
+function updateCart(){
+cartCount.textContent=CART.reduce((a,b)=>a+b.qty,0)
+}
+
+function openCart(){
+let html='';let total=0;
+if(CART.length==0){html='<p style="text-align:center;padding:30px;color:#878787">Cart is Empty</p>'}
+else{
+CART.forEach(x=>{
+let sub=x.price*x.qty;total+=sub;
+html+=`<div class="cart-item">
+<img src="${x.img}">
+<div class="cart-info">
+<div class="cart-name">${x.name}</div>
+<div class="cart-price">₹${sub}</div>
+<div class="qty">
+<button onclick="changeQty(${x.id},-1)">-</button>
+<span>${x.qty}</span>
+<button onclick="changeQty(${x.id},1)">+</button>
+</div></div></div>`
+});
+html+=`<div class="total">Total: ₹${total}</div>
+<button class="checkout" onclick="checkoutCart()">PLACE ORDER ON WHATSAPP</button>`
+}
+cartBody.innerHTML=html;cartModal.style.display='block'
+}
+
+function changeQty(id,d){
+let c=CART.find(x=>x.id==id);c.qty+=d;
+if(c.qty<=0)CART=CART.filter(x=>x.id!=id);
+localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();openCart()
+}
+
+function closeCart(){cartModal.style.display='none'}
+function checkoutCart(){
+let msg=`*Ay Mart Order* 🛍️%0A%0A`;let total=0;
+CART.forEach(x=>{let sub=x.price*x.qty;total+=sub;msg+=`${x.name} x${x.qty} = ₹${sub}%0A`});
+msg+=`%0A*Total: ₹${total}*%0A%0AName: %0AAddress: %0APincode: %0APayment: COD%0A%0AConfirm my order 👍`;
+window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');
+CART=[];localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();closeCart()
+}
+
+function buyNow(name,price){
 let msg=`*Ay Mart Order* 🛍️%0A%0A*Product:* ${name}%0A*Price:* ₹${price}%0A%0AName: %0AAddress: %0APincode: %0APayment: COD%0A%0AConfirm my order 👍`;
 window.open(`https://wa.me/918770840326?text=${msg}`,'_blank')
 }
+
+function showHome(){window.scrollTo(0,0)}
+function showCat(){alert('Categories coming soon!')}
+function showAccount(){alert('Ay Mart Pro\nCustomer: Guest\nLogin feature coming soon!')}
 
 srch.oninput=e=>{
 let v=e.target.value.toLowerCase();
 show(DT.filter(x=>x.name.toLowerCase().includes(v)))
 }
 
-show();
+show();updateCart();
 </script></body></html>
