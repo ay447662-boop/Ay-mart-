@@ -32,7 +32,6 @@
 .btn-buy{background:#ff0080;color:#fff}
 .footer{position:fixed;bottom:0;left:0;right:0;background:#131921;display:flex;border-top:2px solid #00f5ff}
 .f-item{flex:1;text-align:center;padding:7px 3px;color:#888;font-size:9px;cursor:pointer}
-.f-item.active{color:#00f5ff}
 .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center;overflow-y:auto;padding:20px 0}
 .modal-box{background:#15151f;border:2px solid #00f5ff;border-radius:10px;padding:15px;width:90%;max-width:400px;position:relative;margin:auto}
 .modal-box h3{color:#00f5ff;margin-bottom:10px;text-align:center}
@@ -109,15 +108,13 @@
 </div>
 
 <script>
-// ==================== CONFIG - YAHAN KEYS DAALO ====================
 var CONFIG = {
-  RAZORPAY_KEY: "rzp_test_1234567890", // <-- 3. YAHAN APNA RAZORPAY KEY DAALO
-  ASORT_API_URL: "https://api.asort.com/create_shipment", // <-- 6. ASORT KA URL
-  ASORT_API_KEY: "Bearer TERA_ASORT_API_KEY", // <-- 6. ASORT KI API KEY
-  WHATSAPP_NUMBER: "918770840326", // <-- APNA WHATSAPP NUMBER
-  SMS_API_KEY: "" // <-- 5. SMS GATEWAY KEY (OPTIONAL)
+  RAZORPAY_KEY: "rzp_test_1234567890",
+  ASORT_API_URL: "https://api.asort.com/create_shipment",
+  ASORT_API_KEY: "Bearer TERA_ASORT_API_KEY",
+  WHATSAPP_NUMBER: "918770840326",
+  SMS_API_KEY: ""
 };
-// ===================================================================
 
 var PRODUCTS = [
 {id:1,name:'Premium Cotton Kurta Black',price:999,mrp:2299,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:5},
@@ -298,4 +295,11 @@ function generatePDF(order){
   doc.text('Customer: '+order.customer,20,68);
   doc.text('Phone: '+order.phone,20,76);
   doc.text('Address: '+order.address+', '+order.city,20,84);
-  doc.autoTable({startY:95,head:[['Product'
+  doc.autoTable({startY:95,head:[['Product','Price','Payment','Status']],body:[[order.product,'Rs '+order.price,order.payment,order.status]]});
+  doc.text('Total: Rs '+order.price,20,doc.lastAutoTable.finalY+10);
+  doc.save('Invoice-'+order.id+'.pdf');
+}
+
+function sendSMS(order){
+  if(!CONFIG.SMS_API_KEY){console.log('SMS: No API Key');return;}
+  var msg = 'Ay Mart 20
