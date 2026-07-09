@@ -9,7 +9,7 @@ input,select,button{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;b
 button{background:#2874f0;color:#fff;border:none;font-weight:bold;cursor:pointer}
 .hide{display:none}
 .del-btn{background:#ff4444!important;color:white!important;border:none!important;padding:4px 10px!important;border-radius:3px!important;margin-left:10px!important;width:auto!important;display:inline-block!important;font-size:13px!important}
-.item{display:flex;justify-content:space-between;align-items:center;margin:8px 0;padding:8px;background:#f8f8;border-radius:4px}
+.item{display:flex;justify-content:space-between;align-items:center;margin:8px 0;padding:8px;background:#f8f8f8;border-radius:4px}
 </style></head>
 <body>
 <div class="box" id="lBox">
@@ -33,5 +33,3 @@ function add(){const n_=n.value,p_=p.value,c_=c.value,f=i.files[0];if(!n_||!p_||
 function show(){ls.innerHTML='<h3>Added Products:</h3>';DT.forEach(x=>{ls.innerHTML+=`<div class="item"><span><b>${x.name}</b> - ₹${x.price}</span><button class="del-btn" onclick="del(${x.id})">Delete</button></div>`})}
 function del(id){if(confirm('Pakka delete karna hai?')){DT=DT.filter(x=>x.id!=id);localStorage.setItem('aymart_products',JSON.stringify(DT));alert('Product Delete Ho Gaya! Site refresh karo');show()}}
 </script></body></html>
-   Nike Shoes - ₹1999 [Delete]
-   Adidas Shirt - ₹999 [Delete]
