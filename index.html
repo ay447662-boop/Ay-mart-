@@ -1,162 +1,147 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ay Mart - Online Shopping</title>
+<title>Ay Mart Pro - India's Shopping App</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f1f3f6;padding-bottom:60px}
-.header{background:#2874f0;padding:10px 15px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
+body{background:#e3e6e6;padding-bottom:60px}
+.header{background:#131921;padding:10px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
 .logo{width:35px;height:35px;border-radius:5px}
 .brand{color:#fff;font-size:18px;font-weight:bold}
-.search{flex:1;background:#fff;border-radius:4px;padding:8px 12px;border:none}
-.cart-icon{position:relative;color:#fff;font-size:24px}
-.cart-count{position:absolute;top:-5px;right:-8px;background:#ff6161;color:#fff;border-radius:10px;padding:1px 6px;font-size:11px;font-weight:bold}
-.banner{width:100%;height:150px;object-fit:cover}
-.cat-scroll{display:flex;gap:10px;padding:15px;overflow-x:auto;background:#fff}
-.cat-item{text-align:center;min-width:70px}
-.cat-item img{width:50px;height:50px;border-radius:50%;background:#f0f0f0}
-.cat-item p{font-size:12px;margin-top:5px}
-.section-title{padding:15px 15px 5px 15px;font-size:18px;font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
-.card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
-.card img{width:100%;height:160px;object-fit:cover}
-.info{padding:10px}
-.name{font-size:13px;font-weight:600;margin-bottom:5px;height:32px;overflow:hidden}
-.price{font-size:16px;font-weight:bold;color:#212121;margin-bottom:8px}
-.btn-row{display:flex;gap:5px}
-.btn{flex:1;background:#ff9f00;color:#fff;border:none;padding:8px;border-radius:4px;font-weight:bold;font-size:12px}
-.btn-buy{background:#fb641b}
-.footer{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #e0e0e0}
-.f-item{flex:1;text-align:center;padding:8px 5px;color:#878787;font-size:11px;cursor:pointer}
-.f-item.active{color:#2874f0}
-.empty{text-align:center;padding:50px;color:#878787}
-.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:200}
-.modal-box{background:#fff;margin:50px 20px;border-radius:8px;max-height:80vh;overflow-y:auto}
-.modal-header{padding:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;font-weight:bold}
-.modal-body{padding:15px}
-.cart-item{display:flex;gap:10px;margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid #f0f0f0}
-.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:4px}
-.cart-info{flex:1}
-.cart-name{font-size:14px;font-weight:600}
-.cart-price{font-size:15px;font-weight:bold;margin:5px 0}
-.qty{display:flex;align-items:center;gap:10px}
-.qty button{width:25px;height:25px;border:1px solid #ccc;background:#fff;border-radius:3px}
-.total{font-size:18px;font-weight:bold;text-align:right;padding:15px;border-top:2px solid #e0e0e0}
-.checkout{width:100%;background:#fb641b;color:#fff;border:none;padding:12px;border-radius:4px;font-weight:bold;font-size:15px;margin-top:10px}
+.search-wrap{flex:1;display:flex;background:#fff;border-radius:4px;overflow:hidden}
+.search{flex:1;border:none;padding:8px 12px;outline:none}
+.search-btn{background:#febd69;border:none;padding:8px 12px;font-size:18px}
+.cart-icon{position:relative;color:#fff;font-size:26px}
+.cart-count{position:absolute;top:-5px;right:-8px;background:#f08804;color:#131921;border-radius:10px;padding:1px 6px;font-size:11px;font-weight:bold}
+.banner{width:100%;height:180px;object-fit:cover}
+.deal-box{background:#fff;margin:10px;border-radius:8px;padding:12px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+.deal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.deal-title{font-size:18px;font-weight:bold;color:#cc0c39}
+.timer{background:#cc0c39;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:bold}
+.cat-scroll{display:flex;gap:12px;padding:15px;overflow-x:auto;background:#fff;margin:10px 0}
+.cat-item{text-align:center;min-width:65px}
+.cat-item img{width:55px;height:55px;border-radius:50%;background:#f7f7f7;padding:5px}
+.cat-item p{font-size:11px;margin-top:5px;color:#0f1111}
+.sort-bar{background:#fff;padding:10px 15px;display:flex;gap:15px;border-bottom:1px solid #ddd;font-size:14px;overflow-x:auto}
+.sort-item{color:#007185;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:8px}
+.card{background:#fff;border-radius:4px;overflow:hidden}
+.card img{width:100%;height:170px;object-fit:cover}
+.info{padding:8px}
+.name{font-size:13px;color:#0f1111;height:32px;overflow:hidden;margin-bottom:4px}
+.rating{display:flex;align-items:center;gap:5px;margin-bottom:4px}
+.stars{color:#ffa41c;font-size:14px}
+.reviews{color:#007185;font-size:12px}
+.price{font-size:18px;color:#0f1111;margin-bottom:2px}
+.mrp{font-size:12px;color:#565959;text-decoration:line-through}
+.off{font-size:12px;color:#cc0c39;margin-left:5px}
+.delivery{font-size:12px;color:#007600;margin:4px 0}
+.btn{width:100%;background:#ffd814;color:#0f1111;border:none;padding:8px;border-radius:20px;font-size:13px;margin-top:5px}
+.btn-buy{background:#ffa41c;margin-top:5px}
+.footer{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #ddd}
+.f-item{flex:1;text-align:center;padding:8px 5px;color:#0f1111;font-size:11px}
+.f-item.active{color:#007185}
+.prime{color:#00a8e1;font-weight:bold;font-size:11px}
 </style></head>
 <body>
 <div class="header">
-<img src="logo.png" class="logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHJ4PSI1IiBmaWxsPSIjRkZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMjg3NEUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjE4Ij5BPC90ZXh0Pjwvc3ZnPg=='">
-<span class="brand">Ay Mart Pro</span>
-<input class="search" placeholder="Search products..." id="srch">
+<img src="logo.png" class="logo">
+<span class="brand">Ay Mart</span>
+<div class="search-wrap">
+<input class="search" placeholder="Search Ay-Mart.in" id="srch">
+<button class="search-btn">🔍</button>
+</div>
 <div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
 
-<div class="cat-scroll">
-<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png"><p>Mobiles</p></div>
-<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png"><p>Fashion</p></div>
-<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9f.png"><p>Electronics</p></div>
-<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg"><p>Home</p></div>
-<div class="cat-item"><img src="https://rukminim2.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png"><p>Appliances</p></div>
+<img class="banner" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=300&fit=crop" alt="Sale">
+
+<div class="deal-box">
+<div class="deal-head">
+<span class="deal-title">⚡ Deal of the Day</span>
+<span class="timer" id="timer">Ends in 05:23:45</span>
+</div>
+<div style="font-size:14px;color:#0f1111">Up to 70% off on Fashion</div>
 </div>
 
-<div class="section-title">Your Added Products</div>
+<div class="cat-scroll">
+<div class="cat-item"><img src="https://m.media-amazon.com/images/I/41W5-dG+-+L._AC_SY200_.jpg"><p>Mobiles</p></div>
+<div class="cat-item"><img src="https://m.media-amazon.com/images/I/71xb2xkN5qL._AC_SY200_.jpg"><p>Fashion</p></div>
+<div class="cat-item"><img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SY200_.jpg"><p>Electronics</p></div>
+<div class="cat-item"><img src="https://m.media-amazon.com/images/I/71cQWYVtcBL._AC_SY200_.jpg"><p>Home</p></div>
+<div class="cat-item"><img src="https://m.media-amazon.com/images/I/71d1ytcCntL._AC_SY200_.jpg"><p>Beauty</p></div>
+<div class="cat-item"><img src="https://m.media-amazon.com/images/I/61bGPj4caDL._AC_SY200_.jpg"><p>Grocery</p></div>
+</div>
+
+<div class="sort-bar">
+<span class="sort-item" onclick="sortBy('price')">Price: Low to High</span>
+<span class="sort-item" onclick="sortBy('rating')">Avg. Rating</span>
+<span class="sort-item" onclick="sortBy('new')">Newest</span>
+</div>
+
 <div class="grid" id="grid"></div>
-<div class="empty" id="empty" style="display:none">Abhi koi product nahi hai<br>Add from Admin Panel</div>
 
 <div class="footer">
-<div class="f-item active" onclick="showHome()">🏠<br>Home</div>
-<div class="f-item" onclick="showCat()">📱<br>Categories</div>
+<div class="f-item active">🏠<br>Home</div>
+<div class="f-item">👤<br>You</div>
 <div class="f-item" onclick="openCart()">🛒<br>Cart</div>
-<div class="f-item" onclick="showAccount()">👤<br>Account</div>
+<div class="f-item">☰<br>Menu</div>
 </div>
-
-<div class="modal" id="cartModal">
-<div class="modal-box">
-<div class="modal-header">My Cart <span onclick="closeCart()" style="cursor:pointer">✖</span></div>
-<div class="modal-body" id="cartBody"></div>
-</div></div>
 
 <script>
 let DT=JSON.parse(localStorage.getItem('aymart_products'))||[];
 let CART=JSON.parse(localStorage.getItem('aymart_cart'))||[];
-const grid=document.getElementById('grid'),empty=document.getElementById('empty'),cartCount=document.getElementById('cartCount');
+const grid=document.getElementById('grid'),cartCount=document.getElementById('cartCount');
+
+// Add fake rating/reviews to products
+DT=DT.map(x=>({...x,rating:(4+Math.random()).toFixed(1),reviews:Math.floor(Math.random()*5000)+100,mrp:Math.floor(x.price*1.4)}));
 
 function show(list=DT){
-if(list.length==0){grid.innerHTML='';empty.style.display='block';return}
-empty.style.display='none';
-grid.innerHTML=list.map(x=>`
+if(list.length==0){grid.innerHTML='<p style="text-align:center;padding:40px;color:#565959">No products found</p>';return}
+grid.innerHTML=list.map(x=>{
+let off=Math.floor((x.mrp-x.price)/x.mrp*100);
+let delivery=Math.random()>0.5?'FREE Delivery Tomorrow':'FREE Delivery in 2 days';
+return`
 <div class="card">
-<img src="${x.img}" onerror="this.src='https://via.placeholder.com/200x160/f1f3f6/878787?text=No+Image'">
+<img src="${x.img}" onerror="this.src='https://via.placeholder.com/200x170'">
 <div class="info">
 <div class="name">${x.name}</div>
-<div class="price">₹${x.price}</div>
-<div class="btn-row">
-<button class="btn" onclick="addCart(${x.id})">ADD TO CART</button>
-<button class="btn btn-buy" onclick="buyNow('${x.name}','${x.price}')">BUY NOW</button>
-</div></div></div>`).join('')
+<div class="rating"><span class="stars">★★★★★</span><span class="reviews">${x.rating} (${x.reviews})</span></div>
+<div class="price">₹${x.price}<span class="mrp">₹${x.mrp}</span><span class="off">${off}% off</span></div>
+<div class="prime">✓ prime</div>
+<div class="delivery">${delivery}</div>
+<button class="btn" onclick="addCart(${x.id})">Add to Cart</button>
+<button class="btn btn-buy" onclick="buyNow('${x.name}','${x.price}')">Buy Now</button>
+</div></div>`}).join('')
 }
 
 function addCart(id){
 let p=DT.find(x=>x.id==id);let c=CART.find(x=>x.id==id);
 if(c){c.qty++}else{CART.push({...p,qty:1})}
-localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();alert('Added to Cart!')
+localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();
 }
 
-function updateCart(){
-cartCount.textContent=CART.reduce((a,b)=>a+b.qty,0)
-}
-
-function openCart(){
-let html='';let total=0;
-if(CART.length==0){html='<p style="text-align:center;padding:30px;color:#878787">Cart is Empty</p>'}
-else{
-CART.forEach(x=>{
-let sub=x.price*x.qty;total+=sub;
-html+=`<div class="cart-item">
-<img src="${x.img}">
-<div class="cart-info">
-<div class="cart-name">${x.name}</div>
-<div class="cart-price">₹${sub}</div>
-<div class="qty">
-<button onclick="changeQty(${x.id},-1)">-</button>
-<span>${x.qty}</span>
-<button onclick="changeQty(${x.id},1)">+</button>
-</div></div></div>`
-});
-html+=`<div class="total">Total: ₹${total}</div>
-<button class="checkout" onclick="checkoutCart()">PLACE ORDER ON WHATSAPP</button>`
-}
-cartBody.innerHTML=html;cartModal.style.display='block'
-}
-
-function changeQty(id,d){
-let c=CART.find(x=>x.id==id);c.qty+=d;
-if(c.qty<=0)CART=CART.filter(x=>x.id!=id);
-localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();openCart()
-}
-
-function closeCart(){cartModal.style.display='none'}
-function checkoutCart(){
-let msg=`*Ay Mart Order* 🛍️%0A%0A`;let total=0;
-CART.forEach(x=>{let sub=x.price*x.qty;total+=sub;msg+=`${x.name} x${x.qty} = ₹${sub}%0A`});
-msg+=`%0A*Total: ₹${total}*%0A%0AName: %0AAddress: %0APincode: %0APayment: COD%0A%0AConfirm my order 👍`;
-window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');
-CART=[];localStorage.setItem('aymart_cart',JSON.stringify(CART));updateCart();closeCart()
-}
-
+function updateCart(){cartCount.textContent=CART.reduce((a,b)=>a+b.qty,0)}
 function buyNow(name,price){
-let msg=`*Ay Mart Order* 🛍️%0A%0A*Product:* ${name}%0A*Price:* ₹${price}%0A%0AName: %0AAddress: %0APincode: %0APayment: COD%0A%0AConfirm my order 👍`;
+let msg=`*Ay Mart Order* 🛍️%0A%0A*Product:* ${name}%0A*Price:* ₹${price}%0A%0AName: %0AAddress: %0APincode: %0A`; 
 window.open(`https://wa.me/918770840326?text=${msg}`,'_blank')
 }
-
-function showHome(){window.scrollTo(0,0)}
-function showCat(){alert('Categories coming soon!')}
-function showAccount(){alert('Ay Mart Pro\nCustomer: Guest\nLogin feature coming soon!')}
+function openCart(){alert('Cart feature - Add products first!')}
+function sortBy(type){
+if(type=='price')DT.sort((a,b)=>a.price-b.price);
+if(type=='rating')DT.sort((a,b)=>b.rating-a.rating);
+show(DT);
+}
 
 srch.oninput=e=>{
 let v=e.target.value.toLowerCase();
 show(DT.filter(x=>x.name.toLowerCase().includes(v)))
 }
+
+// Deal timer
+setInterval(()=>{
+let h=Math.floor(Math.random()*5),m=Math.floor(Math.random()*60),s=Math.floor(Math.random()*60);
+timer.textContent=`Ends in ${String(h).padStart(2,0)}:${String(m).padStart(2,0)}:${String(s).padStart(2,0)}`;
+},1000);
 
 show();updateCart();
 </script></body></html>
