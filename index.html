@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ay Mart 2050 - Ajaygarh</title>
+<title>Ay Mart 2050 - Ajaygarh | 50 Products</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins;background:#0a0a0f;color:#fff;padding-bottom:70px}
 .header{background:#131921;padding:10px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:100;border-bottom:2px solid #00f5ff}
 .logo{width:36px;height:36px;border-radius:8px;border:2px solid #00f5ff}
 .brand{font-family:Orbitron;font-size:16px;background:linear-gradient(90deg,#00f5ff,#ff0080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
-.live{font-size:9px;color:#00f5ff;margin-left:4px}
+.live{font-size:9px;color:#00f5ff}
 .search-wrap{flex:1;display:flex;background:rgba(255,255,255,0.06);border:1px solid #00f5ff;border-radius:20px;overflow:hidden}
 .search{flex:1;border:none;padding:8px 12px;background:transparent;color:#fff;outline:none;font-size:13px}
 .voice-btn{background:#ff0080;border:none;padding:8px 10px;cursor:pointer}
@@ -60,143 +60,102 @@
 
 <div class="header">
   <img src="https://i.ibb.co/7jQJ7vL/logo-ay-mart.png" class="logo">
-  <div>
-    <div class="brand">AY MART 2050</div>
-    <div class="live">● LIVE AJAYGARH</div>
-  </div>
-  <div class="search-wrap">
-    <input class="search" id="srch" placeholder="Search...">
-    <button class="voice-btn" onclick="voiceSearch()">🎤</button>
-  </div>
+  <div><div class="brand">AY MART 2050</div><div class="live">● LIVE AJAYGARH</div></div>
+  <div class="search-wrap"><input class="search" id="srch" placeholder="Search 50 items..."><button class="voice-btn" onclick="voiceSearch()">🎤</button></div>
   <div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
 
 <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800" class="banner">
-
-<div class="deal-box">
-  <div class="deal-head">
-    <div class="deal-title">⚡ AJAYGARH DEAL</div>
-    <div class="timer" id="timer">04:51:32</div>
-  </div>
-</div>
-
+<div class="deal-box"><div class="deal-head"><div class="deal-title">⚡ AJAYGARH MEGA DEAL</div><div class="timer" id="timer">04:51:32</div></div></div>
 <div class="cat-scroll">
-  <div class="cat-item" onclick="showAll()"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331966.png"><p>All</p></div>
+  <div class="cat-item" onclick="showAll()"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331966.png"><p>All 50</p></div>
   <div class="cat-item" onclick="filterCat('kurta')"><img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=100"><p>Kurta</p></div>
   <div class="cat-item" onclick="filterCat('shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=100"><p>Shirt</p></div>
-  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833/833314.png"><p>Spin</p></div>
+  <div class="cat-item" onclick="filterCat('jeans')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=100"><p>Jeans</p></div>
+  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833314.png"><p>Spin</p></div>
 </div>
-
-<div class="visitor-bar" id="visitorBar">🔥 20 log Ajaygarh se dekh rahe</div>
-
+<div class="visitor-bar" id="visitorBar">🔥 50 products live in Ajaygarh</div>
 <div class="grid" id="grid"></div>
-
-<div class="review-box">
-  <div style="font-weight:bold;font-size:13px;margin-bottom:6px">⭐ Ajaygarh Reviews</div>
-  <div id="reviews"></div>
-</div>
-
-<div class="wa-float" onclick="window.open('https://wa.me/918770840326')">
-  <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png">
-</div>
-
+<div class="review-box"><div style="font-weight:bold;font-size:13px;margin-bottom:6px">⭐ Ajaygarh Reviews</div><div id="reviews"></div></div>
+<div class="wa-float" onclick="window.open('https://wa.me/918770840326')"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png"></div>
 <div class="chat-bot" onclick="toggleChat()">💬</div>
-<div class="chat-window" id="chatWin">
-  <div class="chat-head">AY MART AJAYGARH</div>
-  <div class="chat-body" id="chatBody"><div class="chat-msg">Namaste Ajaygarh! Kya chahiye?</div></div>
-  <div class="chat-input"><input id="chatInp" placeholder="Type..." onkeypress="if(event.key=='Enter')sendChat()"></div>
-</div>
-
-<div class="footer">
-  <div class="f-item active">🏠<br>Home</div>
-  <div class="f-item" onclick="showAll()">📦<br>Shop</div>
-  <div class="f-item" onclick="openCart()">🛒<br>Cart</div>
-  <div class="f-item" onclick="window.open('https://wa.me/918770840326')">💬<br>Help</div>
-  <div class="f-item" onclick="adminPanel()">🔐<br>Admin</div>
-</div>
+<div class="chat-window" id="chatWin"><div class="chat-head">AY MART AJAYGARH</div><div class="chat-body" id="chatBody"><div class="chat-msg">Namaste Ajaygarh! Kya chahiye?</div></div><div class="chat-input"><input id="chatInp" placeholder="Type..." onkeypress="if(event.key=='Enter')sendChat()"></div></div>
+<div class="footer"><div class="f-item active">🏠<br>Home</div><div class="f-item" onclick="showAll()">📦<br>Shop</div><div class="f-item" onclick="openCart()">🛒<br>Cart</div><div class="f-item" onclick="window.open('https://wa.me/918770840326')">💬<br>Help</div><div class="f-item" onclick="adminPanel()">🔐<br>Admin</div></div>
 
 <script>
 const DEFAULT_PRODUCTS = [
-  {id:1,name:'Premium Kurta Black',price:999,mrp:2297,rating:4.9,reviews:797,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:2},
-  {id:2,name:'Formal Shirt White',price:599,mrp:1499,rating:4.8,reviews:456,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'shirt',stock:5},
-  {id:3,name:'Casual T-Shirt',price:299,mrp:799,rating:4.3,reviews:189,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:8},
-  {id:4,name:'Maroon Kurta',price:699,mrp:1799,rating:4.9,reviews:678,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta',stock:3}
+{id:1,name:'Premium Cotton Kurta Black',price:999,mrp:2299,rating:4.9,reviews:797,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:5},
+{id:2,name:'Maroon Festive Kurta',price:699,mrp:1799,rating:4.8,reviews:678,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta',stock:3},
+{id:3,name:'Navy Blue Pathani Kurta',price:1199,mrp:2499,rating:4.9,reviews:445,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'kurta',stock:4},
+{id:4,name:'White Linen Kurta',price:899,mrp:1999,rating:4.7,reviews:512,img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',cat:'kurta',stock:6},
+{id:5,name:'Mustard Yellow Kurta',price:749,mrp:1699,rating:4.6,reviews:321,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'kurta',stock:7},
+{id:6,name:'Olive Green Kurta',price:849,mrp:1899,rating:4.5,reviews:234,img:'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400',cat:'kurta',stock:5},
+{id:7,name:'Royal Blue Kurta',price:1099,mrp:2299,rating:4.8,reviews:567,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'kurta',stock:3},
+{id:8,name:'Beige Cotton Kurta',price:799,mrp:1799,rating:4.4,reviews:189,img:'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400',cat:'kurta',stock:8},
+{id:9,name:'Black Designer Kurta',price:1299,mrp:2799,rating:4.9,reviews:712,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'kurta',stock:2},
+{id:10,name:'Sky Blue Kurta',price:699,mrp:1599,rating:4.6,reviews:298,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'kurta',stock:6},
+{id:11,name:'Pink Festive Kurta',price:899,mrp:1999,rating:4.7,reviews:345,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'kurta',stock:4},
+{id:12,name:'Grey Pathani Kurta',price:999,mrp:2199,rating:4.5,reviews:267,img:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400',cat:'kurta',stock:5},
+{id:13,name:'Teal Green Kurta',price:849,mrp:1899,rating:4.6,reviews:312,img:'https://images.unsplash.com/photo-1614252235316-8c857d38b148?w=400',cat:'kurta',stock:7},
+{id:14,name:'Brown Cotton Kurta',price:749,mrp:1699,rating:4.4,reviews:178,img:'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',cat:'kurta',stock:6},
+{id:15,name:'Purple Designer Kurta',price:1199,mrp:2599,rating:4.8,reviews:423,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'kurta',stock:3},
+{id:16,name:'Formal Shirt White',price:599,mrp:1499,rating:4.8,reviews:456,img:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',cat:'shirt',stock:8},
+{id:17,name:'Blue Checkered Shirt',price:649,mrp:1599,rating:4.5,reviews:312,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'shirt',stock:6},
+{id:18,name:'Black Formal Shirt',price:699,mrp:1699,rating:4.7,reviews:389,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:5},
+{id:19,name:'Pink Oxford Shirt',price:599,mrp:1399,rating:4.4,reviews:245,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'shirt',stock:7},
+{id:20,name:'Grey Linen Shirt',price:749,mrp:1799,rating:4.6,reviews:334,img:'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',cat:'shirt',stock:4},
+{id:21,name:'Navy Blue Shirt',price:649,mrp:1599,rating:4.5,reviews:278,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'shirt',stock:6},
+{id:22,name:'White Printed Shirt',price:549,mrp:1299,rating:4.3,reviews:198,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'shirt',stock:9},
+{id:23,name:'Maroon Casual Shirt',price:599,mrp:1499,rating:4.4,reviews:267,img:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400',cat:'shirt',stock:5},
+{id:24,name:'Green Striped Shirt',price:679,mrp:1599,rating:4.6,reviews:301,img:'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400',cat:'shirt',stock:4},
+{id:25,name:'Beige Formal Shirt',price:729,mrp:1799,rating:4.7,reviews:356,img:'https://images.unsplash.com/photo-1614252235316-8c857d38b148?w=400',cat:'shirt',stock:6},
+{id:26,name:'Sky Blue Denim Shirt',price:799,mrp:1899,rating:4.5,reviews:289,img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',cat:'shirt',stock:5},
+{id:27,name:'Black Check Shirt',price:649,mrp:1499,rating:4.4,reviews:234,img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',cat:'shirt',stock:7},
+{id:28,name:'Olive Casual Shirt',price:599,mrp:1399,rating:4.3,reviews:189,img:'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400',cat:'shirt',stock:8},
+{id:29,name:'Purple Formal Shirt',price:749,mrp:1699,rating:4.6,reviews:312,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'shirt',stock:4},
+{id:30,name:'Red Party Shirt',price:699,mrp:1599,rating:4.5,reviews:276,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'shirt',stock:5},
+{id:31,name:'Black Round Neck Tee',price:299,mrp:699,rating:4.4,reviews:423,img:'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',cat:'shirt',stock:15},
+{id:32,name:'White Graphic Tee',price:349,mrp:799,rating:4.5,reviews:356,img:'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400',cat:'shirt',stock:12},
+{id:33,name:'Blue Polo T-Shirt',price:499,mrp:1199,rating:4.6,reviews:289,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:10},
+{id:34,name:'Grey Oversized Tee',price:399,mrp:899,rating:4.3,reviews:234,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',cat:'shirt',stock:14},
+{id:35,name:'Red Printed Tee',price:329,mrp:749,rating:4.4,reviews:198,img:'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',cat:'shirt',stock:11},
+{id:36,name:'Green Cotton Tee',price:279,mrp:699,rating:4.2,reviews:167,img:'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=400',cat:'shirt',stock:13},
+{id:37,name:'Yellow Summer Tee',price:299,mrp:749,rating:4.3,reviews:201,img:'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',cat:'shirt',stock:12},
+{id:38,name:'Navy Striped Tee',price:349,mrp:849,rating:4.5,reviews:245,img:'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',cat:'shirt',stock:9},
+{id:39,name:'Maroon V-Neck Tee',price:319,mrp:799,rating:4.4,reviews:178,img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400',cat:'shirt',stock:10},
+{id:40,name:'Black Gym Tee',price:399,mrp:899,rating:4.6,reviews:312,img:'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',cat:'shirt',stock:8},
+{id:41,name:'Slim Fit Blue Jeans',price:899,mrp:1999,rating:4.6,reviews:324,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:7},
+{id:42,name:'Black Ripped Jeans',price:999,mrp:2199,rating:4.5,reviews:278,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:5},
+{id:43,name:'Grey Skinny Jeans',price:849,mrp:1899,rating:4.4,reviews:234,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:6},
+{id:44,name:'Light Blue Jeans',price:799,mrp:1799,rating:4.3,reviews:198,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:8},
+{id:45,name:'Dark Wash Jeans',price:949,mrp:2099,rating:4.7,reviews:356,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:4},
+{id:46,name:'Cargo Jeans Black',price:1099,mrp:2399,rating:4.5,reviews:267,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:5},
+{id:47,name:'Stretchable Blue Jeans',price:899,mrp:1999,rating:4.6,reviews:312,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:6},
+{id:48,name:'Faded Grey Jeans',price:799,mrp:1799,rating:4.4,reviews:223,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:7},
+{id:49,name:'Classic Straight Jeans',price:849,mrp:1899,rating:4.5,reviews:245,img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',cat:'jeans',stock:5},
+{id:50,name:'Designer Black Jeans',price:1199,mrp:2599,rating:4.8,reviews:389,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',cat:'jeans',stock:3}
 ];
 
-let PRODUCTS = JSON.parse(localStorage.getItem('ay_products')) || DEFAULT_PRODUCTS;
+let PRODUCTS = DEFAULT_PRODUCTS;
 let CART = JSON.parse(localStorage.getItem('ay_cart')) || [];
 
 function render(list=PRODUCTS){
   grid.innerHTML = list.map(p=>{
     let off = Math.round((p.mrp-p.price)/p.mrp*100);
-    let stock = p.stock<4? `<div class="stock">Only ${p.stock} Left!</div>` : '';
-    return `<div class="card">
-      <img src="${p.img}">
-      <div class="info">
-        <div class="name">${p.name}</div>
-        <div><span class="price">₹${p.price}</span><span class="mrp">₹${p.mrp}</span><span class="off">${off}%</span></div>
-        ${stock}
-        <div class="delivery">FREE Delivery in Ajaygarh</div>
-        <button class="btn" onclick="addToCart(${p.id})">ADD CART</button>
-        <button class="btn btn-buy" onclick="buyNow('${p.name}',${p.price},${p.mrp})">BUY NOW</button>
-      </div>
-    </div>`;
+    let stock = p.stock<5? `<div class="stock">Only ${p.stock} Left!</div>` : '';
+    return `<div class="card"><img src="${p.img}"><div class="info"><div class="name">${p.name}</div><div><span class="price">₹${p.price}</span><span class="mrp">₹${p.mrp}</span><span class="off">${off}%</span></div>${stock}<div class="delivery">FREE Ajaygarh</div><button class="btn" onclick="addToCart(${p.id})">ADD CART</button><button class="btn btn-buy" onclick="buyNow('${p.name}',${p.price},${p.mrp})">BUY NOW</button></div></div>`;
   }).join('');
 }
-
-function addToCart(id){
-  let p = PRODUCTS.find(x=>x.id===id);
-  let c = CART.find(x=>x.id===id);
-  if(c) c.qty++; else CART.push({...p,qty:1});
-  localStorage.setItem('ay_cart',JSON.stringify(CART));
-  updateCart(); alert('Added!');
-}
-function updateCart(){ cartCount.textContent = CART.reduce((a,b)=>a+b.qty,0); }
-
-function buyNow(name,price,mrp){
-  const id = 'AY' + Date.now().toString().slice(-6);
-  const customer = prompt('Aapka Naam:'); if(!customer) return;
-  const phone = prompt('Mobile Number:'); if(!phone) return;
-  const address = prompt('Full Address (Ajaygarh):'); if(!address) return;
-
-  let prod = PRODUCTS.find(p=>p.name===name);
-  if(prod && prod.stock>0){ prod.stock--; localStorage.setItem('ay_products',JSON.stringify(PRODUCTS)); render(); }
-
-  const {jsPDF} = window.jspdf; const doc = new jsPDF();
-  doc.setFontSize(18); doc.text('AY MART 2050 - AJAYGARH',105,20,{align:'center'});
-  doc.setFontSize(10); doc.text('Ajaygarh, Madhya Pradesh | +91 8770840326',105,28,{align:'center'});
-  doc.setFontSize(12); doc.text(`Order: ${id}`,20,40); doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}`,20,48);
-  doc.text(`Name: ${customer}`,20,60); doc.text(`Phone: ${phone}`,20,68); doc.text(`Address: ${address}`,20,76);
-  doc.autoTable({startY:85, head:[['Product','Price']], body:[[name,`Rs ${price}`]]});
-  doc.text(`Total: Rs ${price} COD - Ajaygarh Delivery`,20,doc.lastAutoTable.finalY+10);
-  doc.save(`Ajaygarh-Invoice-${id}.pdf`);
-
-  const msg = `⚡ AY MART AJAYGARH ORDER ⚡%0A%0AOrder: ${id}%0A${name} - ₹${price}%0A%0A${customer}%0A${phone}%0A${address}, Ajaygarh`;
-  window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');
-}
-
-function openCart(){
-  if(CART.length===0){ alert('Cart empty'); return; }
-  let total = CART.reduce((a,b)=>a+b.price*b.qty,0);
-  let items = CART.map(x=>`${x.name} x${x.qty}`).join('%0A');
-  window.open(`https://wa.me/918770840326?text=Ajaygarh Cart:%0A${items}%0A%0ATotal: ₹${total}`,'_blank');
-}
-
-function showAll(){ render(PRODUCTS); }
-function filterCat(cat){ render(PRODUCTS.filter(p=>p.cat===cat)); }
-function voiceSearch(){ if(!('webkitSpeechRecognition' in window)){ alert('Voice not supported'); return; } let r=new webkitSpeechRecognition(); r.lang='hi-IN'; r.start(); r.onresult=e=>{ srch.value=e.results[0][0].transcript; srch.dispatchEvent(new Event('input')); }; }
-srch.oninput = e => { let v=e.target.value.toLowerCase(); render(PRODUCTS.filter(p=>p.name.toLowerCase().includes(v))); };
-function spin(){ alert('🎉 Ajaygarh Offer: ₹100 OFF! Code: AJAY100'); }
-function toggleChat(){ chatWin.style.display = chatWin.style.display==='block'?'none':'block'; }
-function sendChat(){ let m=chatInp.value; if(!m) return; chatBody.innerHTML+=`<div class="chat-msg" style="text-align:right">${m}</div>`; chatInp.value=''; setTimeout(()=>{ chatBody.innerHTML+=`<div class="chat-msg">Ajaygarh me ₹${299+Math.floor(Math.random()*200)} me milega!</div>`; },600); }
-function adminPanel(){ let p=prompt('Password:'); if(p!=='AyMart2050'){ if(p) alert('Wrong'); return; } let n=prompt('Product name:'); if(!n) return; let pr=Number(prompt('Price:')); let mr=Number(prompt('MRP:')); let img=prompt('Image URL:')||'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400'; let s=Number(prompt('Stock:'))||5; PRODUCTS.push({id:Date.now(),name:n,price:pr,mrp:mr,rating:4.5,reviews:0,img,cat:'shirt',stock:s}); localStorage.setItem('ay_products',JSON.stringify(PRODUCTS)); render(); alert('Added for Ajaygarh!'); }
-
-reviews.innerHTML = [{n:'Rohit',t:'Ajaygarh me 2 din delivery'},{n:'Priya',t:'Price kam, best quality'},{n:'Amit',t:'WhatsApp order easy'}].map(r=>`<div style="display:flex;gap:6px;margin-bottom:6px"><div style="width:24px;height:24px;border-radius:50%;background:#00f5ff;color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold">${r.n[0]}</div><div style="font-size:11px"><b>${r.n}</b><br><span style="color:#aaa">${r.t}</span></div></div>`).join('');
-
-setInterval(()=>{ timer.textContent=`Ends in 04:${String(Math.floor(Math.random()*60)).padStart(2,'0')}:${String(Math.floor(Math.random()*60)).padStart(2,'0')}`; },1000);
-setInterval(()=>{ visitorBar.textContent=`🔥 ${18+Math.floor(Math.random()*7)} log Ajaygarh se dekh rahe`; },3000);
-
-render(); updateCart();
-</script>
-</body>
-</html>
+function addToCart(id){let p=PRODUCTS.find(x=>x.id===id);let c=CART.find(x=>x.id===id);if(c)c.qty++;else CART.push({...p,qty:1});localStorage.setItem('ay_cart',JSON.stringify(CART));updateCart();alert('Added to cart!');}
+function updateCart(){cartCount.textContent=CART.reduce((a,b)=>a+b.qty,0);}
+function buyNow(name,price,mrp){const id='AY'+Date.now().toString().slice(-6);const customer=prompt('Aapka Naam:');if(!customer)return;const phone=prompt('Mobile Number:');if(!phone)return;const address=prompt('Full Address (Ajaygarh):');if(!address)return;let prod=PRODUCTS.find(p=>p.name===name);if(prod&&prod.stock>0)prod.stock--;const {jsPDF}=window.jspdf;const doc=new jsPDF();doc.setFontSize(18);doc.text('AY MART 2050 - AJAYGARH',105,20,{align:'center'});doc.setFontSize(10);doc.text('Ajaygarh, MP | +91 8770840326',105,28,{align:'center'});doc.setFontSize(12);doc.text(`Order: ${id}`,20,40);doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}`,20,48);doc.text(`Name: ${customer}`,20,60);doc.text(`Phone: ${phone}`,20,68);doc.text(`Address: ${address}`,20,76);doc.autoTable({startY:85,head:[['Product','Price','MRP']],body:[[name,`Rs ${price}`,`Rs ${mrp}`]]});doc.text(`Total: Rs ${price} COD`,20,doc.lastAutoTable.finalY+10);doc.save(`Ajaygarh-Invoice-${id}.pdf`);const msg=`⚡ AY MART AJAYGARH ⚡%0AOrder: ${id}%0A${name} - ₹${price}%0A%0A${customer}%0A${phone}%0A${address}`;window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');}
+function openCart(){if(CART.length===0){alert('Cart empty');return;}let total=CART.reduce((a,b)=>a+b.price*b.qty,0);let items=CART.map(x=>`${x.name} x${x.qty}`).join('%0A');window.open(`https://wa.me/918770840326?text=Ajaygarh Cart:%0A${items}%0A%0ATotal: ₹${total}`,'_blank');}
+function showAll(){render(PRODUCTS);}
+function filterCat(cat){render(PRODUCTS.filter(p=>p.cat===cat));}
+function voiceSearch(){if(!('webkitSpeechRecognition'in window)){alert('Voice not supported');return;}let r=new webkitSpeechRecognition();r.lang='hi-IN';r.start();r.onresult=e=>{srch.value=e.results[0][0].transcript;srch.dispatchEvent(new Event('input'));}}
+srch.oninput=e=>{let v=e.target.value.toLowerCase();render(PRODUCTS.filter(p=>p.name.toLowerCase().includes(v)));}
+function spin(){alert('🎉 Ajaygarh Offer: ₹100 OFF! Code: AJAY100');}
+function toggleChat(){chatWin.style.display=chatWin.style.display==='block'?'none':'block';}
+function sendChat(){let m=chatInp.value;if(!m)return;chatBody.innerHTML+=`<div class="chat-msg" style="text-align:right">${m}</div>`;chatInp.value='';setTimeout(()=>{chatBody.innerHTML+=`<div class="chat-msg">Ajaygarh me ₹${299+Math.floor(Math.random()*300)} me milega!</div>`;chatBody.scrollTop=chatBody.scrollHeight;},600);}
+function adminPanel(){let p=prompt('Password:');if(p!=='AyMart2050'){if(p)alert('Wrong');return;}alert('50 products loaded! Admin se edit kar sakte ho');}
+reviews.innerHTML=[{n:'Rohit',t:'Ajaygarh me 2 din delivery'},{n:'Priya',t:'Price kam, best quality'},{n:'Amit',t:'WhatsApp order easy'}].map(r=>`<div style="display:flex;gap:6px;margin-bottom:6px"><div style="width:24px;height:24px;border-radius:50%;background:#00f5ff;color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold">${r.n[0]}</div><div style="font-size:11px"><b>${r.n}</b><br><span style="color:#aaa">${r.t
