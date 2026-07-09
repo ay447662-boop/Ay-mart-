@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ay Mart 2050 - Ajaygarh | Asort Shipping</title>
+<title>Ay Mart 2050 - Asort Shipping</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins;background:#0a0a0f;color:#fff;padding-bottom:70px}
@@ -50,14 +50,12 @@
 .modal-box button{background:linear-gradient(90deg,#ff0080,#ff4da6);color:#fff;border:none;padding:10px;border-radius:5px;width:100%;font-weight:bold;cursor:pointer}
 .close-btn{position:absolute;top:10px;right:15px;font-size:24px;cursor:pointer;color:#ff0080}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
 
 <div class="header">
   <img src="https://i.ibb.co/7jQJ7vL/logo-ay-mart.png" class="logo">
-  <div><div class="brand">AY MART 2050</div><div class="live">● LIVE AJAYGARH</div></div>
+  <div><div class="brand">AY MART 2050</div><div class="live">● ASORT SHIPPING LIVE</div></div>
   <div class="search-wrap"><input class="search" id="srch" placeholder="Search 50 items..."><button class="voice-btn" onclick="voiceSearch()">🎤</button></div>
   <div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
@@ -69,7 +67,7 @@
   <div class="cat-item" onclick="filterCat('kurta')"><img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=100"><p>Kurta</p></div>
   <div class="cat-item" onclick="filterCat('shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=100"><p>Shirt</p></div>
   <div class="cat-item" onclick="filterCat('jeans')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=100"><p>Jeans</p></div>
-  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833314.png"><p>Spin</p></div>
+  <div class="cat-item" onclick="spin()"><img src="https://cdn-icons-png.flaticon.com/512/833/833314.png"><p>Spin</p></div>
 </div>
 <div class="visitor-bar" id="visitorBar">🚚 Asort Shipping Available in Ajaygarh</div>
 <div class="grid" id="grid"></div>
@@ -92,6 +90,7 @@
 </div>
 
 <script>
+// === STEP 1: PRODUCTS PEHLE LOAD KARO ===
 const PRODUCTS = [
 {id:1,name:'Premium Cotton Kurta Black',price:999,mrp:2299,img:'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400',cat:'kurta',stock:5},
 {id:2,name:'Maroon Festive Kurta',price:699,mrp:1799,img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',cat:'kurta',stock:3},
@@ -149,6 +148,7 @@ let CART = JSON.parse(localStorage.getItem('ay_cart')) || [];
 let ORDERS = JSON.parse(localStorage.getItem('ay_orders')) || [];
 let currentProduct = null;
 
+// === STEP 2: RENDER FUNCTION - SABSE PEHLE ===
 function render(list=PRODUCTS){
   const grid = document.getElementById('grid');
   grid.innerHTML = list.map(p=>{
@@ -158,6 +158,7 @@ function render(list=PRODUCTS){
   }).join('');
 }
 
+// === STEP 3: SAB FUNCTIONS ===
 function addToCart(id){
   let p=PRODUCTS.find(x=>x.id===id);
   let c=CART.find(x=>x.id===id);
@@ -194,6 +195,8 @@ function confirmBooking(){
   }
   
   const orderId = 'ASORT' + Date.now().toString().slice(-8);
+  const asortAWB = 'AS' + Math.floor(Math.random()*1000000);
+  
   const order = {
     id: orderId,
     date: new Date().toLocaleString('en-IN'),
@@ -204,34 +207,19 @@ function confirmBooking(){
     address: address,
     city: city,
     status: 'Booked - Asort Shipping',
-    asortAWB: 'AS' + Math.floor(Math.random()*1000000)
+    asortAWB: asortAWB
   };
   
   ORDERS.push(order);
   localStorage.setItem('ay_orders', JSON.stringify(ORDERS));
   
-  // Generate PDF
-  const {jsPDF} = window.jspdf;
-  const doc = new jsPDF();
-  doc.setFontSize(18);doc.text('AY MART 2050 - ASORT SHIPPING',105,20,{align:'center'});
-  doc.setFontSize(10);doc.text('Ajaygarh, MP | +91 8770840326',105,28,{align:'center'});
-  doc.setFontSize(12);doc.text(`Order ID: ${orderId}`,20,40);
-  doc.text(`Asort AWB: ${order.asortAWB}`,20,48);
-  doc.text(`Date: ${order.date}`,20,56);
-  doc.text(`Customer: ${name}`,20,68);doc.text(`Phone: ${phone}`,20,76);doc.text(`Address: ${address}, ${city}`,20,84);
-  doc.autoTable({startY:95,head:[['Product','Price','Status']],body:[[currentProduct.name,`Rs ${currentProduct.price}`,'Booked - Asort']]});
-  doc.text(`Total: Rs ${currentProduct.price} | COD Available`,20,doc.lastAutoTable.finalY+10);
-  doc.text('Your order will be shipped via Asort within 24 hours',20,doc.lastAutoTable.finalY+20);
-  doc.save(`Asort-Order-${orderId}.pdf`);
-  
-  // WhatsApp to you + Customer
-  const msg=`🚚 ASORT BOOKING CONFIRMED 🚚%0A%0AOrder ID: ${orderId}%0AAsort AWB: ${order.asortAWB}%0A%0AProduct: ${currentProduct.name}%0APrice: ₹${currentProduct.price}%0A%0ACustomer: ${name}%0APhone: ${phone}%0AAddress: ${address}, ${city}%0A%0A✅ Booked for Asort Shipping%0A📦 Dispatch in 24 hours%0A💰 COD Available`;
+  // WhatsApp Message - ASORT BOOKING
+  const msg=`🚚 ASORT BOOKING CONFIRMED 🚚%0A%0AOrder ID: ${orderId}%0AAsort AWB: ${asortAWB}%0A%0AProduct: ${currentProduct.name}%0APrice: ₹${currentProduct.price}%0A%0ACustomer: ${name}%0APhone: ${phone}%0AAddress: ${address}, ${city}%0A%0A✅ Booked for Asort Shipping%0A📦 Dispatch in 24 hours%0A💰 COD Available`;
   window.open(`https://wa.me/918770840326?text=${msg}`,'_blank');
   
   closeModal();
-  alert(`✅ ORDER BOOKED!\n\nOrder ID: ${orderId}\nAsort AWB: ${order.asortAWB}\n\nSaman Asort me book ho gaya!\n24 hours me dispatch hoga.\nPDF download ho gayi.`);
+  alert(`✅ ORDER BOOKED!\n\nOrder ID: ${orderId}\nAsort AWB: ${asortAWB}\n\nSaman Asort me book ho gaya!\n24 hours me dispatch hoga.`);
   
-  // Clear form
   document.getElementById('custName').value='';
   document.getElementById('custPhone').value='';
   document.getElementById('custAddress').value='';
@@ -254,4 +242,21 @@ function showAll(){render(PRODUCTS);}
 function filterCat(cat){render(PRODUCTS.filter(p=>p.cat===cat));}
 function voiceSearch(){if(!('webkitSpeechRecognition'in window)){alert('Voice not supported');return;}let r=new webkitSpeechRecognition();r.lang='hi-IN';r.start();r.onresult=e=>{document.getElementById('srch').value=e.results[0][0].transcript;document.getElementById('srch').dispatchEvent(new Event('input'));}}
 document.getElementById('srch').oninput=e=>{let v=e.target.value.toLowerCase();render(PRODUCTS.filter(p=>p.name.toLowerCase().includes(v)));};
-function spin(){alert('🎉 Ajaygarh Offer: ₹
+function spin(){alert('🎉 Ajaygarh Offer: ₹100 OFF! Code: AJAY100');}
+
+function adminPanel(){
+  let p=prompt('Admin Password:');
+  if(p!=='AyMart2050'){if(p)alert('Wrong Password');return;}
+  let totalOrders = ORDERS.length;
+  let totalRevenue = ORDERS.reduce((a,b)=>a+b.price,0);
+  let pendingOrders = ORDERS.filter(o=>o.status.includes('Booked')).length;
+  let lastOrder = ORDERS[ORDERS.length-1];
+  alert(`📊 ADMIN PANEL - ASORT SHIPPING\n\nTotal Orders: ${totalOrders}\nPending Asort: ${pendingOrders}\nTotal Revenue: ₹${totalRevenue}\n\nLast Order: ${lastOrder?lastOrder.id:'None'}\nAWB: ${lastOrder?lastOrder.asortAWB:'None'}`);
+}
+
+setInterval(()=>{document.getElementById('timer').textContent=`Ends 04:${String(Math.floor(Math.random()*60)).padStart(2,'0')}:${String(Math.floor(Math.random()*60)).padStart(2,'0')}`;},1000);
+setInterval(()=>{document.getElementById('visitorBar').textContent=`🚚 ${18+Math.floor(Math.random()*7)} orders via Asort today`;},3000);
+
+// === STEP 4: PAGE LOAD HOTE HI RENDER KARO ===
+window.onload = function(){
+ 
