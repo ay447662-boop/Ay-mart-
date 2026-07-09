@@ -9,6 +9,7 @@
 :root{--orange:#FF6B35;--dark:#131921;--green:#25D366;--bg:#f1f3f6;--yellow:#FFD814;--blue:#2874f0;--red:#E91E63}
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);padding-bottom:65px;color:#212121}
+/* 1. Side Menu */
 #sideMenu{position:fixed;top:0;left:-280px;width:280px;height:100%;background:#fff;z-index:1000;transition:0.3s;box-shadow:2px 0 5px rgba(0,0,0,0.2)}
 #overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999}
 .menu-head{background:linear-gradient(135deg,var(--orange),#F7931E);padding:20px;color:#fff}
@@ -16,6 +17,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .menu-head p{font-size:13px;margin-top:4px;opacity:0.9}
 .menu-item{padding:14px 20px;display:flex;align-items:center;gap:15px;font-size:15px;color:#212121;border-bottom:1px solid #f0f0f0}
 .menu-item i{width:20px;color:#666}
+/* 12. Admin Panel */
 #adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#f1f3f6;z-index:1002;overflow-y:auto}
 .admin-header{background:var(--dark);color:#fff;padding:16px;text-align:center;position:sticky;top:0}
 .admin-close{position:absolute;right:16px;top:16px;font-size:24px;cursor:pointer}
@@ -31,6 +33,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .visitor-count{background:var(--blue);color:#fff;padding:12px;border-radius:8px;text-align:center;margin-bottom:16px}
 .visitor-count h4{font-size:24px}
 .visitor-count p{font-size:12px;opacity:0.9}
+/* Header */
 .asort-header{background:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:998;box-shadow:0 1px 2px rgba(0,0,0,0.08)}
 .menu-icon{font-size:20px;color:#333}
 .asort-logo{width:32px;height:32px;background:var(--orange);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px}
@@ -42,17 +45,20 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .wallet{position:relative}
 .wallet-badge{position:absolute;top:-8px;right:-8px;background:var(--green);color:#fff;border-radius:10px;padding:1px 5px;font-size:10px;font-weight:600}
 .cart-count{position:absolute;top:-8px;right:-8px;background:var(--red);color:#fff;border-radius:10px;padding:1px 5px;font-size:10px;font-weight:600}
+/* 6. Search + Voice */
 .search-wrap{background:#fff;padding:0 16px 12px 16px}
 .search-box{background:#f0f2f5;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px}
 .search-box i{color:#878787;font-size:16px}
 .search-box input{border:0;background:transparent;outline:0;width:100%;font-size:14px}
 .mic-icon{color:var(--blue)!important}
+/* 8. Spin & Win Banner */
 .spin-banner{margin:12px 16px;background:linear-gradient(90deg,#9C27B0,#E91E63);border-radius:8px;padding:14px;display:flex;align-items:center;justify-content:space-between;color:#fff}
 .spin-banner.left{display:flex;align-items:center;gap:10px}
 .spin-banner i{font-size:26px}
 .spin-banner h3{font-size:14px;font-weight:700}
 .spin-banner p{font-size:12px;opacity:0.9}
 .spin-banner button{background:#fff;color:#9C27B0;border:0;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700}
+/* 7. Refer & Earn */
 .refer-card{margin:8px 16px;background:#fff;border:2px dashed var(--green);border-radius:8px;padding:14px;text-align:center}
 .refer-card h3{font-size:15px;color:var(--dark);margin-bottom:6px}
 .refer-card p{font-size:12px;color:#666;margin-bottom:10px}
@@ -61,11 +67,13 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .stat-box h4{font-size:18px;color:var(--green);font-weight:700}
 .stat-box p{font-size:11px;color:#666;margin:0}
 .refer-card button{background:var(--green);color:#fff;border:0;padding:10px 24px;border-radius:6px;font-size:14px;font-weight:600}
+/* 2. Flash Sale */
 .flash-sale{margin:8px 16px;background:#232F3E;border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:space-between;color:#fff}
 .flash-left{font-size:13px;font-weight:600}
 .flash-left span{font-size:11px;opacity:0.8;display:block}
 #timer{font-size:18px;font-weight:700;color:var(--yellow)}
 .flash-btn{background:var(--yellow);color:#000;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600}
+/* 10. Order Tracking */
 .tracking-card{margin:8px 16px;background:#fff;border-radius:8px;padding:14px}
 .tracking-card h3{font-size:14px;margin-bottom:12px;color:var(--dark)}
 .track-step{display:flex;gap:12px;margin-bottom:12px}
@@ -76,6 +84,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .track-info{flex:1}
 .track-info h4{font-size:13px;color:#212121;margin-bottom:2px}
 .track-info p{font-size:11px;color:#666}
+/* Categories */
 .cat-scroll{padding:12px 0 8px 16px;background:#fff;margin-bottom:8px}
 .cat-row{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px}
 .cat-row::-webkit-scrollbar{display:none}
@@ -83,15 +92,18 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .cat-circle{width:56px;height:56px;background:#FFF3E0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px auto}
 .cat-circle i{font-size:24px;color:var(--orange)}
 .cat-item p{font-size:11px;color:#212121;line-height:1.2}
+/* Products */
 .section{background:#fff;margin:8px 0;padding:16px}
 .sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .sec-head h2{font-size:16px;font-weight:600}
 .sec-head a{font-size:13px;color:var(--orange);text-decoration:none;font-weight:600}
 .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;position:relative}
+/* 4. Wishlist Heart */
 .wishlist{position:absolute;top:8px;right:8px;background:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,0.2);z-index:10}
 .wishlist i{color:#878787;font-size:16px}
 .wishlist.active i{color:var(--red)}
+/* 5. Image Slider */
 .img-slider{position:relative;height:160px;overflow:hidden;background:#f5f5f5}
 .img-slider img{width:100%;height:160px;object-fit:cover;display:none}
 .img-slider img.active{display:block}
@@ -111,6 +123,7 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .btn-buy{width:100%;background:var(--yellow);border:0;padding:8px;border-radius:6px;font-size:13px;font-weight:600;color:#000;cursor:pointer;margin-bottom:6px}
 .btn-wa{width:100%;background:var(--green);border:0;padding:8px;border-radius:6px;font-size:13px;font-weight:600;color:#fff;cursor:pointer}
 .btn-cart{width:100%;background:var(--orange);border:0;padding:8px;border-radius:6px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;margin-bottom:6px}
+/* 11. Cart Modal */
 #cartModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1001}
 .cart-box{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:16px 16px 0 0;max-height:80%;overflow-y:auto}
 .cart-head{padding:16px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff}
@@ -127,13 +140,16 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 .cart-total.row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px}
 .cart-total.grand{font-size:16px;font-weight:700;color:var(--dark)}
 .checkout-btn{width:100%;background:var(--yellow);border:0;padding:14px;border-radius:8px;font-size:15px;font-weight:700;color:#000;margin-top:12px}
+/* Bottom Nav */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px 0;box-shadow:0 -1px 3px rgba(0,0,0,0.1);z-index:997}
 .nav-item{text-align:center;padding:4px 12px;color:#878787;cursor:pointer;position:relative}
 .nav-item.active{color:var(--orange)}
 .nav-item i{font-size:20px;margin-bottom:2px}
 .nav-item p{font-size:10px;font-weight:500}
+/* 3. Live Popup */
 @keyframes slideIn{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
 .live-popup{position:fixed;bottom:80px;left:16px;background:#fff;padding:12px 16px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:13px;z-index:996;animation:slideIn 0.3s;display:flex;align-items:center;gap:8px}
+/* 8. Spin Wheel Modal */
 #spinModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1001;align-items:center;justify-content:center}
 .spin-box{background:#fff;border-radius:16px;padding:24px;text-align:center;max-width:320px}
 .spin-wheel{width:200px;height:200px;border-radius:50%;background:conic-gradient(#FF6B35 0deg 60deg,#FFD814 60deg 120deg,#25D366 120deg 180deg,#2874f0 180deg 240deg,#9C27B0 240deg 300deg,#E91E63 300deg 360deg);margin:20px auto;position:relative;transition:transform 3s cubic-bezier(0.17,0.67,0.83,0.67)}
@@ -142,8 +158,13 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 </style>
 </head>
 <body>
+
+<!-- 1. Side Menu -->
 <div id="sideMenu">
-<div class="menu-head"><h3>Hi, Anil Yadav</h3><p>ASID: 2396277 | Maven Partner</p></div>
+<div class="menu-head">
+<h3>Hi, Anil Yadav</h3>
+<p>ASID: 2396277 | Maven Partner</p>
+</div>
 <div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-home"></i> Home</div>
 <div class="menu-item" onclick="openCart()"><i class="fas fa-shopping-cart"></i> My Cart</div>
 <div class="menu-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-box"></i> My Orders</div>
@@ -154,36 +175,96 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <div class="menu-item" onclick="window.open('https://wa.me/918770840326','_blank')"><i class="fab fa-whatsapp"></i> Help Center</div>
 </div>
 <div id="overlay" onclick="closeMenu()"></div>
+
+<!-- 12. Admin Panel -->
 <div id="adminPanel">
-<div class="admin-header"><h2>Ay Mart Admin Panel</h2><p>ASID: 2396277 | Anil Kumar Yadav</p><div class="admin-close" onclick="closeAdmin()">×</div></div>
+<div class="admin-header">
+<h2>Ay Mart Admin Panel</h2>
+<p>ASID: 2396277 | Anil Kumar Yadav</p>
+<div class="admin-close" onclick="closeAdmin()">×</div>
 <div class="admin-body">
-<div class="visitor-count"><h4 id="visitCount">0</h4><p>Today's Visitors</p></div>
-<div class="admin-card"><h3><i class="fas fa-plus-circle"></i> Add New Product</h3><input type="text" id="pName" class="admin-input" placeholder="Product Name"><input type="text" id="pImg" class="admin-input" placeholder="Image URL"><input type="number" id="pPrice" class="admin-input" placeholder="Selling Price"><input type="number" id="pMrp" class="admin-input" placeholder="MRP"><button class="admin-btn" onclick="addProduct()">ADD PRODUCT TO AY MART</button></div>
-<div class="admin-card"><h3><i class="fas fa-list"></i> Manage Products</h3><div class="admin-list" id="productList"></div></div>
+<div class="visitor-count">
+<h4 id="visitCount">0</h4>
+<p>Today's Visitors</p>
 </div>
+<div class="admin-card">
+<h3><i class="fas fa-plus-circle"></i> Add New Product</h3>
+<input type="text" id="pName" class="admin-input" placeholder="Product Name">
+<input type="text" id="pImg" class="admin-input" placeholder="Image URL">
+<input type="number" id="pPrice" class="admin-input" placeholder="Selling Price">
+<input type="number" id="pMrp" class="admin-input" placeholder="MRP">
+<button class="admin-btn" onclick="addProduct()">ADD PRODUCT TO AY MART</button>
+</div>
+<div class="admin-card">
+<h3><i class="fas fa-list"></i> Manage Products</h3>
+<div class="admin-list" id="productList"></div>
+</div>
+</div>
+</div>
+
+<!-- Header -->
 <div class="asort-header">
 <i class="fas fa-bars menu-icon" onclick="openMenu()"></i>
 <div class="asort-logo">A</div>
-<div class="asort-title"><h1>Ay Mart Pro <i class="fas fa-check-circle" style="color:#1877F2;font-size:14px"></i></h1><p>Maven Partner • ASID: 2396277</p></div>
+<div class="asort-title">
+<h1>Ay Mart Pro <i class="fas fa-check-circle" style="color:#1877F2;font-size:14px"></i></h1>
+<p>Maven Partner • ASID: 2396277</p>
+</div>
 <div class="header-icons">
-<div class="wallet" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-wallet"></i><span class="wallet-badge">₹0</span></div>
-<div style="position:relative" onclick="openCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
+<div class="wallet" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">
+<i class="fas fa-wallet"></i>
+<span class="wallet-badge">₹0</span>
 </div>
+<div style="position:relative" onclick="openCart()">
+<i class="fas fa-shopping-cart"></i>
+<span class="cart-count" id="cartCount">0</span>
+</div>
+
+<!-- 6. Search + Voice -->
 <div class="search-wrap">
-<div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Ay Mart pe kya chahiye? Search karo..."><i class="fas fa-microphone mic-icon" onclick="voiceSearch()"></i></div>
+<div class="search-box">
+<i class="fas fa-search"></i>
+<input type="text" id="searchInput" placeholder="Ay Mart pe kya chahiye? Search karo...">
+<i class="fas fa-microphone mic-icon" onclick="voiceSearch()"></i>
 </div>
+
+<!-- 8. Spin & Win Banner -->
 <div class="spin-banner">
-<div class="left"><i class="fas fa-dharmachakra"></i><div><h3>Spin & Win Daily</h3><p>Win Rs 500 Asort Coupon</p></div></div>
+<div class="left">
+<i class="fas fa-dharmachakra"></i>
+<div>
+<h3>Spin & Win Daily</h3>
+<p>Win Rs 500 Asort Coupon</p>
+</div>
+</div>
 <button onclick="openSpin()">SPIN NOW</button>
 </div>
+
+<!-- 7. Refer & Earn -->
 <div class="refer-card">
-<h3>🎁 Refer & Earn Rs 100</h3><p>Invite friends to Ay Mart & earn for every join</p>
-<div class="stats"><div class="stat-box"><h4 id="referCount">0</h4><p>Friends Joined</p></div><div class="stat-box"><h4 id="earnAmount">₹0</h4><p>Total Earned</p></div></div>
+<h3>🎁 Refer & Earn Rs 100</h3>
+<p>Invite friends to Ay Mart & earn for every join</p>
+<div class="stats">
+<div class="stat-box">
+<h4 id="referCount">0</h4>
+<p>Friends Joined</p>
+</div>
+<div class="stat-box">
+<h4 id="earnAmount">₹0</h4>
+<p>Total Earned</p>
+</div>
+</div>
 <button onclick="shareRefer()">INVITE NOW</button>
 </div>
+
+<!-- 2. Flash Sale -->
 <div class="flash-sale">
-<div class="flash-left">⚡ FLASH SALE <span>Ends in</span></div><div id="timer">02:45:12</div>
+<div class="flash-left">⚡ FLASH SALE <span>Ends in</span></div>
+<div id="timer">02:45:12</div>
 <div class="flash-btn" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">SHOP NOW</div>
+</div>
+
+<!-- Categories -->
 <div class="cat-scroll">
 <div class="cat-row">
 <div class="cat-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><div class="cat-circle"><i class="fas fa-fire"></i></div><p>Top Offers</p></div>
@@ -192,26 +273,60 @@ body{background:var(--bg);padding-bottom:65px;color:#212121}
 <div class="cat-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><div class="cat-circle"><i class="fas fa-laptop"></i></div><p>Electronics</p></div>
 <div class="cat-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><div class="cat-circle"><i class="fas fa-home"></i></div><p>Home</p></div>
 <div class="cat-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><div class="cat-circle"><i class="fas fa-apple-alt"></i></div><p>Grocery</p></div>
-</div>
+
+<!-- 10. Order Tracking -->
 <div class="tracking-card">
 <h3>📦 Track Your Last Order</h3>
-<div class="track-step"><div class="track-icon"><i class="fas fa-check"></i></div><div class="track-info"><h4>Order Confirmed</h4><p>Today, 10:30 AM</p></div></div>
-<div class="track-step"><div class="track-icon"><i class="fas fa-box"></i></div><div class="track-info"><h4>Shipped</h4><p>Today, 2:15 PM</p></div></div>
-<div class="track-step"><div class="track-icon pending"><i class="fas fa-truck"></i></div><div class="track-info"><h4>Out for Delivery</h4><p>Expected by Tomorrow</p></div></div>
+<div class="track-step">
+<div class="track-icon"><i class="fas fa-check"></i></div>
+<div class="track-info"><h4>Order Confirmed</h4><p>Today, 10:30 AM</p></div>
 </div>
+<div class="track-step">
+<div class="track-icon"><i class="fas fa-box"></i></div>
+<div class="track-info"><h4>Shipped</h4><p>Today, 2:15 PM</p></div>
+</div>
+<div class="track-step">
+<div class="track-icon pending"><i class="fas fa-truck"></i></div>
+<div class="track-info"><h4>Out for Delivery</h4><p>Expected by Tomorrow</p></div>
+</div>
+
+<!-- Products -->
 <div class="section">
-<div class="sec-head"><h2>Deals of the Day</h2><a href="https://asort.com/join?ref=2396277" target="_blank">VIEW ALL</a></div>
+<div class="sec-head">
+<h2>Deals of the Day</h2>
+<a href="https://asort.com/join?ref=2396277" target="_blank">VIEW ALL</a>
+</div>
 <div class="product-grid" id="productGrid">
+
+<!-- Product 1 -->
 <div class="card" data-id="1" data-name="5G Smartphone 8GB RAM" data-price="12999" data-img="https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1">
 <div class="wishlist" onclick="toggleWish(this,1)"><i class="far fa-heart"></i></div>
-<div class="img-slider" id="slider1"><img src="https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1" class="active" alt=""><img src="https://via.placeholder.com/300x300/2980b9/fff?text=PHONE+2" alt=""><img src="https://via.placeholder.com/300x300/1abc9c/fff?text=PHONE+3" alt=""><div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div></div>
-<div class="card-body"><div class="card-title">5G Smartphone 8GB RAM + 128GB ROM 50MP Camera</div><div class="rating"><span class="rating-badge">4.3 ★</span><span class="rating-count">(12,456)</span></div><div class="price-row"><span class="price">₹12,999</span><span class="mrp">₹15,999</span><span class="off">18% off</span></div><div class="delivery">Free delivery by Tomorrow</div><button class="btn-cart" onclick="addToCart(1)"><i class="fas fa-shopping-cart"></i> ADD TO CART</button><button class="btn-buy" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">Shop on Asort</button><button class="btn-wa" onclick="orderBot('5G Smartphone 8GB RAM','12999','https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1')"><i class="fab fa-whatsapp"></i> WhatsApp Order</button></div>
+<div class="img-slider" id="slider1">
+<img src="https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1" class="active" alt="">
+<img src="https://via.placeholder.com/300x300/2980b9/fff?text=PHONE+2" alt="">
+<img src="https://via.placeholder.com/300x300/1abc9c/fff?text=PHONE+3" alt="">
+<div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
 </div>
+<div class="card-body">
+<div class="card-title">5G Smartphone 8GB RAM + 128GB ROM 50MP Camera</div>
+<div class="rating"><span class="rating-badge">4.3 ★</span><span class="rating-count">(12,456)</span></div>
+<div class="price-row"><span class="price">₹12,999</span><span class="mrp">₹15,999</span><span class="off">18% off</span></div>
+<div class="delivery">Free delivery by Tomorrow</div>
+<button class="btn-cart" onclick="addToCart(1)"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
+<button class="btn-buy" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">Shop on Asort</button>
+<button class="btn-wa" onclick="orderBot('5G Smartphone 8GB RAM','12999','https://via.placeholder.com/300x300/3498db/fff?text=PHONE+1')">
+<i class="fab fa-whatsapp"></i> WhatsApp Order</button>
+</div>
+</div>
+
+<!-- Product 2 -->
 <div class="card" data-id="2" data-name="Men Cotton T-Shirt" data-price="499" data-img="https://via.placeholder.com/300x300/e74c3c/fff?text=T-SHIRT+1">
 <div class="wishlist" onclick="toggleWish(this,2)"><i class="far fa-heart"></i></div>
-<div class="img-slider" id="slider2"><img src="https://via.placeholder.com/300x300/e74c3c/fff?text=T-SHIRT+1" class="active" alt=""><img src="https://via.placeholder.com/300x300/c0392b/fff?text=T-SHIRT+2" alt=""><div class="dots"><span class="dot active"></span><span class="dot"></span></div></div>
-<div class="card-body"><div class="card-title">Men Cotton Round Neck T-Shirt Pack of 1</div><div class="rating"><span class="rating-badge">4.1 ★</span><span class="rating-count">(8,234)</span></div><div class="price-row"><span class="price">₹499</span><span class="mrp">₹999</span><span class="off">50% off</span></div><div class="delivery">Free delivery by Tomorrow</div><button class="btn-cart" onclick="addToCart(2)"><i class="fas fa-shopping-cart"></i> ADD TO CART</button><button class="btn-buy" onclick="window.open('https://asort.com/join?ref=2396277','_blank')">Shop on Asort</button><button class="btn-wa" onclick="orderBot('Men Cotton T-Shirt','499','https://via.placeholder.com/300x300/e74c3c/fff?text=T-SHIRT+1')"><i class="fab fa-whatsapp"></i> WhatsApp Order</button></div>
+<div class="img-slider" id="slider2">
+<img src="https://via.placeholder.com/300x300/e74c3c/fff?text=T-SHIRT+1" class="active" alt="">
+<img src="https://via.placeholder.com/300x300/c0392b/fff?text=T-SHIRT+2" alt="">
+<div class="dots"><span class="dot active"></span><span class="dot"></span></div>
 </div>
-<div id="cartModal">
-<div class="cart-box">
-<div class="cart-head"><h3><i cl
+<div class="card-body">
+<div class="card-title">Men Cotton Round Neck T-Shirt Pack of 1</div>
+<div class="rating"><span class="rating-badge">4.1 ★</span><span class="rating-count">(8,234)</span>
