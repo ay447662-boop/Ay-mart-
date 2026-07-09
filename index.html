@@ -37,9 +37,9 @@ body{background:var(--bg);padding-bottom:65px}
 .card-body{padding:10px}
 .card-title{font-size:12px;line-height:1.3;height:32px;overflow:hidden;margin-bottom:6px}
 .price{font-size:15px;font-weight:700;color:#000;margin-bottom:8px}
-.btn-wa{width:100%;background:var(--green);color:#fff;border:0;padding:9px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-wa{width:100%;background:var(--green);color:#fff;border:0;padding:9px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:block;text-align:center;text-decoration:none}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px 0;box-shadow:0 -1px 3px rgba(0,0,0,0.1);z-index:997}
-.nav-item{text-align:center;padding:4px 12px;color:#878787;cursor:pointer}
+.nav-item{text-align:center;padding:4px 12px;color:#878787;cursor:pointer;display:block;text-decoration:none}
 .nav-item.active{color:var(--orange)}
 .nav-item i{font-size:20px;margin-bottom:2px}
 .nav-item p{font-size:10px;font-weight:500}
@@ -77,9 +77,9 @@ body{background:var(--bg);padding-bottom:65px}
 <div class="card-body">
 <div class="card-title">5G Smartphone 8GB RAM 128GB ROM</div>
 <div class="price">₹12,999</div>
-<button class="btn-wa" onclick="window.open('https://wa.me/918770840326?text=Hi%20Anil%20Bhai,%20Ay%20Mart%20se%20Order%20karna%20hai%0A%0AProduct:%205G%20Smartphone%208GB%0APrice:%20₹12,999%0AASID:%202396277%0A%0AMera%20Naam:%0APura%20Address:%0APincode:%0AMobile:%0A%0APlease%20confirm%20karo','_blank')">
+<a class="btn-wa" href="https://wa.me/918770840326?text=Hi%20Anil%20Bhai,%20Ay%20Mart%20se%20Order%20karna%20hai%0A%0AProduct:%205G%20Smartphone%208GB%0APrice:%20₹12,999%0AASID:%202396277%0A%0AMera%20Naam:%0APura%20Address:%0APincode:%0AMobile:%0A%0APlease%20confirm%20karo" target="_blank">
 <i class="fab fa-whatsapp"></i> WhatsApp Order
-</button>
+</a>
 </div>
 </div>
 <div class="card">
@@ -87,19 +87,16 @@ body{background:var(--bg);padding-bottom:65px}
 <div class="card-body">
 <div class="card-title">Men Cotton T-Shirt Premium Quality</div>
 <div class="price">₹499</div>
-<button class="btn-wa" onclick="window.open('https://wa.me/918770840326?text=Hi%20Anil%20Bhai,%20Ay%20Mart%20se%20Order%20karna%20hai%0A%0AProduct:%20Cotton%20T-Shirt%0APrice:%20₹499%0AASID:%202396277%0A%0AMera%20Naam:%0APura%20Address:%0APincode:%0AMobile:%0A%0APlease%20confirm%20karo','_blank')">
+<a class="btn-wa" href="https://wa.me/918770840326?text=Hi%20Anil%20Bhai,%20Ay%20Mart%20se%20Order%20karna%20hai%0A%0AProduct:%20Cotton%20T-Shirt%0APrice:%20₹499%0AASID:%202396277%0A%0AMera%20Naam:%0APura%20Address:%0APincode:%0AMobile:%0A%0APlease%20confirm%20karo" target="_blank">
 <i class="fab fa-whatsapp"></i> WhatsApp Order
-</button>
-</div>
-</div>
-</div>
+</a>
 </div>
 
 <div class="bottom-nav">
-<div class="nav-item active"><i class="fas fa-home"></i><p>Home</p></div>
-<div class="nav-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-th-large"></i><p>Shop</p></div>
-<div class="nav-item" onclick="window.open('https://wa.me/918770840326','_blank')"><i class="fab fa-whatsapp"></i><p>Help</p></div>
-<div class="nav-item" onclick="window.open('https://asort.com/join?ref=2396277','_blank')"><i class="fas fa-user"></i><p>Account</p></div>
+<a class="nav-item active" href="#"><i class="fas fa-home"></i><p>Home</p></a>
+<a class="nav-item" href="https://asort.com/join?ref=2396277" target="_blank"><i class="fas fa-th-large"></i><p>Shop</p></a>
+<a class="nav-item" href="https://wa.me/918770840326" target="_blank"><i class="fab fa-whatsapp"></i><p>Help</p></a>
+<a class="nav-item" href="https://asort.com/join?ref=2396277" target="_blank"><i class="fas fa-user"></i><p>Account</p></a>
 </div>
 </body>
 </html>
