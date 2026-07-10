@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ay447662-boop.github.io/Ay-mart-/sitemap.xml
