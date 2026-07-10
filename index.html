@@ -73,22 +73,70 @@
 <nav class="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2.5 z-40"><div class="text-center text-[#2874f0]"><div class="text-[18px]">⌂</div><div class="text-[10px] font-bold">Home</div></div><div class="text-center text-gray-400"><div>☰</div><div class="text-[10px]">Categories</div></div><div class="text-center text-gray-400"><div>🛒</div><div class="text-[10px]">Cart (<span class="cartN">0</span>)</div></div><div class="text-center text-gray-400"><div>👤</div><div class="text-[10px]">You</div></div></nav>
 
 <script>
-const items=[
-{n:"Ifazone Men Black Shirt",p:699,o:1499,r:4.6,tag:"IFAZONE",img:"👔",c:"bg-gray-100"},
-{n:"Mr Huffman Air Sneakers",p:1899,o:3499,r:4.8,tag:"HUFFMAN",img:"👟",c:"bg-blue-50"},
-{n:"Earthy Scent Vitamin C Kit",p:549,o:999,r:4.5,tag:"EARTHY",img:"🧴",c:"bg-green-50"},
-{n:"Solasta Luxury Watch",p:1499,o:2999,r:4.7,tag:"SOLASTA",img:"⌚",c:"bg-amber-50"},
-{n:"Ifazone Women Kurta Set",p:1299,o:2599,r:4.6,tag:"TRENDING",img:"👗",c:"bg-pink-50"},
-{n:"A-Basket Premium Handbag",p:899,o:1799,r:4.4,tag:"BESTSELLER",img:"👜",c:"bg-orange-50"},
-{n:"Ifazone Oversized Hoodie",p:1099,o:2199,r:4.5,tag:"NEW",img:"🧥",c:"bg-slate-100"},
-{n:"Earthy Perfume Combo",p:799,o:1599,r:4.6,tag:"COMBO",img:"✨",c:"bg-purple-50"},
+// --- ANIL YADAV STORE - PHOTOS + SEARCH + FILTER ---
+const items = [
+  {n:"Ifazone Men Black Shirt", p:699, o:1499, d:"53% OFF", r:"4.6", img:"https://images.meesho.com/images/products/123.jpg", cat:"Meesho"},
+  {n:"Mr Huffman Air Sneakers", p:1899, o:3499, d:"46% OFF", r:"4.6", img:"https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/123.jpg", cat:"Myntra"},
+  {n:"Earthy Scent Vitamin C Kit", p:549, o:999, d:"45% OFF", r:"4.5", img:"https://m.media-amazon.com/images/I/61.jpg", cat:"Amazon"},
+  {n:"Solasta Luxury Watch", p:1499, o:2999, d:"50% OFF", r:"4.7", img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500", cat:"Amazon"},
+  {n:"Ifazone Women Kurta Set", p:1299, o:2599, d:"50% OFF", r:"4.6", img:"https://images.meesho.com/images/products/456.jpg", cat:"Meesho"},
+  {n:"A-Basket Premium Handbag", p:899, o:1799, d:"50% OFF", r:"4.6", img:"https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/789.jpg", cat:"Myntra"}
 ];
-let cart=0;
-const grid=document.getElementById('products');
-function render(list){grid.innerHTML='';list.forEach(it=>{const off=Math.round((1-it.p/it.o)*100);grid.innerHTML+=`<div class="bg-white rounded-[16px] overflow-hidden border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,.04)]"><div class="relative h-[150px] ${it.c} grid place-items-center text-[44px]"><span class="absolute top-2 left-2 bg-black text-white text-[8px] font-black px-2 py-1 rounded-full tracking-wider">${it.tag}</span><span class="absolute top-2 right-2 w-7 h-7 bg-white rounded-full grid place-items-center shadow text-xs">♡</span>${it.img}<span class="absolute bottom-2 left-2 bg-white/95 text-[10px] font-bold px-2 py-0.5 rounded-full shadow">${off}% OFF</span></div><div class="p-2.5"><p class="text-[12.5px] font-semibold leading-[1.3] h-[34px] line-clamp-2 overflow-hidden">${it.n}</p><div class="flex items-center gap-1 mt-1"><span class="bg-[#067d62] text-white text-[10px] px-1.5 py-0.5 rounded font-bold">${it.r} ★</span><span class="text-[10px] text-gray-400">1.2k+ bought</span></div><div class="flex items-baseline gap-1.5 mt-1"><b class="text-[15px]">₹${it.p}</b><s class="text-[11px] text-gray-400">₹${it.o}</s><span class="text-[10px] text-green-600 font-bold">${off}% off</span></div><p class="text-[10px] text-gray-400 mt-0.5">Free Delivery by Anil Store</p><button onclick="addCart('${it.n}')" class="w-full mt-2 bg-[#ffce12] font-bold py-2 rounded-full text-[11px] border border-[#f2c200]">Add to Cart</button><button onclick="buyNow('${it.n}')" class="w-full mt-1.5 bg-[#0B1A33] text-[#FFD700] font-bold py-2 rounded-full text-[11px]">Buy Now</button></div></div>`})};
-function addCart(name){cart++;document.getElementById('cartCount').innerText=cart;document.querySelectorAll('.cartN').forEach(e=>e.innerText=cart);alert(name+' Cart me add ho gaya!');}
-function buyNow(name){location.href=`https://wa.me/918770840326?text=Hi%20Anil%20Bhai%20Mujhe%20${encodeURIComponent(name)}%20Order%20karna%20hai%20ID%202396277%20Best%20Site%20se`;}
-document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();render(items.filter(i=>i.n.toLowerCase().includes(q)))});
+
+let cartCount = Number(localStorage.getItem('anil-cart') || 0);
+let currentFilter = 'All';
+
+// popup
+const pop = document.createElement('div');
+pop.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:#16a34a;color:white;padding:12px 20px;border-radius:12px;font-weight:600;opacity:0;transition:.3s;z-index:9999';
+document.body.appendChild(pop);
+function showPop(m){ pop.textContent=m; pop.style.opacity=1; pop.style.transform='translateX(-50%) translateY(0)'; setTimeout(()=>{pop.style.opacity=0},1800); }
+
+function updateCart(){
+  localStorage.setItem('anil-cart', cartCount);
+  document.querySelectorAll('*').forEach(el=>{ if(el.textContent.trim().startsWith('Cart (')) el.textContent=`Cart (${cartCount})`; });
+}
+
+// RENDER
+function render(list){
+  const grid = document.getElementById('products');
+  grid.className = 'grid grid-cols-2 gap-3 p-3';
+  grid.innerHTML = list.map(it => `
+    <div class="bg-white rounded-xl p-2 shadow">
+      <img src="${it.img}" class="w-full h-32 object-cover rounded-lg mb-2" onerror="this.src='https://via.placeholder.com/300'">
+      <div class="text-[10px] bg-black text-white inline-block px-2 py-0.5 rounded">${it.d}</div>
+      <h3 class="font-semibold text-xs mt-1 h-8 overflow-hidden">${it.n}</h3>
+      <div class="text-[11px] my-1"><span class="bg-green-600 text-white px-1 rounded">${it.r} ★</span> <span class="text-gray-500">${it.cat}</span></div>
+      <div class="mb-2"><span class="font-bold">₹${it.p}</span> <span class="line-through text-gray-400 text-xs">₹${it.o}</span></div>
+      <button onclick="addCart('${it.n}')" class="w-full bg-yellow-400 py-1.5 rounded text-sm font-medium">Add to Cart</button>
+      <button onclick="buyNow('${it.n}')" class="w-full bg-slate-800 text-yellow-400 py-1.5 rounded text-sm mt-1">Buy Now</button>
+    </div>
+  `).join('');
+}
+
+function addCart(n){ cartCount++; updateCart(); showPop('🛒 '+n); }
+function buyNow(n){ showPop('Opening WhatsApp...'); setTimeout(()=>window.open('https://wa.me/918770840326?text=I want '+encodeURIComponent(n),'_blank'),400); }
+
+function applyFilter(){
+  const q = (document.getElementById('search')?.value || '').toLowerCase();
+  let filtered = items.filter(it => (currentFilter==='All'||it.cat===currentFilter) && it.n.toLowerCase().includes(q));
+  render(filtered);
+}
+
+// Search box connect
+setTimeout(()=>{
+  const search = document.getElementById('search');
+  if(search){ search.placeholder='Search products...'; search.oninput = applyFilter; }
+  
+  // Category buttons upar add karo
+  const grid = document.getElementById('products');
+  const filterBar = document.createElement('div');
+  filterBar.className = 'flex gap-2 p-3 overflow-x-auto';
+  filterBar.innerHTML = ['All','Meesho','Myntra','Amazon'].map(c=>`<button class="cat-btn px-3 py-1 rounded-full text-sm border ${c==='All'?'bg-black text-white':'bg-white'}" data-cat="${c}">${c}</button>`).join('');
+  grid.before(filterBar);
+  filterBar.onclick = e => { if(e.target.dataset.cat){ currentFilter=e.target.dataset.cat; filterBar.querySelectorAll('button').forEach(b=>b.className='cat-btn px-3 py-1 rounded-full text-sm border bg-white'); e.target.className='cat-btn px-3 py-1 rounded-full text-sm border bg-black text-white'; applyFilter(); } };
+},100);
+
 render(items);
-</script>
-<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;if(parent===window)return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*")},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
+updateCart();
+  </script>
