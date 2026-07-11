@@ -64,4 +64,3 @@ document.addEventListener("DOMContentLoaded", function() {
     updateCounts(); renderCartPage();
     console.log("AyMart Final Loaded - ID 2396277 - Telegram ON - ChatID 8262111567");
 });
-        
