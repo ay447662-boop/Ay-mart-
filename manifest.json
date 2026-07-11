@@ -1,15 +1,20 @@
 {
-  "name": "AyMart - Shopping App",
+  "name": "AyMart - Apni Dukan",
   "short_name": "AyMart",
-  "description": "Best Deals on Fashion, Electronics & Groceries",
-  "start_url": "/Ay-mart-/",
+  "description": "India ki apni shopping app",
   "display": "standalone",
-  "background_color": "#ff6b00",
+  "background_color": "#ffffff",
   "theme_color": "#ff6b00",
-  "orientation": "portrait",
+  "start_url": "/Ay-mart-/",
+  "scope": "/Ay-mart-/",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3081/3081559.png",
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
