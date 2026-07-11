@@ -364,5 +364,44 @@ function closeGuide(){document.getElementById('guide').classList.add('hidden');}
       
 
 <!-- Footer --><footer style="background:#111827;color:#9ca3af;text-align:center;padding:20px;font-size:12px;margin-top:30px"><p style="margin:0;color:#fff;font-weight:700;font-size:14px">Ay-Mart - Powered by Asort</p><p style="margin:8px 0 0">Fan-made promo store. All orders by <b>Asort India Pvt Ltd.</b><br>Sold by <b>ANIL YADAV - ID 2396277</b> | Ajaygarh 488220</p><p style="margin-top:10px;font-size:11px;opacity:.7">© 2026 Ay-Mart</p></footer>
-      </body>
+      
+
+<!-- UPI PAYMENT POPUP -->
+<div id="upiPopup" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;z-index:9999;">
+  <div style="background:#fff;padding:25px;border-radius:15px;text-align:center;width:90%;max-width:350px;">
+    <h2 style="margin-bottom:10px;">Pay <span id="payAmount">₹3546</span></h2>
+    <p style="font-size:14px;color:#555;">UPI ID: <b>8770840326@upi</b></p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8770840326@upi" style="width:200px;margin:15px 0;">
+    <br>
+    <button onclick="confirmPayment()" style="background:#000;color:#fff;padding:12px 25px;border:none;border-radius:8px;width:100%;font-size:16px;font-weight:bold;cursor:pointer;">I Have Paid ✅</button>
+    <button onclick="document.getElementById('upiPopup').style.display='none'" style="margin-top:10px;background:transparent;border:none;color:#888;">Cancel</button>
+  </div>
+</div>
+
+<script>
+const BOT_TOKEN = "8939013349:AAGmyulw0ZhpY3QVLPVgVrEey_30MJdOqrk";
+const CHAT_ID = "8262111567";
+
+async function confirmPayment() {
+  const amount = document.getElementById("payAmount")?.innerText || "₹3546";
+  const msg = `🔔 *New Order - Ay-Mart* 🔥\n\n💰 Amount: ${amount}\n✅ Status: I Have Paid Clicked\n📱 UPI: 8770840326@upi\n\nJaldi check karo!`;
+  try {
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: "Markdown" })
+    });
+  } catch(e){}
+  alert("✅ Payment Confirmed! Telegram pe bhej diya!");
+  document.getElementById('upiPopup').style.display='none';
+  location.reload();
+}
+
+// ye function Buy Now button se popup kholta hai
+function openUpiPopup(amount){
+  document.getElementById('payAmount').innerText = amount || "₹3546";
+  document.getElementById('upiPopup').style.display='flex';
+}
+</script>
+</body>
       </html>
