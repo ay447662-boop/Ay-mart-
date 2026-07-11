@@ -1,0 +1,37 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.aymart.twa",
+      "sha256_cert_fingerprints": [
+        "8A:16:EC:F0:4A:96:F8:D5:65:8D:08:5C:06:57:79:23:FE:80:F4:E2:FF:F7:16:B3:AE:0B:DC:60:E3:CF:04:98"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.github.ay447662_boop.ay_mart.twa",
+      "sha256_cert_fingerprints": [
+        "8A:16:EC:F0:4A:96:F8:D5:65:8D:08:5C:06:57:79:23:FE:80:F4:E2:FF:F7:16:B3:AE:0B:DC:60:E3:CF:04:98"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.aymart.shoppingapp.twa",
+      "sha256_cert_fingerprints": [
+        "8A:16:EC:F0:4A:96:F8:D5:65:8D:08:5C:06:57:79:23:FE:80:F4:E2:FF:F7:16:B3:AE:0B:DC:60:E3:CF:04:98"
+      ]
+    }
+  }
