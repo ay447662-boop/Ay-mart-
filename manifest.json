@@ -1,17 +1,17 @@
 {
-  "name": "Ay Mart Shopping App",
+  "name": "AyMart - Shopping App",
   "short_name": "AyMart",
-  "description": "Ay Mart is an Asort style shopping app clone made by Anil.",
-  "start_url": "./",
+  "description": "Best Deals on Fashion, Electronics & Groceries",
+  "start_url": "/Ay-mart-/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ff6600",
+  "background_color": "#ff6b00",
+  "theme_color": "#ff6b00",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3081/3081559.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }
