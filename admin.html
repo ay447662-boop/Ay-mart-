@@ -1,120 +1,43 @@
 <!DOCTYPE html>
 <html lang="hi">
-<head><style>
-@font-face {
-  font-family: "Optimistic";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Optimistic Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-}
-:where(html) {
-  font-family: "Optimistic", system-ui, sans-serif;
-}
-:where(code, pre, kbd, samp) {
-  font-family: "Optimistic Mono", ui-monospace, monospace;
-}
-</style>
+<head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ay Mart Admin - Add Product</title>
+<title>Ay-Mart Admin</title>
 <style>
 body{font-family:Arial;background:#f0f2f5;margin:0;padding:15px}
-.box{max-width:500px;margin:0 auto;background:white;padding:20px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-h2{color:#2874f0;text-align:center;margin:0 0 15px}
-input,select,button{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;font-size:14px}
-button{background:#2874f0;color:white;border:none;font-weight:bold;cursor:pointer}
-button:active{transform:scale(.98)}
-.del-btn{background:#ff4444!important;width:auto;padding:6px 10px;font-size:12px}
-.item{display:flex;justify-content:space-between;align-items:center;border:1px solid #eee;padding:8px;border-radius:8px;margin:6px 0}
+.box{max-width:500px;margin:0 auto;background:#fff;padding:20px;border-radius:12px}
+input,select,button{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}
+button{background:#2874f0;color:#fff;border:0;font-weight:bold}
+.preview{width:100%;height:180px;object-fit:contain;background:#fafafa;border:1px dashed #ccc;display:none}
+.item{display:flex;gap:8px;border-bottom:1px solid #eee;padding:8px 0;align-items:center}
 .item img{width:50px;height:50px;object-fit:cover;border-radius:6px}
-.preview{width:100%;height:180px;object-fit:contain;background:#fafafa;border:1px dashed #ccc;border-radius:8px;display:none;margin-top:8px}
-.small{font-size:11px;color:#666;text-align:center}
 </style>
 </head>
 <body>
 <div class="box">
-<h2>🛒 Ay-Mart Admin Panel</h2>
-<p class="small">ID: 2396277 | Anil Yadav | Photo kheecho, price daalo, Save dabao</p>
-
-<input type="file" id="photo" accept="image/*" capture="environment">
-<img id="preview" class="preview">
-
-<input id="name" placeholder="Product Name - Ex: Ifazone Men Black Shirt">
-<input id="brand" placeholder="Brand - Ex: Ifazone, Earthy Scent, Solasta">
-<input id="price" type="number" placeholder="Selling Price - Ex: 699">
-<input id="mrp" type="number" placeholder="MRP - Ex: 1499">
-<input id="discount" placeholder="Discount - Ex: 53% OFF">
-<input id="sku" placeholder="SKU Code - Ex: IFZ-MS-BLK-001">
-
-<select id="cat">
-<option>Men Shirt</option><option>Women Kurta</option><option>T-Shirt</option>
-<option>Perfume</option><option>Face Wash / Kit</option><option>Shoes</option><option>Watch</option><option>Other</option>
-</select>
-
-<button onclick="addProduct()">✅ Save & Add to Store</button>
-<button onclick="exportCode()" style="background:#0a8a00">📤 GitHub pe daalne ke liye Code Copy Karo</button>
-<button onclick="clearAll()" style="background:#666">🗑️ Sab Delete</button>
-
-<h3 style="margin-top:20px">📦 Tumhare Products (<span id="count">0</span>)</h3>
-<div id="list"></div>
+<h2 style="text-align:center;color:#2874f0">🛒 Ay-Mart Admin</h2>
+<p style="text-align:center;font-size:11px;color:#666">ID:2396277 | Anil Yadav</p>
+<input type="file" id="photo" accept="image/*">
+<img id="prev" class="preview">
+<input id="name" placeholder="Product Name * Ex: Ifazone Black Shirt">
+<input id="brand" placeholder="Brand Ex: Ifazone">
+<input id="price" type="number" placeholder="Price Ex: 699">
+<input id="mrp" type="number" placeholder="MRP Ex: 1499">
+<input id="disc" placeholder="Discount Ex: 53% OFF">
+<input id="sku" placeholder="SKU Ex: IFZ-001">
+<select id="cat"><option>Men Shirt</option><option>Perfume</option><option>Kit</option><option>Shoes</option><option>Watch</option></select>
+<button onclick="save()">✅ Save & Add to Store</button>
+<button onclick="copy()" style="background:#0a8a00">📋 GitHub Code Copy</button>
+<h3>Products (<span id="c">0</span>)</h3><div id="list"></div>
 </div>
-
 <script>
-let products = JSON.parse(localStorage.getItem('ay_products')||'[]');
-let base64Img = "";
-
-document.getElementById('photo').addEventListener('change', e=>{
-  let file=e.target.files[0];
-  if(!file) return;
-  let r=new FileReader();
-  r.onload=ev=>{
-    base64Img=ev.target.result;
-    let p=document.getElementById('preview');
-    p.src=base64Img; p.style.display='block';
-  };
-  r.readAsDataURL(file);
-});
-
-function addProduct(){
- let n=document.getElementById('name').value.trim();
- let b=document.getElementById('brand').value.trim()||'Ifazone';
- let pr=parseInt(document.getElementById('price').value)||699;
- let mr=parseInt(document.getElementById('mrp').value)||1499;
- let disc=document.getElementById('discount').value||Math.round((1-pr/mr)*100)+'% OFF';
- let sku=document.getElementById('sku').value||b.slice(0,3).toUpperCase()+'-'+Date.now().toString().slice(-5);
- if(!n){alert('Name likho');return}
- if(!base64Img){alert('Photo select karo');return}
- let p={id:'P'+Date.now(),title:n,brand:b,price:pr,mrp:mr,disc:disc,sku:sku,img:base64Img,rating:'4.6'};
- products.unshift(p);
- localStorage.setItem('ay_products',JSON.stringify(products));
- base64Img=""; document.getElementById('preview').style.display='none';
- document.getElementById('name').value=''; document.getElementById('price').value=''; document.getElementById('mrp').value=''; document.getElementById('discount').value=''; document.getElementById('sku').value='';
- render(); alert('✅ Product Add Ho Gaya! Store pe dikhega');
-}
-function render(){
- document.getElementById('count').innerText=products.length;
- let h='';
- products.forEach((p,i)=>{
-  h+=`<div class="item"><img src="${p.img}"><div style="flex:1;margin-left:8px"><b style="font-size:13px">${p.title}</b><br><small>₹${p.price} <s style="color:#999">₹${p.mrp}</s> | ${p.disc}</small></div><button class="del-btn" onclick="del(${i})">X</button></div>`;
- });
- document.getElementById('list').innerHTML=h||'<p class="small">Koi product nahi</p>';
-}
-function del(i){ if(confirm('Delete?')){products.splice(i,1); localStorage.setItem('ay_products',JSON.stringify(products)); render();}}
-function clearAll(){ if(confirm('Sab delete?')){products=[]; localStorage.removeItem('ay_products'); render();}}
-function exportCode(){
- let code = "const MY_PRODUCTS = "+JSON.stringify(products, null, 2)+";";
- navigator.clipboard.writeText(code).then(()=>alert('Copy ho gaya! GitHub pe index.html me paste karna hai')).catch(()=>{
-   let w=window.open(); w.document.write('<pre>'+code+'</pre>');
- });
-}
+let products=JSON.parse(localStorage.getItem('ay')||'[]'),b64="";
+photo.onchange=e=>{let f=e.target.files[0];let r=new FileReader();r.onload=x=>{b64=x.target.result;prev.src=b64;prev.style.display='block'};r.readAsDataURL(f)}
+function save(){let n=name.value.trim(),br=brand.value||'Ifazone',pr=+price.value,mr=+mrp.value||pr*2,di=disc.value||Math.round((1-pr/mr)*100)+'% OFF',sk=sku.value||'SKU'+Date.now();if(!n||!pr||!b64){alert('Name, Price, Photo jaruri hai');return}products.unshift({id:Date.now(),title:n,brand:br,price:pr,mrp:mr,disc:di,sku:sk,img:b64,rating:'4.6'});localStorage.setItem('ay',JSON.stringify(products));render();alert('Ho gaya!')}
+function render(){c.innerText=products.length;let h='';products.forEach((p,i)=>{h+=`<div class=item><img src=${p.img}><div style=flex:1><b>${p.title}</b><br>₹${p.price} ${p.disc}</div><button onclick="del(${i})" style="width:auto;background:red;padding:4px 8px">X</button></div>`});list.innerHTML=h}
+function del(i){products.splice(i,1);localStorage.setItem('ay',JSON.stringify(products));render()}
+function copy(){let code='const MY_PRODUCTS='+JSON.stringify(products,null,2)+';';navigator.clipboard.writeText(code);alert('Copy ho gaya! index.html me paste karo')}
 render();
 </script>
-<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;if(parent===window)return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*")},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</body>
 </html>
