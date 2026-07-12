@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI WhatsApp Bot</title>
+<style>body{font-family:Arial;background:#111b21;margin:0;color:#fff}.h{background:#008069;padding:16px;text-align:center}.h h2{margin:0}.w{max-width:480px;margin:auto;padding:12px}.c{background:#202c33;border-radius:12px;padding:14px;margin:10px 0}textarea,input{width:100%;padding:12px;border-radius:8px;border:0;margin:6px 0;background:#2a3942;color:#fff}button{width:100%;padding:13px;border:0;border-radius:10px;font-weight:bold;margin:6px 0}.g{background:#00a884;color:#fff}.d{background:#2a3942;color:#fff}.m{background:#202c33;padding:10px;border-radius:8px;margin:8px 0;font-size:13px}.ai{background:#005c4b}</style>
+</head><body>
+<div class="h"><h2>🤖 Ay-Mart AI Bot</h2><small>ID:2396277 | Anil Yadav | Ajaygarh 488220</small></div>
+<div class="w">
+<div class="c"><textarea id="q" rows="3" placeholder="Customer: Panch Tulsi kitne ka hai?"></textarea>
+<button class="g" onclick="go()">✨ AI Reply Banao</button><div id="chat"></div></div>
+<div class="c"><div id="out" style="white-space:pre-wrap;font-size:14px;line-height:1.6"></div>
+<button class="g" onclick="copy()">📋 Copy Karke WhatsApp Pe Bhejo</button></div>
+</div>
+<script>
+let last="";
+function go(){let v=document.getElementById('q').value.toLowerCase();let r="";let chat=document.getElementById('chat');
+chat.innerHTML+="<div class=m>👤 "+document.getElementById('q').value+"</div>";
+if(v.includes("tulsi")) r="🌿 *Panch Tulsi Oil - Immunity Booster* 🌿\n✅ 100% Ayurvedic\n💰 Price: *₹567* only\n🚚 *MUFT SHIPPING - Ajaygarh 488220*\n\nOrder: Asort App > Search > Ay-Mart Ajaygarh 488220\nYa WhatsApp pe: Naam, Mobile, Pata bhejo\nAnil Yadav | ID 2396277 🙏";
+else if(v.includes("triphala")) r="🌿 *Triphala Ras - Digestive Care*\n💰 Price: *₹520*\n🚚 FREE Delivery Ajaygarh 488220\nOrder karo - 8770840326 pe Hi bhejo!";
+else if(v.match(/\d{10}/)) r="🙏 Namaste! Dhanyawad Order ke liye!\n✅ Order Confirm Hai - Ajaygarh Hub se\n💰 Total: ₹"+(v.match(/\d{3,4}/)||["799"])[0]+"\n🚚 Delivery: 3-4 din me FREE\n📦 Fulfilled by Asort - Anil Yadav ID 2396277\nTracking ID WhatsApp pe ayega!";
+else r="🙏 Namaste! Main *Ay-Mart AI - Anil Yadav* bol raha hu (ID 2396277)\n\n🌿 Top Products:\n✅ Panch Tulsi Oil - ₹567\n✅ Triphala Ras - ₹520\n✅ Sugar Free Prash - Natural\n🚚 MUFT SHIPPING Ajaygarh 488220\nOrder ke liye: *Naam, Mobile, Pata* bhejo\n\nBolo kaise help karu? 😊";
+last=r;document.getElementById('out').innerText=r;chat.innerHTML+="<div class='m ai'>🤖 "+r+"</div>";}
+function copy(){navigator.clipboard.writeText(last).then(()=>alert("✅ Copy ho gaya! WhatsApp pe paste karo"))}
+</script></body></html>
