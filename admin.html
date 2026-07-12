@@ -2,43 +2,54 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ay-Mart Admin - Anil</title>
+<title>Admin - Secret</title>
 <style>
-body{font-family:Arial;background:#f0f2f5;margin:0;padding:15px}
-.box{max-width:500px;margin:20px auto;background:#fff;padding:20px;border-radius:16px;box-shadow:0 2px 10px #0001}
+body{font-family:Arial;background:#131921;margin:0;padding:0;display:flex;justify-content:center;align-items:center;min-height:100vh}
+#lock{max-width:360px;width:90%;background:#fff;padding:25px;border-radius:16px;text-align:center;box-shadow:0 10px 30px #0005}
+#main{display:none;max-width:500px;width:100%;background:#fff;padding:20px;border-radius:16px;margin:15px;box-sizing:border-box}
 input,select,button{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;box-sizing:border-box}
 button{background:#2874f0;color:#fff;border:0;font-weight:bold;cursor:pointer}
-button.green{background:#0a8a00}
-.preview{width:100%;height:190px;object-fit:contain;background:#fafafa;border:1px dashed #ccc;border-radius:10px;display:none;margin-top:8px}
-.item{display:flex;gap:10px;border-bottom:1px solid #eee;padding:10px 0;align-items:center}
-.item img{width:55px;height:55px;object-fit:cover;border-radius:8px}
+button.green{background:#0a8a00}.preview{width:100%;height:190px;object-fit:contain;background:#fafafa;border:1px dashed #ccc;border-radius:10px;display:none}
+.item{display:flex;gap:10px;border-bottom:1px solid #eee;padding:10px 0;align-items:center}.item img{width:55px;height:55px;object-fit:cover;border-radius:8px}
 </style>
 </head>
 <body>
-<div class="box">
+<div id="lock">
+<h2 style="color:#2874f0;margin:0">🔐 Secret Admin</h2>
+<p style="font-size:12px;color:#666">Sirf Owner ke liye - Anil Yadav<br>ID:2396277 | Ajaygarh</p>
+<input id="pin" type="password" placeholder="PIN dalo - 4 ank ka" inputmode="numeric">
+<button onclick="unlock()">Unlock Karo</button>
+<p id="err" style="color:red;font-size:12px;display:none">Galat PIN hai!</p>
+</div>
+
+<div id="main">
 <h2 style="text-align:center;color:#2874f0;margin:0">🛒 Ay-Mart Admin</h2>
 <p style="text-align:center;font-size:11px;color:#666">ID:2396277 | Anil Yadav | Ajaygarh 488220</p>
-<input type="file" id="photo" accept="image/*" capture="environment">
+<input type="file" id="photo" accept="image/*">
 <img id="prev" class="preview">
-<input id="name" placeholder="Product Name * (Ex: Ifazone Black Shirt)">
-<input id="brand" placeholder="Brand (Ifazone / Mr Huffman / Earthy Scent)">
+<input id="name" placeholder="Product Name * Ex: Ifazone Black Shirt">
+<input id="brand" placeholder="Brand Ex: Ifazone">
 <div style="display:flex;gap:8px"><input id="price" type="number" placeholder="Price * 699"><input id="mrp" type="number" placeholder="MRP 1499"></div>
-<input id="disc" placeholder="Discount (Auto - 53% OFF)">
-<input id="sku" placeholder="SKU (Ex: IFZ-BLK-001)">
+<input id="disc" placeholder="Discount Ex: 53% OFF (auto)">
+<input id="sku" placeholder="SKU Ex: IFZ-BLK-001">
 <select id="cat"><option>Men Shirt</option><option>Shoes</option><option>Perfume</option><option>Kit</option><option>Watch</option><option>Saree</option><option>Handbag</option></select>
 <button onclick="save()">✅ Save & Add to Store</button>
-<button class="green" onclick="copy()">📋 GitHub ke liye Code Copy Karo</button>
+<button class="green" onclick="copy()">📋 Store Code Copy</button>
 <button onclick="location.href='index.html'" style="background:#eee;color:#333">← Store Dekho</button>
-<h3 style="margin:15px 0 5px">Tumhare Products (<span id="c">0</span>)</h3><div id="list"></div>
+<h3 style="margin:15px 0 5px">Products (<span id="c">0</span>)</h3><div id="list"></div>
 </div>
+
 <script>
+// SECRET PIN - Isko badal sakte ho
+const SECRET_PIN = "2396";
+function unlock(){ if(document.getElementById('pin').value===SECRET_PIN){ document.getElementById('lock').style.display='none'; document.getElementById('main').style.display='block'; } else { document.getElementById('err').style.display='block'; } }
 let products=JSON.parse(localStorage.getItem('ay_final')||'[]'),b64="";
 const photoEl=document.getElementById('photo'),prev=document.getElementById('prev');
 photoEl.onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=x=>{b64=x.target.result;prev.src=b64;prev.style.display='block'};r.readAsDataURL(f)};
-function save(){let n=document.getElementById('name').value.trim(),br=document.getElementById('brand').value.trim()||'Ifazone',pr=parseInt(document.getElementById('price').value),mr=parseInt(document.getElementById('mrp').value)||Math.round(pr*1.9),di=document.getElementById('disc').value.trim(),sk=document.getElementById('sku').value.trim()||'SKU'+Date.now().toString().slice(-5),cat=document.getElementById('cat').value;if(!n){alert('Name likho');return}if(!pr){alert('Price likho');return}if(!b64){alert('Photo choose karo');return}if(!di)di=Math.round((1-pr/mr)*100)+'% OFF';let obj={id:Date.now(),title:n,brand:br,price:pr,mrp:mr,disc:di,sku:sk,cat:cat,img:b64,rating:'4.6'};products.unshift(obj);localStorage.setItem('ay_final',JSON.stringify(products));render();document.getElementById('name').value='';document.getElementById('price').value='';alert('✅ Ho gaya! Product add ho gaya');}
-function render(){document.getElementById('c').innerText=products.length;let h='';products.forEach((p,i)=>{h+=`<div class=item><img src="${p.img}"><div style=flex:1;font-size:13px><b>${p.title.slice(0,24)}</b><br>₹${p.price} | ${p.disc} | ${p.brand}</div><button onclick="del(${i})" style="width:auto;background:#ff2d2d;padding:6px 10px;border-radius:6px">X</button></div>`});document.getElementById('list').innerHTML=h||'<p style=color:#999;font-size:12px>No product yet</p>'}
+function save(){let n=document.getElementById('name').value.trim(),br=document.getElementById('brand').value.trim()||'Ifazone',pr=parseInt(document.getElementById('price').value),mr=parseInt(document.getElementById('mrp').value)||Math.round(pr*1.9),di=document.getElementById('disc').value.trim(),sk=document.getElementById('sku').value.trim()||'SKU'+Date.now().toString().slice(-5),cat=document.getElementById('cat').value;if(!n||!pr||!b64){alert('Name, Price, Photo jaruri hai');return}if(!di)di=Math.round((1-pr/mr)*100)+'% OFF';products.unshift({id:Date.now(),title:n,brand:br,price:pr,mrp:mr,disc:di,sku:sk,cat:cat,img:b64,rating:'4.6'});localStorage.setItem('ay_final',JSON.stringify(products));render();alert('✅ Add ho gaya');}
+function render(){document.getElementById('c').innerText=products.length;let h='';products.forEach((p,i)=>{h+=`<div class=item><img src="${p.img}"><div style=flex:1;font-size:13px><b>${p.title.slice(0,22)}</b><br>₹${p.price} | ${p.disc}</div><button onclick="del(${i})" style="width:auto;background:red;padding:6px 10px;border-radius:6px">X</button></div>`});document.getElementById('list').innerHTML=h||'<p style=color:#999;font-size:12px>No product</p>'}
 function del(i){if(confirm('Delete?')){products.splice(i,1);localStorage.setItem('ay_final',JSON.stringify(products));render()}}
-function copy(){if(products.length==0){alert('Pehle product add karo');return}let code='const MY_PRODUCTS = '+JSON.stringify(products,null,2)+';';navigator.clipboard.writeText(code).then(()=>alert('✅ Copy ho gaya! Ab index.html me PASTE karo')).catch(()=>{prompt('Copy karo:',code)})}
+function copy(){if(!products.length){alert('Pehle product add karo');return}let code='const MY_PRODUCTS='+JSON.stringify(products,null,2)+';';navigator.clipboard.writeText(code).then(()=>alert('✅ Copy ho gaya')); }
 render();
 </script>
 </body>
