@@ -300,8 +300,8 @@ function rateApp(){let r=confirm('⭐ Asort को 5 स्टार दोग�
 function openLegal(){alert('📜 लीगल एंड पॉलिसीस\n\nSeller: ANIL YADAV\nAsort Associate ID: 2396277\nAjaygarh 488220\n\n• 7 Day Return\n• COD Available\n• Fulfilled by Asort\n• All India Delivery');}
 function doLogout(){if(confirm('Log out karna hai?')){localStorage.removeItem('anil-user'); localStorage.removeItem('anil-dp'); alert('Logged out'); location.reload();}}
 
-function openGuide(){document.getElementById('guide').classList.remove('hidden');}
-function closeGuide(){document.getElementById('guide').classList.add('hidden');}
+function openGuide(){let n=prompt("Aapka Naam likho:")||"Customer";let a=prompt("Ajaygarh me Address:")||"Ajaygarh 488220";let b="AY"+Date.now().toString().slice(-6);let d=new Date().toLocaleDateString('hi-IN');let m=`*🔥 AY-MART AJAYGARH PRO BILL 🔥*%0A----------------%0A*Bill:* ${b}%0A*Date:* ${d}%0A*Name:* ${n}%0A*Add:* ${a}%0A----------------%0A*Offer:* 70% OFF Maha Bachat%0A*Delivery:* 24-48 Hr Fast%0A----------------%0A*Anil Yadav | ID:2396277*%0Ahttps://tinyurl.com/2yuawy4z`;window.open(`https://wa.me/919479144367?text=${m}`,'_blank');alert(`✅ Shukriya ${n}! Bill ${b} Anil Bhai ko gaya!`);}
+function closeGuide(){document.getElementById("guide").style.display="none";}
 </script>
 
 <!-- MEESHO STYLE ACCOUNT PAGE - MERI SIDE -->
