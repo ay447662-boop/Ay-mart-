@@ -55,17 +55,34 @@
 <div class="px-2.5 pb-2.5 flex gap-2">
 <div class="flex w-full rounded-md overflow-hidden h-10"><button class="bg-[#E6E6E6] text-black text-xs px-3">All</button><input id="search" oninput="apply()" placeholder="Search Ifazone, Mikado, Earthy Scent" class="flex-1 px-3 text-black text-sm outline-none"><button onclick="apply()" class="bg-[#FEBD69] px-4"><i class="fa-solid fa-magnifying-glass text-black"></i></button></div>
 </div>
-<div class="bg-[#232F3E] flex gap-3 px-3 py-2 text-[12px] overflow-x-auto no-scrollbar whitespace-nowrap">
-<span onclick="setCat('All')" class="cursor-pointer font-bold">☰ All</span>
-<span onclick="setCat('Ifazone')" class="cursor-pointer">Ifazone</span>
-<span onclick="setCat('Mr Huffman')" class="cursor-pointer">Mr Huffman</span>
-<span onclick="setCat('Earthy Scent')" class="cursor-pointer">Earthy Scent</span>
-<span onclick="setCat('Solasta')" class="cursor-pointer">Solasta</span>
-<span onclick="setCat('A-Basket')" class="cursor-pointer">A-Basket</span>
-<span onclick="setCat('Mikado')" class="cursor-pointer">Mikado</span>
-<span onclick="openGuide()" class="cursor-pointer text-yellow-300">📚 Guide</span>
+<div class="bg-white flex gap-2 overflow-x-auto p-3 sticky top-0 z-50 border-b" id="autoCatBar" style="scrollbar-width:none">
+<button class="cat-btn active whitespace-nowrap px-4 py-2 rounded-full bg-black text-white font-bold text-[13px]" data-cat="all" onclick="filterAuto('all',this)">🔥 All</button>
 </div>
-</div>
+<style>.cat-btn{white-space:nowrap;padding:8px 16px;border-radius:20px;border:1.5px solid #ddd;background:#fff;font-weight:700;cursor:pointer}.cat-btn.active{background:#000;color:#fff;border-color:#000}</style>
+<script>
+function autoCatInit(){
+ const prods=document.querySelectorAll('[onclick*=\"openProduct\"],.product-card, [class*=\"bg-white\"][class*=\"rounded\"]');
+ let cats={men:0,women:0,shoes:0,watch:0,beauty:0,kids:0,saree:0};
+ prods.forEach(p=>{
+  let t=p.innerText.toLowerCase(); let c='other';
+  if(t.match(/men|shirt|jeans|t-shirt/)) c='men';
+  else if(t.match(/women|kurti|saree|dress|lehenga/)){c='women'; if(t.includes('saree'))cats.saree++}
+  else if(t.match(/shoe|juta|sneaker/)) c='shoes';
+  else if(t.match(/watch/)) c='watch';
+  else if(t.match(/cream|lipstick|beauty/)) c='beauty';
+  else if(t.match(/kid|baby/)) c='kids';
+  p.setAttribute('data-cat',c); if(cats[c]!=undefined) cats[c]++;
+ });
+ const bar=document.getElementById('autoCatBar');
+ const icon={men:'👕 Men',women:'👗 Women',shoes:'👟 Shoes',watch:'⌚ Watch',beauty:'💄 Beauty',kids:'🧒 Kids',saree:'🥻 Saree'};
+ Object.keys(cats).forEach(k=>{if(cats[k]>0){let b=document.createElement('button');b.className='cat-btn';b.innerHTML=icon[k]+' ('+cats[k]+')';b.onclick=function(){filterAuto(k,this)};bar.appendChild(b);}});
+}
+function filterAuto(cat,btn){
+ document.querySelectorAll('.cat-btn').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
+ document.querySelectorAll('[data-cat]').forEach(p=>{p.style.display=(cat==='all'||p.dataset.cat===cat)?'':'none'});
+}
+setTimeout(autoCatInit,1000);
+</script>
 
 <!-- PROFILE + DP CHANGE - SECURED ONLY ANIL CAN CHANGE -->
 <div class="bg-white m-3 p-3 rounded-xl flex items-center gap-3 shadow">
