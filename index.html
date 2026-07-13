@@ -115,15 +115,29 @@ function secureDPChange(){
     r.onload = ev => {
       document.getElementById('pDP').src = ev.target.result;
       localStorage.setItem("aymart_dp_saved", ev.target.result);
-      alert("✅ DP Update Ho Gayi! Ab sabko nayi DP dikhegi");
+      alert("✅ DP Update Ho Gayi!");
     }; r.readAsDataURL(f);
   }; inp.click();
 }
+
 // Load saved DP
 let saved = localStorage.getItem("aymart_dp_saved");
 if(saved) document.getElementById('pDP').src = saved;
 </script>
-<!-- SECURE PROFILE END -->
+
+<!-- ===== ADMIN PANEL - ANIL ONLY - LINE 125 SE ===== -->
+<div id="adminPanel" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;padding:15px;overflow:auto;">
+<div style="background:#fff;max-width:400px;margin:20px auto;border-radius:15px;padding:20px;">
+<div style="display:flex;justify-content:space-between;align-items:center;"><h2 style="margin:0;font-size:18px;">👑 Anil Admin Panel</h2><button onclick="document.getElementById('adminPanel').style.display='none'" style="background:red;color:#fff;border:none;padding:5px 12px;border-radius:20px;">X</button></div>
+<button onclick="secureDPChange()" style="width:100%;background:#111;color:#fff;padding:12px;border-radius:10px;margin:12px 0;border:none;">🖼️ DP Badlo</button>
+<button onclick="localStorage.removeItem('ay_admin_lock');location.reload()" style="width:100%;background:#eee;padding:10px;border-radius:10px;border:none;">Logout Admin</button>
+</div></div>
+<script>
+let taps=0,last=0;document.getElementById('pDP')?.addEventListener('click',()=>{let n=Date.now();if(n-last>1000)taps=0;taps++;last=n;if(taps>=5){taps=0;if(localStorage.getItem('ay_admin_lock')==='ANIL_2396277_ADMIN_OK'){document.getElementById('adminPanel').style.display='block'}else{let p=prompt('Admin Password:');if(p==='Anil@488220'){localStorage.setItem('ay_admin_lock','ANIL_2396277_ADMIN_OK');document.body.classList.add('is-admin');document.getElementById('adminPanel').style.display='block'}else alert('Galat!')}}}});
+if(location.hash==='#admin'){setTimeout(()=>{let p=prompt('Admin Password:');if(p==='Anil@488220'){localStorage.setItem('ay_admin_lock','ANIL_2396277_ADMIN_OK');document.body.classList.add('is-admin');document.getElementById('adminPanel').style.display='block'}},600)}
+</script>
+<!-- ADMIN PANEL END -->
+
 <div><i class="fa-solid fa-truck-fast text-orange-600 block text-lg"></i>Fast</div>
 </div>
 
