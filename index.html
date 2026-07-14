@@ -25,7 +25,9 @@
   font-display: swap;
   src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
 }
-:where(html) {
+#products button:nth-of-type(2), #products .bg-yellow-400, #products .bg-amber-400{display:none!important}
+#products > div{padding-bottom:12px!important}
+:where(html){
   font-family: "Optimistic", system-ui, sans-serif;
 }
 :where(code, pre, kbd, samp) {
