@@ -104,20 +104,7 @@ function checkAdmin(){if(localStorage.getItem(ADMIN_KEY)==="true"||prompt("🔐 
 function secureDPChange(){const url=prompt("Nayi DP ka Image URL dalo:"); if(url){document.getElementById("pDP").src=url; localStorage.setItem("ANIL_DP",url); alert("DP Updated!");}} (function(){const saved=localStorage.getItem("ANIL_DP"); if(saved)document.getElementById("pDP").src=saved;})();
 </script>
 <!-- END AMAZING -->
-  ">● Online • Secret Login Active</div>
-</div>
-<button id="dpBadloBtn" onclick="secureDPChange()" style="display:none!important">DP Badlo</button>
-</div>
-<style>#dpBadloBtn{display:none!important}.bg-yellow-400,.bg-amber-400,.bg-yellow-500,.bg-yellow-300{display:none!important}</style>
-<script>
-const ADMIN_PASS = "Anil@488220";
-const ADMIN_KEY = "ANIL_2396277_ADMIN";
-let tapCount=0; let tapTimer=null;
-function tapAdmin(){tapCount++; clearTimeout(tapTimer); tapTimer=setTimeout(()=>{tapCount=0},2000); if(tapCount>=5){checkAdmin(); tapCount=0;}}
-function checkAdmin(){ if(localStorage.getItem(ADMIN_KEY)==="true" || prompt("Admin Password:")===ADMIN_PASS){localStorage.setItem(ADMIN_KEY,"true"); document.getElementById("dpBadloBtn").style.display="block"; alert("Admin Unlocked!");} }
-function secureDPChange(){ /* tera purana DP change code yahan rahega */ }
-</script>
-<!-- FINAL CODE END -->
+  
 
 
       
