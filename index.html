@@ -52,109 +52,65 @@
 </div>
 <div onclick="openCart()" class="relative ml-2 cursor-pointer"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-2 -right-2 bg-[#F08804] text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
 </div>
-<div class="px-2.5 pb-2.5 flex gap-2">
-<div class="flex w-full rounded-md overflow-hidden h-10"><button class="bg-[#E6E6E6] text-black text-xs px-3">All</button><input id="search" oninput="apply()" placeholder="Search Ifazone, Mikado, Earthy Scent" class="flex-1 px-3 text-black text-sm outline-none"><button onclick="apply()" class="bg-[#FEBD69] px-4"><i class="fa-solid fa-magnifying-glass text-black"></i></button></div>
+<!-- FINAL PRO CATEGORY + SECRET DP LOCK - CLEAN CODE -->
+<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:2px;z-index:99;border-bottom:2px solid #eee;scrollbar-width:none">
+<button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;font-weight:700;border:1px solid #000">🔥 All</button>
+<button onclick="filterCat('men',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👕 Men</button>
+<button onclick="filterCat('women',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👗 Women</button>
+<button onclick="filterCat('saree',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">🥻 Saree</button>
+<button onclick="filterCat('shoes',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👟 Shoes</button>
+<button onclick="filterCat('watch',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">⌚ Watch</button>
+<button onclick="filterCat('beauty',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">💄 Beauty</button>
+<button onclick="filterCat('kids',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">🧒 Kids</button>
 </div>
-<div class="bg-white flex gap-2 overflow-x-auto p-3 sticky top-0 z-50 border-b" id="autoCatBar" style="scrollbar-width:none">
-<button class="cat-btn active whitespace-nowrap px-4 py-2 rounded-full bg-black text-white font-bold text-[13px]" data-cat="all" onclick="filterAuto('all',this)">🔥 All</button>
-</div>
-<style>.cat-btn{white-space:nowrap;padding:8px 16px;border-radius:20px;border:1.5px solid #ddd;background:#fff;font-weight:700;cursor:pointer}.cat-btn.active{background:#000;color:#fff;border-color:#000}</style>
 <script>
-function autoCatInit(){
- const prods=document.querySelectorAll('[onclick*=\"openProduct\"],.product-card, [class*=\"bg-white\"][class*=\"rounded\"]');
- let cats={men:0,women:0,shoes:0,watch:0,beauty:0,kids:0,saree:0};
- prods.forEach(p=>{
-  let t=p.innerText.toLowerCase(); let c='other';
-  if(t.match(/men|shirt|jeans|t-shirt/)) c='men';
-  else if(t.match(/women|kurti|saree|dress|lehenga/)){c='women'; if(t.includes('saree'))cats.saree++}
-  else if(t.match(/shoe|juta|sneaker/)) c='shoes';
-  else if(t.match(/watch/)) c='watch';
-  else if(t.match(/cream|lipstick|beauty/)) c='beauty';
-  else if(t.match(/kid|baby/)) c='kids';
-  p.setAttribute('data-cat',c); if(cats[c]!=undefined) cats[c]++;
+function filterCat(cat,btn){
+ document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000'});
+ btn.style.background='#000';btn.style.color='#fff';
+ document.querySelectorAll('[onclick*="openProduct"]').forEach(p=>{
+  let t=(p.innerText||'').toLowerCase(); let show=false;
+  if(cat==='all') show=true;
+  else if(cat==='men' && /men|shirt|jeans|t-shirt|kurta/.test(t)) show=true;
+  else if(cat==='women' && /women|kurti|dress|lehenga/.test(t)) show=true;
+  else if(cat==='saree' && t.includes('saree')) show=true;
+  else if(cat==='shoes' && /shoe|sneaker|juta|nike/.test(t)) show=true;
+  else if(cat==='watch' && t.includes('watch')) show=true;
+  else if(cat==='beauty' && /cream|oil|perfume|beauty|scent/.test(t)) show=true;
+  else if(cat==='kids' && /kid|baby/.test(t)) show=true;
+  p.style.display=show?'':'none';
  });
- const bar=document.getElementById('autoCatBar');
- const icon={men:'👕 Men',women:'👗 Women',shoes:'👟 Shoes',watch:'⌚ Watch',beauty:'💄 Beauty',kids:'🧒 Kids',saree:'🥻 Saree'};
- Object.keys(cats).forEach(k=>{if(cats[k]>0){let b=document.createElement('button');b.className='cat-btn';b.innerHTML=icon[k]+' ('+cats[k]+')';b.onclick=function(){filterAuto(k,this)};bar.appendChild(b);}});
 }
-function filterAuto(cat,btn){
- document.querySelectorAll('.cat-btn').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
- document.querySelectorAll('[data-cat]').forEach(p=>{p.style.display=(cat==='all'||p.dataset.cat===cat)?'':'none'});
-}
-setTimeout(autoCatInit,1000);
 </script>
 
-<!-- PROFILE + DP CHANGE - SECURED ONLY ANIL CAN CHANGE -->
-<div class="bg-white m-3 p-3 rounded-xl flex items-center gap-3 shadow">
-  <div class="relative cursor-pointer" onclick="secureDPChange()">
-    <img id="pDP" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #25D366;">
-    <div class="absolute -bottom-1 -right-1 bg-green-500 text-white text-[10px] px-1 rounded-full">🟢</div>
-  </div>
-  <div class="flex-1">
-    <div class="text-sm font-bold">Anil Yadav <span class="bg-blue-600 text-white text-[9px] px-1 rounded">VERIFIED</span> <span class="bg-orange-500 text-white text-[9px] px-1 rounded">ASORT</span></div>
-    <div class="text-[11px] text-gray-600">8770840326 | ID 2396277 | 🟢 Online</div>
-    <div class="text-[11px] text-gray-500">Ajaygarh 488220 • Fulfilled by Asort</div>
-  </div>
-  <div class="flex flex-col gap-1" id="adminBtnBox">
-    <button id="dpBadloBtn" onclick="secureDPChange()" style="background:#111;color:#fff;font-size:11px;padding:6px 10px;border-radius:20px;display:none;">DP Badlo</button>
-    <button style="background:#25D366;color:#fff;font-size:11px;padding:6px 10px;border-radius:20px;">Chat</button>
-  </div>
+<!-- PROFILE + DP CHANGE - SECURE - HIDDEN -->
+<div class="bg-white m-3 p-3 rounded-xl shadow flex items-center gap-3">
+<div class="relative cursor-pointer" onclick="tapAdmin()">
+<img id="pDP" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzMCIgZmlsbD0iI2U1ZTdlYiIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMjIiIHI9IjEwIiBmaWxsPSIjOWNhM2FmIi8+PHBhdGggZD0iTTUgNTJDNSAzOCAyMCAzMiAzMCAzMkM0MCAzMiA1NSAzOCA1NSA1MlY2MEg1VjUyWiIgZmlsbD0iIzljYTNhZiIvPjwvc3ZnPg==" style="width:56px;height:56px;border-radius:50%;border:2px solid #ddd;object-fit:cover">
+<div class="absolute -bottom-1 -right-1 bg-blue-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">5x Tap</div>
 </div>
-
-<style>#dpBadloBtn{display:none}body.is-admin #dpBadloBtn{display:flex}</style>
-<style>div>button+button{display:none!important}</style>
+<div class="flex-1">
+<div class="text-sm font-bold">Anil Yadav</div>
+<div class="text-[11px] text-gray-500">Owner • Ay-Mart</div>
+<div class="text-[11px] text-green-600">● Online • Secret Lock Active 🔒</div>
+</div>
+<div class="flex flex-col gap-1">
+<button id="dpBadloBtn" onclick="secureDPChange()" style="display:none!important;background:#000;color:#fff;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700">DP Badlo</button>
+<button style="background:#25D366;color:#fff;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700" onclick="window.open('https://wa.me/91XXXXXXXXXX')">WhatsApp</button>
+</div>
+</div>
+<style>#dpBadloBtn{display:none!important}</style>
 <script>
-// === DP LOCK CONFIG ===
-const ADMIN_PASS = "Anil@488220"; // apna password yaha change kar sakta hai
-const ADMIN_KEY = "ANIL_2396277_ADMIN_OK";
-
-function checkAdmin(){ if(localStorage.getItem("ay_admin_lock")==ADMIN_KEY){ document.body.classList.add("is-admin"); return true; } return false; }
-checkAdmin();
-
-function secureDPChange(){
-  if(!checkAdmin()){
-    let p = prompt("🔒 Sirf Owner Anil Yadav DP badal sakta hai!\nPassword daalo:");
-    if(p === ADMIN_PASS){
-      localStorage.setItem("ay_admin_lock", ADMIN_KEY);
-      document.body.classList.add("is-admin");
-      alert("✅ Verified Anil Bhai! Ab DP Badlo dabao");
-      return;
-    } else if(p!== null){
-      alert("❌ Galat Password! Access Denied");
-      return;
-    } else { return; }
-  }
-  // Asli DP Change
-  let inp = document.createElement('input'); inp.type='file'; inp.accept='image/*';
-  inp.onchange = e => {
-    let f = e.target.files[0]; if(!f) return;
-    let r = new FileReader();
-    r.onload = ev => {
-      document.getElementById('pDP').src = ev.target.result;
-      localStorage.setItem("aymart_dp_saved", ev.target.result);
-      alert("✅ DP Update Ho Gayi!");
-    }; r.readAsDataURL(f);
-  }; inp.click();
-}
-
-// Load saved DP
-let saved = localStorage.getItem("aymart_dp_saved");
-if(saved) document.getElementById('pDP').src = saved;
+const ADMIN_PASS = "Anil@488220";
+const ADMIN_KEY = "ANIL_2396277_ADMIN";
+let tapCount=0; let tapTimer=null;
+function tapAdmin(){tapCount++; clearTimeout(tapTimer); tapTimer=setTimeout(()=>tapCount=0,3000); if(tapCount>=5){tapCount=0; let p=prompt("🔒 Owner Password:"); if(p===ADMIN_PASS){localStorage.setItem(ADMIN_KEY,"true"); document.getElementById('dpBadloBtn').style.display='block'; alert("✅ Owner Mode ON - Ab DP Badlo dikhega");}else alert("❌ Wrong Password");}}
+function checkAdmin(){ if(localStorage.getItem(ADMIN_KEY)==="true") document.getElementById('dpBadloBtn').style.display='block';} checkAdmin();
+function secureDPChange(){ /* tera purana DP change wala function yahan rahega */ let url=prompt("Nayi DP ka URL daalo:"); if(url) document.getElementById('pDP').src=url; }
 </script>
+<!-- FINAL CODE END -->
 
-<!-- ===== ADMIN PANEL - ANIL ONLY - LINE 125 SE ===== -->
-<div id="adminPanel" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;padding:15px;overflow:auto;">
-<div style="background:#fff;max-width:400px;margin:20px auto;border-radius:15px;padding:20px;">
-<div style="display:flex;justify-content:space-between;align-items:center;"><h2 style="margin:0;font-size:18px;">👑 Anil Admin Panel</h2><button onclick="document.getElementById('adminPanel').style.display='none'" style="background:red;color:#fff;border:none;padding:5px 12px;border-radius:20px;">X</button></div>
-<button onclick="secureDPChange()" style="width:100%;background:#111;color:#fff;padding:12px;border-radius:10px;margin:12px 0;border:none;">🖼️ DP Badlo</button>
-<button onclick="localStorage.removeItem('ay_admin_lock');location.reload()" style="width:100%;background:#eee;padding:10px;border-radius:10px;border:none;">Logout Admin</button>
-</div></div>
-<script>
-let taps=0,last=0;document.getElementById('pDP')?.addEventListener('click',()=>{let n=Date.now();if(n-last>1000)taps=0;taps++;last=n;if(taps>=5){taps=0;if(localStorage.getItem('ay_admin_lock')==='ANIL_2396277_ADMIN_OK'){document.getElementById('adminPanel').style.display='block'}else{let p=prompt('Admin Password:');if(p==='Anil@488220'){localStorage.setItem('ay_admin_lock','ANIL_2396277_ADMIN_OK');document.body.classList.add('is-admin');document.getElementById('adminPanel').style.display='block'}else alert('Galat!')}}}});
-if(location.hash==='#admin'){setTimeout(()=>{let p=prompt('Admin Password:');if(p==='Anil@488220'){localStorage.setItem('ay_admin_lock','ANIL_2396277_ADMIN_OK');document.body.classList.add('is-admin');document.getElementById('adminPanel').style.display='block'}},600)}
-</script>
-<!-- ADMIN PANEL END -->
 
+      
 <div><i class="fa-solid fa-truck-fast text-orange-600 block text-lg"></i>Fast</div>
 </div>
 
