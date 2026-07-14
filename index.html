@@ -83,27 +83,26 @@ function filterCat(cat,btn){
 </script>
 
 <!-- PROFILE + DP CHANGE - SECURE - HIDDEN -->
-<div class="bg-white m-3 p-3 rounded-xl shadow flex items-center gap-3">
+<div class="bg-white m-3 p-3 rounded-xl shadow-sm flex items-center gap-3">
 <div class="relative cursor-pointer" onclick="tapAdmin()">
-<img id="pDP" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzMCIgZmlsbD0iI2U1ZTdlYiIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMjIiIHI9IjEwIiBmaWxsPSIjOWNhM2FmIi8+PHBhdGggZD0iTTUgNTJDNSAzOCAyMCAzMiAzMCAzMkM0MCAzMiA1NSAzOCA1NSA1MlY2MEg1VjUyWiIgZmlsbD0iIzljYTNhZiIvPjwvc3ZnPg==" style="width:56px;height:56px;border-radius:50%;border:2px solid #ddd;object-fit:cover">
-<div class="absolute -bottom-1 -right-1 bg-blue-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">5x Tap</div>
+<img id="pDP" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzAwMCIvPjx0ZXh0IHg9IjIwIiB5PSIyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1zaXplPSIxNCI+QTwvdGV4dD48L3N2Zz4=" class="w-10 h-10 rounded-full object-cover border-2 border-gray-200">
+<div class="absolute -bottom-1 -right-1 bg-blue-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">✓</div>
 </div>
 <div class="flex-1">
 <div class="text-sm font-bold">Anil Yadav</div>
 <div class="text-[11px] text-gray-500">Owner • Ay-Mart</div>
-<div class="text-[11px] text-green-600">● Online • Secret Lo
+<div class="text-[11px] text-green-600">● Online • Secret Login Active</div>
 </div>
-  <div class="flex flex-col gap-1">
-<button id="dpBadloBtn" onclick="secureDPChange()" style="display:none!important;background:#000;color:#fff;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700">DP Badlo</button
-<button style="background:#25D366;color:#fff;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700" onclick="window.open('https://wa.me/918770840326?text=Hi%20Ay-Mart%20Order%20Karna%20Hai','_blank')">WhatsApp</button>
-<style>#dpBadloBtn{display:none!important} .bg-yellow-400,.bg-amber-400,.bg-yellow-500,.bg-yellow-300{display:none!important}</style>
+<button id="dpBadloBtn" onclick="secureDPChange()" style="display:none!important">DP Badlo</button>
+</div>
+<style>#dpBadloBtn{display:none!important}.bg-yellow-400,.bg-amber-400,.bg-yellow-500,.bg-yellow-300{display:none!important}</style>
 <script>
 const ADMIN_PASS = "Anil@488220";
 const ADMIN_KEY = "ANIL_2396277_ADMIN";
 let tapCount=0; let tapTimer=null;
-function tapAdmin(){tapCount++; clearTimeout(tapTimer); tapTimer=setTimeout(()=>tapCount=0,3000); if(tapCount>=5){tapCount=0; let p=prompt("🔒 Owner Password:"); if(p===ADMIN_PASS){localStorage.setItem(ADMIN_KEY,"true"); document.getElementById('dpBadloBtn').style.display='block'; alert("✅ Owner Mode ON - Ab DP Badlo dikhega");}else alert("❌ Wrong Password");}}
-function checkAdmin(){ if(localStorage.getItem(ADMIN_KEY)==="true") document.getElementById('dpBadloBtn').style.display='block';} checkAdmin();
-function secureDPChange(){ /* tera purana DP change wala function yahan rahega */ let url=prompt("Nayi DP ka URL daalo:"); if(url) document.getElementById('pDP').src=url; }
+function tapAdmin(){tapCount++; clearTimeout(tapTimer); tapTimer=setTimeout(()=>{tapCount=0},2000); if(tapCount>=5){checkAdmin(); tapCount=0;}}
+function checkAdmin(){ if(localStorage.getItem(ADMIN_KEY)==="true" || prompt("Admin Password:")===ADMIN_PASS){localStorage.setItem(ADMIN_KEY,"true"); document.getElementById("dpBadloBtn").style.display="block"; alert("Admin Unlocked!");} }
+function secureDPChange(){ /* tera purana DP change code yahan rahega */ }
 </script>
 <!-- FINAL CODE END -->
 
