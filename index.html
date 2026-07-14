@@ -477,8 +477,6 @@ function openUpiPopup(amount){
   </div>
 </div>
 
-<!-- WhatsApp Button -->
-<a href="https://wa.me/918770840326?text=Hi%20Ay-Mart%20Se%20Order%20Karna%20Hai" style="position:fixed; bottom:20px; right:20px; background:#25D366; color:white; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; z-index:10000; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3);" target="_blank">💬</a>
 
 <!-- Offer Popup -->
 <div id="offerPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
@@ -500,3 +498,17 @@ function closeOffer(){document.getElementById('offerPopup').style.display='none'
 setTimeout(()=>{document.getElementById('offerPopup').style.display='flex';},3000);
 setTimeout(()=>{document.querySelectorAll('button').forEach(b=>{if(b.innerText.includes('Add to Cart')||b.innerText.includes('Cart')){let pr=b.closest('div')?.querySelector('h3,h4')?.innerText||'Ay-Mart Product';b.innerText='Buy Now';b.onclick=()=>openOrder(pr);b.style.background='#ff5722';}});},1500);
 </script>
+<!-- ⚡ FLASH SALE TAG -->
+<style>.flash-tag{animation:blink 1s infinite alternate;box-shadow:0 2px 8px rgba(220,38,38,0.45)}@keyframes blink{from{transform:scale(1)}to{transform:scale(1.08)}}</style>
+<script>
+function addFlashTags(){
+document.querySelectorAll('#products > div').forEach(c=>{
+if(c.querySelector('.flash-tag')||c.offsetHeight<60) return;
+c.style.position='relative'; c.style.overflow='visible';
+let t=document.createElement('div');
+t.className='flash-tag absolute -top-2 -left-2 bg-gradient-to-r from-red-600 to-pink-600 text-white text- font-black px-2.5 py-1 rounded-full z-20 border border-white';
+t.innerHTML='⚡ 70% OFF'; c.prepend(t);
+});}
+setInterval(addFlashTags,800); setTimeout(addFlashTags,600);
+</script>
+<!-- END FLASH -->
