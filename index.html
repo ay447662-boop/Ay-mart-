@@ -81,17 +81,30 @@ function filterCat(cat,btn){
  });
 }
 </script>
-
-<!-- PROFILE + DP CHANGE - SECURE - HIDDEN -->
-<div class="bg-white m-3 p-3 rounded-xl shadow-sm flex items-center gap-3">
-<div class="relative cursor-pointer" onclick="tapAdmin()">
-<img id="pDP" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzAwMCIvPjx0ZXh0IHg9IjIwIiB5PSIyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1zaXplPSIxNCI+QTwvdGV4dD48L3N2Zz4=" class="w-10 h-10 rounded-full object-cover border-2 border-gray-200">
-<div class="absolute -bottom-1 -right-1 bg-blue-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">✓</div>
+<!-- 🔥 ANIL PREMIUM PROFILE - AMAZING EDITION -->
+<div class="bg-white m-3 p-3.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-3.5 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-orange-400 via-red-500 to-pink-500"></div>
+<div class="relative cursor-pointer group" onclick="tapAdmin()">
+<div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-pink-500 rounded-full blur-[6px] opacity-30 group-active:opacity-60 transition"></div>
+<img id="pDP" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgdmlld0JveD0iMCAwIDQ0Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmNTkwMjAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlYzQ4OTkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIyMiIgY3k9IjIyIiByPSIyMiIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjIyIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj5BPC90ZXh0Pjwvc3ZnPg==" class="relative w-11 h-11 rounded-full object-cover border-[2.5px] border-white shadow-md">
+<div class="absolute -bottom-0.5 -right-0.5 bg-white rounded-full p-[2px] shadow-sm"><div class="bg-green-500 w-3.5 h-3.5 rounded-full flex items-center justify-center text-white text-[8px] font-bold">✓</div></div>
 </div>
-<div class="flex-1">
-<div class="text-sm font-bold">Anil Yadav</div>
-<div class="text-[11px] text-gray-500">Owner • Ay-Mart</div>
-<div class="text-[11px] text-green-600">● Online • Secret Login Active</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5"><div class="text-[14px] font-extrabold tracking-tight text-gray-900">Anil Yadav</div><span class="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">PRO</span></div>
+<div class="text-[11px] font-medium text-gray-500 -mt-0.5">Owner • Ay-Mart • Verified Store</div>
+<div class="flex items-center gap-1.5 mt-1"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span><span class="text-[10.5px] font-semibold text-green-600">Online • Active Now • Fast Reply</span></div>
+</div>
+<button id="dpBadloBtn" onclick="secureDPChange()" style="display:none!important" class="bg-black text-white text-[10px] font-bold px-3 py-1.5 rounded-full">DP Badlo</button>
+</div>
+<style>#dpBadloBtn{display:none!important}.bg-yellow-400,.bg-amber-400,.bg-yellow-500,.bg-yellow-300,button.bg-yellow-400{display:none!important} /* Hide duplicate */.bg-orange-400{background:linear-gradient(135deg,#ff8a00 0%,#ff5a00 100%)!important;box-shadow:0 4px 12px rgba(255,90,0,0.25)!important;border:none!important}</style>
+<script>
+const ADMIN_PASS="Anil@488220"; const ADMIN_KEY="ANIL_2396277_ADMIN"; let tapCount=0, tapTimer=null;
+function tapAdmin(){tapCount++; clearTimeout(tapTimer); tapTimer=setTimeout(()=>tapCount=0,2000); if(tapCount>=5){checkAdmin();tapCount=0;}}
+function checkAdmin(){if(localStorage.getItem(ADMIN_KEY)==="true"||prompt("🔐 Admin Password:")===ADMIN_PASS){localStorage.setItem(ADMIN_KEY,"true");document.getElementById("dpBadloBtn").style.display="block";alert("✅ Admin Unlocked! Ab DP Badal Sakte Ho");}}
+function secureDPChange(){const url=prompt("Nayi DP ka Image URL dalo:"); if(url){document.getElementById("pDP").src=url; localStorage.setItem("ANIL_DP",url); alert("DP Updated!");}} (function(){const saved=localStorage.getItem("ANIL_DP"); if(saved)document.getElementById("pDP").src=saved;})();
+</script>
+<!-- END AMAZING -->
+  ">● Online • Secret Login Active</div>
 </div>
 <button id="dpBadloBtn" onclick="secureDPChange()" style="display:none!important">DP Badlo</button>
 </div>
