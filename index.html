@@ -577,5 +577,161 @@ setInterval(showToast, 9000);
 setTimeout(showToast, 3000);
 </script>
 <!-- END: Ay-Mart Pro Feature -->
+  <!-- START: Pincode Checker -->
+<div style="border:2px dashed #ff6b00;background:#fff8f0;padding:12px;border-radius:12px;font-family:sans-serif;margin:14px 0">
+  <div style="font-weight:800;font-size:14px">📦 Ajaygarh me Delivery Check Karo</div>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <input id="pinInput" placeholder="Pincode dalo ex: 488220" style="flex:1;border:1px solid #ddd;padding:10px;border-radius:8px">
+    <button onclick="checkPin()" style="background:#111;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:700">Check</button>
+  </div>
+  <div id="pinResult" style="margin-top:8px;font-size:13px;font-weight:600"></div>
+</div>
+<script>
+function checkPin(){
+  let v=document.getElementById('pinInput').value.trim();
+  let r=document.getElementById('pinResult');
+  if(v=="488220"||v=="488220"||v=="482001"){r.innerHTML="✅ <span style='color:green'>Ajaygarh 488220 me COD Available hai, Kal tak delivery!</span>"}
+  else if(v.length==6){r.innerHTML="⚠️ <span style='color:#ff6b00'>Is pincode pe 2-3 din lagega, par delivery ho jayegi. WhatsApp karo.</span>"}
+  else{r.innerHTML="❌ Pincode dalo"}
+}
+</script>
+<!-- END: Pincode Checker -->
+  <!-- START: FOMO Stock Alert -->
+<div style="background:#111;color:#fff;padding:8px 12px;border-radius:8px;display:flex;justify-content:space-between;font-family:sans-serif;font-size:12px;margin:10px 0">
+  <span><span style="width:8px;height:8px;background:#00ff64;border-radius:50%;display:inline-block"></span> <span id="liveView">14</span> log dekh rahe hain</span>
+  <span style="color:#ff6b00;font-weight:700">🔥 Sirf <span id="stockLeft">4</span> bache hain!</span>
+</div>
+<script>
+setInterval(()=>{document.getElementById('liveView').innerText=Math.floor(10+Math.random()*20);},4000);
+let s=4; setInterval(()=>{if(s>1)s--; document.getElementById('stockLeft').innerText=s;},8000);
+</script>
+<!-- END: FOMO Stock Alert -->
+  <!-- START: WhatsApp Pulse -->
+<a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20Ay-Mart%20se%20help%20chahiye" style="position:fixed;bottom:125px;right:14px;z-index:99997;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;text-decoration:none;box-shadow:0 0 0 0 #25D366;animation:pulse 2s infinite">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<style>@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}</style>
+<!-- END: WhatsApp Pulse -->
+  <!-- START: Spin & Win -->
+<div id="spinBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:100000;align-items:center;justify-content:center;font-family:sans-serif">
+  <div style="background:#fff;width:300px;padding:20px;border-radius:20px;text-align:center">
+    <div style="font-weight:900;font-size:18px">🎉 Spin & Win - Ajaygarh Offer!</div>
+    <div id="wheel" style="width:180px;height:180px;margin:15px auto;border-radius:50%;border:8px solid #ff6b00;background:conic-gradient(#ff6b00 0deg 60deg, #111 60deg 120deg, #00c853 120deg 180deg, #ff6b00 180deg 240deg, #111 240deg 300deg, #00c853 300deg 360deg);display:flex;align-items:center;justify-content:center;transition:3s cubic-bezier(0.2,0.8,0.2,1);font-size:40px">🎁</div>
+    <button onclick="spinNow()" style="background:#ff6b00;color:#fff;border:0;padding:12px 25px;border-radius:10px;font-weight:800;width:100%">SPIN KARO</button>
+    <div id="winText" style="margin-top:12px;font-weight:700;color:green;display:none"></div>
+    <div onclick="document.getElementById('spinBox').style.display='none'" style="margin-top:10px;font-size:12px;color:#888;cursor:pointer">Band Karo</div>
+  </div>
+</div>
+<script>
+setTimeout(()=>{document.getElementById('spinBox').style.display='flex'},8000);
+function spinNow(){
+  let w=document.getElementById('wheel');
+  w.style.transform='rotate('+(720+Math.floor(Math.random()*720))+'deg)';
+  setTimeout(()=>{
+    let codes=["MART10 - 10% OFF","FREEDEL - Free Delivery","MART20 - 20% OFF on 999+"];
+    let c=codes[Math.floor(Math.random()*codes.length)];
+    document.getElementById('winText').style.display='block';
+    document.getElementById('winText').innerHTML='Jeet Gaye! Code: <b style="background:#111;color:#fff;padding:2px 6px;border-radius:4px">'+c+'</b><br><small>Checkout pe lagao</small>';
+  },3000);
+}
+</script>
+<!-- END: Spin & Win -->
+  <!-- START: Exit Coupon -->
+<div id="exitBox" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99999;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font-family:sans-serif;box-shadow:0 10px 30px rgba(0,0,0,0.4);text-align:center;width:90%;max-width:340px">
+  <div style="font-weight:800">🛑 Ruko! 10% Chhoot Chhod ke ja rahe ho?</div>
+  <div style="font-size:12px;margin:5px 0;color:#aaa">Code lagao: <b style="color:#ff6b00;background:#fff;padding:2px 6px;border-radius:4px">MART10</b></div>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <a href="/cart" style="flex:1;background:#ff6b00;color:#fff;text-align:center;padding:8px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px">Order Karo</a>
+    <div onclick="document.getElementById('exitBox').style.display='none'" style="flex:1;background:#333;color:#fff;text-align:center;padding:8px;border-radius:8px;font-size:13px;cursor:pointer">Nahi Chahiye</div>
+  </div>
+</div>
+<script>
+let shown=false;
+document.addEventListener('mouseleave',()=>{if(!shown){document.getElementById('exitBox').style.display='block';shown=true}});
+setTimeout(()=>{if(!shown){document.getElementById('exitBox').style.display='block';shown=true}},25000);
+</script>
+<!-- END: Exit Coupon -->
+  <!-- START: Trust Footer Pro -->
+<div style="background:#0a0a0a;color:#fff;padding:20px 14px;border-radius:20px 20px 0 0;margin-top:20px;font-family:sans-serif;text-align:center">
+  <div style="font-weight:900;font-size:16px">Ay-Mart • Anil Yadav • ID 2396277</div>
+  <div style="font-size:11px;color:#888;margin:4px 0">Ajaygarh 488220 | Jabalpur 482001 | Asort Verified Store</div>
+  <div style="display:flex;justify-content:center;gap:8px;margin:14px 0;flex-wrap:wrap">
+    <span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">💳 UPI Payment</span>
+    <span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">💵 COD Available</span>
+    <span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">🚚 48H Delivery</span>
+    <span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">↩️ 7 Day Return</span>
+  </div>
+  <div style="background:#fff;color:#111;display:inline-block;padding:10px;border-radius:12px;margin-top:10px">
+    <div style="font-size:11px;font-weight:700">Scan & Pay UPI</div>
+    <div style="width:80px;height:80px;background:#eee;margin:8px auto;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:30px">📱</div>
+    <div style="font-size:10px">anil.yadav@upi</div>
+  </div>
+  <div style="margin-top:15px;font-size:10px;color:#555">© 2026 Ay-Mart Powered by Asort | Made with ❤️ in Ajaygarh</div>
+</div>
+<!-- END: Trust Footer Pro -->
+  <!-- ========== AY-MART FINAL COMBO PACK - SAB NAYA HAI ========== -->
+<!-- Isko </body> se just upar paste karna hai, purana kuch delete nahi hoga -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- 1. Smart Search Top Bar -->
+<div style="position:fixed;top:0;left:0;width:100%;z-index:9996;background:#fff;padding:10px;border-bottom:1px solid #eee;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+  <div style="display:flex;align-items:center;background:#f2f2f2;border-radius:12px;padding:10px 14px;gap:10px;max-width:600px;margin:0 auto">
+    <i class="fa-solid fa-magnifying-glass" style="color:#888"></i>
+    <input id="aySearch" placeholder="Search Ifazone, Sneakers, Watch..." style="border:0;background:transparent;flex:1;outline:none;font-size:14px">
+    <i class="fa-solid fa-microphone" style="color:#ff6b00"></i>
+  </div>
+  <div id="searchCount" style="font-size:11px;color:#666;margin-top:6px;text-align:center;display:none"></div>
+</div>
+
+<!-- 2. Live Sale Toast -->
+<div id="ayToast" style="display:none;position:fixed;bottom:85px;left:12px;z-index:99999;background:#fff;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.2);padding:10px 14px;align-items:center;gap:10px;font-family:sans-serif;border-left:4px solid #ff6b00;max-width:300px">
+  <div style="width:36px;height:36px;background:#fff3e8;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ff6b00"><i class="fa-solid fa-bag-shopping"></i></div>
+  <div><div style="font-size:12px;font-weight:700;color:#111" id="toastName">Rohit Sahu ne kharida</div><div style="font-size:11px;color:#666" id="toastProd">Mr Huffman Sneakers - 2 min pehle</div></div>
+</div>
+
+<!-- 3. Trust Bar -->
+<div style="position:fixed;bottom:68px;left:0;width:100%;z-index:99998;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;font-family:sans-serif">
+  <div style="font-size:11px;line-height:1.2"><span style="color:#00ff64">●</span> Ajaygarh 488220 COD<br><span style="color:#ff6b00;font-weight:700">Free Delivery • 7 Day Return</span></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20Ay-Mart%20(ID%202396277)%20se%20order%20karna%20hai" style="background:#25D366;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;text-decoration:none"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="/cart" style="background:#ff6b00;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:800;text-decoration:none">Cart Dekho →</a>
+  </div>
+</div>
+
+<!-- 4. Pincode Checker -->
+<div style="border:2px dashed #ff6b00;background:#fff8f0;padding:12px;border-radius:12px;font-family:sans-serif;margin:80px 12px 14px 12px">
+  <div style="font-weight:800;font-size:14px">📦 Ajaygarh me Delivery Check Karo</div>
+  <div style="display:flex;gap:8px;margin-top:8px"><input id="pinInput" placeholder="Pincode: 488220" style="flex:1;border:1px solid #ddd;padding:10px;border-radius:8px"><button onclick="checkPin()" style="background:#111;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:700">Check</button></div>
+  <div id="pinResult" style="margin-top:8px;font-size:13px;font-weight:600"></div>
+</div>
+
+<!-- 5. FOMO -->
+<div style="background:#111;color:#fff;padding:8px 12px;border-radius:8px;display:flex;justify-content:space-between;font-family:sans-serif;font-size:12px;margin:10px 12px"><span><span style="width:8px;height:8px;background:#00ff64;border-radius:50%;display:inline-block"></span> <span id="liveView">14</span> log dekh rahe hain</span><span style="color:#ff6b00;font-weight:700">🔥 Sirf <span id="stockLeft">4</span> bache!</span></div>
+
+<!-- 6. WhatsApp Pulse -->
+<a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20Ay-Mart%20se%20help%20chahiye" style="position:fixed;bottom:125px;right:14px;z-index:99997;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;text-decoration:none;box-shadow:0 0 0 0 #25D366;animation:pulse 2s infinite"><i class="fa-brands fa-whatsapp"></i></a>
+<style>@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}</style>
+
+<!-- 7. Spin & Win -->
+<div id="spinBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:100000;align-items:center;justify-content:center;font-family:sans-serif"><div style="background:#fff;width:300px;padding:20px;border-radius:20px;text-align:center"><div style="font-weight:900;font-size:18px">🎉 Spin & Win!</div><div id="wheel" style="width:180px;height:180px;margin:15px auto;border-radius:50%;border:8px solid #ff6b00;background:conic-gradient(#ff6b00 0deg 60deg, #111 60deg 120deg, #00c853 120deg 180deg, #ff6b00 180deg 240deg, #111 240deg 300deg, #00c853 300deg 360deg);display:flex;align-items:center;justify-content:center;transition:3s cubic-bezier(0.2,0.8,0.2,1);font-size:40px">🎁</div><button onclick="spinNow()" style="background:#ff6b00;color:#fff;border:0;padding:12px 25px;border-radius:10px;font-weight:800;width:100%">SPIN KARO</button><div id="winText" style="margin-top:12px;font-weight:700;color:green;display:none"></div><div onclick="document.getElementById('spinBox').style.display='none'" style="margin-top:10px;font-size:12px;color:#888;cursor:pointer">Band Karo</div></div></div>
+
+<!-- 8. Exit Coupon -->
+<div id="exitBox" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99999;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font-family:sans-serif;box-shadow:0 10px 30px rgba(0,0,0,0.4);text-align:center;width:90%;max-width:340px"><div style="font-weight:800">🛑 Ruko! 10% Chhoot?</div><div style="font-size:12px;margin:5px 0;color:#aaa">Code: <b style="color:#ff6b00;background:#fff;padding:2px 6px;border-radius:4px">MART10</b></div><div style="display:flex;gap:8px;margin-top:8px"><a href="/cart" style="flex:1;background:#ff6b00;color:#fff;text-align:center;padding:8px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px">Order Karo</a><div onclick="document.getElementById('exitBox').style.display='none'" style="flex:1;background:#333;color:#fff;text-align:center;padding:8px;border-radius:8px;font-size:13px;cursor:pointer">Nahi</div></div></div>
+
+<!-- 9. Trust Footer -->
+<div style="background:#0a0a0a;color:#fff;padding:20px 14px;border-radius:20px 20px 0 0;margin-top:20px;font-family:sans-serif;text-align:center"><div style="font-weight:900;font-size:16px">Ay-Mart • Anil Yadav • ID 2396277</div><div style="font-size:11px;color:#888;margin:4px 0">Ajaygarh 488220 | Jabalpur | Asort Verified Store</div><div style="display:flex;justify-content:center;gap:8px;margin:14px 0;flex-wrap:wrap"><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">💳 UPI</span><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">💵 COD</span><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">🚚 48H</span><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">↩️ 7 Day</span></div><div style="margin-top:10px;font-size:10px;color:#555">© 2026 Ay-Mart Powered by Asort</div></div>
+
+<script>
+// All Functions
+const names=["Rohit Sahu, Jabalpur","Priya Patel, Sadar","Ankit Yadav, Madan Mahal","Vikash, Ajaygarh","Neha, Panagar"]; const prods=["Ifazone Black Shirt","Mr Huffman Sneakers White","Solasta Luxury Watch","A-Basket Handbag","Earthy Scent Hair Oil"];
+function showToast(){const t=document.getElementById("ayToast");document.getElementById("toastName").innerText=names[Math.floor(Math.random()*names.length)]+" ne kharida";document.getElementById("toastProd").innerText=prods[Math.floor(Math.random()*prods.length)]+" • "+(Math.floor(Math.random()*5+1))+" min pehle";t.style.display="flex";setTimeout(()=>{t.style.display="none"},4000);} setInterval(showToast,9000); setTimeout(showToast,3000);
+function checkPin(){let v=document.getElementById('pinInput').value.trim();let r=document.getElementById('pinResult');if(v=="488220"||v=="482001"){r.innerHTML="✅ <span style='color:green'>Ajaygarh me COD Available, Kal tak delivery!</span>"}else if(v.length==6){r.innerHTML="⚠️ <span style='color:#ff6b00'>Delivery ho jayegi 2-3 din me</span>"}else{r.innerHTML="❌ Pincode dalo"}}
+setInterval(()=>{let el=document.getElementById('liveView');if(el)el.innerText=Math.floor(10+Math.random()*20);},4000); let s=4; setInterval(()=>{if(s>1)s--;let el=document.getElementById('stockLeft');if(el)el.innerText=s;},8000);
+setTimeout(()=>{let b=document.getElementById('spinBox');if(b)b.style.display='flex'},8000); function spinNow(){let w=document.getElementById('wheel');w.style.transform='rotate('+(720+Math.floor(Math.random()*720))+'deg)';setTimeout(()=>{let codes=["MART10 - 10% OFF","FREEDEL - Free Delivery","MART20 - 20% OFF on 999+"];let c=codes[Math.floor(Math.random()*codes.length)];let wt=document.getElementById('winText');wt.style.display='block';wt.innerHTML='Jeet Gaye! Code: <b style="background:#111;color:#fff;padding:2px 6px;border-radius:4px">'+c+'</b>';},3000);}
+let shown=false; document.addEventListener('mouseleave',()=>{if(!shown){let b=document.getElementById('exitBox');if(b)b.style.display='block';shown=true}}); setTimeout(()=>{if(!shown){let b=document.getElementById('exitBox');if(b)b.style.display='block';shown=true}},25000);
+document.getElementById('aySearch')?.addEventListener('keyup',function(){let q=this.value.toLowerCase();let sc=document.getElementById('searchCount');if(q.length>1){sc.style.display='block';sc.innerText='🔍 "'+q+'" search - niche dekho';}else{sc.style.display='none';}});
+</script>
+<!-- ========== FINAL COMBO PACK END ========== -->
+  
 </body>
 </html>
