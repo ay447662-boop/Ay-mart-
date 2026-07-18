@@ -135,6 +135,7 @@ function startVoice(){
 }
 </script>
 function clearFk(){
+  <script>
   document.getElementById('fkSearch').value='';
   flipkartSearch('');
 }
@@ -161,6 +162,7 @@ function flipkartSearch(val){
   applyFilter();
 }
 function clearFk(){
+</script>
   document.getElementById('fkSearch').value='';
   flipkartSearch('');
 function showSugg(q){
@@ -179,6 +181,7 @@ function showSugg(q){
   box.classList.remove('hidden');
 }
 function startVoice(){
+</script>
   let btn=document.getElementById('fkVoice');
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if(!SpeechRecognition){ alert('Voice search is not supported in this browser'); return; }
