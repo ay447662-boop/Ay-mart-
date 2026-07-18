@@ -86,19 +86,19 @@ function searchAyMart(val){
     p.style.display = t.includes(q)? '' : 'none';
   });
 }
-function clearAySearch(){
-  document.getElementById('aySearch').value='';
-  searchAyMart('');
-}}
-</script>
-<!-- 🔥 ANIL PREMIUM PROFILE - AMAZING EDITION -->
-<div class="bg-white m-3 p-3.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-3.5 relative overflow-hidden">
-<div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-orange-400 via-red-500 to-pink-500"></div>
-<div class="relative cursor-pointer group" onclick="tapAdmin()">
-<div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-pink-500 rounded-full blur-[6px] opacity-30 group-active:opacity-60 transition"></div>
-<img id="pDP" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgdmlld0JveD0iMCAwIDQ0Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmNTkwMjAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlYzQ4OTkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIyMiIgY3k9IjIyIiByPSIyMiIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjIyIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj5BPC90ZXh0Pjwvc3ZnPg==" class="relative w-11 h-11 rounded-full object-cover border-[2.5px] border-white shadow-md">
-<div class="absolute -bottom-0.5 -right-0.5 bg-white rounded-full p-[2px] shadow-sm"><div class="bg-green-500 w-3.5 h-3.5 rounded-full flex items-center justify-center text-white text-[8px] font-bold">✓</div></div>
-</div>
+function flipkartSearch(val){
+  let q=val.toLowerCase();
+  let btn=document.getElementById('fkClear');
+  if(btn) btn.classList.toggle('hidden',!q);
+  document.querySelectorAll('[onclick*="openProduct"]').forEach(p=>{
+    let t=(p.innerText||'').toLowerCase();
+    p.style.display=t.includes(q)?'':'none';
+  });
+}
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
+}
 <div class="flex-1 min-w-0">
 <div class="flex items-center gap-1.5"><div class="text-[14px] font-extrabold tracking-tight text-gray-900">Anil Yadav</div><span class="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">PRO</span></div>
 <div class="text-[11px] font-medium text-gray-500 -mt-0.5">Owner • Ay-Mart • Verified Store</div>
