@@ -1274,5 +1274,69 @@ function enterLucky(){
   console.log('Ay-Mart Festival Mode Active:', fest.name);
 })();
 </script>
-<!-- ==========  FESTIVAL AUTO END ========== --> 
+<!-- ==========  FESTIVAL AUTO END ========== -->
+  <div id="firstOrderBar" style="display:none;margin:70px 12px 10px 12px;background:linear-gradient(135deg,#00c853,#009624);border-radius:14px;padding:14px;color:#fff;font-family:sans-serif;position:relative;overflow:hidden;box-shadow:0 5px 20px rgba(0,200,83,0.3)">
+  <div style="position:absolute;top:-10px;right:-10px;width:60px;height:60px;background:rgba(255,255,255,0.15);border-radius:50%"></div>
+  <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:2">
+    <div style="width:48px;height:48px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🚚</div>
+    <div style="flex:1">
+      <div style="font-weight:900;font-size:14px">Pehla Order? Delivery FREE! 🎉</div>
+      <div style="font-size:11px;opacity:0.9;margin-top:2px">Ajaygarh 488220 + Jabalpur 482001 pe - Koi charge nahi!</div>
+      <div style="background:rgba(0,0,0,0.2);display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;margin-top:6px">Code: FIRSTFREE Auto Applied ✅</div>
+    </div>
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;opacity:0.8">Bachaoge</div><div style="font-size:18px;font-weight:900">₹60</div></div>
+  </div>
+</div>
+
+<div id="firstOrderPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:100006;align-items:center;justify-content:center;font-family:sans-serif">
+  <div style="background:#fff;width:300px;border-radius:20px;padding:20px;text-align:center">
+    <div style="width:60px;height:60px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto">🎁</div>
+    <div style="font-weight:900;font-size:18px;margin-top:12px">Welcome to Ay-Mart!</div>
+    <div style="font-size:12px;color:#666;margin-top:6px">Pehle order pe <b style="color:#00c853">FREE Delivery</b> mil rahi hai Ajaygarh me. Anil Bhaiya ki taraf se gift!</div>
+    <div style="background:#f5f5f5;border:1px dashed #00c853;padding:10px;border-radius:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700">FIRSTFREE</span><span style="background:#00c853;color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:800">APPLIED</span></div>
+    <button onclick="closeFirst()" style="width:100%;background:#111;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:800;margin-top:12px;cursor:pointer">Shopping Shuru Karo →</button>
+    <div style="font-size:10px;color:#888;margin-top:8px">ID 2396277 • Asort Verified Store</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  let isFirst = !localStorage.getItem('ay_first_order_done');
+  if(isFirst){
+    document.getElementById('firstOrderBar').style.display='block';
+    // Show popup after 3 sec only for first time
+    if(!localStorage.getItem('ay_first_popup_shown')){
+      setTimeout(()=>{
+        document.getElementById('firstOrderPopup').style.display='flex';
+      },3000);
+    }
+  } else {
+    // Already ordered - show loyalty bar instead
+    let bar = document.getElementById('firstOrderBar');
+    bar.style.display='block';
+    bar.style.background='linear-gradient(135deg,#ff6b00,#ff8c00)';
+    bar.innerHTML = '<div style="display:flex;align-items:center;gap:12px"><div style="width:48px;height:48px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px">⭐</div><div><div style="font-weight:900;font-size:14px">Welcome Back, Loyal Customer! 🙏</div><div style="font-size:11px;opacity:0.9">Aapka ' + (parseInt(localStorage.getItem('ay_order_count')||'1')) + 'wa order - 10% Extra Off: LOYAL10</div></div></div>';
+  }
+})();
+
+function closeFirst(){
+  document.getElementById('firstOrderPopup').style.display='none';
+  localStorage.setItem('ay_first_popup_shown','true');
+}
+
+// When they click Buy - mark as ordered
+document.addEventListener('click', function(e){
+  if(e.target.innerText && (e.target.innerText.includes('Buy Now') || e.target.innerText.includes('Cart'))){
+    if(!localStorage.getItem('ay_first_order_done')){
+      let count = parseInt(localStorage.getItem('ay_order_count')||'0') + 1;
+      localStorage.setItem('ay_order_count', count);
+      // After first buy, mark done after 5 sec
+      setTimeout(()=>{
+        localStorage.setItem('ay_first_order_done','true');
+      },5000);
+    }
+  }
+});
+</script>
+<!-- ==========  FIRST ORDER FREE END ========== -->
 </html>
