@@ -46,14 +46,18 @@
 <button onclick="openMenu()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
 </div>
-<!-- ORIGINAL FLIPKART SEARCH BAR - FRONT -->
+<!-- ORIGINAL FLIPKART SEARCH BAR - WITH VOICE + SUGGESTION -->
 <div class="bg-white sticky top-[52px] z-[90] p-2.5 shadow-sm border-b">
-  <div class="flex items-center gap-2 bg-[#F0F5FF] border border-[#c7d7ff] rounded-lg px-3">
-    <span class="text-gray-500">🔍</span>
-    <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-[14px] text-black">
-    <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
+  <div class="relative">
+    <div class="flex items-center gap-2 bg-[#F0F5FF] border border-[#c7d7ff] rounded-lg px-3">
+      <span class="text-gray-500">🔍</span>
+      <input id="fkSearch" type="text" oninput="flipkartSearch(this.value);showSugg(this.value)" onfocus="showSugg(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text- text-black">
+      <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
+      <button id="fkVoice" onclick="startVoice()" class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center">🎙️</button>
+    </div>
+    <div id="fkSugg" class="hidden absolute left-0 right-0 top-[50px] bg-white rounded-xl shadow-xl border z-[100] max-h-[300px] overflow-auto"></div>
   </div>
-</div>  
+</div>
 <!-- FINAL PRO CATEGORY + SECRET DP LOCK - CLEAN CODE -->
 <div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:2px;z-index:99;border-bottom:2px solid #eee;scrollbar-width:none">
 <button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;font-weight:700;border:1px solid #000">🔥 All</button>
@@ -108,7 +112,43 @@ function flipkartSearch(val){
 function clearFk(){
   document.getElementById('fkSearch').value='';
   flipkartSearch('');
+function showSugg(q){
+  let box=document.getElementById('fkSugg');
+  if(!q){ box.classList.add('hidden'); return; }
+  q=q.toLowerCase();
+  let list=[];
+  document.querySelectorAll('#products > div').forEach(p=>{
+    let txt=(p.innerText||'').split('\n')[0];
+    if(txt.toLowerCase().includes(q)) list.push(txt.substring(0,40));
+  });
+  // duplicate hatao
+  list=[...new Set(list)].slice(0,8);
+  if(list.length==0){ box.classList.add('hidden'); return; }
+  box.innerHTML=list.map(t=>`<div onclick="document.getElementById('fkSearch').value='${t}';flipkartSearch('${t}');this.parentElement.classList.add('hidden')" class="px-4 py-3 border-b hover:bg-gray-50 cursor-pointer text-">🔍 ${t}</div>`).join('');
+  box.classList.remove('hidden');
 }
+function startVoice(){
+  let btn=document.getElementById('fkVoice');
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRecognition){ alert('Voice search is not supported in this browser'); return; }
+  let rec=new SpeechRecognition();
+  rec.lang='hi-IN';
+  rec.onstart=()=>{ btn.innerText='🔴'; };
+  rec.onend=()=>{ btn.innerText='🎙️'; };
+  rec.onresult=(e)=>{
+    let text=e.results[0][0].transcript;
+    document.getElementById('fkSearch').value=text;
+    flipkartSearch(text);
+    showSugg(text);
+  };
+  rec.start();
+}
+// suggestion box ko bahar click pe band karo
+document.addEventListener('click',(e)=>{
+  if(!e.target.closest('#fkSearch') &&!e.target.closest('#fkSugg')){
+    document.getElementById('fkSugg')?.classList.add('hidden');
+  }
+});
 </script>
 <!-- 🔥 ANIL PREMIUM PROFILE - AMAZING EDITION -->
 <div class="bg-white m-3 p-3.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-3.5 relative overflow-hidden">
