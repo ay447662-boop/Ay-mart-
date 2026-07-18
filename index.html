@@ -127,6 +127,23 @@ function startVoice(){
   r.start();
 }
 </script>
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
+}
+function startVoice(){
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ alert('Voice not supported'); return; }
+  let r=new SR();
+  r.lang='en-IN';
+  r.onresult=function(e){
+    let txt=e.results[0][0].transcript;
+    document.getElementById('fkSearch').value=txt;
+    flipkartSearch(txt);
+  };
+  r.start();
+}
+</script>
   currentBrand=cat.toLowerCase();
   applyFilter();
 }
