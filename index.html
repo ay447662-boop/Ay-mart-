@@ -2377,6 +2377,76 @@ function finalCheckout(){
 }
 </script>
 <!-- ==========  END -   ========== -->
+ <!-- ==========  PINCODE CHECKER ========== -->
+<div style="margin:12px;background:#fff;border-radius:14px;padding:14px;font-family:sans-serif;border:1px solid #eee">
+  <div style="font-weight:900;font-size:13px">📍 Delivery Check Karo - Ajaygarh / Panna / Amanganj</div><div style="font-size:10px;color:#666;margin-top:2px">Pincode daalo, 2 sec me pata chalega delivery hogi ya nahi</div>
+  <div style="display:flex;gap:8px;margin-top:12px"><input id="pinInput" placeholder="Pincode - ex: 488220" maxlength="6" style="flex:1;border:1px solid #ddd;border-radius:8px;padding:10px;font-size:12px;outline:none;font-weight:800;letter-spacing:1px" oninput="this.value=this.value.replace(/[^0-9]/g,'')"><button onclick="checkPin()" style="background:#111;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:800;font-size:11px">Check →</button></div>
+  
+  <div id="pinResult" style="display:none;margin-top:12px;border-radius:10px;padding:12px"></div>
+
+  <div style="background:#f9f9f9;border-radius:10px;padding:10px;margin-top:12px"><div style="font-size:11px;font-weight:800">🔥 Popular Pincodes - Ajaygarh Mart:</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+    <span onclick="setPin('488220')" style="background:#fff;border:1px solid #00c853;color:#00c853;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📍 488220 Ajaygarh ✅</span>
+    <span onclick="setPin('488001')" style="background:#fff;border:1px solid #00c853;color:#00c853;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📍 488001 Panna ✅</span>
+    <span onclick="setPin('488331')" style="background:#fff;border:1px solid #00c853;color:#00c853;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📍 488331 Amanganj ✅</span>
+    <span onclick="setPin('488220')" style="background:#fff;border:1px solid #eee;padding:5px 10px;border-radius:20px;font-size:10px;cursor:pointer">488448 Gaurihar ✅</span>
+  </div></div>
+</div>
+
+<script>
+function setPin(p){document.getElementById('pinInput').value=p; checkPin();}
+function checkPin(){
+  let pin=document.getElementById('pinInput').value.trim();
+  let res=document.getElementById('pinResult');
+  if(pin.length!=6){alert('6 digit pincode daalo');return;}
+  res.style.display='block';
+  let validPins=['488220','488001','488331','488448','488220','488001','471001','482001'];
+  let isValid=validPins.includes(pin) || pin.startsWith('488') || pin.startsWith('48');
+  
+  if(isValid){
+    res.style.cssText='display:block;margin-top:12px;border-radius:10px;padding:12px;background:#e8f5e9;border:1px solid #00c853';
+    res.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;font-weight:900;color:#00c853">✅ Haan! '+pin+' me Delivery Available Hai!</div><div style="font-size:10px;color:#333;margin-top:2px">🚚 3-4 din me free delivery • 💵 COD Available • Anil Bhaiya khud ayenge</div></div><div style="font-size:24px">🎉</div></div><div style="background:#fff;border-radius:8px;padding:8px;margin-top:8px;display:flex;justify-content:space-between;font-size:10px"><span>Delivery Charge:</span><span style="font-weight:900;color:#00c853">FREE</span></div><button onclick="window.open(\'https://wa.me/918770840326?text=Pincode '+pin+' check kiya - Delivery chahiye - ID 2396277\',\'_blank\')" style="width:100%;background:#00c853;color:#fff;border:0;padding:8px;border-radius:8px;font-weight:800;margin-top:8px;font-size:11px">Is Pincode Pe Order Karo →</button>';
+  } else {
+    res.style.cssText='display:block;margin-top:12px;border-radius:10px;padding:12px;background:#ffebee;border:1px solid #ef5350';
+    res.innerHTML='<div style="font-size:12px;font-weight:900;color:#c62828">❌ '+pin+' me Abhi Delivery Nahi Hai</div><div style="font-size:10px;color:#333;margin-top:4px">Par Anil Bhaiya try karenge! WhatsApp karo, main courier se baat karta hu. Ajaygarh ke aas paas hai toh ho jayega!</div><button onclick="window.open(\'https://wa.me/918770840326?text=Pincode '+pin+' pe delivery nahi dikha raha - Help karo - ID 2396277\',\'_blank\')" style="width:100%;background:#111;color:#fff;border:0;padding:8px;border-radius:8px;font-weight:800;margin-top:8px;font-size:11px">WhatsApp Pe Puchho →</button>';
+  }
+}
+</script>
+<!-- ==========  END ========== -->
+  <!-- ==========  GIFT WRAP + MESSAGE ========== -->
+<div style="margin:12px;background:linear-gradient(135deg,#fff0f6,#ffe3ec);border:2px solid #ff4081;border-radius:14px;padding:14px;font-family:sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900;font-size:13px">🎁 Gift Wrapping + Personal Message</div><div style="background:#ff4081;color:#fff;padding:3px 8px;border-radius:10px;font-size:9px;font-weight:800">₹29 ONLY</div></div><div style="font-size:10px;color:#666;margin-top:2px">Dost ko gift dena hai? Anil Bhaiya premium pack karke bhejenge</div>
+  
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <label style="flex:1;background:#fff;border-radius:10px;padding:10px;text-align:center;cursor:pointer;border:2px solid #ff4081"><input type="radio" name="gift" checked style="display:none" onchange="giftToggle(true)"><div style="font-size:20px">🎀</div><div style="font-size:10px;font-weight:800;margin-top:4px">Gift Wrap</div><div style="font-size:8px;color:#666">Premium Box</div></label>
+    <label style="flex:1;background:#fff;border-radius:10px;padding:10px;text-align:center;cursor:pointer;border:1px solid #eee"><input type="radio" name="gift" style="display:none" onchange="giftToggle(false)"><div style="font-size:20px">📦</div><div style="font-size:10px;font-weight:800;margin-top:4px">Normal</div><div style="font-size:8px;color:#666">As it is</div></label>
+  </div>
+
+  <div id="giftBox" style="background:#fff;border-radius:10px;padding:12px;margin-top:12px">
+    <div style="font-size:11px;font-weight:800">💌 Personal Message Likhdo (Free):</div>
+    <textarea id="giftMsg" placeholder="Ex: Happy Birthday bhai! Ifazone shirt tujhpe ek no lagegi - Anil ki taraf se" maxlength="80" style="width:100%;border:1px solid #ffb6c1;border-radius:8px;padding:8px;font-size:11px;margin-top:6px;height:50px;resize:none;outline:none" oninput="updateGiftPreview()"></textarea>
+    <div style="display:flex;justify-content:space-between;font-size:9px;color:#888;margin-top:2px"><span>Handwritten chit lagegi</span><span id="giftCount">0/80</span></div>
+    
+    <div style="background:#fff8e1;border:1px dashed #ffb300;border-radius:8px;padding:8px;margin-top:10px;display:flex;gap:8px;align-items:center"><div style="font-size:20px">🎁</div><div style="font-size:10px"><b>Preview:</b> <span id="giftPreview">Happy Birthday bhai!...</span><br><span style="font-size:8px;color:#888">- Anil Yadav, Ajaygarh Mart ID 2396277</span></div></div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px"><div style="font-size:11px">Gift Wrap Charge: <span style="text-decoration:line-through;color:#888">₹99</span> <span style="font-weight:900;color:#ff4081">₹29</span> <span style="background:#ff4081;color:#fff;padding:2px 6px;border-radius:10px;font-size:8px">70% OFF</span></div><button onclick="addGift()" style="background:#ff4081;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-weight:800;font-size:11px">Add Gift + ₹29</button></div>
+</div>
+
+<script>
+function giftToggle(isGift){document.getElementById('giftBox').style.display=isGift?'block':'none';}
+function updateGiftPreview(){
+  let txt=document.getElementById('giftMsg').value;
+  document.getElementById('giftCount').innerText=txt.length+'/80';
+  document.getElementById('giftPreview').innerText=txt||'Happy Birthday bhai!...';
+}
+function addGift(){
+  let msg=document.getElementById('giftMsg').value||'Happy Birthday!';
+  alert('🎁 Gift wrap add ho gaya ₹29 me! Message: '+msg);
+  let waMsg='Gift Wrap chahiye ₹29 me - Message: '+msg+' - ID 2396277';
+  window.open('https://wa.me/918770840326?text='+encodeURIComponent(waMsg),'_blank');
+}
+</script>
+<!-- ==========  END ========== -->
   
 >/body>    
 </html>
