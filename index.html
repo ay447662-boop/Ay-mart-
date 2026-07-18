@@ -46,8 +46,14 @@
 <button onclick="openMenu()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
 </div>
-<div onclick="openCart()" class="relative ml-2 cursor-pointer"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-2 -right-2 bg-[#F08804] text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
-</div>
+<!-- ORIGINAL FLIPKART SEARCH BAR - FRONT -->
+<div class="bg-white sticky top-[52px] z-[90] p-2.5 shadow-sm border-b">
+  <div class="flex items-center gap-2 bg-[#F0F5FF] border border-[#c7d7ff] rounded-lg px-3">
+    <span class="text-gray-500">🔍</span>
+    <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-[14px] text-black">
+    <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
+  </div>
+</div>  
 <!-- FINAL PRO CATEGORY + SECRET DP LOCK - CLEAN CODE -->
 <div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:2px;z-index:99;border-bottom:2px solid #eee;scrollbar-width:none">
 <button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;font-weight:700;border:1px solid #000">🔥 All</button>
@@ -60,21 +66,40 @@
 <button onclick="filterCat('kids',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">🧒 Kids</button>
 </div>
 <script>
+let currentCat='all';
+let currentSearch='';
+function applyFilter(){
+  document.querySelectorAll('#products > div').forEach(p=>{
+    let t=(p.innerText||'').toLowerCase();
+    let showCat=false;
+    if(currentCat==='all') showCat=true;
+    else if(currentCat==='men' && /men|shirt|jeans|t-shirt|kurta/.test(t)) showCat=true;
+    else if(currentCat==='women' && /women|kurti|dress|lehenga/.test(t)) showCat=true;
+    else if(currentCat==='saree' && t.includes('saree')) showCat=true;
+    else if(currentCat==='shoes' && /shoe|sneaker|juta|nike/.test(t)) showCat=true;
+    else if(currentCat==='watch' && t.includes('watch')) showCat=true;
+    else if(currentCat==='beauty' && /cream|oil|perfume|beauty|scent/.test(t)) showCat=true;
+    else if(currentCat==='kids' && /kid|baby/.test(t)) showCat=true;
+    else if(t.includes(currentCat)) showCat=true;
+    let showSearch=!currentSearch || t.includes(currentSearch);
+    p.style.display=(showCat && showSearch)?'':'none';
+  });
+}
 function filterCat(cat,btn){
- document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000'});
- btn.style.background='#000';btn.style.color='#fff';
- document.querySelectorAll('[onclick*="openProduct"]').forEach(p=>{
-  let t=(p.innerText||'').toLowerCase(); let show=false;
-  if(cat==='all') show=true;
-  else if(cat==='men' && /men|shirt|jeans|t-shirt|kurta/.test(t)) show=true;
-  else if(cat==='women' && /women|kurti|dress|lehenga/.test(t)) show=true;
-  else if(cat==='saree' && t.includes('saree')) show=true;
-  else if(cat==='shoes' && /shoe|sneaker|juta|nike/.test(t)) show=true;
-  else if(cat==='watch' && t.includes('watch')) show=true;
-  else if(cat==='beauty' && /cream|oil|perfume|beauty|scent/.test(t)) show=true;
-  else if(cat==='kids' && /kid|baby/.test(t)) show=true;
-  p.style.display=show?'':'none';
- });
+  currentCat=cat;
+  document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000';});
+  btn.style.background='#000';btn.style.color='#fff';
+  applyFilter();
+}
+function flipkartSearch(val){
+  currentSearch=val.toLowerCase();
+  let b=document.getElementById('fkClear');
+  if(b) b.classList.toggle('hidden',!currentSearch);
+  applyFilter();
+}
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
 }
 </script>
 <!-- 🔥 ANIL PREMIUM PROFILE - AMAZING EDITION -->
