@@ -50,12 +50,39 @@
 </div>
 
 
-function searchAyMart(val){
-  let q = val.toLowerCase();
-  document.getElementById('clearSearch').classList.toggle('hidden',!q);
+let currentCat='all';
+let currentSearch='';
+
+function filterCat(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000';});
+  btn.style.background='#000';btn.style.color='#fff';
+  applyFilter();
+}
+function flipkartSearch(val){
+  currentSearch=val.toLowerCase();
+  let b=document.getElementById('fkClear');
+  if(b) b.classList.toggle('hidden',!currentSearch);
+  applyFilter();
+}
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
+}
+function applyFilter(){
   document.querySelectorAll('#products > div').forEach(p=>{
-    let t = (p.innerText||'').toLowerCase();
-    p.style.display = t.includes(q)? '' : 'none';
+    let t=(p.innerText||'').toLowerCase();
+    let showCat=false;
+    if(currentCat==='all') showCat=true;
+    else if(currentCat==='men' && /men|shirt|jeans/.test(t)) showCat=true;
+    else if(currentCat==='women' && /women|kurti|dress/.test(t)) showCat=true;
+    else if(currentCat==='saree' && t.includes('saree')) showCat=true;
+    else if(currentCat==='shoes' && /shoe|sneaker|nike/.test(t)) showCat=true;
+    else if(currentCat==='watch' && t.includes('watch')) showCat=true;
+    else if(currentCat==='beauty' && /cream|oil|perfume|beauty/.test(t)) showCat=true;
+    else if(currentCat==='kids' && /kid|baby/.test(t)) showCat=true;
+    let showSearch = !currentSearch || t.includes(currentSearch);
+    p.style.display=(showCat && showSearch)?'':'none';
   });
 }
 function flipkartSearch(val){
