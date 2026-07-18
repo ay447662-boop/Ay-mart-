@@ -1147,5 +1147,77 @@ setTimeout(()=>{
 },12000);
 </script>
 <!-- ==========  SCRATCH CARD END ========== -->
-</body>
+  
+</b
+<div style="margin:16px 12px;background:linear-gradient(180deg,#111 0%,#1a1a1a 100%);border-radius:20px;padding:18px;color:#fff;font-family:sans-serif;border:2px solid #ff6b00;position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#ff6b00,#ff8c00,#ff6b00);animation:shine 2s infinite linear"></div>
+  <style>@keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}</style>
+  
+  <div style="text-align:center">
+    <div style="background:#ff6b00;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:900">🎉 AJAYGARH MEGA LUCKY DRAW</div>
+    <div style="font-size:20px;font-weight:900;margin-top:8px">₹5000 Ka Voucher Jeeto!</div>
+    <div style="font-size:11px;color:#aaa;margin-top:4px">Har hafte 1 winner - Anil Bhaiya khud denge</div>
+  </div>
+
+  <!-- Prizes -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px">
+    <div style="background:#1f1f1f;padding:10px;border-radius:12px;text-align:center;border:1px solid #333"><div style="font-size:22px">👟</div><div style="font-size:10px;font-weight:700;margin-top:4px">Huffman<br>Shoes</div><div style="font-size:9px;color:#ff6b00">3 Winners</div></div>
+    <div style="background:#ff6b00;padding:10px;border-radius:12px;text-align:center;transform:scale(1.05);box-shadow:0 5px 20px rgba(255,107,0,0.4)"><div style="font-size:22px">💰</div><div style="font-size:10px;font-weight:800;margin-top:4px">₹5000<br>VOUCHER</div><div style="font-size:9px;color:#fff">1 Winner</div></div>
+    <div style="background:#1f1f1f;padding:10px;border-radius:12px;text-align:center;border:1px solid #333"><div style="font-size:22px">⌚</div><div style="font-size:10px;font-weight:700;margin-top:4px">Solasta<br>Watch</div><div style="font-size:9px;color:#ff6b00">5 Winners</div></div>
+  </div>
+
+  <!-- Entry Form -->
+  <div id="luckyForm">
+    <div style="display:flex;gap:8px;margin-top:14px"><input id="luckyName" placeholder="Apna Naam" style="flex:1;background:#222;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:13px;outline:none"><input id="luckyPhone" placeholder="Mobile" style="flex:1;background:#222;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:13px;outline:none"></div>
+    <button onclick="enterLucky()" style="width:100%;background:#ff6b00;color:#fff;border:0;padding:12px;border-radius:12px;font-weight:900;margin-top:10px;font-size:14px;cursor:pointer">🎯 LUCKY DRAW ME ENTRY KARO</button>
+    <div style="font-size:10px;color:#666;text-align:center;margin-top:6px">* Ajaygarh 488220 aur Jabalpur 482001 ke liye hi</div>
+  </div>
+
+  <div id="luckyDone" style="display:none;text-align:center;margin-top:14px;background:#1f1f1f;padding:16px;border-radius:14px">
+    <div style="font-size:30px">🎊</div>
+    <div style="font-weight:800;margin-top:6px">Entry Ho Gayi, <span id="luckyUser"></span>!</div>
+    <div style="font-size:12px;color:#aaa;margin-top:4px">Result har Ravivaar raat 8 baje - WhatsApp pe ayega</div>
+    <div style="display:flex;gap:8px;margin-top:12px"><div style="flex:1;background:#222;padding:8px;border-radius:8px"><div style="font-size:10px;color:#888">Tumhara No.</div><div style="font-weight:800;font-size:12px" id="luckyNo">#AY-4821</div></div><div style="flex:1;background:#222;padding:8px;border-radius:8px"><div style="font-size:10px;color:#888">Total Entries</div><div style="font-weight:800;font-size:12px">1,247</div></div></div>
+  </div>
+
+  <!-- Winners Ticker -->
+  <div style="margin-top:14px;background:#0a0a0a;padding:8px 12px;border-radius:10px;display:flex;align-items:center;gap:8px;font-size:11px;overflow:hidden"><span style="background:#00c853;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;flex-shrink:0">WINNERS</span><marquee id="winnerMarquee">🏆 Pichle hafte: Rohit Sahu (Jabalpur) jeete ₹2000 voucher | Priya Patel (Sadar) jeeti Solasta Watch | Vikash (Ajaygarh) jeeta Huffman Shoes - Agla number tumhara ho sakta hai!</marquee></div>
+</div>
+
+<script>
+function enterLucky(){
+  let name=document.getElementById('luckyName').value.trim();
+  let phone=document.getElementById('luckyPhone').value.trim();
+  if(name.length<2){alert('Naam likho bhai!');return;}
+  if(phone.length<10){alert('Sahi mobile number dalo!');return;}
+  
+  // Save
+  localStorage.setItem('ay_lucky_name', name);
+  localStorage.setItem('ay_lucky_phone', phone);
+  localStorage.setItem('ay_lucky_entered','true');
+  
+  let no = '#AY-' + Math.floor(4000+Math.random()*5000);
+  document.getElementById('luckyUser').innerText = name;
+  document.getElementById('luckyNo').innerText = no;
+  document.getElementById('luckyForm').style.display='none';
+  document.getElementById('luckyDone').style.display='block';
+  
+  // WhatsApp entry to Anil
+  let msg = 'Lucky Draw Entry: ' + name + ' - ' + phone + ' - No: ' + no + ' - Ajaygarh Mart ID 2396277';
+  setTimeout(()=>{
+    if(confirm('Entry ho gayi! Anil Bhaiya ko WhatsApp pe bheju entry?')){
+      window.open('https://wa.me/918770840326?text='+encodeURIComponent(msg), '_blank');
+    }
+  },800);
+}
+
+// Auto fill if already entered
+(function(){
+  if(localStorage.getItem('ay_lucky_entered')=='true'){
+    let n=localStorage.getItem('ay_lucky_name'); 
+    if(n){ document.getElementById('luckyForm').style.display='none'; document.getElementById('luckyDone').style.display='block'; document.getElementById('luckyUser').innerText=n; }
+  }
+})();
+</script>
+<!-- ==========  LUCKY DRAW END ========== -->
 </html>
