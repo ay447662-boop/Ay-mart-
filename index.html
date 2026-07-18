@@ -2620,5 +2620,80 @@ function addGift(){
 <!--  TOP SELLING -->
 <div style="margin:12px;background:linear-gradient(135deg,#ffd600,#ffab00);border-radius:14px;padding:12px;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">100. 🏆 #1 Top Selling - Ajaygarh Me</div><div style="font-size:10px">Pichle 7 din me 234 logon ne liya</div></div><div style="background:#111;color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:900">#1 BESTSELLER</div></div>
 <!-- ==========  END ========== -->
-   
+<script>
+// FINAL FIX - Ye sabse neeche hona chahiye
+window.currentCat='all';
+window.currentBrand='all';
+window.currentSearch='';
+
+window.applyFilter=function(){
+  let all = document.querySelectorAll('#products > div');
+  if(all.length==0) all = document.querySelectorAll('[id="products"] div');
+  all.forEach(p=>{
+    if(p.querySelector('img')==null) return; // sirf product wale div
+    let t=(p.innerText||'').toLowerCase();
+    let showCat=true, showBrand=true, showSearch=true;
+
+    if(window.currentCat!=='all'){
+      if(window.currentCat==='men') showCat = /men|shirt|jeans|t-shirt|kurta/.test(t);
+      else if(window.currentCat==='women') showCat = /women|kurti|dress|lehenga/.test(t);
+      else if(window.currentCat==='saree') showCat = t.includes('saree');
+      else if(window.currentCat==='shoes') showCat = /shoe|sneaker|nike|juta/.test(t);
+      else if(window.currentCat==='watch') showCat = t.includes('watch');
+      else if(window.currentCat==='beauty') showCat = /cream|oil|perfume|beauty|scent|vitamin/.test(t);
+      else if(window.currentCat==='kids') showCat = /kid|baby/.test(t);
+      else showCat = t.includes(window.currentCat);
+    }
+    if(window.currentBrand!=='all'){
+      showBrand = t.includes(window.currentBrand);
+    }
+    if(window.currentSearch!==''){
+      showSearch = t.includes(window.currentSearch);
+    }
+    p.style.display=(showCat && showBrand && showSearch)?'':'none';
+  });
+};
+
+window.filterCat=function(cat,btn){
+  window.currentCat=cat.toLowerCase();
+  document.querySelectorAll('#proCatBar button').forEach(b=>{
+    b.style.background='#fff'; b.style.color='#000';
+  });
+  if(btn){ btn.style.background='#000'; btn.style.color='#fff'; }
+  window.applyFilter();
+};
+
+window.setCat=function(cat){
+  let c=cat.toLowerCase();
+  if(c==='all') window.currentBrand='all';
+  else window.currentBrand=c;
+  window.applyFilter();
+};
+
+window.flipkartSearch=function(val){
+  window.currentSearch=val.toLowerCase();
+  let clearBtn=document.getElementById('fkClear');
+  if(clearBtn) clearBtn.classList.toggle('hidden',!val);
+  window.applyFilter();
+};
+
+window.clearFk=function(){
+  let inp=document.getElementById('fkSearch');
+  if(inp) inp.value='';
+  window.flipkartSearch('');
+};
+
+window.startVoice=function(){
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ alert('Voice support nahi hai'); return; }
+  let r=new SR(); r.lang='en-IN';
+  r.onresult=function(e){
+    let txt=e.results[0][0].transcript;
+    document.getElementById('fkSearch').value=txt;
+    window.flipkartSearch(txt);
+  };
+  r.start();
+};
+console.log('AY-MART FILTER FIX LOADED');
+</script>   
 </html>
