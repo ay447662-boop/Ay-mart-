@@ -48,26 +48,6 @@
 <div onclick="openCart()" class="relative ml-2 cursor-pointer w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-1 -right-1 bg-[#F08804] text-black text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
 <button onclick="openMenu()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
-
-
-let currentCat='all';
-let currentSearch='';
-
-function filterCat(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000';});
-  btn.style.background='#000';btn.style.color='#fff';
-  applyFilter();
-}
-function flipkartSearch(val){
-  currentSearch=val.toLowerCase();
-  let b=document.getElementById('fkClear');
-  if(b) b.classList.toggle('hidden',!currentSearch);
-  applyFilter();
-}
-function clearFk(){
-  document.getElementById('fkSearch').value='';
-  flipkartSearch('');
 }
 function applyFilter(){
   document.querySelectorAll('#products > div').forEach(p=>{
@@ -85,7 +65,6 @@ function applyFilter(){
     p.style.display=(showCat && showSearch)?'':'none';
   });
 }
-function flipkartSearch(val){
   let q=val.toLowerCase();
   let btn=document.getElementById('fkClear');
   if(btn) btn.classList.toggle('hidden',!q);
@@ -93,10 +72,6 @@ function flipkartSearch(val){
     let t=(p.innerText||'').toLowerCase();
     p.style.display=t.includes(q)?'':'none';
   });
-}
-function clearFk(){
-  document.getElementById('fkSearch').value='';
-  flipkartSearch('');
 }
 <div class="flex-1 min-w-0">
 <div class="flex items-center gap-1.5"><div class="text-[14px] font-extrabold tracking-tight text-gray-900">Anil Yadav</div><span class="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">PRO</span></div>
