@@ -64,18 +64,34 @@
 <button onclick="filterCat('kids',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Kids</button>
 </div>
 
-<!-- FINAL PRO CATEGORY -->
-<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:104px;z-index:80;">
-<button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;">🔥 All</button>
-<button onclick="filterCat('men',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">👔 Men</button>
-<button onclick="filterCat('women',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">👗 Women</button>
-<button onclick="filterCat('saree',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">🥻 Saree</button>
-<button onclick="filterCat('shoes',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">👟 Shoes</button>
-<button onclick="filterCat('watch',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">⌚ Watch</button>
-<button onclick="filterCat('beauty',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">💄 Beauty</button>
-<button onclick="filterCat('kids',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">🧒 Kids</button>
-</div>
-
+<script>
+var currentCat='all'; var currentBrand='all'; var currentSearch='';
+function applyFilter(){
+  var all=document.querySelectorAll('#products > div');
+  for(var i=0;i<all.length;i++){
+    var p=all[i]; if(!p.innerText) continue;
+    var t=p.innerText.toLowerCase();
+    var showCat=true, showBrand=true, showSearch=true;
+    if(currentCat!='all'){
+      if(currentCat=='men') showCat=t.indexOf('men')>-1||t.indexOf('shirt')>-1;
+      else if(currentCat=='women') showCat=t.indexOf('women')>-1||t.indexOf('kurti')>-1;
+      else if(currentCat=='saree') showCat=t.indexOf('saree')>-1;
+      else if(currentCat=='shoes') showCat=t.indexOf('shoe')>-1||t.indexOf('sneaker')>-1;
+      else if(currentCat=='watch') showCat=t.indexOf('watch')>-1;
+      else if(currentCat=='beauty') showCat=t.indexOf('scent')>-1||t.indexOf('cream')>-1;
+      else if(currentCat=='kids') showCat=t.indexOf('kid')>-1;
+      else showCat=t.indexOf(currentCat)>-1;
+    }
+    if(currentBrand!='all'){ showBrand=t.indexOf(currentBrand)>-1; }
+    if(currentSearch!=''){ showSearch=t.indexOf(currentSearch)>-1; }
+    p.style.display=(showCat&&showBrand&&showSearch)?'':'none';
+  }
+}
+function filterCat(cat,btn){ currentCat=cat; var a=document.querySelectorAll('#proCatBar button'); for(var i=0;i<a.length;i++){a[i].style.background='#fff';a[i].style.color='#000';} if(btn){btn.style.background='#000';btn.style.color='#fff';} applyFilter(); }
+function setCat(cat){ currentBrand=cat.toLowerCase(); applyFilter(); }
+function flipkartSearch(val){ currentSearch=val.toLowerCase(); var b=document.getElementById('fkClear'); if(b){ if(val) b.classList.remove('hidden'); else b.classList.add('hidden'); } applyFilter(); }
+function clearFk(){ document.getElementById('fkSearch').value=''; flipkartSearch(''); }
+</script>
 <script>
 let currentCat='all';
 let currentBrand='all';
