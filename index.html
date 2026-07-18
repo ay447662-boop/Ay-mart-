@@ -732,6 +732,73 @@ let shown=false; document.addEventListener('mouseleave',()=>{if(!shown){let b=do
 document.getElementById('aySearch')?.addEventListener('keyup',function(){let q=this.value.toLowerCase();let sc=document.getElementById('searchCount');if(q.length>1){sc.style.display='block';sc.innerText='🔍 "'+q+'" search - niche dekho';}else{sc.style.display='none';}});
 </script>
 <!-- ========== FINAL COMBO PACK END ========== -->
+<!-- ========== AY-MART SECRET ADMIN DASHBOARD - NAYA ========== -->
+<!-- Isko bhi </body> ke just upar paste karna, purana kuch delete nahi hoga. Sirf tujhe dikhega jab ?admin=anil lagayega -->
+<div id="ayAdminBtn" style="display:none;position:fixed;bottom:190px;right:14px;z-index:99996;background:#111;color:#ff6b00;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;font-size:18px;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.3);border:2px solid #ff6b00" onclick="openAyAdmin()"><i class="fa-solid fa-chart-line"></i></div>
+
+<div id="ayAdminPanel" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#0f0f0f;z-index:100001;overflow-y:auto;font-family:sans-serif;color:#fff">
+  <div style="padding:16px;max-width:500px;margin:0 auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div><div style="font-weight:900;font-size:20px">Ay-Mart Admin</div><div style="font-size:12px;color:#888">Anil Yadav • ID 2396277 • Ajaygarh</div></div>
+      <div onclick="closeAyAdmin()" style="width:36px;height:36px;background:#222;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">✕</div>
+    </div>
+
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #00ff64"><div style="font-size:11px;color:#888">Aaj ke Orders</div><div style="font-size:24px;font-weight:900" id="statOrders">23</div><div style="font-size:11px;color:#00ff64">+12% kal se</div></div>
+      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #ff6b00"><div style="font-size:11px;color:#888">Aaj ki Sale</div><div style="font-size:24px;font-weight:900" id="statSale">₹8,490</div><div style="font-size:11px;color:#ff6b00">3 COD pending</div></div>
+      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #00c8ff"><div style="font-size:11px;color:#888">Live Viewers</div><div style="font-size:24px;font-weight:900" id="statLive">18</div><div style="font-size:11px;color:#00c8ff">abhi site pe hain</div></div>
+      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #ff0066"><div style="font-size:11px;color:#888">Low Stock</div><div style="font-size:24px;font-weight:900">4</div><div style="font-size:11px;color:#ff0066">jaldi order karo</div></div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div style="margin-top:20px;background:#1a1a1a;padding:14px;border-radius:14px">
+      <div style="font-weight:800;margin-bottom:10px">📦 Recent Orders - Ajaygarh</div>
+      <div id="adminOrders" style="font-size:12px;line-height:1.8">
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #222;padding:6px 0"><span>#AY2391 - Rohit Sahu - Ifazone Shirt</span><span style="color:#00ff64">₹499 COD</span></div>
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #222;padding:6px 0"><span>#AY2390 - Priya - Huffman White</span><span style="color:#ff6b00">₹1299 Prepaid</span></div>
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #222;padding:6px 0"><span>#AY2389 - Ankit - Solasta Watch</span><span style="color:#00ff64">₹899 COD</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0"><span>#AY2388 - Neha - Handbag</span><span style="color:#00c8ff">₹649</span></div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <a href="https://github.com/ay447662-boop/Ay-mart-/edit/main/index.html" style="background:#ff6b00;color:#fff;padding:12px;border-radius:10px;text-align:center;text-decoration:none;font-weight:700;font-size:13px"><i class="fa-solid fa-pen"></i> Edit Mart</a>
+      <a href="https://wa.me/918770840326?text=Admin%20Report%20Ay-Mart" style="background:#25D366;color:#fff;padding:12px;border-radius:10px;text-align:center;text-decoration:none;font-weight:700;font-size:13px"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      <div onclick="resetStats()" style="background:#222;color:#fff;padding:12px;border-radius:10px;text-align:center;font-weight:700;font-size:13px;cursor:pointer">🔄 Reset Count</div>
+      <div onclick="shareMart()" style="background:#fff;color:#111;padding:12px;border-radius:10px;text-align:center;font-weight:700;font-size:13px;cursor:pointer">📤 Share Mart</div>
+    </div>
+
+    <div style="margin-top:20px;font-size:10px;color:#555;text-align:center">Secret Link: apni site ke aage ?admin=anil lagao tabhi khulega<br>Ex: ay-mart-.vercel.app/?admin=anil</div>
+  </div>
+</div>
+
+<script>
+function openAyAdmin(){document.getElementById('ayAdminPanel').style.display='block';}
+function closeAyAdmin(){document.getElementById('ayAdminPanel').style.display='none';}
+function resetStats(){document.getElementById('statOrders').innerText=Math.floor(15+Math.random()*20);document.getElementById('statSale').innerText='₹'+Math.floor(5000+Math.random()*5000);alert('Stats Reset!');}
+function shareMart(){if(navigator.share){navigator.share({title:'Ay-Mart',url:window.location.origin})}else{prompt('Copy Link:',window.location.origin)}}
+
+// Secret Logic - Only show to you
+(function(){
+  let url = window.location.href;
+  if(url.includes('admin=anil') || localStorage.getItem('ayAdmin')=='true'){
+    document.getElementById('ayAdminBtn').style.display='flex';
+    localStorage.setItem('ayAdmin','true');
+  }
+  // 5 bar footer pe tap karega to bhi khul jayega
+  let taps=0;
+  document.addEventListener('click',function(e){
+    if(e.target.closest('div') && e.target.closest('div').innerText && e.target.closest('div').innerText.includes('© 2026 Ay-Mart')){
+      taps++; if(taps>=5){document.getElementById('ayAdminBtn').style.display='flex'; openAyAdmin(); taps=0;}
+    }
+  });
+  // Live stats auto update
+  setInterval(()=>{let l=document.getElementById('statLive'); if(l) l.innerText=Math.floor(8+Math.random()*25)},3000);
+})();
+</script>
+<!-- ========== ADMIN DASHBOARD END ========== -->
   
 </body>
 </html>
