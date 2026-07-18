@@ -799,6 +799,59 @@ function shareMart(){if(navigator.share){navigator.share({title:'Ay-Mart',url:wi
 })();
 </script>
 <!-- ========== ADMIN DASHBOARD END ========== -->
-  
+
+<!-- 1. Dark Mode Toggle -->
+<div id="darkToggle" style="position:fixed;top:70px;right:14px;z-index:9995;background:#111;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.2)" onclick="toggleDark()"><i class="fa-solid fa-moon"></i></div>
+
+<!-- 2. Refer & Earn Card -->
+<div style="margin:20px 12px;background:linear-gradient(135deg,#ff6b00,#ff8c00);padding:16px;border-radius:16px;color:#fff;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center">
+  <div><div style="font-weight:900;font-size:15px">💸 Refer & Earn ₹100</div><div style="font-size:11px;opacity:0.9">Dost ko share karo, dono ko ₹100 milega</div></div>
+  <button onclick="referNow()" style="background:#fff;color:#ff6b00;border:0;padding:8px 14px;border-radius:20px;font-weight:800;font-size:12px">SHARE</button>
+</div>
+
+<!-- 3. Recently Viewed Strip -->
+<div style="margin:10px 12px;font-family:sans-serif"><div style="font-weight:800;font-size:13px;margin-bottom:8px">👁️ Aapne dekha tha</div><div id="recentStrip" style="display:flex;gap:10px;overflow-x:auto;padding-bottom:5px"><div style="min-width:80px;background:#f5f5f5;border-radius:10px;padding:8px;text-align:center;font-size:10px">Ifazone Shirt<br><b>₹499</b></div><div style="min-width:80px;background:#f5f5f5;border-radius:10px;padding:8px;text-align:center;font-size:10px">Huffman Shoes<br><b>₹1299</b></div><div style="min-width:80px;background:#f5f5f5;border-radius:10px;padding:8px;text-align:center;font-size:10px">Solasta Watch<br><b>₹899</b></div></div></div>
+
+<!-- 4. Wishlist Count Bar -->
+<div style="margin:10px 12px;background:#fff;border:1px solid #eee;padding:10px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-family:sans-serif"><span style="font-size:13px"><i class="fa-solid fa-heart" style="color:red"></i> Wishlist: <b id="wishCount">2</b> items</span><span style="font-size:11px;color:#ff6b00;font-weight:700" onclick="alert('Wishlist me 2 items hai - Ifazone Shirt, Solasta Watch')">Dekho →</span></div>
+
+<!-- 5. Festival Dhamaka Banner -->
+<div id="festBanner" style="margin:12px;background:#111;color:#fff;padding:12px;border-radius:12px;text-align:center;font-family:sans-serif;position:relative;overflow:hidden"><div style="position:absolute;top:-10px;left:-10px;width:40px;height:40px;background:#ff6b00;border-radius:50%;opacity:0.3"></div><div style="font-weight:900;color:#ff6b00">🎊 AJAYGARH FESTIVAL DHAMAKA 🎊</div><div style="font-size:11px;margin-top:4px">Aaj order karo, 1 Gift Free - Sirf Ajaygarh 488220 ke liye!</div><div id="festTimer" style="font-size:12px;font-weight:700;margin-top:6px;color:#00ff64">Offer khatam: 02:14:33 me</div></div>
+
+<!-- 6. UPI QR Popup on Buy Click (Auto) -->
+<div id="upiPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:100002;align-items:center;justify-content:center;font-family:sans-serif"><div style="background:#fff;width:280px;padding:20px;border-radius:16px;text-align:center"><div style="font-weight:800">UPI Se Pay Karo - 5% Extra Off</div><div style="width:120px;height:120px;background:#f0f0f0;margin:12px auto;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px">📱</div><div style="font-size:11px;color:#666">anil.yadav@upi • Screenshot WhatsApp karo</div><div style="display:flex;gap:8px;margin-top:12px"><div onclick="document.getElementById('upiPopup').style.display='none'" style="flex:1;background:#111;color:#fff;padding:10px;border-radius:8px;font-size:12px;cursor:pointer">COD Karunga</div><a href="https://wa.me/918770840326?text=UPI%20Payment%20ka%20screenshot%20bheja%20hai" style="flex:1;background:#25D366;color:#fff;padding:10px;border-radius:8px;font-size:12px;text-decoration:none;text-align:center">WhatsApp Pay</a></div></div></div>
+
+<!-- 7. Delivery Boy Tracking Animation -->
+<div style="margin:12px;background:#e8f5e9;border:1px solid #00c853;padding:12px;border-radius:12px;font-family:sans-serif;display:flex;align-items:center;gap:10px"><div style="font-size:24px">🛵</div><div><div style="font-weight:800;font-size:12px">Anil Bhaiya nikal pade hain delivery pe!</div><div style="font-size:11px;color:#666">Ajaygarh me 45 min me pahuchega • <span style="color:#00c853;font-weight:700">Live Tracking</span></div></div></div>
+
+<!-- 8. Voice Search Hint -->
+<div style="margin:12px;background:#fff3e8;padding:10px;border-radius:10px;font-family:sans-serif;font-size:11px;text-align:center;color:#ff6b00"><i class="fa-solid fa-microphone"></i> Bol ke search karo - "Ifazone ka kala shirt dikhao" 🎤</div>
+
+<!-- 9. Confetti Canvas -->
+<canvas id="confetti" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100003"></canvas>
+
+<!-- 10. Bottom Nav Pro -->
+<div style="position:fixed;bottom:0;left:0;width:100%;z-index:99994;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0 4px 0;font-family:sans-serif">
+  <div style="text-align:center;font-size:10px;color:#ff6b00"><div style="font-size:18px"><i class="fa-solid fa-house"></i></div>Home</div>
+  <div style="text-align:center;font-size:10px;color:#888" onclick="document.getElementById('aySearch').focus()"><div style="font-size:18px"><i class="fa-solid fa-magnifying-glass"></i></div>Search</div>
+  <div style="text-align:center;font-size:10px;color:#888" onclick="document.getElementById('spinBox').style.display='flex'"><div style="font-size:18px"><i class="fa-solid fa-gift"></i></div>Offer</div>
+  <div style="text-align:center;font-size:10px;color:#888"><div style="font-size:18px"><i class="fa-solid fa-user"></i></div>You</div>
+</div>
+<div style="height:60px"></div>
+
+<script>
+// Dark Mode
+function toggleDark(){let b=document.body; if(b.style.background=='black'){b.style.background='';b.style.color='';document.getElementById('darkToggle').innerHTML='<i class="fa-solid fa-moon"></i>';}else{b.style.background='black';b.style.color='white';document.getElementById('darkToggle').innerHTML='<i class="fa-solid fa-sun"></i>';}}
+function referNow(){let url=window.location.href; if(navigator.share){navigator.share({title:'Ay-Mart - Ajaygarh ka apna mart',text:'Mujhe Ay-Mart pe ₹100 ka coupon mila, tu bhi le!',url:url})}else{prompt('Link Copy Karo aur Dost ko bhejo:',url)}}
+// Festival Timer
+let ft=2*3600+14*60+33; setInterval(()=>{ft--; if(ft<0)ft=7200; let h=Math.floor(ft/3600),m=Math.floor((ft%3600)/60),s=ft%60; let el=document.getElementById('festTimer'); if(el) el.innerText='Offer khatam: '+(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s+' me';},1000);
+// Wishlist
+let wc=2; document.addEventListener('click',function(e){if(e.target.closest('button') && e.target.closest('button').innerText.includes('Buy')){wc++; let el=document.getElementById('wishCount'); if(el) el.innerText=wc; showConfetti();}});
+// UPI Popup on Buy
+document.addEventListener('click',function(e){if(e.target.innerText && e.target.innerText.includes('Buy Now')){setTimeout(()=>{let p=document.getElementById('upiPopup'); if(p) p.style.display='flex'},500)}});
+// Confetti
+function showConfetti(){let c=document.getElementById('confetti'); c.style.display='block'; let ctx=c.getContext('2d'); c.width=window.innerWidth; c.height=window.innerHeight; let pieces=[]; for(let i=0;i<100;i++){pieces.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*6+4,d:Math.random()*10+5,color:'hsl('+Math.random()*360+',100%,50%)'})} let anim=setInterval(()=>{ctx.clearRect(0,0,c.width,c.height); pieces.forEach(p=>{ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,p.r,p.r);p.y+=p.d; if(p.y>c.height)p.y=0;});},20); setTimeout(()=>{clearInterval(anim);c.style.display='none';},3000);}
+</script>
+<!-- ========== MEGA PACK END ========== -->  
 </body>
 </html>
