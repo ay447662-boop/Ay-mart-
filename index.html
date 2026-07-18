@@ -67,7 +67,9 @@
 </div>
 <script>
 let currentCat='all';
+let currentBrand='all';
 let currentSearch='';
+
 function applyFilter(){
   document.querySelectorAll('#products > div').forEach(p=>{
     let t=(p.innerText||'').toLowerCase();
@@ -81,14 +83,20 @@ function applyFilter(){
     else if(currentCat==='beauty' && /cream|oil|perfume|beauty|scent/.test(t)) showCat=true;
     else if(currentCat==='kids' && /kid|baby/.test(t)) showCat=true;
     else if(t.includes(currentCat)) showCat=true;
-    let showSearch=!currentSearch || t.includes(currentSearch);
-    p.style.display=(showCat && showSearch)?'':'none';
+
+    let showBrand = (currentBrand==='all') || t.includes(currentBrand.toLowerCase());
+    let showSearch = !currentSearch || t.includes(currentSearch);
+    p.style.display=(showCat && showBrand && showSearch)?'':'none';
   });
 }
 function filterCat(cat,btn){
   currentCat=cat;
   document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000';});
   btn.style.background='#000';btn.style.color='#fff';
+  applyFilter();
+}
+function setCat(cat){
+  currentBrand=cat.toLowerCase();
   applyFilter();
 }
 function flipkartSearch(val){
