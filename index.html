@@ -910,5 +910,107 @@ function getAiReply(q){
 }
 </script>
 <!-- ========== AI CHATBOT END ========== --> 
+  <div style="margin:16px 12px;background:linear-gradient(135deg,#ff6b00 0%,#ff3c00 100%);border-radius:20px;padding:18px;color:#fff;font-family:sans-serif;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(255,107,0,0.3)">
+  <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(255,255,255,0.15);border-radius:50%"></div>
+  <div style="position:absolute;bottom:-30px;left:-20px;width:80px;height:80px;background:rgba(0,0,0,0.1);border-radius:50%"></div>
+  
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2">
+    <div>
+      <div style="background:#fff;color:#ff6b00;display:inline-block;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900;letter-spacing:0.5px">🔥 MOST POPULAR</div>
+      <div style="font-size:22px;font-weight:900;margin-top:8px;line-height:1.1">Refer & Earn<br>₹100 Har Dost Pe</div>
+      <div style="font-size:12px;opacity:0.9;margin-top:6px;line-height:1.3">Dost order karega toh<br>tujhe ₹100, usko bhi ₹100</div>
+    </div>
+    <div style="background:rgba(0,0,0,0.2);width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px">💸</div>
+  </div>
+
+  <!-- Stats -->
+  <div style="background:rgba(0,0,0,0.2);border-radius:14px;padding:10px 14px;display:flex;justify-content:space-between;margin-top:14px;position:relative;z-index:2">
+    <div style="text-align:center"><div style="font-size:18px;font-weight:900" id="refCount">0</div><div style="font-size:10px;opacity:0.8">Referrals</div></div>
+    <div style="width:1px;background:rgba(255,255,255,0.2)"></div>
+    <div style="text-align:center"><div style="font-size:18px;font-weight:900" id="refEarn">₹0</div><div style="font-size:10px;opacity:0.8">Kamaya</div></div>
+    <div style="width:1px;background:rgba(255,255,255,0.2)"></div>
+    <div style="text-align:center"><div style="font-size:18px;font-weight:900">₹100</div><div style="font-size:10px;opacity:0.8">Per Refer</div></div>
+  </div>
+
+  <!-- Link Box -->
+  <div style="background:#fff;border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-top:12px;position:relative;z-index:2">
+    <div style="background:#fff3e8;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#ff6b00"><i class="fa-solid fa-link"></i></div>
+    <div style="flex:1;overflow:hidden"><div style="font-size:10px;color:#888">Tera Referral Link</div><div id="refLink" style="font-size:11px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">https://ay-mart-ajaygarh.com/?ref=2396277</div></div>
+    <button onclick="copyRef()" style="background:#111;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">COPY</button>
+  </div>
+
+  <!-- Buttons -->
+  <div style="display:flex;gap:8px;margin-top:12px;position:relative;z-index:2">
+    <button onclick="shareRefWA()" style="flex:1;background:#25D366;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer"><i class="fa-brands fa-whatsapp"></i> WhatsApp Share</button>
+    <button onclick="shareRefAll()" style="flex:1;background:#fff;color:#ff6b00;border:0;padding:12px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer">Share →</button>
+  </div>
+
+  <div style="font-size:10px;text-align:center;margin-top:10px;opacity:0.8;position:relative;z-index:2">Anil Yadav ID 2396277 • Asort Verified • Ajaygarh 488220</div>
+</div>
+
+<div id="refToast" style="display:none;position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:25px;font-size:12px;font-family:sans-serif;z-index:999999;box-shadow:0 5px 20px rgba(0,0,0,0.3)">Link Copy Ho Gaya! ✅</div>
+
+<script>
+// 51. Refer Logic
+(function(){
+  let base = window.location.origin + window.location.pathname;
+  let link = base + '?ref=2396277-Anil';
+  let el = document.getElementById('refLink');
+  if(el) el.innerText = link;
+
+  // Load stats from localStorage
+  let count = parseInt(localStorage.getItem('ay_ref_count') || '0');
+  let earn = count * 100;
+  let rc = document.getElementById('refCount');
+  let re = document.getElementById('refEarn');
+  if(rc) rc.innerText = count;
+  if(re) re.innerText = '₹' + earn;
+
+  // If someone came via referral
+  if(window.location.href.includes('ref=')){
+    let c = parseInt(localStorage.getItem('ay_ref_count') || '0');
+    // Only count once per device
+    if(!localStorage.getItem('ay_ref_counted')){
+      localStorage.setItem('ay_ref_count', c+1);
+      localStorage.setItem('ay_ref_counted','true');
+      setTimeout(()=>{ alert('🎉 Welcome! Anil Bhaiya ke referral se aaye ho - Aapko ₹100 ka discount mila! Code: REF100'); },2000);
+    }
+  }
+})();
+
+function copyRef(){
+  let link = document.getElementById('refLink').innerText;
+  navigator.clipboard.writeText(link).then(()=>{
+    showRefToast('Link Copy Ho Gaya! ✅');
+  });
+}
+
+function shareRefWA(){
+  let link = document.getElementById('refLink').innerText;
+  let text = '🔥 Bhai Ay-Mart se le raha hu - Ajaygarh ka sabse sasta mart! %0A%0AMujhe ₹100 mila, tujhe bhi milega! %0A%0A👉 Meri link se order kar: ' + encodeURIComponent(link) + '%0A%0A💵 COD Available 488220 | Anil Bhaiya ID 2396277';
+  window.open('https://wa.me/?text=' + text, '_blank');
+  // Fake increment for demo
+  let c = parseInt(localStorage.getItem('ay_ref_count') || '0'); localStorage.setItem('ay_ref_count', c+1);
+  document.getElementById('refCount').innerText = c+1;
+  document.getElementById('refEarn').innerText = '₹' + (c+1)*100;
+}
+
+function shareRefAll(){
+  let link = document.getElementById('refLink').innerText;
+  if(navigator.share){
+    navigator.share({title:'Ay-Mart Refer & Earn', text:'Ay-Mart se ₹100 kamao - Ajaygarh ka apna mart!', url: link});
+  } else {
+    copyRef();
+  }
+}
+
+function showRefToast(t){
+  let toast = document.getElementById('refToast');
+  toast.innerText = t;
+  toast.style.display='block';
+  setTimeout(()=>{toast.style.display='none'},2500);
+}
+</script>
+<!-- ========== 51. REFER & EARN END ========== -->
 </body>
 </html>
