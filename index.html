@@ -45,51 +45,52 @@
 <div onclick="openCart()" class="relative ml-2 cursor-pointer w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-1 -right-1 bg-[#F08804] text-black text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
 <button onclick="openMenu()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
-</div>
-<!-- ORIGINAL FLIPKART SEARCH BAR - WITH VOICE + SUGGESTION -->
+  <!-- ORIGINAL FLIPKART SEARCH BAR - FRONT -->
 <div class="bg-white sticky top-[52px] z-[90] p-2.5 shadow-sm border-b">
   <div class="relative">
     <div class="flex items-center gap-2 bg-[#F0F5FF] border border-[#c7d7ff] rounded-lg px-3">
       <span class="text-gray-500">🔍</span>
-      <input id="fkSearch" type="text" oninput="flipkartSearch(this.value);showSugg(this.value)" onfocus="showSugg(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text- text-black">
+      <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-sm text-black">
       <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
-      <button id="fkVoice" onclick="startVoice()" class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center">🎙️</button>
+      <button onclick="startVoice()" class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center">🎙️</button>
     </div>
-    <div id="fkSugg" class="hidden absolute left-0 right-0 top-[50px] bg-white rounded-xl shadow-xl border z-[100] max-h-[300px] overflow-auto"></div>
   </div>
 </div>
-<!-- FINAL PRO CATEGORY + SECRET DP LOCK - CLEAN CODE -->
-<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:2px;z-index:99;border-bottom:2px solid #eee;scrollbar-width:none">
-<button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;font-weight:700;border:1px solid #000">🔥 All</button>
-<button onclick="filterCat('men',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👕 Men</button>
-<button onclick="filterCat('women',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👗 Women</button>
-<button onclick="filterCat('saree',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">🥻 Saree</button>
-<button onclick="filterCat('shoes',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👟 Shoes</button>
-<button onclick="filterCat('watch',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">⌚ Watch</button>
-<button onclick="filterCat('beauty',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">💄 Beauty</button>
-<button onclick="filterCat('kids',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">🧒 Kids</button>
+
+<!-- FINAL PRO CATEGORY -->
+<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:104px;z-index:80;">
+<button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;">🔥 All</button>
+<button onclick="filterCat('men',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">👔 Men</button>
+<button onclick="filterCat('women',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">👗 Women</button>
+<button onclick="filterCat('saree',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">🥻 Saree</button>
+<button onclick="filterCat('shoes',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">👟 Shoes</button>
+<button onclick="filterCat('watch',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">⌚ Watch</button>
+<button onclick="filterCat('beauty',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">💄 Beauty</button>
+<button onclick="filterCat('kids',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;">🧒 Kids</button>
 </div>
+
 <script>
 let currentCat='all';
 let currentBrand='all';
 let currentSearch='';
 
 function applyFilter(){
-  document.querySelectorAll('#products > div').forEach(p=>{
+  let products=document.querySelectorAll('#products > div');
+  products.forEach(p=>{
     let t=(p.innerText||'').toLowerCase();
     let showCat=false;
     if(currentCat==='all') showCat=true;
     else if(currentCat==='men' && /men|shirt|jeans|t-shirt|kurta/.test(t)) showCat=true;
     else if(currentCat==='women' && /women|kurti|dress|lehenga/.test(t)) showCat=true;
     else if(currentCat==='saree' && t.includes('saree')) showCat=true;
-    else if(currentCat==='shoes' && /shoe|sneaker|juta|nike/.test(t)) showCat=true;
+    else if(currentCat==='shoes' && /shoe|sneaker|nike/.test(t)) showCat=true;
     else if(currentCat==='watch' && t.includes('watch')) showCat=true;
     else if(currentCat==='beauty' && /cream|oil|perfume|beauty|scent/.test(t)) showCat=true;
     else if(currentCat==='kids' && /kid|baby/.test(t)) showCat=true;
     else if(t.includes(currentCat)) showCat=true;
 
-    let showBrand = (currentBrand==='all') || t.includes(currentBrand.toLowerCase());
-    let showSearch = !currentSearch || t.includes(currentSearch);
+    let showBrand=(currentBrand==='all') || t.includes(currentBrand);
+    let showSearch=!currentSearch || t.includes(currentSearch);
     p.style.display=(showCat && showBrand && showSearch)?'':'none';
   });
 }
@@ -100,6 +101,32 @@ function filterCat(cat,btn){
   applyFilter();
 }
 function setCat(cat){
+  currentBrand=cat.toLowerCase();
+  applyFilter();
+}
+function flipkartSearch(val){
+  currentSearch=val.toLowerCase();
+  let b=document.getElementById('fkClear');
+  if(b) b.classList.toggle('hidden',!currentSearch);
+  applyFilter();
+}
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
+}
+function startVoice(){
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ alert('Voice not supported'); return; }
+  let r=new SR();
+  r.lang='en-IN';
+  r.onresult=function(e){
+    let txt=e.results[0][0].transcript;
+    document.getElementById('fkSearch').value=txt;
+    flipkartSearch(txt);
+  };
+  r.start();
+}
+</script>
   currentBrand=cat.toLowerCase();
   applyFilter();
 }
