@@ -28,13 +28,15 @@
 #products button:nth-of-type(2){display:none!important}
 #products>div{padding-bottom:12px!important}  
 </style><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- AY MART SEARCH BAR - FRONT ME DIKHEGA -->
-<div class="bg-white sticky top-[56px] z-30 p-2.5 shadow-sm">
+  <!-- SEARCH BAR START --->
+<div class="bg-white sticky top-0 z-40 p-2.5 shadow">
   <div class="relative max-w-3xl mx-auto">
-    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[16px]">🔍</span>
-    <input id="aySearch" type="text" oninput="searchAyMart(this.value)" placeholder="Ay Mart me search karo - atta, dal, milk..." class="w-full h-11 pl-10 pr-10 rounded-full border border-gray-300 bg-[#F0F2] focus:bg-white focus:border-[#131921] outline-none text-[14px]">
-    <button id="clearSearch" onclick="clearAySearch()" class="hidden absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-gray-200 rounded-full text-[12px]">✕</button>
+    <span class="absolute left-3 top-1/2 -translate-y-1/2">🔍</span>
+    <input id="aySearch" oninput="searchAyMart(this.value)" placeholder="Ay Mart me search karo..." class="w-full h-11 pl-10 pr-10 rounded-full border border-gray-300 bg-[#EAED] outline-none text-[14px]">
+    <button id="clearSearch" onclick="clearAySearch()" class="hidden absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-gray-200 rounded-full">✕</button>
   </div>
+</div>
+<!-- SEARCH BAR END -->
 </div>
 <title>ANIL YADAV - ASORT OFFICIAL | Ajaygarh 488220 | All Options Active</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -83,7 +85,18 @@ function filterCat(cat,btn){
   else if(cat==='kids' && /kid|baby/.test(t)) show=true;
   p.style.display=show?'':'none';
  });
+function searchAyMart(val){
+  let q = val.toLowerCase();
+  document.getElementById('clearSearch').classList.toggle('hidden',!q);
+  document.querySelectorAll('#products > div').forEach(p=>{
+    let t = (p.innerText||'').toLowerCase();
+    p.style.display = t.includes(q)? '' : 'none';
+  });
 }
+function clearAySearch(){
+  document.getElementById('aySearch').value='';
+  searchAyMart('');
+}}
 </script>
 <!-- 🔥 ANIL PREMIUM PROFILE - AMAZING EDITION -->
 <div class="bg-white m-3 p-3.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-3.5 relative overflow-hidden">
