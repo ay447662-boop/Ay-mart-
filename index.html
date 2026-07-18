@@ -28,8 +28,6 @@
 #products button:nth-of-type(2){display:none!important}
 #products>div{padding-bottom:12px!important}  
 </style><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-
-
 </div>
 <title>ANIL YADAV - ASORT OFFICIAL | Ajaygarh 488220 | All Options Active</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -48,7 +46,19 @@
 <div onclick="openCart()" class="relative ml-2 cursor-pointer w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-1 -right-1 bg-[#F08804] text-black text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
 <button onclick="openMenu()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
-}
+</div>
+<!-- FLIPKART SEARCH BAR - YAHI SE SEARCH AAYEGA -->
+<div class="bg-white sticky top-[52px] z-40 p-2.5 shadow-sm border-b">
+  <div class="flex items-center gap-2 bg-[#F0F5FF] border border-[#c7d7ff] rounded-lg px-3">
+    <span class="text-gray-500">🔍</span>
+    <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-[14px] text-black">
+    <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
+  </div>
+</div>
+<script>
+let currentCat='all';
+let currentSearch='';
+
 function applyFilter(){
   document.querySelectorAll('#products > div').forEach(p=>{
     let t=(p.innerText||'').toLowerCase();
@@ -61,19 +71,31 @@ function applyFilter(){
     else if(currentCat==='watch' && t.includes('watch')) showCat=true;
     else if(currentCat==='beauty' && /cream|oil|perfume|beauty/.test(t)) showCat=true;
     else if(currentCat==='kids' && /kid|baby/.test(t)) showCat=true;
-    let showSearch = !currentSearch || t.includes(currentSearch);
+    let showSearch =!currentSearch || t.includes(currentSearch);
     p.style.display=(showCat && showSearch)?'':'none';
   });
 }
-  let q=val.toLowerCase();
-  let btn=document.getElementById('fkClear');
-  if(btn) btn.classList.toggle('hidden',!q);
-  document.querySelectorAll('[onclick*="openProduct"]').forEach(p=>{
-    let t=(p.innerText||'').toLowerCase();
-    p.style.display=t.includes(q)?'':'none';
-  });
+function filterCat(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000';});
+  btn.style.background='#000';btn.style.color='#fff';
+  applyFilter();
 }
+function flipkartSearch(val){
+  currentSearch=val.toLowerCase();
+  let b=document.getElementById('fkClear');
+  if(b) b.classList.toggle('hidden',!currentSearch);
+  applyFilter();
+}
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
+}
+</script>
+
 <div class="flex-1 min-w-0">
+
+
 <div class="flex items-center gap-1.5"><div class="text-[14px] font-extrabold tracking-tight text-gray-900">Anil Yadav</div><span class="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">PRO</span></div>
 <div class="text-[11px] font-medium text-gray-500 -mt-0.5">Owner • Ay-Mart • Verified Store</div>
 <div class="flex items-center gap-1.5 mt-1"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span><span class="text-[10.5px] font-semibold text-green-600">Online • Active Now • Fast Reply</span></div>
