@@ -55,11 +55,10 @@
     <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-[14px] text-black">
     <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
   </div>
-</div>
 <div onclick="openCart()" class="relative ml-2 cursor-pointer"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-2 -right-2 bg-[#F08804] text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
 </div>
-<!-- FINAL PRO CATEGORY + SECRET DP LOCK - CLEAN CODE -->
-<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:2px;z-index:99;border-bottom:2px solid #eee;scrollbar-width:none">
+<!-- FINAL PRO CATEGORY + SECRET DP LOCK -->
+<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:104px;z-index:39;border-bottom:2px solid #eee;scrollbar-width:none">
 <button onclick="filterCat('all',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#000;color:#fff;font-weight:700;border:1px solid #000">🔥 All</button>
 <button onclick="filterCat('men',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👕 Men</button>
 <button onclick="filterCat('women',this)" style="white-space:nowrap;padding:8px 16px;border-radius:20px;background:#fff;font-weight:700;border:1.5px solid #ddd">👗 Women</button>
