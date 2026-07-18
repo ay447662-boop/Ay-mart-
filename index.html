@@ -1567,6 +1567,570 @@ document.addEventListener('click', function(e){
 });
 </script>
 <!-- ========== 58. EMI END ========== --
+ <div style="margin:14px 12px;background:#fff;border-radius:16px;overflow:hidden;font-family:sans-serif;border:1px solid #eee;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+  <div style="background:#111;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center">
+    <div style="font-weight:900;font-size:14px">📸 How To Style - Ifazone</div>
+    <div style="background:#ff6b00;color:#fff;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:900">ANIL'S PICK</div>
+  </div>
+  
+  <div style="display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px" id="styleScroll">
+    <div style="min-width:200px;scroll-snap-align:start;margin-right:10px;background:#f9f9f9;border-radius:12px;padding:10px;text-align:center;border:1px solid #eee">
+      <div style="width:100%;height:120px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff">👕<br>👖</div>
+      <div style="font-weight:800;font-size:12px;margin-top:8px">College Look</div><div style="font-size:10px;color:#666;margin-top:2px">Ifazone Shirt + Black Jeans + Huffman Sneakers</div><div style="background:#111;color:#fff;display:inline-block;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;margin-top:6px">₹499 + ₹1299</div>
+    </div>
+    <div style="min-width:200px;scroll-snap-align:start;margin-right:10px;background:#f9f9f9;border-radius:12px;padding:10px;text-align:center;border:1px solid #eee">
+      <div style="width:100%;height:120px;background:linear-gradient(135deg,#ff6b6b,#feca57);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff">👕<br>⌚</div>
+      <div style="font-weight:800;font-size:12px;margin-top:8px">Office Look</div><div style="font-size:10px;color:#666;margin-top:2px">Ifazone Shirt + Formal Pant + Solasta Watch</div><div style="background:#111;color:#fff;display:inline-block;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;margin-top:6px">₹499 + ₹899</div>
+    </div>
+    <div style="min-width:200px;scroll-snap-align:start;margin-right:10px;background:#f9f9f9;border-radius:12px;padding:10px;text-align:center;border:1px solid #eee">
+      <div style="width:100%;height:120px;background:linear-gradient(135deg,#00b894,#00cec9);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff">👕<br>🕶️</div>
+      <div style="font-weight:800;font-size:12px;margin-top:8px">Party Look</div><div style="font-size:10px;color:#666;margin-top:2px">Ifazone Shirt Open + Tee + Chain + Sneakers</div><div style="background:#ff6b00;color:#fff;display:inline-block;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:900;margin-top:6px">MOST LIKED 🔥</div>
+    </div>
+  </div>
+
+  <div style="background:#fff8f0;padding:10px 14px;display:flex;gap:8px;align-items:center;border-top:1px solid #ffe0b2">
+    <div style="width:32px;height:32px;background:#111;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0">A</div>
+    <div style="flex:1"><div style="font-size:11px;font-weight:800">Anil Yadav ka Style Tip 💡</div><div style="font-size:10px;color:#666">Ajaygarh me ladke isko sleeves fold karke pehente hain, zyada stylish lagta hai. Mera ID 2396277 wala look hai!</div></div>
+  </div>
+
+  <div style="display:flex;gap:8px;padding:10px 14px"><button onclick="openStyle('college')" style="flex:1;background:#111;color:#fff;border:0;padding:8px;border-radius:8px;font-size:11px;font-weight:700">College Video ▶️</button><button onclick="openStyle('office')" style="flex:1;background:#fff;border:1px solid #111;color:#111;padding:8px;border-radius:8px;font-size:11px;font-weight:700">Shop Full Look →</button></div>
+</div>
+
+<script>
+function openStyle(type){
+  let msg = type=='college' ? 'College Look Video: Ifazone Shirt styling - Ajaygarh' : 'Full Look Order: Ifazone Shirt + Huffman Shoes - ₹1798 - Ajaygarh Mart';
+  alert('📸 ' + msg + '\n\nAnil Bhaiya ka style - ID 2396277\nInstagram pe DM karo @_anilyadav________ pe full video ke liye!');
+  window.open('https://wa.me/918770840326?text='+encodeURIComponent(msg),'_blank');
+}
+
+// Swipe hint
+setTimeout(()=>{
+  let el=document.getElementById('styleScroll');
+  if(el){ el.scrollLeft=60; setTimeout(()=>{el.scrollLeft=0;},600); }
+},2000);
+</script>
+<!-- ========== 60. STYLE GUIDE END ========== --> 
+  <!-- ========== 61. WISHLIST WITH SHARE ========== -->
+<div style="margin:12px;background:#fff;border:1px solid #eee;border-radius:16px;padding:14px;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900;font-size:14px">❤️ Meri Wishlist (<span id="wishPageCount">0</span>)</div><div style="font-size:11px;color:#ff6b00;font-weight:700" onclick="clearWish()" style="cursor:pointer">Clear All</div></div>
+  <div id="wishListBox" style="margin-top:10px"><div style="text-align:center;padding:20px;color:#888;font-size:12px">Dil ❤️ dabao, wishlist me jodo<br>Ajaygarh ke ladke yahi karte hain!</div></div>
+  <div id="wishShareBox" style="display:none;margin-top:12px;background:#25D366;color:#fff;padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:800;font-size:12px">Girlfriend ko bhejo? 😉</div><div style="font-size:10px;opacity:0.9">Bolo - Ye dila do!</div></div><button onclick="shareWish()" style="background:#fff;color:#25D366;border:0;padding:8px 14px;border-radius:20px;font-weight:900;font-size:11px">Share →</button></div>
+</div>
+
+<script>
+let wishItems = JSON.parse(localStorage.getItem('ay_wish_full')||'[]');
+
+function renderWish(){
+  let box=document.getElementById('wishListBox');
+  let countEl=document.getElementById('wishPageCount');
+  let shareBox=document.getElementById('wishShareBox');
+  countEl.innerText=wishItems.length;
+  if(wishItems.length==0){box.innerHTML='<div style="text-align:center;padding:20px;color:#888;font-size:12px">Dil ❤️ dabao, wishlist me jodo<br>Ajaygarh ke ladke yahi karte hain!</div>';shareBox.style.display='none';return;}
+  shareBox.style.display='flex';
+  box.innerHTML='';
+  wishItems.forEach((item,i)=>{
+    let div=document.createElement('div');
+    div.style.cssText='display:flex;align-items:center;gap:10px;background:#f9f9f9;padding:8px;border-radius:10px;margin-bottom:8px';
+    div.innerHTML='<div style="width:40px;height:40px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px">'+(item.emoji||'👕')+'</div><div style="flex:1"><div style="font-weight:800;font-size:12px">'+item.name+'</div><div style="font-size:11px;color:#ff6b00;font-weight:800">₹'+item.price+'</div></div><div style="display:flex;gap:6px"><span onclick="buyWish('+i+')" style="background:#ff6b00;color:#fff;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:800;cursor:pointer">BUY</span><span onclick="removeWish('+i+')" style="background:#eee;padding:6px 8px;border-radius:6px;font-size:10px;cursor:pointer">✕</span></div>';
+    box.appendChild(div);
+  });
+}
+
+function removeWish(i){wishItems.splice(i,1);localStorage.setItem('ay_wish_full',JSON.stringify(wishItems));renderWish();updateWishCount();}
+function clearWish(){if(confirm('Saari wishlist delete?')){wishItems=[];localStorage.setItem('ay_wish_full','[]');renderWish();updateWishCount();}}
+function buyWish(i){alert('Cart me add hua: '+wishItems[i].name);localStorage.setItem('ay_cart_total', wishItems[i].price);}
+function shareWish(){let text='Meri Wishlist Ay-Mart se (Anil Bhaiya ID 2396277):\n\n'+wishItems.map(w=>'- '+w.name+' ₹'+w.price).join('\n')+'\n\nMujhe ye dila do! Ajaygarh 488220';window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');}
+function updateWishCount(){let el=document.getElementById('wishCount');if(el)el.innerText=wishItems.length;}
+
+// Global add function
+window.addToWishFull = function(name, price, emoji){
+  if(wishItems.find(w=>w.name==name)){alert('Pehle se hai!');return;}
+  wishItems.push({name:name, price:price, emoji:emoji||'👕'});
+  localStorage.setItem('ay_wish_full',JSON.stringify(wishItems));
+  renderWish();updateWishCount();
+  let t=document.createElement('div');t.style.cssText='position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#e91e63;color:#fff;padding:10px 16px;border-radius:20px;font-size:12px;z-index:99999';t.innerText='❤️ Wishlist me add: '+name;document.body.appendChild(t);setTimeout(()=>t.remove(),2000);
+}
+
+// Auto hook
+setTimeout(()=>{
+  document.querySelectorAll('div').forEach(d=>{
+    if(d.innerText && d.innerText.includes('Ifazone') && d.innerText.includes('₹') && d.innerText.length<200){
+      if(!d.querySelector('.wishAddBtn')){
+        let b=document.createElement('span');b.className='wishAddBtn';b.style.cssText='background:#fff;border:1px solid #e91e63;color:#e91e63;padding:4px 8px;border-radius:6px;font-size:10px;margin-left:6px;cursor:pointer';b.innerText='❤️';b.onclick=(e)=>{e.stopPropagation();let m=d.innerText.match(/₹\s*(\d+)/);let price=m?m[1]:'499';let name=d.innerText.substring(0,25);window.addToWishFull(name,price,'👕');};
+        d.appendChild(b);
+      }
+    }
+  });
+  renderWish();
+},1500);
+</script>
+<!-- ========== 61 END ========== -->
+  <!-- ========== 62. COMPARE PRODUCTS ========== -->
+<div id="compareFloat" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:30px;font-family:sans-serif;z-index:9999;display:flex;align-items:center;gap:10px;box-shadow:0 5px 20px rgba(0,0,0,0.3)"><span style="font-size:12px;font-weight:800"><span id="compNum">0</span>/3 Compare</span><button onclick="openCompare()" style="background:#ff6b00;color:#fff;border:0;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900">VIEW →</button></div>
+
+<div id="compareModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:100010;align-items:center;justify-content:center;font-family:sans-serif;padding:12px">
+  <div style="background:#fff;width:100%;max-width:380px;border-radius:16px;padding:14px;max-height:90vh;overflow:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900">⚖️ Compare - Best Kaunsa?</div><span onclick="document.getElementById('compareModal').style.display='none'" style="background:#eee;padding:4px 8px;border-radius:6px;font-size:12px;cursor:pointer">✕</span></div>
+    <div id="compareTable" style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"></div>
+    <div style="margin-top:12px;background:#fff3e0;padding:10px;border-radius:10px"><div style="font-size:11px;font-weight:800">💡 Anil Bhaiya Recommend: <span id="recProd" style="color:#ff6b00">Ifazone Shirt</span></div><div style="font-size:10px;color:#666">Ajaygarh me sabse zyada yahi bikta hai, quality best hai!</div></div>
+    <button onclick="clearCompare()" style="width:100%;background:#111;color:#fff;border:0;padding:10px;border-radius:8px;font-weight:800;margin-top:10px;font-size:12px">Clear & Shop Best →</button>
+  </div>
+</div>
+
+<script>
+let compItems = JSON.parse(localStorage.getItem('ay_compare')||'[]');
+
+function updateCompUI(){
+  let floatEl=document.getElementById('compareFloat');
+  document.getElementById('compNum').innerText=compItems.length;
+  floatEl.style.display=compItems.length>0?'flex':'none';
+  localStorage.setItem('ay_compare',JSON.stringify(compItems));
+}
+
+function addCompare(name, price, emoji){
+  if(compItems.find(c=>c.name==name)){alert('Already added!');return;}
+  if(compItems.length>=3){alert('Sirf 3 tak compare kar sakte ho!');return;}
+  compItems.push({name:name, price:price, emoji:emoji||'👕'});
+  updateCompUI();
+  let t=document.createElement('div');t.style.cssText='position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:8px 14px;border-radius:20px;font-size:11px;z-index:99999';t.innerText='⚖️ Compare me add: '+name;document.body.appendChild(t);setTimeout(()=>t.remove(),2000);
+}
+
+function openCompare(){
+  let table=document.getElementById('compareTable');
+  table.innerHTML='';
+  compItems.forEach((item)=>{
+    let div=document.createElement('div');
+    div.style.cssText='background:#f9f9f9;border-radius:10px;padding:8px;text-align:center;border:1px solid #eee';
+    div.innerHTML='<div style="font-size:28px">'+item.emoji+'</div><div style="font-weight:800;font-size:11px;margin-top:6px">'+item.name.substring(0,20)+'</div><div style="color:#ff6b00;font-weight:900;font-size:12px;margin-top:4px">₹'+item.price+'</div><div style="font-size:9px;color:#00c853;margin-top:4px">✓ In Stock<br>✓ COD<br>✓ 7 Day Return</div><button style="background:#ff6b00;color:#fff;border:0;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:800;margin-top:6px;width:100%">BUY</button>';
+    table.appendChild(div);
+  });
+  if(compItems.length>0){document.getElementById('recProd').innerText=compItems[0].name.substring(0,20);}
+  document.getElementById('compareModal').style.display='flex';
+}
+
+function clearCompare(){compItems=[];updateCompUI();document.getElementById('compareModal').style.display='none';}
+
+// Auto add compare buttons
+setTimeout(()=>{
+  document.querySelectorAll('div').forEach(d=>{
+    if(d.innerText && d.innerText.includes('₹') && d.innerText.length<250 && (d.innerText.includes('Ifazone')||d.innerText.includes('Huffman')||d.innerText.includes('Solasta'))){
+      if(!d.querySelector('.compBtn')){
+        let b=document.createElement('span');b.className='compBtn';b.style.cssText='background:#111;color:#fff;padding:4px 8px;border-radius:6px;font-size:9px;margin-left:4px;cursor:pointer';b.innerText='⚖️';b.onclick=(e)=>{e.stopPropagation();let m=d.innerText.match(/₹\s*(\d+)/);let price=m?m[1]:'499';let name=d.innerText.substring(0,20);addCompare(name,price,'👕');};
+        d.appendChild(b);
+      }
+    }
+  });
+  updateCompUI();
+},2000);
+</script>
+<!-- ========== 62 END ========== -->
+  <!-- ========== 63. RECENTLY VIEWED ========== -->
+<div id="recentWrap" style="display:none;margin:12px;background:#fff;border:1px solid #eee;border-radius:16px;padding:14px;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+  <div style="font-weight:900;font-size:13px">👀 Aapne Abhi Dekha Tha</div>
+  <div id="recentList" style="display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:4px"></div>
+</div>
+
+<script>
+let recent = JSON.parse(localStorage.getItem('ay_recent')||'[]');
+
+function addRecent(name, price, emoji){
+  recent = recent.filter(r=>r.name!=name);
+  recent.unshift({name:name, price:price, emoji:emoji||'👕', time:Date.now()});
+  if(recent.length>8) recent = recent.slice(0,8);
+  localStorage.setItem('ay_recent', JSON.stringify(recent));
+  renderRecent();
+}
+
+function renderRecent(){
+  let wrap=document.getElementById('recentWrap');
+  let list=document.getElementById('recentList');
+  if(recent.length==0){wrap.style.display='none';return;}
+  wrap.style.display='block';
+  list.innerHTML='';
+  recent.forEach(item=>{
+    let div=document.createElement('div');
+    div.style.cssText='min-width:90px;background:#f9f9f9;border-radius:10px;padding:8px;text-align:center;border:1px solid #eee;cursor:pointer;flex-shrink:0';
+    div.innerHTML='<div style="font-size:24px">'+item.emoji+'</div><div style="font-size:10px;font-weight:700;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+item.name.substring(0,15)+'</div><div style="font-size:11px;color:#ff6b00;font-weight:800">₹'+item.price+'</div>';
+    div.onclick=()=>{alert('Open: '+item.name);};
+    list.appendChild(div);
+  });
+}
+
+// Auto track
+document.addEventListener('click', function(e){
+  let card = e.target.closest('div');
+  if(card && card.innerText && card.innerText.includes('₹') && card.innerText.length<300){
+    let m=card.innerText.match(/₹\s*(\d+)/);
+    if(m && (card.innerText.includes('Ifazone')||card.innerText.includes('Huffman')||card.innerText.includes('Solasta')||card.innerText.includes('Shirt'))){
+      let price=m[1];
+      let name=card.innerText.substring(0,20);
+      addRecent(name, price, '👕');
+    }
+  }
+});
+
+renderRecent();
+</script>
+<!-- ========== 63 END ========== -->
+  <!-- ========== 64. QUICK VIEW PRO ========== -->
+<div id="qvModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:100011;align-items:center;justify-content:center;font-family:sans-serif;padding:12px">
+  <div style="background:#fff;width:100%;max-width:360px;border-radius:20px;overflow:hidden;max-height:90vh;overflow:auto">
+    <div style="position:relative;background:#f5f5f5;height:220px;display:flex;align-items:center;justify-content:center;font-size:80px" id="qvImage">👕<span style="position:absolute;top:10px;right:10px;background:#fff;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer" onclick="document.getElementById('qvModal').style.display='none'">✕</span><span style="position:absolute;top:10px;left:10px;background:#ff6b00;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900">50% OFF</span></div>
+    <div style="padding:14px">
+      <div style="font-weight:900;font-size:16px" id="qvName">Ifazone Premium Shirt</div>
+      <div style="font-size:12px;color:#666;margin-top:2px">Anil Bhaiya ID 2396277 • Asort Verified • Ajaygarh</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:8px"><span style="font-weight:900;font-size:20px;color:#111" id="qvPrice">₹499</span><span style="font-size:13px;color:#888"><s id="qvOld">₹999</s></span><span style="background:#e8f5e9;color:#00c853;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:800">SAVE 50%</span></div>
+      <div style="display:flex;gap:6px;margin-top:10px"><span style="background:#111;color:#fff;padding:6px 12px;border-radius:20px;font-size:10px">S</span><span style="border:1px solid #ddd;padding:6px 12px;border-radius:20px;font-size:10px">M</span><span style="border:1px solid #ddd;padding:6px 12px;border-radius:20px;font-size:10px">L</span><span style="border:1px solid #ddd;padding:6px 12px;border-radius:20px;font-size:10px">XL</span><span style="font-size:10px;color:#666;margin-left:6px">Size Chart</span></div>
+      <div style="display:flex;gap:8px;margin-top:14px"><button style="flex:1;background:#fff;border:1px solid #111;color:#111;padding:12px;border-radius:10px;font-weight:800;font-size:12px" onclick="addWishQV()">❤️ Wishlist</button><button style="flex:2;background:#ff6b00;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:900;font-size:12px" onclick="buyQV()">🛒 ADD TO CART →</button></div>
+      <div style="display:flex;justify-content:space-around;margin-top:12px;text-align:center;border-top:1px solid #eee;padding-top:10px"><div><div style="font-size:14px">🚚</div><div style="font-size:9px;color:#666">Free Delivery<br>488220</div></div><div><div style="font-size:14px">↩️</div><div style="font-size:9px;color:#666">7 Day<br>Return</div></div><div><div style="font-size:14px">💳</div><div style="font-size:9px;color:#666">COD<br>Available</div></div><div><div style="font-size:14px">⭐</div><div style="font-size:9px;color:#666">4.8 Rating<br>124 Reviews</div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openQV(name, price, oldPrice, emoji){
+  document.getElementById('qvName').innerText=name;
+  document.getElementById('qvPrice').innerText='₹'+price;
+  document.getElementById('qvOld').innerText='₹'+(oldPrice||'999');
+  document.getElementById('qvImage').innerHTML=emoji+'<span style="position:absolute;top:10px;right:10px;background:#fff;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer" onclick="document.getElementById(\'qvModal\').style.display=\'none\'">✕</span><span style="position:absolute;top:10px;left:10px;background:#ff6b00;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900">50% OFF</span>';
+  document.getElementById('qvModal').style.display='flex';
+  // Add to recent
+  if(typeof addRecent === 'function') addRecent(name, price, emoji);
+}
+
+function buyQV(){
+  let name=document.getElementById('qvName').innerText;
+  let price=document.getElementById('qvPrice').innerText.replace('₹','');
+  localStorage.setItem('ay_cart_total', price);
+  alert('✅ Cart me add hua: '+name+' - ₹'+price);
+  document.getElementById('qvModal').style.display='none';
+  if(typeof updateFreeBar === 'function') updateFreeBar();
+}
+
+function addWishQV(){
+  let name=document.getElementById('qvName').innerText;
+  if(typeof window.addToWishFull === 'function') window.addToWishFull(name, document.getElementById('qvPrice').innerText.replace('₹',''), '👕');
+  else alert('Wishlist me add hua: '+name);
+}
+
+// Auto inject Quick View buttons
+setTimeout(()=>{
+  document.querySelectorAll('div').forEach(d=>{
+    if(d.innerText && d.innerText.includes('₹') && d.innerText.length<250 && (d.innerText.includes('Ifazone')||d.innerText.includes('Huffman')||d.innerText.includes('Solasta')||d.innerText.includes('Shirt'))){
+      if(!d.querySelector('.qvBtn64')){
+        let btn=document.createElement('div');btn.className='qvBtn64';btn.style.cssText='margin-top:6px;display:inline-block;background:#111;color:#fff;padding:5px 12px;border-radius:20px;font-size:10px;font-weight:700;cursor:pointer';btn.innerText='👁️ Quick View';
+        let priceMatch=d.innerText.match(/₹\s*(\d+)/);
+        let price=priceMatch?priceMatch[1]:'499';
+        let name=d.innerText.substring(0,22).replace(/'/g,'');
+        btn.onclick=(e)=>{e.stopPropagation();openQV(name, price, '999', '👕');};
+        d.appendChild(btn);
+      }
+    }
+  });
+},2000);
+</script>
+<!-- ========== 64 END ========== -->
+  <!-- ========== 65. SIZE CHART ========== -->
+<div id="sizeChartBtn" style="display:inline-block;margin:8px 12px;background:#fff;border:1px dashed #111;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;font-family:sans-serif;cursor:pointer" onclick="openSize()">📏 Size Chart - Sahi Size Kaise Le?</div>
+
+<div id="sizeModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:100012;align-items:center;justify-content:center;font-family:sans-serif;padding:12px">
+  <div style="background:#fff;width:100%;max-width:360px;border-radius:16px;overflow:hidden">
+    <div style="background:#111;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900">📏 Ifazone Size Chart</div><span onclick="document.getElementById('sizeModal').style.display='none'" style="background:#333;padding:4px 8px;border-radius:6px;cursor:pointer">✕</span></div>
+    <div style="padding:14px">
+      <div style="display:flex;gap:6px;margin-bottom:12px"><button style="flex:1;background:#111;color:#fff;border:0;padding:8px;border-radius:8px;font-size:11px;font-weight:800">Shirt</button><button style="flex:1;background:#f5f5f5;border:1px solid #eee;padding:8px;border-radius:8px;font-size:11px">T-Shirt</button><button style="flex:1;background:#f5f5f5;border:1px solid #eee;padding:8px;border-radius:8px;font-size:11px">Jeans</button></div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px"><tr style="background:#f9f9f9;font-weight:800"><td style="padding:8px;border:1px solid #eee">Size</td><td style="padding:8px;border:1px solid #eee">Chest</td><td style="padding:8px;border:1px solid #eee">Length</td><td style="padding:8px;border:1px solid #eee">Fit</td></tr><tr><td style="padding:8px;border:1px solid #eee;font-weight:800">S</td><td style="padding:8px;border:1px solid #eee">38"</td><td style="padding:8px;border:1px solid #eee">27"</td><td style="padding:8px;border:1px solid #eee">Slim</td></tr><tr style="background:#fff8f0"><td style="padding:8px;border:1px solid #eee;font-weight:800">M <span style="background:#00c853;color:#fff;padding:1px 4px;border-radius:4px;font-size:8px">MOST SOLD</span></td><td style="padding:8px;border:1px solid #eee">40"</td><td style="padding:8px;border:1px solid #eee">28"</td><td style="padding:8px;border:1px solid #eee">Regular</td></tr><tr><td style="padding:8px;border:1px solid #eee;font-weight:800">L</td><td style="padding:8px;border:1px solid #eee">42"</td><td style="padding:8px;border:1px solid #eee">29"</td><td style="padding:8px;border:1px solid #eee">Regular</td></tr><tr><td style="padding:8px;border:1px solid #eee;font-weight:800">XL</td><td style="padding:8px;border:1px solid #eee">44"</td><td style="padding:8px;border:1px solid #eee">30"</td><td style="padding:8px;border:1px solid #eee">Loose</td></tr></table>
+      <div style="background:#e8f5e9;padding:10px;border-radius:10px;margin-top:12px"><div style="font-size:11px;font-weight:800;color:#00c853">💡 Anil Bhaiya Tip:</div><div style="font-size:10px;color:#333;margin-top:4px">Ajaygarh ke ladko ke liye M size best hai. Agar height 5'8" se zyada hai toh L lo. Confused ho toh WhatsApp karo - main napa bata dunga! ID 2396277</div></div>
+      <div style="display:flex;gap:8px;margin-top:12px"><button onclick="document.getElementById('sizeModal').style.display='none'" style="flex:1;background:#111;color:#fff;border:0;padding:10px;border-radius:8px;font-weight:800;font-size:11px">Samajh Gaya M Loonga →</button><button onclick="window.open('https://wa.me/918770840326?text=Size help chahiye Ifazone shirt ke liye - height weight batao','_blank')" style="flex:1;background:#25D366;color:#fff;border:0;padding:10px;border-radius:8px;font-weight:800;font-size:11px">WhatsApp Help</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openSize(){document.getElementById('sizeModal').style.display='flex';}
+
+// Auto show size button near products
+setTimeout(()=>{
+  let btn = document.getElementById('sizeChartBtn');
+  // Try to move near first product
+  let firstProd = null;
+  document.querySelectorAll('div').forEach(d=>{
+    if(!firstProd && d.innerText && d.innerText.includes('Ifazone') && d.innerText.includes('₹')){
+      firstProd = d;
+    }
+  });
+  if(firstProd && firstProd.parentNode){
+    firstProd.parentNode.insertBefore(btn, firstProd);
+  }
+},1500);
+</script>
+<!-- ========== 65 END ========== -->
+  <!-- ========== 66. STOCK ALERT ========== -->
+<div id="stockAlert" style="display:none;margin:10px 12px;background:linear-gradient(135deg,#ff5252,#ff1744);color:#fff;border-radius:12px;padding:10px 14px;font-family:sans-serif;display:flex;align-items:center;gap:10px;animation:shake 0.5s infinite;box-shadow:0 3px 15px rgba(255,23,68,0.3)">
+  <div style="width:36px;height:36px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">⚠️</div>
+  <div style="flex:1"><div style="font-weight:900;font-size:12px" id="stockText">Sirf 3 Pieces Bache Hain! 😱</div><div style="font-size:10px;opacity:0.9">Ajaygarh me 12 log abhi dekh rahe hain - jaldi karo!</div></div>
+  <div style="background:#fff;color:#ff1744;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:900" id="stockTimer">04:32</div>
+</div>
+
+<style>@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-1px)}75%{transform:translateX(1px)}}</style>
+
+<script>
+function showStock(){
+  let alertBox=document.getElementById('stockAlert');
+  alertBox.style.display='flex';
+  let left = 3 + Math.floor(Math.random()*5);
+  document.getElementById('stockText').innerText='Sirf '+left+' Pieces Bache Hain! 😱';
+  
+  // Timer countdown
+  let sec = 272; // 4:32
+  setInterval(()=>{
+    sec--; if(sec<0) sec=272;
+    let m=Math.floor(sec/60); let s=sec%60;
+    document.getElementById('stockTimer').innerText=(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);
+  },1000);
+}
+
+// Randomly show
+setTimeout(showStock, 2500);
+
+// Also inject near product
+setTimeout(()=>{
+  document.querySelectorAll('div').forEach(d=>{
+    if(d.innerText && d.innerText.includes('Ifazone') && d.innerText.includes('₹') && d.innerText.length<250){
+      if(!d.querySelector('.lowStock')){
+        let s=document.createElement('div');s.className='lowStock';s.style.cssText='background:#ffebee;color:#c62828;font-size:9px;padding:3px 8px;border-radius:10px;display:inline-block;margin-top:6px;font-weight:700;border:1px solid #ffcdd2';s.innerText='🔥 Low Stock: Only '+ (2+Math.floor(Math.random()*4)) +' left!';
+        d.appendChild(s);
+      }
+    }
+  });
+},3000);
+</script>
+<!-- ========== 66 END ========== -->
+  <!-- ========== 67. FREE GIFT / BOGO ========== -->
+<div style="margin:12px;background:linear-gradient(135deg,#00c853,#009624);border-radius:16px;padding:14px;font-family:sans-serif;color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-20px;right:-20px;font-size:80px;opacity:0.15">🎁</div>
+  <div style="position:relative;z-index:2">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900;font-size:14px">🎁 FREE GIFT OFFER!</div><div style="background:#fff;color:#00c853;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:900">TODAY ONLY</div></div>
+    <div style="font-size:12px;margin-top:6px;opacity:0.95">Ifazone Shirt pe pao <b>Free Wallet + Free Delivery</b> - Anil Bhaiya ka gift!</div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <div style="flex:1;background:rgba(255,255,255,0.2);border-radius:10px;padding:8px;text-align:center;backdrop-filter:blur(10px)"><div style="font-size:24px">👕</div><div style="font-size:10px;font-weight:700">Shirt</div><div style="font-size:10px">₹499</div></div>
+      <div style="display:flex;align-items:center;font-size:20px">+</div>
+      <div style="flex:1;background:#fff;border-radius:10px;padding:8px;text-align:center;color:#111;box-shadow:0 3px 10px rgba(0,0,0,0.2)"><div style="font-size:24px">👛</div><div style="font-size:10px;font-weight:800">Free Wallet</div><div style="font-size:10px;color:#00c853;font-weight:900">FREE</div></div>
+      <div style="display:flex;align-items:center;font-size:20px">+</div>
+      <div style="flex:1;background:rgba(255,255,255,0.2);border-radius:10px;padding:8px;text-align:center"><div style="font-size:24px">🚚</div><div style="font-size:10px;font-weight:700">Delivery</div><div style="font-size:10px">FREE</div></div>
+    </div>
+    <div style="background:#111;border-radius:10px;padding:10px;display:flex;justify-content:space-between;align-items:center;margin-top:12px"><div><div style="font-size:11px;opacity:0.7">Total Value: <s>₹1298</s></div><div style="font-size:16px;font-weight:900">Aap Pay Karo: ₹499 <span style="color:#00ff64">Save ₹799</span></div></div><button onclick="claimGift()" style="background:#ff6b00;color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:900;font-size:11px">CLAIM GIFT →</button></div>
+  </div>
+</div>
+
+<script>
+function claimGift(){
+  localStorage.setItem('ay_gift_claimed','true');
+  alert('🎁 Gift Claim Hua! Ifazone Shirt + Free Wallet = ₹499\n\nAjaygarh 488220 me free delivery!');
+  // Toast
+  let t=document.createElement('div');t.style.cssText='position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#00c853;color:#fff;padding:12px 18px;border-radius:25px;font-size:12px;z-index:99999';t.innerHTML='✅ Free Wallet Added! Cart: ₹499';document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
+  setTimeout(()=>{if(confirm('Anil Bhaiya ko order bheju Free Wallet ke sath?')){window.open('https://wa.me/918770840326?text='+encodeURIComponent('Gift Order: Ifazone Shirt + Free Wallet = ₹499 - Ajaygarh - ID 2396277'),'_blank');}},800);
+}
+</script>
+<!-- ========== 67 END ========== -->
+  <!-- ========== 68. COUPON AUTO APPLY ========== -->
+<div id="couponBar" style="margin:10px 12px;background:#fff;border:2px dashed #00c853;border-radius:12px;padding:12px;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center">
+  <div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px">🏷️</div><div><div style="font-weight:900;font-size:12px;color:#00c853">Coupon ANIL20 Applied!</div><div style="font-size:10px;color:#666">Aapne <b style="color:#00c853">₹100 bacha liya</b> • Ajaygarh Offer</div></div></div>
+  <div style="background:#00c853;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:900">-₹100</div>
+</div>
+
+<div id="couponPopup" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:30px;font-size:12px;z-index:99999;font-family:sans-serif;display:flex;align-items:center;gap:10px;box-shadow:0 5px 20px rgba(0,0,0,0.4)"><span>✅ Coupon <b style="color:#00ff64">ANIL20</b> Applied - ₹100 OFF!</span><span onclick="this.parentElement.style.display='none'" style="background:#333;padding:4px 8px;border-radius:10px;cursor:pointer">✕</span></div>
+
+<script>
+function applyCoupon(code, discount){
+  let bar=document.getElementById('couponBar');
+  bar.style.display='flex';
+  bar.querySelector('div div div').innerText='Coupon '+code+' Applied!';
+  bar.querySelector('div div div + div').innerHTML='Aapne <b style="color:#00c853">₹'+discount+' bacha liya</b> • Ajaygarh Offer';
+  bar.querySelector('div + div').innerText='-₹'+discount;
+  
+  // Show popup
+  let pop=document.getElementById('couponPopup');
+  pop.style.display='flex';
+  pop.innerHTML='<span>✅ Coupon <b style="color:#00ff64">'+code+'</b> Applied - ₹'+discount+' OFF!</span><span onclick="this.parentElement.style.display=\'none\'" style="background:#333;padding:4px 8px;border-radius:10px;cursor:pointer">✕</span>';
+  setTimeout(()=>{pop.style.display='none'},4000);
+  
+  localStorage.setItem('ay_coupon', code);
+  localStorage.setItem('ay_discount', discount);
+}
+
+// Auto apply on load
+setTimeout(()=>{
+  applyCoupon('ANIL20','100');
+  // Try to find price and update
+  let totalEl = document.getElementById('freeBar');
+  if(totalEl){
+    let m=totalEl.innerText.match(/₹(\d+)/);
+    if(m){
+      let total=parseInt(m[1]);
+      let disc=100;
+      if(total>disc){
+        totalEl.innerHTML = totalEl.innerHTML.replace('₹'+m[1], '₹'+(total-disc)+' <span style="font-size:10px;color:#00ff64">(After ANIL20)</span>');
+      }
+    }
+  }
+},2000);
+
+// Inject coupon code near checkout
+setTimeout(()=>{
+  document.querySelectorAll('div').forEach(d=>{
+    if(d.innerText && d.innerText.includes('Checkout') && d.innerText.length<100){
+      if(!d.querySelector('.couponCode')){
+        let c=document.createElement('div');c.className='couponCode';c.style.cssText='margin-top:8px;background:#f9f9f9;border:1px dashed #00c853;padding:8px;border-radius:8px;font-size:10px;display:flex;justify-content:space-between;align-items:center';c.innerHTML='<span>Use: <b>ANIL20</b> - Extra ₹100 OFF</span><span style="background:#00c853;color:#fff;padding:3px 8px;border-radius:10px;cursor:pointer" onclick="applyCoupon(\'ANIL20\',\'100\')">Apply</span>';
+        d.appendChild(c);
+      }
+    }
+  });
+},2500);
+</script>
+<!-- ========== 68 END ========== -->
+  <!-- ========== 69. LUCKY WHEEL SPIN ========== -->
+<div id="wheelIcon" style="position:fixed;bottom:140px;right:14px;width:56px;height:56px;background:linear-gradient(135deg,#ff6b00,#ff9f43);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:9998;box-shadow:0 4px 15px rgba(255,107,0,0.4);cursor:pointer;animation:bounce 1s infinite;border:3px solid #fff" onclick="openWheel()">🎡</div>
+<style>@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}</style>
+
+<div id="wheelModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100020;align-items:center;justify-content:center;font-family:sans-serif;padding:16px">
+  <div style="background:#fff;width:100%;max-width:340px;border-radius:20px;padding:20px;text-align:center;position:relative">
+    <span onclick="document.getElementById('wheelModal').style.display='none'" style="position:absolute;top:10px;right:14px;background:#eee;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer">✕</span>
+    <div style="font-weight:900;font-size:18px">🎡 Apna Luck Aazmao!</div><div style="font-size:12px;color:#666;margin-top:4px">Wheel ghumao, coupon jeeto - Ajaygarh Offer!</div>
+    
+    <div style="margin:20px auto;width:220px;height:220px;border-radius:50%;background:conic-gradient(#ff6b00 0deg 60deg, #00c853 60deg 120deg, #111 120deg 180deg, #ff6b00 180deg 240deg, #e91e63 240deg 300deg, #00c853 300deg 360deg);position:relative;display:flex;align-items:center;justify-content:center;transition:transform 3s cubic-bezier(0.25,0.1,0.25,1);border:6px solid #fff;box-shadow:0 5px 20px rgba(0,0,0,0.2)" id="wheel">
+      <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:900">₹200 OFF</div>
+      <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%) rotate(90deg);background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:900">₹50</div>
+      <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:900">FREE</div>
+      <div style="width:50px;height:50px;background:#111;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:12px;z-index:2">SPIN</div>
+    </div>
+    <div style="width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:16px solid #ff6b00;margin:-10px auto 0;position:relative;z-index:3"></div>
+
+    <button id="spinBtn" onclick="spinWheel()" style="background:#ff6b00;color:#fff;border:0;padding:12px 24px;border-radius:30px;font-weight:900;font-size:13px;margin-top:16px;width:100%">🎡 SPIN & WIN →</button>
+    <div style="font-size:10px;color:#888;margin-top:8px">1243 log jeet chuke hain aaj!</div>
+  </div>
+</div>
+
+<div id="winModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100021;align-items:center;justify-content:center;font-family:sans-serif;padding:16px">
+  <div style="background:#fff;width:100%;max-width:320px;border-radius:20px;padding:24px;text-align:center"><div style="font-size:50px">🎉</div><div style="font-weight:900;font-size:20px;margin-top:8px">Badhai Ho!</div><div style="font-size:14px;color:#666;margin-top:6px">Aap jeete ho <b id="winAmount" style="color:#ff6b00;font-size:18px">₹150 OFF</b></div><div style="background:#f5f5f5;padding:10px;border-radius:10px;margin-top:14px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:12px;font-weight:800">Coupon: <span style="background:#111;color:#fff;padding:3px 8px;border-radius:6px" id="winCode">ANIL150</span></div><span onclick="copyWin()" style="background:#00c853;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer">Copy</span></div><button onclick="claimWin()" style="background:#00c853;color:#fff;border:0;padding:12px;width:100%;border-radius:10px;font-weight:900;margin-top:14px">SHOP NOW & USE →</button></div>
+</div>
+
+<script>
+let spun = localStorage.getItem('ay_spun');
+function openWheel(){document.getElementById('wheelModal').style.display='flex';}
+function spinWheel(){
+  if(spun){alert('Aap ek baar spin kar chuke ho! Coupon: ANIL100');return;}
+  let wheel=document.getElementById('wheel');
+  let deg = 1800 + Math.floor(Math.random()*360);
+  wheel.style.transform='rotate('+deg+'deg)';
+  document.getElementById('spinBtn').innerText='Ghuma Raha Hai...';
+  document.getElementById('spinBtn').disabled=true;
+  setTimeout(()=>{
+    let wins = [{amount:'₹100 OFF', code:'ANIL100'},{amount:'₹150 OFF', code:'ANIL150'},{amount:'₹200 OFF', code:'ANIL200'},{amount:'Free Delivery', code:'FREE488220'}];
+    let win = wins[Math.floor(Math.random()*wins.length)];
+    // Always give at least 100
+    if(win.amount.includes('Free')) win = wins[0];
+    document.getElementById('winAmount').innerText=win.amount;
+    document.getElementById('winCode').innerText=win.code;
+    document.getElementById('wheelModal').style.display='none';
+    document.getElementById('winModal').style.display='flex';
+    localStorage.setItem('ay_spun','true');
+    localStorage.setItem('ay_coupon', win.code);
+    if(typeof applyCoupon === 'function') applyCoupon(win.code, win.amount.replace(/\D/g,'')||'100');
+  },3200);
+}
+function copyWin(){let code=document.getElementById('winCode').innerText; navigator.clipboard.writeText(code); alert('Copied: '+code);}
+function claimWin(){document.getElementById('winModal').style.display='none'; window.scrollTo({top:0, behavior:'smooth'});}
+
+// Auto popup after 8 sec
+setTimeout(()=>{if(!spun) openWheel();},8000);
+</script>
+<!-- ========== 69 END ========== -->
+      <!-- ========== 70. MYSTERY BOX ========== -->
+<div style="margin:14px 12px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:20px;padding:16px;font-family:sans-serif;color:#fff;position:relative;overflow:hidden;border:1px solid #333">
+  <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,#ff6b00,transparent);opacity:0.3"></div>
+  <div style="position:relative;z-index:2">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:16px">🎁 Anil's Mystery Box</div><div style="font-size:11px;opacity:0.7">Kholo, Surprise Pao - Worth ₹1999!</div></div><div style="background:#ff6b00;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900">HOT 🔥</div></div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px" id="mysteryGrid">
+      <div onclick="openBox(0)" class="mBox" style="background:linear-gradient(135deg,#ff6b00,#ff9f43);height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform 0.3s;box-shadow:0 4px 10px rgba(255,107,0,0.3)">📦<span style="position:absolute;background:#fff;color:#111;font-size:8px;padding:2px 6px;border-radius:10px;margin-top:30px;font-weight:800">TAP</span></div>
+      <div onclick="openBox(1)" class="mBox" style="background:linear-gradient(135deg,#00c853,#00e676);height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform 0.3s;box-shadow:0 4px 10px rgba(0,200,83,0.3)">📦<span style="position:absolute;background:#fff;color:#111;font-size:8px;padding:2px 6px;border-radius:10px;margin-top:30px;font-weight:800">TAP</span></div>
+      <div onclick="openBox(2)" class="mBox" style="background:linear-gradient(135deg,#e91e63,#ff4081);height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform 0.3s;box-shadow:0 4px 10px rgba(233,30,99,0.3)">📦<span style="position:absolute;background:#fff;color:#111;font-size:8px;padding:2px 6px;border-radius:10px;margin-top:30px;font-weight:800">TAP</span></div>
+    </div>
+
+    <div id="mysteryResult" style="display:none;margin-top:14px;background:#fff;border-radius:12px;padding:12px;color:#111;text-align:center">
+      <div style="font-size:40px" id="mResEmoji">👕</div><div style="font-weight:900;font-size:14px;margin-top:6px" id="mResName">Ifazone Shirt Worth ₹999</div><div style="font-size:11px;color:#666">Aapko mila sirf <b style="color:#00c853">₹499 me!</b></div>
+      <div style="display:flex;gap:8px;margin-top:10px"><button onclick="document.getElementById('mysteryResult').style.display='none'" style="flex:1;background:#eee;border:0;padding:10px;border-radius:8px;font-weight:700;font-size:11px">Band Karo</button><button onclick="claimMystery()" style="flex:1;background:#ff6b00;color:#fff;border:0;padding:10px;border-radius:8px;font-weight:900;font-size:11px">Claim ₹499 →</button></div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:11px"><b>Box Price:</b> <s style="opacity:0.6">₹1999</s> <span style="color:#00ff64;font-weight:900;font-size:14px">₹499</span><br><span style="font-size:9px;opacity:0.7">+ Free Delivery Ajaygarh 488220</span></div><div style="text-align:right"><div style="font-size:9px;opacity:0.7">124 log khol chuke</div><div style="font-size:10px;color:#ffcc00">⭐⭐⭐⭐⭐ 4.9</div></div></div>
+  </div>
+</div>
+
+<script>
+let gifts = [{emoji:'👕', name:'Ifazone Premium Shirt Worth ₹999', price:499},{emoji:'👟', name:'Huffman Sneakers Worth ₹1999', price:499},{emoji:'⌚', name:'Solasta Smart Watch Worth ₹2499', price:499},{emoji:'👛+👕', name:'Shirt + Free Wallet Combo', price:499}];
+let opened = false;
+function openBox(i){
+  if(opened) return;
+  opened=true;
+  let boxes=document.querySelectorAll('.mBox');
+  boxes[i].style.transform='scale(1.2) rotate(10deg)';
+  boxes[i].innerHTML='✨';
+  setTimeout(()=>{
+    let gift=gifts[Math.floor(Math.random()*gifts.length)];
+    document.getElementById('mResEmoji').innerText=gift.emoji;
+    document.getElementById('mResName').innerText=gift.name;
+    document.getElementById('mysteryResult').style.display='block';
+    // Hide other boxes
+    boxes.forEach((b,idx)=>{if(idx!=i){b.style.opacity='0.3'; b.style.pointerEvents='none';}});
+    // Confetti effect
+    let conf=document.createElement('div');conf.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;display:flex;align-items:center;justify-content:center;font-size:40px;animation:fade 2s forwards';conf.innerText='🎉🎊🎉';document.body.appendChild(conf);setTimeout(()=>conf.remove(),2000);
+  },600);
+}
+
+function claimMystery(){
+  let name=document.getElementById('mResName').innerText;
+  localStorage.setItem('ay_cart_total','499');
+  alert('✅ Mystery Claim Hua: '+name+' = ₹499\nAjaygarh Mart - Anil Bhaiya');
+  window.open('https://wa.me/918770840326?text='+encodeURIComponent('Mystery Box Order: '+name+' - ₹499 - ID 2396277 Ajaygarh'),'_blank');
+}
+</script>
+<style>@keyframes fade{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2)}}</style>
+<!-- ========== 70 END ========== -->
+  <!-- ========== 71. LIVE CHAT ========== -->
+<div id="chatIcon" style="position:fixed;bottom:20px;right:16px;width:56px;height:56px;background:#111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:9997;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.3);border:2px solid #ff6b00" onclick="openChat()">💬<span style="position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#00c853;border-radius:50%;border:2px solid #fff"></span></div>
+
+<div id="chatBox" style="display:none;position:fixed;bottom:80px;right:12px;width:300px;max-width:calc(100% - 24px);height:380px;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);z-index:100030;flex-direction:column;font-family:sans-serif;overflow:hidden;border:1px solid #eee">
+  <div style="background:#111;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><div style="width:32px;height:32px;background:#ff6b00;border-radius:50%;display:flex;align-items:center;justify-content:center">👨‍💼</div><div><div style="font-weight:800;font-size:12px">Anil Bhaiya - Online</div><div style="font-size:9px;opacity:0.7">ID 2396277 • Reply in 2 min</div></div></div><span onclick="document.getElementById('chatBox').style.display='none'" style="cursor:pointer">✕</span></div>
+  <div id="chatMsgs" style="flex:1;padding:12px;overflow-y:auto;background:#f9f9f9;display:flex;flex-direction:column;gap:8px"><div style="background:#fff;padding:8px 10px;border-radius:12px 12px 12px 0;font-size:11px;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,0.1)">Namaste! 👋 Main Anil Bhaiya, Ajaygarh Mart se. Kaise help karu? Size, Price, Delivery kuch bhi pucho!</div></div>
+  <div style="padding:8px;background:#fff;border-top:1px solid #eee;display:flex;gap:6px;flex-wrap:wrap"><span onclick="sendQuick('Ifazone shirt ka kapda?')" style="background:#f5f5f5;padding:4px 8px;border-radius:12px;font-size:9px;cursor:pointer">👕 Kapda kaisa?</span><span onclick="sendQuick('Size M available?')" style="background:#f5f5f5;padding:4px 8px;border-radius:12px;font-size:9px;cursor:pointer">📏 Size?</span><span onclick="sendQuick('Ajaygarh 488220 delivery?')" style="background:#f5f5f5;padding:4px 8px;border-radius:12px;font-size:9px;cursor:pointer">🚚 Delivery?</span></div>
+  <div style="padding:8px;display:flex;gap:6px"><input id="chatInput" placeholder="Message likho..." style="flex:1;border:1px solid #eee;border-radius:20px;padding:8px 12px;font-size:11px;outline:none" onkeypress="if(event.key==='Enter')sendChat()"><button onclick="sendChat()" style="background:#ff6b00;color:#fff;border:0;width:36px;height:36px;border-radius:50%;font-size:14px">➤</button></div>
+</div>
+
+<script>
+function openChat(){document.getElementById('chatBox').style.display='flex';}
+function sendQuick(text){document.getElementById('chatInput').value=text;sendChat();}
+function sendChat(){
+  let input=document.getElementById('chatInput');
+  let text=input.value.trim(); if(!text) return;
+  let box=document.getElementById('chatMsgs');
+  let userDiv=document.createElement('div'); userDiv.style.cssText='align-self:flex-end;background:#ff6b00;color:#fff;padding:8px 10px;border-radius:12px 12px 0 12px;font-size:11px;max-width:80%'; userDiv.innerText=text; box.appendChild(userDiv);
+  input.value='';
+  box.scrollTop=box.scrollHeight;
+  
+  // Bot reply
+  setTimeout(()=>{
+    let reply='Bilkul! Anil Bhaiya se direct baat karo WhatsApp pe, main 2 min me jawab dunga 😊';
+    if(text.toLowerCase().includes('kapda')) reply='Ifazone ka kapda 100% cotton premium hai, Ajaygarh me sabse zyada bikta hai! Wash ke baad bhi colour nahi jata 👕';
+    else if(text.toLowerCase().includes('size')) reply='Haan M size available hai! Ajaygarh ke ladko ke liye M best hai. Height batao main confirm kar deta hu 📏';
+    else if(text.toLowerCase().includes('delivery')) reply='Haan Ajaygarh 488220 me 3 din me free delivery! COD available hai 🚚';
+    else if(text.toLowerCase().includes('price')) reply='Sirf ₹499 me Ifazone shirt! Market me ₹999 hai, mere paas Asort direct se aata hai 💰';
+    
+    let botDiv=document.createElement('div'); botDiv.style.cssText='background:#fff;padding:8px 10px;border-radius:12px 12px 12px 0;font-size:11px;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,0.1)'; botDiv.innerHTML=reply+'<br><br><span style="color:#25D366;font-weight:800;cursor:pointer" onclick="window.open(\'https://wa.me/918770840326?text=Hi Anil Bhaiya - \'+encodeURIComponent(text),\'_blank\')">WhatsApp pe baat karo →</span>'; box.appendChild(botDiv);
+    box.scrollTop=box.scrollHeight;
+  },1000);
+}
+</script>
+<!-- ========== 71 END ========== -->
   
 >/body>    
 </html>
