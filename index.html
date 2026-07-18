@@ -45,16 +45,23 @@
 <div onclick="openCart()" class="relative ml-2 cursor-pointer w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-cart-shopping"></i><span id="cartBadge" class="absolute -top-1 -right-1 bg-[#F08804] text-black text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
 <button onclick="openMenu()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
-  <!-- ORIGINAL FLIPKART SEARCH BAR - FRONT -->
-<div class="bg-white sticky top-[52px] z-[90] p-2.5 shadow-sm border-b">
-  <div class="relative">
-    <div class="flex items-center gap-2 bg-[#F0F5FF] border border-[#c7d7ff] rounded-lg px-3">
-      <span class="text-gray-500">🔍</span>
-      <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-sm text-black">
-      <button id="fkClear" onclick="clearFk()" class="hidden w-7 h-7 bg-gray-200 rounded-full text-xs">✕</button>
-      <button onclick="startVoice()" class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center">🎙️</button>
-    </div>
+<div class="bg-white sticky top-0 z-[90] p-2.5 border-b">
+  <div class="flex items-center gap-2 bg-[#F0F5FF] border rounded-lg px-3">
+    <span>🔍</span>
+    <input id="fkSearch" type="text" oninput="flipkartSearch(this.value)" placeholder="Search for Products, Brands and More" class="flex-1 h-11 bg-transparent outline-none text-sm">
+    <button id="fkClear" onclick="clearFk()" class="hidden w-6 h-6 bg-gray-200 rounded-full text-xs">X</button>
   </div>
+</div>
+
+<div id="proCatBar" style="display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:52px;z-index:80;">
+<button onclick="filterCat('all',this)" style="background:#000;color:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">All</button>
+<button onclick="filterCat('men',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Men</button>
+<button onclick="filterCat('women',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Women</button>
+<button onclick="filterCat('saree',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Saree</button>
+<button onclick="filterCat('shoes',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Shoes</button>
+<button onclick="filterCat('watch',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Watch</button>
+<button onclick="filterCat('beauty',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Beauty</button>
+<button onclick="filterCat('kids',this)" style="background:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;">Kids</button>
 </div>
 
 <!-- FINAL PRO CATEGORY -->
@@ -2621,79 +2628,52 @@ function addGift(){
 <div style="margin:12px;background:linear-gradient(135deg,#ffd600,#ffab00);border-radius:14px;padding:12px;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">100. 🏆 #1 Top Selling - Ajaygarh Me</div><div style="font-size:10px">Pichle 7 din me 234 logon ne liya</div></div><div style="background:#111;color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:900">#1 BESTSELLER</div></div>
 <!-- ==========  END ========== -->
 <script>
-// FINAL FIX - Ye sabse neeche hona chahiye
-window.currentCat='all';
-window.currentBrand='all';
-window.currentSearch='';
-
-window.applyFilter=function(){
-  let all = document.querySelectorAll('#products > div');
-  if(all.length==0) all = document.querySelectorAll('[id="products"] div');
-  all.forEach(p=>{
-    if(p.querySelector('img')==null) return; // sirf product wale div
-    let t=(p.innerText||'').toLowerCase();
-    let showCat=true, showBrand=true, showSearch=true;
-
-    if(window.currentCat!=='all'){
-      if(window.currentCat==='men') showCat = /men|shirt|jeans|t-shirt|kurta/.test(t);
-      else if(window.currentCat==='women') showCat = /women|kurti|dress|lehenga/.test(t);
-      else if(window.currentCat==='saree') showCat = t.includes('saree');
-      else if(window.currentCat==='shoes') showCat = /shoe|sneaker|nike|juta/.test(t);
-      else if(window.currentCat==='watch') showCat = t.includes('watch');
-      else if(window.currentCat==='beauty') showCat = /cream|oil|perfume|beauty|scent|vitamin/.test(t);
-      else if(window.currentCat==='kids') showCat = /kid|baby/.test(t);
-      else showCat = t.includes(window.currentCat);
+var currentCat='all';
+var currentBrand='all';
+var currentSearch='';
+function applyFilter(){
+  var all=document.querySelectorAll('#products > div');
+  for(var i=0;i<all.length;i++){
+    var p=all[i];
+    if(!p.innerText) continue;
+    var t=p.innerText.toLowerCase();
+    var showCat=true, showBrand=true, showSearch=true;
+    if(currentCat!='all'){
+      if(currentCat=='men') showCat=t.indexOf('men')>-1||t.indexOf('shirt')>-1||t.indexOf('jeans')>-1;
+      else if(currentCat=='women') showCat=t.indexOf('women')>-1||t.indexOf('kurti')>-1||t.indexOf('dress')>-1;
+      else if(currentCat=='saree') showCat=t.indexOf('saree')>-1;
+      else if(currentCat=='shoes') showCat=t.indexOf('shoe')>-1||t.indexOf('sneaker')>-1||t.indexOf('nike')>-1;
+      else if(currentCat=='watch') showCat=t.indexOf('watch')>-1;
+      else if(currentCat=='beauty') showCat=t.indexOf('scent')>-1||t.indexOf('cream')>-1||t.indexOf('vitamin')>-1;
+      else if(currentCat=='kids') showCat=t.indexOf('kid')>-1;
+      else showCat=t.indexOf(currentCat)>-1;
     }
-    if(window.currentBrand!=='all'){
-      showBrand = t.includes(window.currentBrand);
-    }
-    if(window.currentSearch!==''){
-      showSearch = t.includes(window.currentSearch);
-    }
-    p.style.display=(showCat && showBrand && showSearch)?'':'none';
-  });
-};
-
-window.filterCat=function(cat,btn){
-  window.currentCat=cat.toLowerCase();
-  document.querySelectorAll('#proCatBar button').forEach(b=>{
-    b.style.background='#fff'; b.style.color='#000';
-  });
+    if(currentBrand!='all'){ showBrand=t.indexOf(currentBrand)>-1; }
+    if(currentSearch!=''){ showSearch=t.indexOf(currentSearch)>-1; }
+    p.style.display=(showCat&&showBrand&&showSearch)?'':'none';
+  }
+}
+function filterCat(cat,btn){
+  currentCat=cat;
+  var allBtn=document.querySelectorAll('#proCatBar button');
+  for(var i=0;i<allBtn.length;i++){ allBtn[i].style.background='#fff'; allBtn[i].style.color='#000'; }
   if(btn){ btn.style.background='#000'; btn.style.color='#fff'; }
-  window.applyFilter();
-};
-
-window.setCat=function(cat){
-  let c=cat.toLowerCase();
-  if(c==='all') window.currentBrand='all';
-  else window.currentBrand=c;
-  window.applyFilter();
-};
-
-window.flipkartSearch=function(val){
-  window.currentSearch=val.toLowerCase();
-  let clearBtn=document.getElementById('fkClear');
-  if(clearBtn) clearBtn.classList.toggle('hidden',!val);
-  window.applyFilter();
-};
-
-window.clearFk=function(){
-  let inp=document.getElementById('fkSearch');
-  if(inp) inp.value='';
-  window.flipkartSearch('');
-};
-
-window.startVoice=function(){
-  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){ alert('Voice support nahi hai'); return; }
-  let r=new SR(); r.lang='en-IN';
-  r.onresult=function(e){
-    let txt=e.results[0][0].transcript;
-    document.getElementById('fkSearch').value=txt;
-    window.flipkartSearch(txt);
-  };
-  r.start();
-};
-console.log('AY-MART FILTER FIX LOADED');
-</script>   
+  applyFilter();
+}
+function setCat(cat){
+  currentBrand=cat.toLowerCase();
+  if(currentBrand=='all') currentBrand='all';
+  applyFilter();
+}
+function flipkartSearch(val){
+  currentSearch=val.toLowerCase();
+  var b=document.getElementById('fkClear');
+  if(b){ if(val) b.classList.remove('hidden'); else b.classList.add('hidden'); }
+  applyFilter();
+}
+function clearFk(){
+  document.getElementById('fkSearch').value='';
+  flipkartSearch('');
+}
+</script>
 </html>
