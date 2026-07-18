@@ -1339,4 +1339,93 @@ document.addEventListener('click', function(e){
 });
 </script>
 <!-- ==========  FIRST ORDER FREE END ========== -->
+<div id="freeShipWrap" style="display:none;position:fixed;bottom:68px;left:0;width:100%;z-index:99992;background:#fff;border-top:1px solid #eee;padding:10px 12px;font-family:sans-serif;box-shadow:0 -2px 10px rgba(0,0,0,0.05)">
+  <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700">
+    <div id="freeShipText" style="color:#111">🛒 ₹499 aur jodo - FREE Delivery pao!</div>
+    <div style="color:#00c853;font-size:10px" id="freeShipPercent">0% → 100%</div>
+  </div>
+  <div style="background:#f0f0f0;height:8px;border-radius:10px;margin-top:6px;overflow:hidden;position:relative">
+    <div id="freeShipBar" style="height:100%;width:10%;background:linear-gradient(90deg,#ff6b00,#00c853);border-radius:10px;transition:0.5s;width:10%"></div>
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);animation:shineBar 1.5s infinite"></div>
+  </div>
+  <style>@keyframes shineBar{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}</style>
+  <div style="display:flex;justify-content:space-between;font-size:9px;color:#888;margin-top:4px"><span>Cart: <b id="cartVal">₹0</b></span><span>Free Delivery on ₹499+</span></div>
+</div>
+
+<div id="cartAddToast" style="display:none;position:fixed;bottom:140px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:25px;font-size:12px;font-family:sans-serif;z-index:99999;white-space:nowrap">✅ Cart me add hua! <span id="toastAddVal" style="color:#00ff64;font-weight:800"></span></div>
+
+<script>
+let cartTotal = parseInt(localStorage.getItem('ay_cart_total') || '0');
+let freeLimit = 499;
+
+function updateFreeBar(){
+  let wrap = document.getElementById('freeShipWrap');
+  if(cartTotal>0) wrap.style.display='block'; else wrap.style.display='none';
+  
+  let percent = Math.min(100, Math.round(cartTotal / freeLimit * 100));
+  let remaining = freeLimit - cartTotal;
+  
+  document.getElementById('freeShipBar').style.width = percent + '%';
+  document.getElementById('cartVal').innerText = '₹' + cartTotal;
+  document.getElementById('freeShipPercent').innerText = percent + '%';
+  
+  let textEl = document.getElementById('freeShipText');
+  if(remaining > 0){
+    textEl.innerHTML = '🛒 ₹' + remaining + ' aur jodo - <span style="color:#00c853">FREE Delivery</span> pao!';
+    textEl.style.color='#111';
+    document.getElementById('freeShipBar').style.background='linear-gradient(90deg,#ff6b00,#ff8c00)';
+  } else {
+    textEl.innerHTML = '🎉 Badhai ho! <span style="color:#00c853">FREE Delivery</span> mil gayi! - Ajaygarh 488220';
+    textEl.style.color='#00c853';
+    document.getElementById('freeShipBar').style.background='#00c853';
+    // Confetti once
+    if(!localStorage.getItem('ay_free_unlocked')){
+      localStorage.setItem('ay_free_unlocked','true');
+      setTimeout(()=>{ alert('🎉 FREE Delivery Unlock Ho Gayi! Ab checkout karo - Anil Bhaiya khud delivery karenge!'); },500);
+    }
+  }
+}
+
+// Simulate Add to Cart - jab bhi Buy Now / Add to Cart dabaye
+document.addEventListener('click', function(e){
+  let btn = e.target.closest('button') || e.target;
+  let txt = btn.innerText || '';
+  if(txt.includes('Buy') || txt.includes('Cart') || txt.includes('Add')){
+    // Random product price
+    let prices = [499, 1299, 899, 649, 349, 799];
+    let add = prices[Math.floor(Math.random()*prices.length)];
+    // If already has price in card, try to get real
+    let card = e.target.closest('div');
+    if(card){
+      let priceMatch = card.innerText.match(/₹(\d+)/);
+      if(priceMatch) add = parseInt(priceMatch[1]);
+    }
+    cartTotal += add;
+    if(cartTotal>2000) cartTotal = 500 + Math.floor(Math.random()*800); // reset logic to keep engaging
+    
+    localStorage.setItem('ay_cart_total', cartTotal);
+    updateFreeBar();
+    
+    // Toast
+    let toast = document.getElementById('cartAddToast');
+    document.getElementById('toastAddVal').innerText = '+₹' + add;
+    toast.style.display='block';
+    setTimeout(()=>{toast.style.display='none'},2000);
+  }
+});
+
+// Init
+updateFreeBar();
+
+// Reset daily
+let lastReset = localStorage.getItem('ay_cart_date');
+let today = new Date().toDateString();
+if(lastReset !== today){
+  // Keep cart for same day only for demo
+  // cartTotal = 0; // comment kiya hai taaki demo chalta rahe
+  localStorage.setItem('ay_cart_date', today);
+}
+</script>
+<!-- ========== 56. FREE SHIPPING BAR END ========== -->
+</body>
 </html>
