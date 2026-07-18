@@ -1220,4 +1220,59 @@ function enterLucky(){
 })();
 </script>
 <!-- ==========  LUCKY DRAW END ========== -->
+ <div id="festAutoBar" style="display:none;position:fixed;top:50px;left:0;width:100%;z-index:9993;text-align:center;padding:8px;font-family:sans-serif;font-size:12px;font-weight:800;letter-spacing:0.5px"></div>
+<div id="festEffect" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100006"></div>
+
+<script>
+(function(){
+  let today = new Date();
+  let month = today.getMonth() + 1; // 1-12
+  let date = today.getDate();
+  let fest = null;
+
+  // Festival Logic 2026
+  if((month==10 && date>=15) || (month==11 && date<=15)){
+    fest = {name:'DIWALI DHAMAKA', emoji:'🪔', color:'#ff6b00', bg:'#fff3e0', msg:'🪔 Diwali Dhamaka - Har Order Pe Diya Free + 20% OFF - Code: DIWALI20', effect:'diya'};
+  } else if(month==3 && date>=5 && date<=15){
+    fest = {name:'HOLI', emoji:'🎨', color:'#e91e63', bg:'#fce4ec', msg:'🎨 Holi Ke Rang - Ay-Mart Ke Sang - 15% OFF - Code: HOLI15', effect:'holi'};
+  } else if(month==8 && date>=15 && date<=25){
+    fest = {name:'RAKHI', emoji:'🎁', color:'#9c27b0', bg:'#f3e5f5', msg:'🎁 Rakhi Special - Behen Ke Liye Gift Free Delivery - Code: RAKHI', effect:'rakhi'};
+  } else if(month==1 && date<=5){
+    fest = {name:'NEW YEAR', emoji:'🎉', color:'#00bcd4', bg:'#e0f7fa', msg:'🎉 New Year 2026 - Nayi Shuruaat Ay-Mart Ke Saath - 25% OFF - Code: NEW25', effect:'newyear'};
+  } else if(month==8 && date>=10 && date<=20){
+    fest = {name:'INDEPENDENCE', emoji:'🇮🇳', color:'#00c853', bg:'#e8f5e9', msg:'🇮🇳 Independence Day - Desi Mart, Desi Shan - Code: AZADI15', effect:'india'};
+  } else {
+    // Default Ajaygarh Festival
+    fest = {name:'AJAYGARH MELA', emoji:'🎊', color:'#ff6b00', bg:'#fff8f0', msg:'🎊 Ajaygarh Mela Special - Free Delivery 488220 pe - Code: MELA10', effect:'default'};
+  }
+
+  // Apply Bar
+  let bar = document.getElementById('festAutoBar');
+  bar.style.display='block';
+  bar.style.background=fest.bg;
+  bar.style.color=fest.color;
+  bar.style.borderBottom='2px solid ' + fest.color;
+  bar.innerHTML = fest.msg + ' <span style="background:'+fest.color+';color:#fff;padding:2px 8px;border-radius:10px;margin-left:8px;font-size:10px">'+fest.name+'</span>';
+
+  // Apply Effect
+  let effDiv = document.getElementById('festEffect');
+  effDiv.style.display='block';
+  if(fest.effect=='diya'){
+    effDiv.innerHTML = '<div style="position:absolute;top:60px;left:10%;font-size:20px;animation:float 3s infinite">🪔</div><div style="position:absolute;top:70px;right:15%;font-size:18px;animation:float 3.5s infinite">✨</div><div style="position:absolute;top:65px;left:50%;font-size:16px;animation:float 2.5s infinite">🪔</div><style>@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}</style>';
+  } else if(fest.effect=='holi'){
+    effDiv.innerHTML = '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 20%, rgba(233,30,99,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(255,193,7,0.1) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(0,200,83,0.1) 0%, transparent 50%)"></div><div style="position:absolute;top:60px;left:0;width:100%;text-align:center;font-size:10px;color:#e91e63;opacity:0.6">🎨 🟣 🟡 🟢 🔵 Holi Hai! 🎨</div>';
+  } else if(fest.effect=='newyear'){
+    effDiv.innerHTML = '<div style="position:absolute;top:60px;left:0;width:100%;height:30px;overflow:hidden;white-space:nowrap"><marquee>🎉 🎊 ✨ 2026 🎉 🎊 ✨ HAPPY NEW YEAR ✨ 🎉 🎊 2026 🎉 🎊 ✨</marquee></div>';
+  } else if(fest.effect=='india'){
+    effDiv.innerHTML = '<div style="position:absolute;top:62px;left:0;width:100%;height:4px;background:linear-gradient(90deg,#ff6b00 33%,#fff 33%,#fff 66%,#00c853 66%)"></div>';
+  } else {
+    effDiv.innerHTML = '<div style="position:absolute;top:62px;left:5%;font-size:14px;animation:float 3s infinite">🎊</div><div style="position:absolute;top:62px;right:10%;font-size:14px;animation:float 3.2s infinite">🎉</div>';
+  }
+
+  // Add class to body for CSS override
+  document.body.style.paddingTop = '90px';
+  console.log('Ay-Mart Festival Mode Active:', fest.name);
+})();
+</script>
+<!-- ==========  FESTIVAL AUTO END ========== --> 
 </html>
