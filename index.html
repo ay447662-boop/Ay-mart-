@@ -116,88 +116,35 @@ function applyFilter(){
     let showSearch=!currentSearch || t.includes(currentSearch);
     p.style.display=(showCat && showBrand && showSearch)?'':'none';
   });
+<script>
+var currentCat='all'; var currentBrand='all'; var currentSearch='';
+function applyFilter(){
+  var all=document.querySelectorAll('#products > div');
+  for(var i=0;i<all.length;i++){
+    var p=all[i]; if(!p.innerText) continue;
+    var t=p.innerText.toLowerCase();
+    var ok=true;
+    if(currentCat!='all'){
+      if(currentCat=='men') ok=t.indexOf('men')>-1||t.indexOf('shirt')>-1;
+      else if(currentCat=='women') ok=t.indexOf('women')>-1;
+      else if(currentCat=='saree') ok=t.indexOf('saree')>-1;
+      else if(currentCat=='shoes') ok=t.indexOf('shoe')>-1||t.indexOf('sneaker')>-1;
+      else if(currentCat=='watch') ok=t.indexOf('watch')>-1;
+      else if(currentCat=='beauty') ok=t.indexOf('scent')>-1;
+      else if(currentCat=='kids') ok=t.indexOf('kid')>-1;
+      else ok=t.indexOf(currentCat)>-1;
+    }
+    if(currentBrand!='all') ok=ok && t.indexOf(currentBrand)>-1;
+    if(currentSearch!='') ok=ok && t.indexOf(currentSearch)>-1;
+    p.style.display=ok?'':'none';
+  }
 }
-function filterCat(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('#proCatBar button').forEach(b=>{b.style.background='#fff';b.style.color='#000';});
-  btn.style.background='#000';btn.style.color='#fff';
-  applyFilter();
-}
-function setCat(cat){
-  currentBrand=cat.toLowerCase();
-  applyFilter();
-}
-function flipkartSearch(val){
-  currentSearch=val.toLowerCase();
-  let b=document.getElementById('fkClear');
-  if(b) b.classList.toggle('hidden',!currentSearch);
-  applyFilter();
-}
-function clearFk(){
-  document.getElementById('fkSearch').value='';
-  flipkartSearch('');
-}
-function startVoice(){
-  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){ alert('Voice not supported'); return; }
-  let r=new SR();
-  r.lang='en-IN';
-  r.onresult=function(e){
-    let txt=e.results[0][0].transcript;
-    document.getElementById('fkSearch').value=txt;
-    flipkartSearch(txt);
-  };
-  r.start();
-}
+function filterCat(c,b){ currentCat=c; var x=document.querySelectorAll('#proCatBar button'); for(var i=0;i<x.length;i++){x[i].style.background='#fff';x[i].style.color='#000';} if(b){b.style.background='#000';b.style.color='#fff';} applyFilter(); }
+function setCat(c){ currentBrand=c.toLowerCase(); applyFilter(); }
+function flipkartSearch(v){ currentSearch=v.toLowerCase(); applyFilter(); }
+function clearFk(){ document.getElementById('fkSearch').value=''; flipkartSearch(''); }
 </script>
-function clearFk(){
-  <script>
-  document.getElementById('fkSearch').value='';
-  flipkartSearch('');
-}
-function startVoice(){
-  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){ alert('Voice not supported'); return; }
-  let r=new SR();
-  r.lang='en-IN';
-  r.onresult=function(e){
-    let txt=e.results[0][0].transcript;
-    document.getElementById('fkSearch').value=txt;
-    flipkartSearch(txt);
-  };
-  r.start();
-}
-</script>
-  currentBrand=cat.toLowerCase();
-  applyFilter();
-}
-function flipkartSearch(val){
-  currentSearch=val.toLowerCase();
-  let b=document.getElementById('fkClear');
-  if(b) b.classList.toggle('hidden',!currentSearch);
-  applyFilter();
-}
-function clearFk(){
-</script>
-  document.getElementById('fkSearch').value='';
-  flipkartSearch('');
-function showSugg(q){
-  let box=document.getElementById('fkSugg');
-  if(!q){ box.classList.add('hidden'); return; }
-  q=q.toLowerCase();
-  let list=[];
-  document.querySelectorAll('#products > div').forEach(p=>{
-    let txt=(p.innerText||'').split('\n')[0];
-    if(txt.toLowerCase().includes(q)) list.push(txt.substring(0,40));
-  });
-  // duplicate hatao
-  list=[...new Set(list)].slice(0,8);
-  if(list.length==0){ box.classList.add('hidden'); return; }
-  box.innerHTML=list.map(t=>`<div onclick="document.getElementById('fkSearch').value='${t}';flipkartSearch('${t}');this.parentElement.classList.add('hidden')" class="px-4 py-3 border-b hover:bg-gray-50 cursor-pointer text-">🔍 ${t}</div>`).join('');
-  box.classList.remove('hidden');
-}
-function startVoice(){
-</script>
+<!-- END AMAZING -->
   let btn=document.getElementById('fkVoice');
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if(!SpeechRecognition){ alert('Voice search is not supported in this browser'); return; }
