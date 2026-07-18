@@ -1012,5 +1012,140 @@ function showRefToast(t){
 }
 </script>
 <!-- ========== 51. REFER & EARN END ========== -->
+  
+<div id="scratchOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:100005;align-items:center;justify-content:center;font-family:sans-serif">
+  <div style="background:#fff;width:320px;border-radius:20px;padding:20px;text-align:center;position:relative">
+    <div style="position:absolute;top:-12px;right:-12px;width:32px;height:32px;background:#111;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="closeScratch()">✕</div>
+    <div style="font-weight:900;font-size:18px">🎁 Scratch Karo & Jeeto!</div>
+    <div style="font-size:12px;color:#666;margin-top:4px">Ajaygarh Dhamaka - Anil Bhaiya ki taraf se</div>
+    
+    <div style="position:relative;width:260px;height:160px;margin:16px auto;background:linear-gradient(135deg,#ff6b00,#ff8c00);border-radius:14px;overflow:hidden">
+      <!-- Reward Behind -->
+      <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+        <div style="font-size:12px;opacity:0.9">Aap Jeete Ho</div>
+        <div id="scratchReward" style="font-size:32px;font-weight:900;margin:4px 0">MART20</div>
+        <div id="scratchDesc" style="font-size:12px;background:#fff;color:#ff6b00;padding:4px 10px;border-radius:20px;font-weight:700">20% OFF on 999+</div>
+      </div>
+      <!-- Canvas Cover -->
+      <canvas id="scratchCanvas" width="260" height="160" style="position:absolute;top:0;left:0;cursor:grab;touch-action:none"></canvas>
+    </div>
+
+    <div style="font-size:11px;color:#888">👆 Ungli se ghiso aur coupon dekho</div>
+    <div id="scratchDone" style="display:none;margin-top:12px">
+      <div style="background:#e8f5e9;border:1px dashed #00c853;padding:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center">
+        <div style="text-align:left"><div style="font-size:10px;color:#666">Coupon Code</div><div id="scratchCode" style="font-weight:900;font-size:16px">MART20</div></div>
+        <button onclick="copyScratch()" style="background:#111;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700">COPY</button>
+      </div>
+      <a href="/cart" style="display:block;background:#ff6b00;color:#fff;text-decoration:none;padding:12px;border-radius:10px;font-weight:800;margin-top:10px;font-size:13px">Abhi Use Karo →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Small Button to Open Scratch -->
+<div onclick="openScratch()" style="margin:12px;background:#111;color:#fff;padding:12px 16px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-family:sans-serif;cursor:pointer;border:1px dashed #ff6b00">
+  <div><div style="font-weight:800;font-size:13px">🎁 Scratch Card Bacha Hai!</div><div style="font-size:11px;color:#aaa">Ghiso aur ₹500 tak jeeto</div></div>
+  <div style="background:#ff6b00;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:800">SCRATCH →</div>
+</div>
+
+<script>
+let scratchRewards = [
+  {code:'MART10', desc:'10% OFF', sub:'Har Order Pe'},
+  {code:'MART20', desc:'20% OFF on 999+', sub:'Ajaygarh Special'},
+  {code:'FREEDEL', desc:'FREE DELIVERY', sub:'Kal Tak'},
+  {code:'FLAT100', desc:'₹100 OFF on 799+', sub:'First Order'},
+  {code:'MART50', desc:'₹50 OFF', sub:'Aaj Ke Liye'}
+];
+let scratched = false;
+
+function openScratch(){
+  let reward = scratchRewards[Math.floor(Math.random()*scratchRewards.length)];
+  document.getElementById('scratchReward').innerText = reward.code;
+  document.getElementById('scratchCode').innerText = reward.code;
+  document.getElementById('scratchDesc').innerText = reward.desc + ' - ' + reward.sub;
+  document.getElementById('scratchOverlay').style.display='flex';
+  document.getElementById('scratchDone').style.display='none';
+  scratched = false;
+  setTimeout(initScratch,100);
+}
+
+function closeScratch(){
+  document.getElementById('scratchOverlay').style.display='none';
+}
+
+function initScratch(){
+  let canvas = document.getElementById('scratchCanvas');
+  let ctx = canvas.getContext('2d');
+  // Silver cover
+  ctx.fillStyle = '#c0c0c0';
+  ctx.fillRect(0,0,260,160);
+  ctx.fillStyle = '#a0a0a0';
+  for(let i=0;i<500;i++){
+    ctx.fillRect(Math.random()*260, Math.random()*160, 1, 1);
+  }
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 14px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('👆 GHISO YAHAN', 130, 85);
+
+  let isDrawing = false;
+  function scratch(e){
+    if(!isDrawing) return;
+    let rect = canvas.getBoundingClientRect();
+    let x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    let y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI*2);
+    ctx.fill();
+    checkScratch();
+  }
+
+  canvas.addEventListener('mousedown', ()=>{isDrawing=true});
+  canvas.addEventListener('mouseup', ()=>{isDrawing=false});
+  canvas.addEventListener('mousemove', scratch);
+  canvas.addEventListener('touchstart', ()=>{isDrawing=true});
+  canvas.addEventListener('touchend', ()=>{isDrawing=false});
+  canvas.addEventListener('touchmove', (e)=>{scratch(e); e.preventDefault();}, {passive:false});
+}
+
+function checkScratch(){
+  if(scratched) return;
+  let canvas = document.getElementById('scratchCanvas');
+  let ctx = canvas.getContext('2d');
+  let imageData = ctx.getImageData(0,0,260,160);
+  let pixels = imageData.data;
+  let transparent = 0;
+  for(let i=3;i<pixels.length;i+=4){
+    if(pixels[i] < 128) transparent++;
+  }
+  let percent = transparent / (260*160) * 100;
+  if(percent > 55){
+    scratched = true;
+    document.getElementById('scratchDone').style.display='block';
+    // Confetti effect
+    canvas.style.transition='0.5s'; canvas.style.opacity='0';
+    setTimeout(()=>{
+      let code = document.getElementById('scratchCode').innerText;
+      localStorage.setItem('ay_last_win', code);
+    },500);
+  }
+}
+
+function copyScratch(){
+  let code = document.getElementById('scratchCode').innerText;
+  navigator.clipboard.writeText(code);
+  alert('Coupon Copy Ho Gaya: ' + code + ' - Checkout pe lagao!');
+  closeScratch();
+}
+
+// Auto open once after 12 sec
+setTimeout(()=>{
+  if(!localStorage.getItem('ay_scratch_shown')){
+    openScratch();
+    localStorage.setItem('ay_scratch_shown','true');
+  }
+},12000);
+</script>
+<!-- ==========  SCRATCH CARD END ========== -->
 </body>
 </html>
