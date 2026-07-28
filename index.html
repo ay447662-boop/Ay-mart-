@@ -26,13 +26,11 @@
   src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
 }
 #products button:nth-of-type(2){display:none!important}
-#products>div{padding-bottom:12px!important}  
-</style><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+#products>div{padding-bottom:12px!important}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ANIL YADAV - AYMART OFFICIAL | Ajaygarh 488220 | All Options Active</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>body{font-family:system-ui} .no-scrollbar::-webkit-scrollbar{display:none} button:active{transform:scale(.96)} .active-filter{background:#000!important;color:#fff!important}</style>
-</head>
 <body class="bg-[#EAEDED] pb-20">
 <!-- HEADER -->
 <div class="bg-[#131921] text-white sticky top-0 z-[100]">
@@ -85,31 +83,6 @@ function filterCat(cat,btn){ currentCat=cat; var a=document.querySelectorAll('#p
 function setCat(cat){ currentBrand=cat.toLowerCase(); applyFilter(); }
 function flipkartSearch(val){ currentSearch=val.toLowerCase(); var b=document.getElementById('fkClear'); if(b){ if(val) b.classList.remove('hidden'); else b.classList.add('hidden'); } applyFilter(); }
 function clearFk(){ document.getElementById('fkSearch').value=''; flipkartSearch(''); }
-</script>
-<script>
-let currentCat='all';
-let currentBrand='all';
-let currentSearch='';
-
-function applyFilter(){
-  let products=document.querySelectorAll('#products > div');
-  products.forEach(p=>{
-    let t=(p.innerText||'').toLowerCase();
-    let showCat=false;
-    if(currentCat==='all') showCat=true;
-    else if(currentCat==='men' && /men|shirt|jeans|t-shirt|kurta/.test(t)) showCat=true;
-    else if(currentCat==='women' && /women|kurti|dress|lehenga/.test(t)) showCat=true;
-    else if(currentCat==='saree' && t.includes('saree')) showCat=true;
-    else if(currentCat==='shoes' && /shoe|sneaker|nike/.test(t)) showCat=true;
-    else if(currentCat==='watch' && t.includes('watch')) showCat=true;
-    else if(currentCat==='beauty' && /cream|oil|perfume|beauty|scent/.test(t)) showCat=true;
-    else if(currentCat==='kids' && /kid|baby/.test(t)) showCat=true;
-    else if(t.includes(currentCat)) showCat=true;
-
-    let showBrand=(currentBrand==='all') || t.includes(currentBrand);
-    let showSearch=!currentSearch || t.includes(currentSearch);
-    p.style.display=(showCat && showBrand && showSearch)?'':'none';
-  });
 <script>
 var currentCat='all'; var currentBrand='all'; var currentSearch='';
 function applyFilter(){
