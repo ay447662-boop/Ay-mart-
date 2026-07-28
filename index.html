@@ -2269,65 +2269,6 @@ function calcEMI(months){
 }
 </script>
 <!-- ==========  END ========== -->
-  <!-- ==========  FAQ ACCORDION ========== -->
-<div style="margin:12px;background:#fff;border-radius:14px;padding:14px;font-family:sans-serif;border:1px solid #eee">
-  <div style="font-weight:900;font-size:14px">❓ Aksar Puche Jane Wale Sawal - FAQ</div><div style="font-size:11px;color:#666;margin-top:2px">Anil Bhaiya ke jawab - Ajaygarh Mart</div>
-  
-  <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px" id="faqList">
-    <div class="faqItem" style="border:1px solid #eee;border-radius:10px;overflow:hidden"><div onclick="toggleFAQ(this)" style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#f9f9f9"><span style="font-size:11px;font-weight:800">👕 Ifazone shirt ka kapda kaunsa hai?</span><span style="font-size:12px">+</span></div><div style="display:none;padding:10px 12px;font-size:11px;color:#555;line-height:1.5">100% Premium Cotton hai bhai! Garmi me thanda, sardi me garam. Ajaygarh me mere 500+ customers pehen rahe hain. Wash ke baad bhi colour nahi jata, Anil Bhaiya guarantee ID 2396277.</div></div>
-    
-    <div class="faqItem" style="border:1px solid #eee;border-radius:10px;overflow:hidden"><div onclick="toggleFAQ(this)" style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#f9f9f9"><span style="font-size:11px;font-weight:800">📏 M size kisko ayega? Mera height 5'7"</span><span style="font-size:12px">+</span></div><div style="display:none;padding:10px 12px;font-size:11px;color:#555;line-height:1.5">5'7" ke liye M perfect hai! Chest 40", Length 28". Agar thoda loose chahiye toh L lo. Confused ho toh WhatsApp karo - main napa bata dunga.</div></div>
-    
-    <div class="faqItem" style="border:1px solid #eee;border-radius:10px;overflow:hidden"><div onclick="toggleFAQ(this)" style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#f9f9f9"><span style="font-size:11px;font-weight:800">🚚 Ajaygarh 488220 me delivery kitne din me?</span><span style="font-size:12px">+</span></div><div style="display:none;padding:10px 12px;font-size:11px;color:#555;line-height:1.5">3-4 din me free delivery! Main khud Panna se bhejta hu. COD available hai - pehle product dekho fir paisa do.</div></div>
-    
-    <div class="faqItem" style="border:1px solid #eee;border-radius:10px;overflow:hidden"><div onclick="toggleFAQ(this)" style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#f9f9f9"><span style="font-size:11px;font-weight:800">↩️ Return ho jayega agar size galat nikla?</span><span style="font-size:12px">+</span></div><div style="display:none;padding:10px 12px;font-size:11px;color:#555;line-height:1.5">100% ho jayega! 7 din ke andar WhatsApp karo, main khud Ajaygarh me lene aa jaunga. Paisa wapas ya naya size free me - Anil Bhaiya ka wada.</div></div>
-    
-    <div class="faqItem" style="border:1px solid #eee;border-radius:10px;overflow:hidden"><div onclick="toggleFAQ(this)" style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#f9f9f9"><span style="font-size:11px;font-weight:800">💳 Asort ka original hai na? Fake toh nahi?</span><span style="font-size:12px">+</span></div><div style="display:none;padding:10px 12px;font-size:11px;color:#555;line-height:1.5">Bilkul original! Meri ID 2396277 hai Asort me. Direct company se aata hai, bill ke sath. Ajaygarh me koi fake nahi bechta, Anil Bhaiya ka naam kharab nahi karna!</div></div>
-  </div>
-  
-  <div style="text-align:center;margin-top:12px"><span style="font-size:10px;color:#888">Aur koi sawal hai?</span> <span onclick="window.open('https://wa.me/918770840326?text=Sawal hai Anil Bhaiya - ID 2396277','_blank')" style="font-size:10px;color:#ff6b00;font-weight:800;cursor:pointer">WhatsApp pe pucho →</span></div>
-</div>
-
-<script>
-function toggleFAQ(el){
-  let content=el.nextElementSibling;
-  let isOpen=content.style.display=='block';
-  document.querySelectorAll('#faqList .faqItem div:nth-child(2)').forEach(d=>d.style.display='none');
-  document.querySelectorAll('#faqList .faqItem div span:last-child').forEach(s=>s.innerText='+');
-  if(!isOpen){content.style.display='block'; el.querySelector('span:last-child').innerText='−'; el.style.background='#fff';}
-  else{el.style.background='#f9f9f9';}
-}
-</script>
-<!-- ==========  END ========== -->
-  <!-- ==========  ORDER TRACKING ========== -->
-<div style="margin:12px;background:#fff;border-radius:14px;padding:14px;font-family:sans-serif;border:1px solid #eee">
-  <div style="font-weight:900;font-size:14px">📦 Apna Order Track Karo</div><div style="font-size:11px;color:#666">Anil Bhaiya ke paas har order ka live status</div>
-  <div style="display:flex;gap:8px;margin-top:12px"><input id="trackInput" placeholder="Mobile No / Order ID (ex: 8770840326)" style="flex:1;border:1px solid #ddd;border-radius:8px;padding:10px;font-size:11px;outline:none"><button onclick="trackOrder()" style="background:#111;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:800;font-size:11px">Track →</button></div>
-  
-  <div id="trackResult" style="display:none;margin-top:14px">
-    <div style="background:#f9f9f9;border-radius:10px;padding:12px">
-      <div style="display:flex;justify-content:space-between;font-size:11px"><span>Order: <b>#AY-2396277-488220</b></span><span style="background:#00c853;color:#fff;padding:2px 8px;border-radius:10px;font-size:9px">On The Way</span></div>
-      <div style="margin-top:12px;position:relative;padding-left:20px">
-        <div style="position:absolute;left:4px;top:0;bottom:0;width:2px;background:#eee"></div>
-        <div style="position:relative;margin-bottom:16px"><div style="position:absolute;left:-20px;width:12px;height:12px;background:#00c853;border-radius:50%;border:2px solid #fff"></div><div style="font-size:11px;font-weight:800">Order Confirm ✅</div><div style="font-size:9px;color:#666">Anil Bhaiya ne confirm kiya - Today 10:32 AM</div></div>
-        <div style="position:relative;margin-bottom:16px"><div style="position:absolute;left:-20px;width:12px;height:12px;background:#00c853;border-radius:50%;border:2px solid #fff"></div><div style="font-size:11px;font-weight:800">Panna Hub Se Nikla ✅</div><div style="font-size:9px;color:#666">Courier ne pick kiya - Today 2:15 PM</div></div>
-        <div style="position:relative;margin-bottom:16px"><div style="position:absolute;left:-20px;width:12px;height:12px;background:#ff6b00;border-radius:50%;border:3px solid #fff;animation:pulse 1s infinite"></div><div style="font-size:11px;font-weight:800">Ajaygarh Ke Liye Nikla 🚚</div><div style="font-size:9px;color:#666">On the way - Kal subah 11 baje tak ayega</div></div>
-        <div style="position:relative;opacity:0.4"><div style="position:absolute;left:-20px;width:12px;height:12px;background:#ddd;border-radius:50%;border:2px solid #fff"></div><div style="font-size:11px;font-weight:800">Delivered</div><div style="font-size:9px;color:#666">Aapke paas - Expected Tomorrow</div></div>
-      </div>
-      <div style="background:#fff;border:1px dashed #00c853;border-radius:8px;padding:8px;margin-top:10px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:10px"><b style="color:#00c853">Anil Bhaiya:</b> Kal 11 baje tak pakka ayega Ajaygarh me!</div><span onclick="window.open('https://wa.me/918770840326?text=Order Track - #AY-2396277-488220','_blank')" style="background:#25D366;color:#fff;padding:4px 8px;border-radius:10px;font-size:9px;font-weight:800;cursor:pointer">Call</span></div>
-    </div>
-  </div>
-  
-  <div style="font-size:9px;color:#888;text-align:center;margin-top:8px">ID 2396277 • Har order ka personal dhyan • Ajaygarh Mart</div>
-</div>
-<style>@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,107,0,0.4)}70%{box-shadow:0 0 0 8px rgba(255,107,0,0)}100%{box-shadow:0 0 0 0 rgba(255,107,0,0)}}</style>
-<script>
-function trackOrder(){
-  let val=document.getElementById('trackInput').value.trim();
-  if(!val){alert('Mobile number ya Order ID daalo');return;}
-  document.getElementById('trackResult').style.display='block';
-  // Fake delay
-  document.getElementById('trackResult').style.opacity='0.5';
   setTimeout(()=>{document.getElementById('trackResult').style.opacity='1';},800);
 }
 </script>
