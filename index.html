@@ -768,88 +768,7 @@ setTimeout(()=>{if(!shown){document.getElementById('exitBox').style.display='blo
   <div style="margin-top:15px;font-size:10px;color:#555">© 2026 Ay-Mart Powered by Asort | Made with ❤️ in Ajaygarh</div>
 </div>
 <!-- END: Trust Footer Pro -->
-  <!-- ========== AY-MART FINAL COMBO PACK - SAB NAYA HAI ========== -->
-<!-- Isko </body> se just upar paste karna hai, purana kuch delete nahi hoga -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- 1. Smart Search Top Bar -->
-<div style="position:fixed;top:0;left:0;width:100%;z-index:9996;background:#fff;padding:10px;border-bottom:1px solid #eee;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
-  <div style="display:flex;align-items:center;background:#f2f2f2;border-radius:12px;padding:10px 14px;gap:10px;max-width:600px;margin:0 auto">
-    <i class="fa-solid fa-magnifying-glass" style="color:#888"></i>
-    <input id="aySearch" placeholder="Search Ifazone, Sneakers, Watch..." style="border:0;background:transparent;flex:1;outline:none;font-size:14px">
-    <i class="fa-solid fa-microphone" style="color:#ff6b00"></i>
-  </div>
-  <div id="searchCount" style="font-size:11px;color:#666;margin-top:6px;text-align:center;display:none"></div>
-</div>
-
-<!-- 2. Live Sale Toast -->
-<div id="ayToast" style="display:none;position:fixed;bottom:85px;left:12px;z-index:99999;background:#fff;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.2);padding:10px 14px;align-items:center;gap:10px;font-family:sans-serif;border-left:4px solid #ff6b00;max-width:300px">
-  <div style="width:36px;height:36px;background:#fff3e8;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ff6b00"><i class="fa-solid fa-bag-shopping"></i></div>
-  <div><div style="font-size:12px;font-weight:700;color:#111" id="toastName">Rohit Sahu ne kharida</div><div style="font-size:11px;color:#666" id="toastProd">Mr Huffman Sneakers - 2 min pehle</div></div>
-</div>
-
-<!-- 3. Trust Bar -->
-<div style="position:fixed;bottom:68px;left:0;width:100%;z-index:99998;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;font-family:sans-serif">
-  <div style="font-size:11px;line-height:1.2"><span style="color:#00ff64">●</span> Ajaygarh 488220 COD<br><span style="color:#ff6b00;font-weight:700">Free Delivery • 7 Day Return</span></div>
-  <div style="display:flex;gap:8px;align-items:center">
-    <a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20Ay-Mart%20(ID%202396277)%20se%20order%20karna%20hai" style="background:#25D366;color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;text-decoration:none"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="/cart" style="background:#ff6b00;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:800;text-decoration:none">Cart Dekho →</a>
-  </div>
-</div>
-
-<!-- 4. Pincode Checker -->
-<div style="border:2px dashed #ff6b00;background:#fff8f0;padding:12px;border-radius:12px;font-family:sans-serif;margin:80px 12px 14px 12px">
-  <div style="font-weight:800;font-size:14px">📦 Ajaygarh me Delivery Check Karo</div>
-  <div style="display:flex;gap:8px;margin-top:8px"><input id="pinInput" placeholder="Pincode: 488220" style="flex:1;border:1px solid #ddd;padding:10px;border-radius:8px"><button onclick="checkPin()" style="background:#111;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:700">Check</button></div>
-  <div id="pinResult" style="margin-top:8px;font-size:13px;font-weight:600"></div>
-</div>
-
-<!-- 5. FOMO -->
-<div style="background:#111;color:#fff;padding:8px 12px;border-radius:8px;display:flex;justify-content:space-between;font-family:sans-serif;font-size:12px;margin:10px 12px"><span><span style="width:8px;height:8px;background:#00ff64;border-radius:50%;display:inline-block"></span> <span id="liveView">14</span> log dekh rahe hain</span><span style="color:#ff6b00;font-weight:700">🔥 Sirf <span id="stockLeft">4</span> bache!</span></div>
-
-<!-- 6. WhatsApp Pulse -->
-<a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20Ay-Mart%20se%20help%20chahiye" style="position:fixed;bottom:125px;right:14px;z-index:99997;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;text-decoration:none;box-shadow:0 0 0 0 #25D366;animation:pulse 2s infinite"><i class="fa-brands fa-whatsapp"></i></a>
-<style>@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}</style>
-
-<!-- 7. Spin & Win -->
-<div id="spinBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:100000;align-items:center;justify-content:center;font-family:sans-serif"><div style="background:#fff;width:300px;padding:20px;border-radius:20px;text-align:center"><div style="font-weight:900;font-size:18px">🎉 Spin & Win!</div><div id="wheel" style="width:180px;height:180px;margin:15px auto;border-radius:50%;border:8px solid #ff6b00;background:conic-gradient(#ff6b00 0deg 60deg, #111 60deg 120deg, #00c853 120deg 180deg, #ff6b00 180deg 240deg, #111 240deg 300deg, #00c853 300deg 360deg);display:flex;align-items:center;justify-content:center;transition:3s cubic-bezier(0.2,0.8,0.2,1);font-size:40px">🎁</div><button onclick="spinNow()" style="background:#ff6b00;color:#fff;border:0;padding:12px 25px;border-radius:10px;font-weight:800;width:100%">SPIN KARO</button><div id="winText" style="margin-top:12px;font-weight:700;color:green;display:none"></div><div onclick="document.getElementById('spinBox').style.display='none'" style="margin-top:10px;font-size:12px;color:#888;cursor:pointer">Band Karo</div></div></div>
-
-<!-- 8. Exit Coupon -->
-<div id="exitBox" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99999;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font-family:sans-serif;box-shadow:0 10px 30px rgba(0,0,0,0.4);text-align:center;width:90%;max-width:340px"><div style="font-weight:800">🛑 Ruko! 10% Chhoot?</div><div style="font-size:12px;margin:5px 0;color:#aaa">Code: <b style="color:#ff6b00;background:#fff;padding:2px 6px;border-radius:4px">MART10</b></div><div style="display:flex;gap:8px;margin-top:8px"><a href="/cart" style="flex:1;background:#ff6b00;color:#fff;text-align:center;padding:8px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px">Order Karo</a><div onclick="document.getElementById('exitBox').style.display='none'" style="flex:1;background:#333;color:#fff;text-align:center;padding:8px;border-radius:8px;font-size:13px;cursor:pointer">Nahi</div></div></div>
-
-<!-- 9. Trust Footer -->
-<div style="background:#0a0a0a;color:#fff;padding:20px 14px;border-radius:20px 20px 0 0;margin-top:20px;font-family:sans-serif;text-align:center"><div style="font-weight:900;font-size:16px">Ay-Mart • Anil Yadav • ID 2396277</div><div style="font-size:11px;color:#888;margin:4px 0">Ajaygarh 488220 | Jabalpur | Asort Verified Store</div><div style="display:flex;justify-content:center;gap:8px;margin:14px 0;flex-wrap:wrap"><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">💳 UPI</span><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">💵 COD</span><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">🚚 48H</span><span style="background:#1a1a1a;padding:6px 10px;border-radius:20px;font-size:11px">↩️ 7 Day</span></div><div style="margin-top:10px;font-size:10px;color:#555">© 2026 Ay-Mart Powered by Asort</div></div>
-
-<script>
-// All Functions
-const names=["Rohit Sahu, Jabalpur","Priya Patel, Sadar","Ankit Yadav, Madan Mahal","Vikash, Ajaygarh","Neha, Panagar"]; const prods=["Ifazone Black Shirt","Mr Huffman Sneakers White","Solasta Luxury Watch","A-Basket Handbag","Earthy Scent Hair Oil"];
-function showToast(){const t=document.getElementById("ayToast");document.getElementById("toastName").innerText=names[Math.floor(Math.random()*names.length)]+" ne kharida";document.getElementById("toastProd").innerText=prods[Math.floor(Math.random()*prods.length)]+" • "+(Math.floor(Math.random()*5+1))+" min pehle";t.style.display="flex";setTimeout(()=>{t.style.display="none"},4000);} setInterval(showToast,9000); setTimeout(showToast,3000);
-function checkPin(){let v=document.getElementById('pinInput').value.trim();let r=document.getElementById('pinResult');if(v=="488220"||v=="482001"){r.innerHTML="✅ <span style='color:green'>Ajaygarh me COD Available, Kal tak delivery!</span>"}else if(v.length==6){r.innerHTML="⚠️ <span style='color:#ff6b00'>Delivery ho jayegi 2-3 din me</span>"}else{r.innerHTML="❌ Pincode dalo"}}
-setInterval(()=>{let el=document.getElementById('liveView');if(el)el.innerText=Math.floor(10+Math.random()*20);},4000); let s=4; setInterval(()=>{if(s>1)s--;let el=document.getElementById('stockLeft');if(el)el.innerText=s;},8000);
-setTimeout(()=>{let b=document.getElementById('spinBox');if(b)b.style.display='flex'},8000); function spinNow(){let w=document.getElementById('wheel');w.style.transform='rotate('+(720+Math.floor(Math.random()*720))+'deg)';setTimeout(()=>{let codes=["MART10 - 10% OFF","FREEDEL - Free Delivery","MART20 - 20% OFF on 999+"];let c=codes[Math.floor(Math.random()*codes.length)];let wt=document.getElementById('winText');wt.style.display='block';wt.innerHTML='Jeet Gaye! Code: <b style="background:#111;color:#fff;padding:2px 6px;border-radius:4px">'+c+'</b>';},3000);}
-let shown=false; document.addEventListener('mouseleave',()=>{if(!shown){let b=document.getElementById('exitBox');if(b)b.style.display='block';shown=true}}); setTimeout(()=>{if(!shown){let b=document.getElementById('exitBox');if(b)b.style.display='block';shown=true}},25000);
-document.getElementById('aySearch')?.addEventListener('keyup',function(){let q=this.value.toLowerCase();let sc=document.getElementById('searchCount');if(q.length>1){sc.style.display='block';sc.innerText='🔍 "'+q+'" search - niche dekho';}else{sc.style.display='none';}});
-</script>
-<!-- ========== FINAL COMBO PACK END ========== -->
-<!-- ========== AY-MART SECRET ADMIN DASHBOARD - NAYA ========== -->
-<!-- Isko bhi </body> ke just upar paste karna, purana kuch delete nahi hoga. Sirf tujhe dikhega jab ?admin=anil lagayega -->
-<div id="ayAdminBtn" style="display:none;position:fixed;bottom:190px;right:14px;z-index:99996;background:#111;color:#ff6b00;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;font-size:18px;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.3);border:2px solid #ff6b00" onclick="openAyAdmin()"><i class="fa-solid fa-chart-line"></i></div>
-
-<div id="ayAdminPanel" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#0f0f0f;z-index:100001;overflow-y:auto;font-family:sans-serif;color:#fff">
-  <div style="padding:16px;max-width:500px;margin:0 auto">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <div><div style="font-weight:900;font-size:20px">Ay-Mart Admin</div><div style="font-size:12px;color:#888">Anil Yadav • ID 2396277 • Ajaygarh</div></div>
-      <div onclick="closeAyAdmin()" style="width:36px;height:36px;background:#222;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">✕</div>
-    </div>
-
-    <!-- Stats -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #00ff64"><div style="font-size:11px;color:#888">Aaj ke Orders</div><div style="font-size:24px;font-weight:900" id="statOrders">23</div><div style="font-size:11px;color:#00ff64">+12% kal se</div></div>
-      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #ff6b00"><div style="font-size:11px;color:#888">Aaj ki Sale</div><div style="font-size:24px;font-weight:900" id="statSale">₹8,490</div><div style="font-size:11px;color:#ff6b00">3 COD pending</div></div>
-      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #00c8ff"><div style="font-size:11px;color:#888">Live Viewers</div><div style="font-size:24px;font-weight:900" id="statLive">18</div><div style="font-size:11px;color:#00c8ff">abhi site pe hain</div></div>
-      <div style="background:#1a1a1a;padding:14px;border-radius:14px;border-left:4px solid #ff0066"><div style="font-size:11px;color:#888">Low Stock</div><div style="font-size:24px;font-weight:900">4</div><div style="font-size:11px;color:#ff0066">jaldi order karo</div></div>
-    </div>
-
+a
     <!-- Recent Orders -->
     <div style="margin-top:20px;background:#1a1a1a;padding:14px;border-radius:14px">
       <div style="font-weight:800;margin-bottom:10px">📦 Recent Orders - Ajaygarh</div>
@@ -950,63 +869,6 @@ let wc=2; document.addEventListener('click',function(e){if(e.target.closest('but
 document.addEventListener('click',function(e){if(e.target.innerText && e.target.innerText.includes('Buy Now')){setTimeout(()=>{let p=document.getElementById('upiPopup'); if(p) p.style.display='flex'},500)}});
 // Confetti
 function showConfetti(){let c=document.getElementById('confetti'); c.style.display='block'; let ctx=c.getContext('2d'); c.width=window.innerWidth; c.height=window.innerHeight; let pieces=[]; for(let i=0;i<100;i++){pieces.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*6+4,d:Math.random()*10+5,color:'hsl('+Math.random()*360+',100%,50%)'})} let anim=setInterval(()=>{ctx.clearRect(0,0,c.width,c.height); pieces.forEach(p=>{ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,p.r,p.r);p.y+=p.d; if(p.y>c.height)p.y=0;});},20); setTimeout(()=>{clearInterval(anim);c.style.display='none';},3000);}
-</script>
-<!-- ========== MEGA PACK END ========== --> 
- <div id="aiChatBtn" style="position:fixed;bottom:20px;left:14px;z-index:99995;background:linear-gradient(135deg,#ff6b00,#ff8c00);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(255,107,0,0.4);border:3px solid #fff" onclick="toggleAiChat()"><i class="fa-solid fa-robot"></i></div>
-<div style="position:fixed;bottom:82px;left:14px;z-index:99995;background:#111;color:#fff;font-size:10px;padding:4px 8px;border-radius:20px;font-family:sans-serif;display:none" id="aiChatHint">AI se pucho! 🤖</div>
-
-<div id="aiChatBox" style="display:none;position:fixed;bottom:85px;left:12px;right:12px;max-width:360px;z-index:100004;background:#fff;border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,0.3);font-family:sans-serif;overflow:hidden;border:1px solid #eee;flex-direction:column">
-  <div style="background:linear-gradient(135deg,#111,#222);color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center">
-    <div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;background:#ff6b00;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-robot"></i></div><div><div style="font-weight:800;font-size:14px">Ay-Mart AI Helper</div><div style="font-size:10px;color:#00ff64">● Online • Anil Bhaiya ka Assistant</div></div></div>
-    <div onclick="toggleAiChat()" style="width:28px;height:28px;background:#333;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px">✕</div>
-  </div>
-  <div id="aiMessages" style="height:320px;overflow-y:auto;padding:12px;background:#f9f9f9;display:flex;flex-direction:column;gap:10px">
-    <div style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 2px;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,0.1);font-size:13px">Namaste! 🙏 Main Ay-Mart ka AI Helper hu. Anil Bhaiya (ID 2396277) ki Mart me aapka swagat hai! Pucho - Delivery, COD, Return, Price?</div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap"><span onclick="quickAsk('COD available hai?')" style="background:#fff3e8;color:#ff6b00;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #ff6b00">💵 COD hai?</span><span onclick="quickAsk('Delivery kab hogi?')" style="background:#fff3e8;color:#ff6b00;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #ff6b00">🚚 Delivery kab?</span><span onclick="quickAsk('Return policy kya hai?')" style="background:#fff3e8;color:#ff6b00;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #ff6b00">↩️ Return?</span></div>
-  </div>
-  <div style="padding:10px;background:#fff;border-top:1px solid #eee;display:flex;gap:8px"><input id="aiInput" placeholder="Yahan likho..." style="flex:1;border:1px solid #eee;background:#f5f5f5;padding:10px 14px;border-radius:25px;outline:none;font-size:13px" onkeypress="if(event.key==='Enter')sendAi()"><button onclick="sendAi()" style="background:#ff6b00;color:#fff;border:0;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer"><i class="fa-solid fa-paper-plane"></i></button></div>
-</div>
-
-<script>
-let aiOpen=false;
-function toggleAiChat(){
-  let box=document.getElementById('aiChatBox'); let hint=document.getElementById('aiChatHint');
-  if(!aiOpen){box.style.display='flex'; hint.style.display='none'; aiOpen=true; setTimeout(()=>{document.getElementById('aiInput').focus()},100)}else{box.style.display='none'; aiOpen=false;}
-}
-setTimeout(()=>{let h=document.getElementById('aiChatHint'); if(h) h.style.display='block'; setTimeout(()=>{h.style.display='none'},4000)},5000);
-
-function quickAsk(t){document.getElementById('aiInput').value=t; sendAi();}
-
-function sendAi(){
-  let input=document.getElementById('aiInput'); let msg=input.value.trim(); if(!msg) return;
-  let box=document.getElementById('aiMessages');
-  // User msg
-  box.innerHTML+='<div style="background:#ff6b00;color:#fff;padding:10px 12px;border-radius:14px 14px 2px 14px;max-width:80%;align-self:flex-end;font-size:13px">'+msg+'</div>';
-  input.value=''; box.scrollTop=box.scrollHeight;
-  // Typing
-  let typingId='typing'+Date.now();
-  box.innerHTML+='<div id="'+typingId+'" style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 2px;max-width:80%;font-size:12px;color:#888">AI likh raha hai...</div>';
-  box.scrollTop=box.scrollHeight;
-  setTimeout(()=>{
-    let t=document.getElementById(typingId); if(t) t.remove();
-    let reply=getAiReply(msg);
-    box.innerHTML+='<div style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 2px;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,0.1);font-size:13px">'+reply+'</div>';
-    box.scrollTop=box.scrollHeight;
-  },800);
-}
-
-function getAiReply(q){
-  q=q.toLowerCase();
-  if(q.includes('cod')||q.includes('cash')) return 'Haan! 💵 Ajaygarh 488220 me <b>COD Available</b> hai. Aap cash deke le sakte ho. Jabalpur 482001 me bhi COD hai. Order karo, kal tak pahuch jayega!';
-  if(q.includes('delivery')||q.includes('kab')) return '🚚 <b>Ajaygarh me 24-48 ghante me delivery!</b> Jabalpur me kal tak. Aapka pincode 488220 hai toh Free Delivery hai. Track karne ke liye upar Pincode Checker use karo.';
-  if(q.includes('return')||q.includes('wapas')) return '↩️ <b>7 Din ka Easy Return</b> hai. Product me koi dikkat ho toh Anil Bhaiya ko WhatsApp karo - 8770840326. Full refund milega!';
-  if(q.includes('price')||q.includes('kitna')||q.includes('daam')) return '💰 Sare products pe <b>50% tak OFF</b> chal raha hai! Ifazone Shirt ₹499, Huffman Shoes ₹1299, Solasta Watch ₹899. Aaj order karo toh MART10 coupon se 10% aur off!';
-  if(q.includes('location')||q.includes('kahan')||q.includes('ajaygarh')) return '📍 Hum <b>Ajaygarh, MP 488220</b> se operate karte hain. Anil Yadav - ID 2396277 - Asort Verified Store. Jabalpur 482001 me bhi service hai.';
-  if(q.includes('anil')||q.includes('bhaiya')||q.includes('baat')) return 'Anil Bhaiya abhi online hain! 👨‍💼 Direct baat karni hai toh <a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20AI%20Chatbot%20se%20aya%20hu" style="color:#25D366;font-weight:700">WhatsApp pe Click Karo</a> - turant reply milega!';
-  if(q.includes('order')||q.includes('track')) return '📦 Order track karne ke liye upar <b>Order Kahan Hai?</b> section me apna Order ID dalo. Ya Anil Bhaiya ko WhatsApp karo - wo turant bata denge!';
-  if(q.includes('hi')||q.includes('hello')||q.includes('namaste')) return 'Namaste! 🙏 Kaise madad karu? Aap puch sakte ho - Delivery, COD, Price, Return, Ya Anil Bhaiya se baat!';
-  return 'Samajh gaya! 🤖 Iske liye best hai Anil Bhaiya se direct baat karo. Wo Ajaygarh ke expert hain. <br><br><a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20mujhe%20'+encodeURIComponent(q)+'%20ke%20bare%20me%20puchna%20hai" style="background:#25D366;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;display:inline-block;margin-top:6px;font-size:12px">WhatsApp pe Pucho →</a>';
-}
 </script>
 <!-- ========== AI CHATBOT END ========== --> 
   <div style="margin:16px 12px;background:linear-gradient(135deg,#ff6b00 0%,#ff3c00 100%);border-radius:20px;padding:18px;color:#fff;font-family:sans-serif;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(255,107,0,0.3)">
@@ -1110,84 +972,7 @@ function showRefToast(t){
   setTimeout(()=>{toast.style.display='none'},2500);
 }
 </script>
-<!-- ==========  REFER & EARN END ========== -->
-  
-<div id="scratchOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:100005;align-items:center;justify-content:center;font-family:sans-serif">
-  <div style="background:#fff;width:320px;border-radius:20px;padding:20px;text-align:center;position:relative">
-    <div style="position:absolute;top:-12px;right:-12px;width:32px;height:32px;background:#111;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="closeScratch()">✕</div>
-    <div style="font-weight:900;font-size:18px">🎁 Scratch Karo & Jeeto!</div>
-    <div style="font-size:12px;color:#666;margin-top:4px">Ajaygarh Dhamaka - Anil Bhaiya ki taraf se</div>
-    
-    <div style="position:relative;width:260px;height:160px;margin:16px auto;background:linear-gradient(135deg,#ff6b00,#ff8c00);border-radius:14px;overflow:hidden">
-      <!-- Reward Behind -->
-      <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
-        <div style="font-size:12px;opacity:0.9">Aap Jeete Ho</div>
-        <div id="scratchReward" style="font-size:32px;font-weight:900;margin:4px 0">MART20</div>
-        <div id="scratchDesc" style="font-size:12px;background:#fff;color:#ff6b00;padding:4px 10px;border-radius:20px;font-weight:700">20% OFF on 999+</div>
-      </div>
-      <!-- Canvas Cover -->
-      <canvas id="scratchCanvas" width="260" height="160" style="position:absolute;top:0;left:0;cursor:grab;touch-action:none"></canvas>
-    </div>
-
-    <div style="font-size:11px;color:#888">👆 Ungli se ghiso aur coupon dekho</div>
-    <div id="scratchDone" style="display:none;margin-top:12px">
-      <div style="background:#e8f5e9;border:1px dashed #00c853;padding:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center">
-        <div style="text-align:left"><div style="font-size:10px;color:#666">Coupon Code</div><div id="scratchCode" style="font-weight:900;font-size:16px">MART20</div></div>
-        <button onclick="copyScratch()" style="background:#111;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700">COPY</button>
-      </div>
-      <a href="/cart" style="display:block;background:#ff6b00;color:#fff;text-decoration:none;padding:12px;border-radius:10px;font-weight:800;margin-top:10px;font-size:13px">Abhi Use Karo →</a>
-    </div>
-  </div>
-</div>
-
-<!-- Small Button to Open Scratch -->
-<div onclick="openScratch()" style="margin:12px;background:#111;color:#fff;padding:12px 16px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-family:sans-serif;cursor:pointer;border:1px dashed #ff6b00">
-  <div><div style="font-weight:800;font-size:13px">🎁 Scratch Card Bacha Hai!</div><div style="font-size:11px;color:#aaa">Ghiso aur ₹500 tak jeeto</div></div>
-  <div style="background:#ff6b00;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:800">SCRATCH →</div>
-</div>
-
-<script>
-let scratchRewards = [
-  {code:'MART10', desc:'10% OFF', sub:'Har Order Pe'},
-  {code:'MART20', desc:'20% OFF on 999+', sub:'Ajaygarh Special'},
-  {code:'FREEDEL', desc:'FREE DELIVERY', sub:'Kal Tak'},
-  {code:'FLAT100', desc:'₹100 OFF on 799+', sub:'First Order'},
-  {code:'MART50', desc:'₹50 OFF', sub:'Aaj Ke Liye'}
-];
-let scratched = false;
-
-function openScratch(){
-  let reward = scratchRewards[Math.floor(Math.random()*scratchRewards.length)];
-  document.getElementById('scratchReward').innerText = reward.code;
-  document.getElementById('scratchCode').innerText = reward.code;
-  document.getElementById('scratchDesc').innerText = reward.desc + ' - ' + reward.sub;
-  document.getElementById('scratchOverlay').style.display='flex';
-  document.getElementById('scratchDone').style.display='none';
-  scratched = false;
-  setTimeout(initScratch,100);
-}
-
-function closeScratch(){
-  document.getElementById('scratchOverlay').style.display='none';
-}
-
-function initScratch(){
-  let canvas = document.getElementById('scratchCanvas');
-  let ctx = canvas.getContext('2d');
-  // Silver cover
-  ctx.fillStyle = '#c0c0c0';
-  ctx.fillRect(0,0,260,160);
-  ctx.fillStyle = '#a0a0a0';
-  for(let i=0;i<500;i++){
-    ctx.fillRect(Math.random()*260, Math.random()*160, 1, 1);
-  }
-  ctx.fillStyle = '#fff';
-  ctx.font = 'bold 14px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('👆 GHISO YAHAN', 130, 85);
-
-  let isDrawing = false;
-  function scratch(e){
+<!a  function scratch(e){
     if(!isDrawing) return;
     let rect = canvas.getBoundingClientRect();
     let x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
@@ -1244,125 +1029,7 @@ setTimeout(()=>{
     localStorage.setItem('ay_scratch_shown','true');
   }
 },12000);
-</script>
-<!-- ==========  SCRATCH CARD END ========== -->
-  
-</b
-<div style="margin:16px 12px;background:linear-gradient(180deg,#111 0%,#1a1a1a 100%);border-radius:20px;padding:18px;color:#fff;font-family:sans-serif;border:2px solid #ff6b00;position:relative;overflow:hidden">
-  <div style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#ff6b00,#ff8c00,#ff6b00);animation:shine 2s infinite linear"></div>
-  <style>@keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}</style>
-  
-  <div style="text-align:center">
-    <div style="background:#ff6b00;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:900">🎉 AJAYGARH MEGA LUCKY DRAW</div>
-    <div style="font-size:20px;font-weight:900;margin-top:8px">₹5000 Ka Voucher Jeeto!</div>
-    <div style="font-size:11px;color:#aaa;margin-top:4px">Har hafte 1 winner - Anil Bhaiya khud denge</div>
-  </div>
-
-  <!-- Prizes -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px">
-    <div style="background:#1f1f1f;padding:10px;border-radius:12px;text-align:center;border:1px solid #333"><div style="font-size:22px">👟</div><div style="font-size:10px;font-weight:700;margin-top:4px">Huffman<br>Shoes</div><div style="font-size:9px;color:#ff6b00">3 Winners</div></div>
-    <div style="background:#ff6b00;padding:10px;border-radius:12px;text-align:center;transform:scale(1.05);box-shadow:0 5px 20px rgba(255,107,0,0.4)"><div style="font-size:22px">💰</div><div style="font-size:10px;font-weight:800;margin-top:4px">₹5000<br>VOUCHER</div><div style="font-size:9px;color:#fff">1 Winner</div></div>
-    <div style="background:#1f1f1f;padding:10px;border-radius:12px;text-align:center;border:1px solid #333"><div style="font-size:22px">⌚</div><div style="font-size:10px;font-weight:700;margin-top:4px">Solasta<br>Watch</div><div style="font-size:9px;color:#ff6b00">5 Winners</div></div>
-  </div>
-
-  <!-- Entry Form -->
-  <div id="luckyForm">
-    <div style="display:flex;gap:8px;margin-top:14px"><input id="luckyName" placeholder="Apna Naam" style="flex:1;background:#222;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:13px;outline:none"><input id="luckyPhone" placeholder="Mobile" style="flex:1;background:#222;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:13px;outline:none"></div>
-    <button onclick="enterLucky()" style="width:100%;background:#ff6b00;color:#fff;border:0;padding:12px;border-radius:12px;font-weight:900;margin-top:10px;font-size:14px;cursor:pointer">🎯 LUCKY DRAW ME ENTRY KARO</button>
-    <div style="font-size:10px;color:#666;text-align:center;margin-top:6px">* Ajaygarh 488220 aur Jabalpur 482001 ke liye hi</div>
-  </div>
-
-  <div id="luckyDone" style="display:none;text-align:center;margin-top:14px;background:#1f1f1f;padding:16px;border-radius:14px">
-    <div style="font-size:30px">🎊</div>
-    <div style="font-weight:800;margin-top:6px">Entry Ho Gayi, <span id="luckyUser"></span>!</div>
-    <div style="font-size:12px;color:#aaa;margin-top:4px">Result har Ravivaar raat 8 baje - WhatsApp pe ayega</div>
-    <div style="display:flex;gap:8px;margin-top:12px"><div style="flex:1;background:#222;padding:8px;border-radius:8px"><div style="font-size:10px;color:#888">Tumhara No.</div><div style="font-weight:800;font-size:12px" id="luckyNo">#AY-4821</div></div><div style="flex:1;background:#222;padding:8px;border-radius:8px"><div style="font-size:10px;color:#888">Total Entries</div><div style="font-weight:800;font-size:12px">1,247</div></div></div>
-  </div>
-
-  <!-- Winners Ticker -->
-  <div style="margin-top:14px;background:#0a0a0a;padding:8px 12px;border-radius:10px;display:flex;align-items:center;gap:8px;font-size:11px;overflow:hidden"><span style="background:#00c853;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;flex-shrink:0">WINNERS</span><marquee id="winnerMarquee">🏆 Pichle hafte: Rohit Sahu (Jabalpur) jeete ₹2000 voucher | Priya Patel (Sadar) jeeti Solasta Watch | Vikash (Ajaygarh) jeeta Huffman Shoes - Agla number tumhara ho sakta hai!</marquee></div>
-</div>
-
-<script>
-function enterLucky(){
-  let name=document.getElementById('luckyName').value.trim();
-  let phone=document.getElementById('luckyPhone').value.trim();
-  if(name.length<2){alert('Naam likho bhai!');return;}
-  if(phone.length<10){alert('Sahi mobile number dalo!');return;}
-  
-  // Save
-  localStorage.setItem('ay_lucky_name', name);
-  localStorage.setItem('ay_lucky_phone', phone);
-  localStorage.setItem('ay_lucky_entered','true');
-  
-  let no = '#AY-' + Math.floor(4000+Math.random()*5000);
-  document.getElementById('luckyUser').innerText = name;
-  document.getElementById('luckyNo').innerText = no;
-  document.getElementById('luckyForm').style.display='none';
-  document.getElementById('luckyDone').style.display='block';
-  
-  // WhatsApp entry to Anil
-  let msg = 'Lucky Draw Entry: ' + name + ' - ' + phone + ' - No: ' + no + ' - Ajaygarh Mart ID 2396277';
-  setTimeout(()=>{
-    if(confirm('Entry ho gayi! Anil Bhaiya ko WhatsApp pe bheju entry?')){
-      window.open('https://wa.me/918770840326?text='+encodeURIComponent(msg), '_blank');
-    }
-  },800);
-}
-
-// Auto fill if already entered
-(function(){
-  if(localStorage.getItem('ay_lucky_entered')=='true'){
-    let n=localStorage.getItem('ay_lucky_name'); 
-    if(n){ document.getElementById('luckyForm').style.display='none'; document.getElementById('luckyDone').style.display='block'; document.getElementById('luckyUser').innerText=n; }
-  }
-})();
-</script>
-<!-- ==========  LUCKY DRAW END ========== -->
- <div id="festAutoBar" style="display:none;position:fixed;top:50px;left:0;width:100%;z-index:9993;text-align:center;padding:8px;font-family:sans-serif;font-size:12px;font-weight:800;letter-spacing:0.5px"></div>
-<div id="festEffect" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100006"></div>
-
-<script>
-(function(){
-  let today = new Date();
-  let month = today.getMonth() + 1; // 1-12
-  let date = today.getDate();
-  let fest = null;
-
-  // Festival Logic 2026
-  if((month==10 && date>=15) || (month==11 && date<=15)){
-    fest = {name:'DIWALI DHAMAKA', emoji:'🪔', color:'#ff6b00', bg:'#fff3e0', msg:'🪔 Diwali Dhamaka - Har Order Pe Diya Free + 20% OFF - Code: DIWALI20', effect:'diya'};
-  } else if(month==3 && date>=5 && date<=15){
-    fest = {name:'HOLI', emoji:'🎨', color:'#e91e63', bg:'#fce4ec', msg:'🎨 Holi Ke Rang - Ay-Mart Ke Sang - 15% OFF - Code: HOLI15', effect:'holi'};
-  } else if(month==8 && date>=15 && date<=25){
-    fest = {name:'RAKHI', emoji:'🎁', color:'#9c27b0', bg:'#f3e5f5', msg:'🎁 Rakhi Special - Behen Ke Liye Gift Free Delivery - Code: RAKHI', effect:'rakhi'};
-  } else if(month==1 && date<=5){
-    fest = {name:'NEW YEAR', emoji:'🎉', color:'#00bcd4', bg:'#e0f7fa', msg:'🎉 New Year 2026 - Nayi Shuruaat Ay-Mart Ke Saath - 25% OFF - Code: NEW25', effect:'newyear'};
-  } else if(month==8 && date>=10 && date<=20){
-    fest = {name:'INDEPENDENCE', emoji:'🇮🇳', color:'#00c853', bg:'#e8f5e9', msg:'🇮🇳 Independence Day - Desi Mart, Desi Shan - Code: AZADI15', effect:'india'};
-  } else {
-    // Default Ajaygarh Festival
-    fest = {name:'AJAYGARH MELA', emoji:'🎊', color:'#ff6b00', bg:'#fff8f0', msg:'🎊 Ajaygarh Mela Special - Free Delivery 488220 pe - Code: MELA10', effect:'default'};
-  }
-
-  // Apply Bar
-  let bar = document.getElementById('festAutoBar');
-  bar.style.display='block';
-  bar.style.background=fest.bg;
-  bar.style.color=fest.color;
-  bar.style.borderBottom='2px solid ' + fest.color;
-  bar.innerHTML = fest.msg + ' <span style="background:'+fest.color+';color:#fff;padding:2px 8px;border-radius:10px;margin-left:8px;font-size:10px">'+fest.name+'</span>';
-
-  // Apply Effect
-  let effDiv = document.getElementById('festEffect');
-  effDiv.style.display='block';
-  if(fest.effect=='diya'){
-    effDiv.innerHTML = '<div style="position:absolute;top:60px;left:10%;font-size:20px;animation:float 3s infinite">🪔</div><div style="position:absolute;top:70px;right:15%;font-size:18px;animation:float 3.5s infinite">✨</div><div style="position:absolute;top:65px;left:50%;font-size:16px;animation:float 2.5s infinite">🪔</div><style>@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}</style>';
-  } else if(fest.effect=='holi'){
-    effDiv.innerHTML = '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 20%, rgba(233,30,99,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(255,193,7,0.1) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(0,200,83,0.1) 0%, transparent 50%)"></div><div style="position:absolute;top:60px;left:0;width:100%;text-align:center;font-size:10px;color:#e91e63;opacity:0.6">🎨 🟣 🟡 🟢 🔵 Holi Hai! 🎨</div>';
-  } else if(fest.effect=='newyear'){
-    effDiv.innerHTML = '<div style="position:absolute;top:60px;left:0;width:100%;height:30px;overflow:hidden;white-space:nowrap"><marquee>🎉 🎊 ✨ 2026 🎉 🎊 ✨ HAPPY NEW YEAR ✨ 🎉 🎊 2026 🎉 🎊 ✨</marquee></div>';
-  } else if(fest.effect=='india'){
+<ass  } else if(fest.effect=='india'){
     effDiv.innerHTML = '<div style="position:absolute;top:62px;left:0;width:100%;height:4px;background:linear-gradient(90deg,#ff6b00 33%,#fff 33%,#fff 66%,#00c853 66%)"></div>';
   } else {
     effDiv.innerHTML = '<div style="position:absolute;top:62px;left:5%;font-size:14px;animation:float 3s infinite">🎊</div><div style="position:absolute;top:62px;right:10%;font-size:14px;animation:float 3.2s infinite">🎉</div>';
@@ -1373,89 +1040,7 @@ function enterLucky(){
   console.log('Ay-Mart Festival Mode Active:', fest.name);
 })();
 </script>
-<!-- ==========  FESTIVAL AUTO END ========== -->
-  <div id="firstOrderBar" style="display:none;margin:70px 12px 10px 12px;background:linear-gradient(135deg,#00c853,#009624);border-radius:14px;padding:14px;color:#fff;font-family:sans-serif;position:relative;overflow:hidden;box-shadow:0 5px 20px rgba(0,200,83,0.3)">
-  <div style="position:absolute;top:-10px;right:-10px;width:60px;height:60px;background:rgba(255,255,255,0.15);border-radius:50%"></div>
-  <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:2">
-    <div style="width:48px;height:48px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🚚</div>
-    <div style="flex:1">
-      <div style="font-weight:900;font-size:14px">Pehla Order? Delivery FREE! 🎉</div>
-      <div style="font-size:11px;opacity:0.9;margin-top:2px">Ajaygarh 488220 + Jabalpur 482001 pe - Koi charge nahi!</div>
-      <div style="background:rgba(0,0,0,0.2);display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;margin-top:6px">Code: FIRSTFREE Auto Applied ✅</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;opacity:0.8">Bachaoge</div><div style="font-size:18px;font-weight:900">₹60</div></div>
-  </div>
-</div>
-
-<div id="firstOrderPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:100006;align-items:center;justify-content:center;font-family:sans-serif">
-  <div style="background:#fff;width:300px;border-radius:20px;padding:20px;text-align:center">
-    <div style="width:60px;height:60px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto">🎁</div>
-    <div style="font-weight:900;font-size:18px;margin-top:12px">Welcome to Ay-Mart!</div>
-    <div style="font-size:12px;color:#666;margin-top:6px">Pehle order pe <b style="color:#00c853">FREE Delivery</b> mil rahi hai Ajaygarh me. Anil Bhaiya ki taraf se gift!</div>
-    <div style="background:#f5f5f5;border:1px dashed #00c853;padding:10px;border-radius:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700">FIRSTFREE</span><span style="background:#00c853;color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:800">APPLIED</span></div>
-    <button onclick="closeFirst()" style="width:100%;background:#111;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:800;margin-top:12px;cursor:pointer">Shopping Shuru Karo →</button>
-    <div style="font-size:10px;color:#888;margin-top:8px">ID 2396277 • Asort Verified Store</div>
-  </div>
-</div>
-
-<script>
-(function(){
-  let isFirst = !localStorage.getItem('ay_first_order_done');
-  if(isFirst){
-    document.getElementById('firstOrderBar').style.display='block';
-    // Show popup after 3 sec only for first time
-    if(!localStorage.getItem('ay_first_popup_shown')){
-      setTimeout(()=>{
-        document.getElementById('firstOrderPopup').style.display='flex';
-      },3000);
-    }
-  } else {
-    // Already ordered - show loyalty bar instead
-    let bar = document.getElementById('firstOrderBar');
-    bar.style.display='block';
-    bar.style.background='linear-gradient(135deg,#ff6b00,#ff8c00)';
-    bar.innerHTML = '<div style="display:flex;align-items:center;gap:12px"><div style="width:48px;height:48px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px">⭐</div><div><div style="font-weight:900;font-size:14px">Welcome Back, Loyal Customer! 🙏</div><div style="font-size:11px;opacity:0.9">Aapka ' + (parseInt(localStorage.getItem('ay_order_count')||'1')) + 'wa order - 10% Extra Off: LOYAL10</div></div></div>';
-  }
-})();
-
-function closeFirst(){
-  document.getElementById('firstOrderPopup').style.display='none';
-  localStorage.setItem('ay_first_popup_shown','true');
-}
-
-// When they click Buy - mark as ordered
-document.addEventListener('click', function(e){
-  if(e.target.innerText && (e.target.innerText.includes('Buy Now') || e.target.innerText.includes('Cart'))){
-    if(!localStorage.getItem('ay_first_order_done')){
-      let count = parseInt(localStorage.getItem('ay_order_count')||'0') + 1;
-      localStorage.setItem('ay_order_count', count);
-      // After first buy, mark done after 5 sec
-      setTimeout(()=>{
-        localStorage.setItem('ay_first_order_done','true');
-      },5000);
-    }
-  }
-});
-</script>
-<!-- ==========  FIRST ORDER FREE END ========== -->
-<div id="freeShipWrap" style="display:none;position:fixed;bottom:68px;left:0;width:100%;z-index:99992;background:#fff;border-top:1px solid #eee;padding:10px 12px;font-family:sans-serif;box-shadow:0 -2px 10px rgba(0,0,0,0.05)">
-  <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700">
-    <div id="freeShipText" style="color:#111">🛒 ₹499 aur jodo - FREE Delivery pao!</div>
-    <div style="color:#00c853;font-size:10px" id="freeShipPercent">0% → 100%</div>
-  </div>
-  <div style="background:#f0f0f0;height:8px;border-radius:10px;margin-top:6px;overflow:hidden;position:relative">
-    <div id="freeShipBar" style="height:100%;width:10%;background:linear-gradient(90deg,#ff6b00,#00c853);border-radius:10px;transition:0.5s;width:10%"></div>
-    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);animation:shineBar 1.5s infinite"></div>
-  </div>
-  <style>@keyframes shineBar{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}</style>
-  <div style="display:flex;justify-content:space-between;font-size:9px;color:#888;margin-top:4px"><span>Cart: <b id="cartVal">₹0</b></span><span>Free Delivery on ₹499+</span></div>
-</div>
-
-<div id="cartAddToast" style="display:none;position:fixed;bottom:140px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:25px;font-size:12px;font-family:sans-serif;z-index:99999;white-space:nowrap">✅ Cart me add hua! <span id="toastAddVal" style="color:#00ff64;font-weight:800"></span></div>
-
-<script>
-let cartTotal = parseInt(localStorage.getItem('ay_cart_total') || '0');
-let freeLimit = 499;
+alet freeLimit = 499;
 
 function updateFreeBar(){
   let wrap = document.getElementById('freeShipWrap');
@@ -1585,6 +1170,63 @@ function openQuick(el){
 console.log('Ay-Mart Best 10 Bundle Loaded - Anil ID 2396277');
 </script>
 <!-- ========== BEST 10 BUNDLE END ========== -->
+  <!-- ========== MEGA PACK END ========== --> 
+ <div id="aiChatBtn" style="position:fixed;bottom:20px;left:14px;z-index:99995;background:linear-gradient(135deg,#ff6b00,#ff8c00);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(255,107,0,0.4);border:3px solid #fff" onclick="toggleAiChat()"><i class="fa-solid fa-robot"></i></div>
+<div style="position:fixed;bottom:82px;left:14px;z-index:99995;background:#111;color:#fff;font-size:10px;padding:4px 8px;border-radius:20px;font-family:sans-serif;display:none" id="aiChatHint">AI se pucho! 🤖</div>
+
+<div id="aiChatBox" style="display:none;position:fixed;bottom:85px;left:12px;right:12px;max-width:360px;z-index:100004;background:#fff;border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,0.3);font-family:sans-serif;overflow:hidden;border:1px solid #eee;flex-direction:column">
+  <div style="background:linear-gradient(135deg,#111,#222);color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;background:#ff6b00;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-robot"></i></div><div><div style="font-weight:800;font-size:14px">Ay-Mart AI Helper</div><div style="font-size:10px;color:#00ff64">● Online • Anil Bhaiya ka Assistant</div></div></div>
+    <div onclick="toggleAiChat()" style="width:28px;height:28px;background:#333;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px">✕</div>
+  </div>
+  <div id="aiMessages" style="height:320px;overflow-y:auto;padding:12px;background:#f9f9f9;display:flex;flex-direction:column;gap:10px">
+    <div style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 2px;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,0.1);font-size:13px">Namaste! 🙏 Main Ay-Mart ka AI Helper hu. Anil Bhaiya (ID 2396277) ki Mart me aapka swagat hai! Pucho - Delivery, COD, Return, Price?</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><span onclick="quickAsk('COD available hai?')" style="background:#fff3e8;color:#ff6b00;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #ff6b00">💵 COD hai?</span><span onclick="quickAsk('Delivery kab hogi?')" style="background:#fff3e8;color:#ff6b00;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #ff6b00">🚚 Delivery kab?</span><span onclick="quickAsk('Return policy kya hai?')" style="background:#fff3e8;color:#ff6b00;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #ff6b00">↩️ Return?</span></div>
+  </div>
+  <div style="padding:10px;background:#fff;border-top:1px solid #eee;display:flex;gap:8px"><input id="aiInput" placeholder="Yahan likho..." style="flex:1;border:1px solid #eee;background:#f5f5f5;padding:10px 14px;border-radius:25px;outline:none;font-size:13px" onkeypress="if(event.key==='Enter')sendAi()"><button onclick="sendAi()" style="background:#ff6b00;color:#fff;border:0;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer"><i class="fa-solid fa-paper-plane"></i></button></div>
+</div>
+
+<script>
+let aiOpen=false;
+function toggleAiChat(){
+  let box=document.getElementById('aiChatBox'); let hint=document.getElementById('aiChatHint');
+  if(!aiOpen){box.style.display='flex'; hint.style.display='none'; aiOpen=true; setTimeout(()=>{document.getElementById('aiInput').focus()},100)}else{box.style.display='none'; aiOpen=false;}
+}
+setTimeout(()=>{let h=document.getElementById('aiChatHint'); if(h) h.style.display='block'; setTimeout(()=>{h.style.display='none'},4000)},5000);
+
+function quickAsk(t){document.getElementById('aiInput').value=t; sendAi();}
+
+function sendAi(){
+  let input=document.getElementById('aiInput'); let msg=input.value.trim(); if(!msg) return;
+  let box=document.getElementById('aiMessages');
+  // User msg
+  box.innerHTML+='<div style="background:#ff6b00;color:#fff;padding:10px 12px;border-radius:14px 14px 2px 14px;max-width:80%;align-self:flex-end;font-size:13px">'+msg+'</div>';
+  input.value=''; box.scrollTop=box.scrollHeight;
+  // Typing
+  let typingId='typing'+Date.now();
+  box.innerHTML+='<div id="'+typingId+'" style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 2px;max-width:80%;font-size:12px;color:#888">AI likh raha hai...</div>';
+  box.scrollTop=box.scrollHeight;
+  setTimeout(()=>{
+    let t=document.getElementById(typingId); if(t) t.remove();
+    let reply=getAiReply(msg);
+    box.innerHTML+='<div style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 2px;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,0.1);font-size:13px">'+reply+'</div>';
+    box.scrollTop=box.scrollHeight;
+  },800);
+}
+
+function getAiReply(q){
+  q=q.toLowerCase();
+  if(q.includes('cod')||q.includes('cash')) return 'Haan! 💵 Ajaygarh 488220 me <b>COD Available</b> hai. Aap cash deke le sakte ho. Jabalpur 482001 me bhi COD hai. Order karo, kal tak pahuch jayega!';
+  if(q.includes('delivery')||q.includes('kab')) return '🚚 <b>Ajaygarh me 24-48 ghante me delivery!</b> Jabalpur me kal tak. Aapka pincode 488220 hai toh Free Delivery hai. Track karne ke liye upar Pincode Checker use karo.';
+  if(q.includes('return')||q.includes('wapas')) return '↩️ <b>7 Din ka Easy Return</b> hai. Product me koi dikkat ho toh Anil Bhaiya ko WhatsApp karo - 8770840326. Full refund milega!';
+  if(q.includes('price')||q.includes('kitna')||q.includes('daam')) return '💰 Sare products pe <b>50% tak OFF</b> chal raha hai! Ifazone Shirt ₹499, Huffman Shoes ₹1299, Solasta Watch ₹899. Aaj order karo toh MART10 coupon se 10% aur off!';
+  if(q.includes('location')||q.includes('kahan')||q.includes('ajaygarh')) return '📍 Hum <b>Ajaygarh, MP 488220</b> se operate karte hain. Anil Yadav - ID 2396277 - Asort Verified Store. Jabalpur 482001 me bhi service hai.';
+  if(q.includes('anil')||q.includes('bhaiya')||q.includes('baat')) return 'Anil Bhaiya abhi online hain! 👨‍💼 Direct baat karni hai toh <a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20AI%20Chatbot%20se%20aya%20hu" style="color:#25D366;font-weight:700">WhatsApp pe Click Karo</a> - turant reply milega!';
+  if(q.includes('order')||q.includes('track')) return '📦 Order track karne ke liye upar <b>Order Kahan Hai?</b> section me apna Order ID dalo. Ya Anil Bhaiya ko WhatsApp karo - wo turant bata denge!';
+  if(q.includes('hi')||q.includes('hello')||q.includes('namaste')) return 'Namaste! 🙏 Kaise madad karu? Aap puch sakte ho - Delivery, COD, Price, Return, Ya Anil Bhaiya se baat!';
+  return 'Samajh gaya! 🤖 Iske liye best hai Anil Bhaiya se direct baat karo. Wo Ajaygarh ke expert hain. <br><br><a href="https://wa.me/918770840326?text=Hi%20Anil%20Bhaiya%20mujhe%20'+encodeURIComponent(q)+'%20ke%20bare%20me%20puchna%20hai" style="background:#25D366;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;display:inline-block;margin-top:6px;font-size:12px">WhatsApp pe Pucho →</a>';
+}
+</script>
   
 </<div id="emiBox" style="display:none;margin:10px 12px;background:#fff;border:1px solid #eee;border-radius:14px;padding:14px;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
   <div style="display:flex;justify-content:space-between;align-items:center">
@@ -2086,161 +1728,4 @@ setTimeout(()=>{
   });
 },2500);
 </script>
-<!-- ==========  END ========== -->
-  <!-- ==========  LUCKY WHEEL SPIN ========== -->
-<div id="wheelIcon" style="position:fixed;bottom:140px;right:14px;width:56px;height:56px;background:linear-gradient(135deg,#ff6b00,#ff9f43);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:9998;box-shadow:0 4px 15px rgba(255,107,0,0.4);cursor:pointer;animation:bounce 1s infinite;border:3px solid #fff" onclick="openWheel()">🎡</div>
-<style>@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}</style>
-
-<div id="wheelModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100020;align-items:center;justify-content:center;font-family:sans-serif;padding:16px">
-  <div style="background:#fff;width:100%;max-width:340px;border-radius:20px;padding:20px;text-align:center;position:relative">
-    <span onclick="document.getElementById('wheelModal').style.display='none'" style="position:absolute;top:10px;right:14px;background:#eee;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer">✕</span>
-    <div style="font-weight:900;font-size:18px">🎡 Apna Luck Aazmao!</div><div style="font-size:12px;color:#666;margin-top:4px">Wheel ghumao, coupon jeeto - Ajaygarh Offer!</div>
-    
-    <div style="margin:20px auto;width:220px;height:220px;border-radius:50%;background:conic-gradient(#ff6b00 0deg 60deg, #00c853 60deg 120deg, #111 120deg 180deg, #ff6b00 180deg 240deg, #e91e63 240deg 300deg, #00c853 300deg 360deg);position:relative;display:flex;align-items:center;justify-content:center;transition:transform 3s cubic-bezier(0.25,0.1,0.25,1);border:6px solid #fff;box-shadow:0 5px 20px rgba(0,0,0,0.2)" id="wheel">
-      <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:900">₹200 OFF</div>
-      <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%) rotate(90deg);background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:900">₹50</div>
-      <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:900">FREE</div>
-      <div style="width:50px;height:50px;background:#111;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:12px;z-index:2">SPIN</div>
-    </div>
-    <div style="width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:16px solid #ff6b00;margin:-10px auto 0;position:relative;z-index:3"></div>
-
-    <button id="spinBtn" onclick="spinWheel()" style="background:#ff6b00;color:#fff;border:0;padding:12px 24px;border-radius:30px;font-weight:900;font-size:13px;margin-top:16px;width:100%">🎡 SPIN & WIN →</button>
-    <div style="font-size:10px;color:#888;margin-top:8px">1243 log jeet chuke hain aaj!</div>
-  </div>
-</div>
-
-<div id="winModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100021;align-items:center;justify-content:center;font-family:sans-serif;padding:16px">
-  <div style="background:#fff;width:100%;max-width:320px;border-radius:20px;padding:24px;text-align:center"><div style="font-size:50px">🎉</div><div style="font-weight:900;font-size:20px;margin-top:8px">Badhai Ho!</div><div style="font-size:14px;color:#666;margin-top:6px">Aap jeete ho <b id="winAmount" style="color:#ff6b00;font-size:18px">₹150 OFF</b></div><div style="background:#f5f5f5;padding:10px;border-radius:10px;margin-top:14px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:12px;font-weight:800">Coupon: <span style="background:#111;color:#fff;padding:3px 8px;border-radius:6px" id="winCode">ANIL150</span></div><span onclick="copyWin()" style="background:#00c853;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer">Copy</span></div><button onclick="claimWin()" style="background:#00c853;color:#fff;border:0;padding:12px;width:100%;border-radius:10px;font-weight:900;margin-top:14px">SHOP NOW & USE →</button></div>
-</div>
-
-<script>
-let spun = localStorage.getItem('ay_spun');
-function openWheel(){document.getElementById('wheelModal').style.display='flex';}
-function spinWheel(){
-  if(spun){alert('Aap ek baar spin kar chuke ho! Coupon: ANIL100');return;}
-  let wheel=document.getElementById('wheel');
-  let deg = 1800 + Math.floor(Math.random()*360);
-  wheel.style.transform='rotate('+deg+'deg)';
-  document.getElementById('spinBtn').innerText='Ghuma Raha Hai...';
-  document.getElementById('spinBtn').disabled=true;
-  setTimeout(()=>{
-    let wins = [{amount:'₹100 OFF', code:'ANIL100'},{amount:'₹150 OFF', code:'ANIL150'},{amount:'₹200 OFF', code:'ANIL200'},{amount:'Free Delivery', code:'FREE488220'}];
-    let win = wins[Math.floor(Math.random()*wins.length)];
-    // Always give at least 100
-    if(win.amount.includes('Free')) win = wins[0];
-    document.getElementById('winAmount').innerText=win.amount;
-    document.getElementById('winCode').innerText=win.code;
-    document.getElementById('wheelModal').style.display='none';
-    document.getElementById('winModal').style.display='flex';
-    localStorage.setItem('ay_spun','true');
-    localStorage.setItem('ay_coupon', win.code);
-    if(typeof applyCoupon === 'function') applyCoupon(win.code, win.amount.replace(/\D/g,'')||'100');
-  },3200);
-}
-function copyWin(){let code=document.getElementById('winCode').innerText; navigator.clipboard.writeText(code); alert('Copied: '+code);}
-function claimWin(){document.getElementById('winModal').style.display='none'; window.scrollTo({top:0, behavior:'smooth'});}
-
-// Auto popup after 8 sec
-setTimeout(()=>{if(!spun) openWheel();},8000);
-</script>
-<!-- ==========  END ========== -->
-      <!-- ==========  MYSTERY BOX ========== -->
-<div style="margin:14px 12px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:20px;padding:16px;font-family:sans-serif;color:#fff;position:relative;overflow:hidden;border:1px solid #333">
-  <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,#ff6b00,transparent);opacity:0.3"></div>
-  <div style="position:relative;z-index:2">
-    <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:16px">🎁 Anil's Mystery Box</div><div style="font-size:11px;opacity:0.7">Kholo, Surprise Pao - Worth ₹1999!</div></div><div style="background:#ff6b00;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900">HOT 🔥</div></div>
-    
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px" id="mysteryGrid">
-      <div onclick="openBox(0)" class="mBox" style="background:linear-gradient(135deg,#ff6b00,#ff9f43);height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform 0.3s;box-shadow:0 4px 10px rgba(255,107,0,0.3)">📦<span style="position:absolute;background:#fff;color:#111;font-size:8px;padding:2px 6px;border-radius:10px;margin-top:30px;font-weight:800">TAP</span></div>
-      <div onclick="openBox(1)" class="mBox" style="background:linear-gradient(135deg,#00c853,#00e676);height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform 0.3s;box-shadow:0 4px 10px rgba(0,200,83,0.3)">📦<span style="position:absolute;background:#fff;color:#111;font-size:8px;padding:2px 6px;border-radius:10px;margin-top:30px;font-weight:800">TAP</span></div>
-      <div onclick="openBox(2)" class="mBox" style="background:linear-gradient(135deg,#e91e63,#ff4081);height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform 0.3s;box-shadow:0 4px 10px rgba(233,30,99,0.3)">📦<span style="position:absolute;background:#fff;color:#111;font-size:8px;padding:2px 6px;border-radius:10px;margin-top:30px;font-weight:800">TAP</span></div>
-    </div>
-
-    <div id="mysteryResult" style="display:none;margin-top:14px;background:#fff;border-radius:12px;padding:12px;color:#111;text-align:center">
-      <div style="font-size:40px" id="mResEmoji">👕</div><div style="font-weight:900;font-size:14px;margin-top:6px" id="mResName">Ifazone Shirt Worth ₹999</div><div style="font-size:11px;color:#666">Aapko mila sirf <b style="color:#00c853">₹499 me!</b></div>
-      <div style="display:flex;gap:8px;margin-top:10px"><button onclick="document.getElementById('mysteryResult').style.display='none'" style="flex:1;background:#eee;border:0;padding:10px;border-radius:8px;font-weight:700;font-size:11px">Band Karo</button><button onclick="claimMystery()" style="flex:1;background:#ff6b00;color:#fff;border:0;padding:10px;border-radius:8px;font-weight:900;font-size:11px">Claim ₹499 →</button></div>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:11px"><b>Box Price:</b> <s style="opacity:0.6">₹1999</s> <span style="color:#00ff64;font-weight:900;font-size:14px">₹499</span><br><span style="font-size:9px;opacity:0.7">+ Free Delivery Ajaygarh 488220</span></div><div style="text-align:right"><div style="font-size:9px;opacity:0.7">124 log khol chuke</div><div style="font-size:10px;color:#ffcc00">⭐⭐⭐⭐⭐ 4.9</div></div></div>
-  </div>
-</div>
-
-<script>
-a</div>
-<!-- ==========  END ========== -->
-  <!-- ==========  CUSTOMER PHOTOS UGC ========== -->
-<div style="margin:12px;background:#fff;border-radius:14px;padding:14px;font-family:sans-serif;border:1px solid #eee">
-  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900;font-size:13px">📸 Asli Customers, Asli Photos</div><div style="background:#ff6b00;color:#fff;padding:3px 8px;border-radius:10px;font-size:9px;font-weight:800">Ajaygarh Ke Ladke</div></div><div style="font-size:10px;color:#666;margin-top:2px">Panna, Ajaygarh, Amanganj se 1000+ photos • No model, sab real</div>
-  
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px">
-    <div style="position:relative;border-radius:10px;overflow:hidden;height:100px;background:#f5f5f5"><img src="https://i.pravatar.cc/200?img=12" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:20px 6px 6px;color:#fff"><div style="font-size:9px;font-weight:800">Rahul • Ajaygarh</div><div style="font-size:8px">Ifazone Shirt M</div></div><div style="position:absolute;top:4px;right:4px;background:#00c853;color:#fff;font-size:7px;padding:2px 5px;border-radius:10px">✓ Verified</div></div>
-    <div style="position:relative;border-radius:10px;overflow:hidden;height:100px;background:#f5f5f5"><img src="https://i.pravatar.cc/200?img=32" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:20px 6px 6px;color:#fff"><div style="font-size:9px;font-weight:800">Aman • Panna</div><div style="font-size:8px">Huffman Shoes 8</div></div><div style="position:absolute;top:4px;right:4px;background:#00c853;color:#fff;font-size:7px;padding:2px 5px;border-radius:10px">✓ Verified</div></div>
-    <divaa style="position:relative;border-radius:10px;overflow:hidden;height:100px;background:#f5f5f5"><img src="https://i.pravatar.cc/200?img=15" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:20px 6px 6px;color:#fff"><div style="font-size:9px;font-weight:800">Vikas • Amanganj</div><div style="font-size:8px">Solasta Watch</div></div><div style="position:absolute;top:4px;right:4px;background:#00c853;color:#fff;font-size:7px;padding:2px 5px;border-radius:10px">✓ Verified</div></div>
-    <div style="position:relative;border-radius:10px;overflow:hidden;height:100px;background:#f5f5f5"><img src="https://i.pravatar.cc/200?img=22" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:20px 6px 6px;color:#fff"><div style="font-size:9px;font-weight:800">Deepak • Ajaygarh</div><div style="font-size:8px">Ifazone Shirt L</div></div></div>
-    <div style="position:relative;border-radius:10px;overflow:hidden;height:100px;background:#f5f5f5"><img src="https://i.pravatar.cc/200?img=18" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:20px 6px 6px;color:#fff"><div style="font-size:9px;font-weight:800">Sonu • Panna</div><div style="font-size:8px">Combo Pack</div></div></div>
-    <div onclick="document.getElementById('ugcUpload').style.display='flex'" style="border:2px dashed #ff6b00;border-radius:10px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;background:#fff8f0"><div style="font-size:24px">📤</div><div style="font-size:9px;font-weight:800;color:#ff6b00;margin-top:4px">Apni Photo Bhejo</div><div style="font-size:7px;color:#666">₹50 Cashback</div></div>
-  </div>
-
-  <div style="background:#f9f9f9;border-radius:10px;padding:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:11px">🔥 <b>124</b> logon ne aaj photo bheji, <b>89</b> ne video</div><button onclick="window.open('https://wa.me/918770840326?text=Photo bhej raha hu Ifazone shirt ka - ID 2396277','_blank')" style="background:#111;color:#fff;border:0;padding:6px 12px;border-radius:20px;font-size:9px;font-weight:800">View All →</button></div>
-</div>
-
-<div id="ugcUpload" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100050;align-items:center;justify-content:center;padding:16px;font-family:sans-serif"><div style="background:#fff;width:100%;max-width:320px;border-radius:16px;padding:20px;text-align:center"><div style="font-size:40px">📸</div><div style="font-weight:900;margin-top:8px">Apni Photo Bhejo, ₹50 Pao!</div><div style="font-size:11px;color:#666;margin-top:6px">Ifazone pehen ke photo WhatsApp karo, main yaha lagaunga + ₹50 cashback dunga next order pe!</div><button onclick="window.open('https://wa.me/918770840326?text=Photo bhej raha hu - Cashback chahiye - ID 2396277','_blank')" style="width:100%;background:#25D366;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:900;margin-top:14px">WhatsApp Pe Bhejo →</button><div onclick="document.getElementById('ugcUpload').style.display='none'" style="font-size:11px;color:#888;margin-top:10px;cursor:pointer">Band Karo</div></div></div>
-<!-- ==========  END ========== -->
-  a  </div></div>
-</div>
-
-<script>
-function setPin(p){document.getElementById('pinInput').value=p; checkPin();}
-function checkPin(){
-  let pin=document.getElementById('pinInput').value.trim();
-  let res=document.getElementById('pinResult');
-  if(pin.length!=6){alert('6 digit pincode daalo');return;}
-  res.style.display='block';
-  let validPins=['488220','488001','488331','488448','488220','488001','471001','482001'];
-  let isValid=validPins.includes(pin) || pin.startsWith('488') || pin.startsWith('48');
-  
-  if(isValid){
-    res.style.cssText='display:block;margin-top:12px;border-radius:10px;padding:12px;background:#e8f5e9;border:1px solid #00c853';
-    res.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;font-weight:900;color:#00c853">✅ Haan! '+pin+' me Delivery Available Hai!</div><div style="font-size:10px;color:#333;margin-top:2px">🚚 3-4 din me free delivery • 💵 COD Available • Anil Bhaiya khud ayenge</div></div><div style="font-size:24px">🎉</div></div><div style="background:#fff;border-radius:8px;padding:8px;margin-top:8px;display:flex;justify-content:space-between;font-size:10px"><span>Delivery Charge:</span><span style="font-weight:900;color:#00c853">FREE</span></div><button onclick="window.open(\'https://wa.me/918770840326?text=Pincode '+pin+' check kiya - Delivery chahiye - ID 2396277\',\'_blank\')" style="width:100%;background:#00c853;color:#fff;border:0;padding:8px;border-radius:8px;font-weight:800;margin-top:8px;font-size:11px">Is Pincode Pe Order Karo →</button>';
-  } else {
-    res.style.cssText='display:block;margin-top:12px;border-radius:10px;padding:12px;background:#ffebee;border:1px solid #ef5350';
-    res.innerHTML='<div style="font-size:12px;font-weight:900;color:#c62828">❌ '+pin+' me Abhi Delivery Nahi Hai</div><div style="font-size:10px;color:#333;margin-top:4px">Par Anil Bhaiya try karenge! WhatsApp karo, main courier se baat karta hu. Ajaygarh ke aas paas hai toh ho jayega!</div><button onclick="window.open(\'https://wa.me/918770840326?text=Pincode '+pin+' pe delivery nahi dikha raha - Help karo - ID 2396277\',\'_blank\')" style="width:100%;background:#111;color:#fff;border:0;padding:8px;border-radius:8px;font-weight:800;margin-top:8px;font-size:11px">WhatsApp Pe Puchho →</button>';
-  }
-}
-</script>
-<!-- ==========  END ========== -->
-  <!-- ==========  GIFT WRAP + MESSAGE ========== -->
-<div style="margin:12px;background:linear-gradient(135deg,#fff0f6,#ffe3ec);border:2px solid #ff4081;border-radius:14px;padding:14px;font-family:sans-serif">
-  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:900;font-size:13px">🎁 Gift Wrapping + Personal Message</div><div style="background:#ff4081;color:#fff;padding:3px 8px;border-radius:10px;font-size:9px;font-weight:800">₹29 ONLY</div></div><div style="font-size:10px;color:#666;margin-top:2px">Dost ko gift dena hai? Anil Bhaiya premium pack karke bhejenge</div>
-  
-  <div style="display:flex;gap:8px;margin-top:12px">
-    <label style="flex:1;background:#fff;border-radius:10px;padding:10px;text-align:center;cursor:pointer;border:2px solid #ff4081"><input type="radio" name="gift" checked style="display:none" onchange="giftToggle(true)"><div style="font-size:20px">🎀</div><div style="font-size:10px;font-weight:800;margin-top:4px">Gift Wrap</div><div style="font-size:8px;color:#666">Premium Box</div></label>
-    <label style="flex:1;background:#fff;border-radius:10px;padding:10px;text-align:center;cursor:pointer;border:1px solid #eee"><input type="radio" name="gift" style="display:none" onchange="giftToggle(false)"><div style="font-size:20px">📦</div><div style="font-size:10px;font-weight:800;margin-top:4px">Normal</div><div style="font-size:8px;color:#666">As it is</div></label>
-  </div>
-
-  <div id="giftBox" style="background:#fff;border-radius:10px;padding:12px;margin-top:12px">
-    <div style="font-size:11px;font-weight:800">💌 Personal Message Likhdo (Free):</div>
-    <textarea id="giftMsg" placeholder="Ex: Happy Birthday bhai! Ifazone shirt tujhpe ek no lagegi - Anil ki taraf se" maxlength="80" style="width:100%;border:1px solid #ffb6c1;border-radius:8px;padding:8px;font-size:11px;margin-top:6px;height:50px;resize:none;outline:none" oninput="updateGiftPreview()"></textarea>
-    <div style="display:flex;justify-content:space-between;font-size:9px;color:#888;margin-top:2px"><span>Handwritten chit lagegi</span><span id="giftCount">0/80</span></div>
-    
-    <div style="background:#fff8e1;border:1px dashed #ffb300;border-radius:8px;padding:8px;margin-top:10px;display:flex;gap:8px;align-items:center"><div style="font-size:20px">🎁</div><div style="font-size:10px"><b>Preview:</b> <span id="giftPreview">Happy Birthday bhai!...</span><br><span style="font-size:8px;color:#888">- Anil Yadav, Ajaygarh Mart ID 2396277</span></div></div>
-  </div>
-
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px"><div style="font-size:11px">Gift Wrap Charge: <span style="text-decoration:line-through;color:#888">₹99</span> <span style="font-weight:900;color:#ff4081">₹29</span> <span style="background:#ff4081;color:#fff;padding:2px 6px;border-radius:10px;font-size:8px">70% OFF</span></div><button onclick="addGift()" style="background:#ff4081;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-weight:800;font-size:11px">Add Gift + ₹29</button></div>
-</div>
-
-<script>
-function giftToggle(isGift){document.getElementById('giftBox').style.display=isGift?'block':'none';}
-function updateGiftPreview(){
-  let txt=document.getElementById('giftMsg').value;
-  document.getElementById('giftCount').innerText=txt.length+'/80';
-  document.getElementById('giftPreview').innerText=txt||'Happy Birthday bhai!...';
-}
-function addGift(){
-  let msg=document.getElementById('giftMsg').value||'Happy Birthday!';
-  alert('🎁 Gift wrap add ho gaya ₹29 me! Message: '+msg);
-  let waMsg='Gift Wrap chahiye ₹29 me - Message: '+msg+' - ID 2396277';
-  window.open('https://wa.me/918770840326?text='+encodeURIComponent(waMsg),'_blank');
-}
-</script>
-<!-- ==========  END ========== -->
+a
