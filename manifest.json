@@ -1,12 +1,20 @@
 {
-  "name": "AyMart",
+  "name": "AyMart - Apni Dukan",
   "short_name": "AyMart",
-  "start_url": ".",
+  "start_url": "/Ay-mart-/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ff6b00",
+  "background_color": "#FF6B00",
+  "theme_color": "#FF6B00",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "aymart_hd_icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "aymart_hd_icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
   ]
 }
