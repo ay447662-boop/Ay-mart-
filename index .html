@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Real App</title>
+    <!-- Tailwind CSS for modern mobile app styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom scrollbar hiding for app-like smooth sliding */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { background-color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="flex justify-center items-center min-h-screen p-0 sm:p-4">
+
+    <!-- Mobile App Container (Play Store App Simulation Frame) -->
+    <div class="w-full sm:max-w-md h-screen sm:h-[844px] bg-white sm:rounded-3xl sm:shadow-2xl flex flex-col overflow-hidden relative border border-gray-200">
+
+        <!-- App Status Bar -->
+        <div class="bg-indigo-600 text-white px-4 py-2 text-xs flex justify-between items-center select-none z-20">
+            <span id="current-time">9:41</span>
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <header class="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center shadow-md z-10">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-store text-xl"></i>
+                <h1 class="font-bold text-lg tracking-wide">MyRealApp</h1>
+            </div>
+            <div class="flex items-center space-x-2">
+                <!-- Refresh Button Added -->
+                <button onclick="refreshAppContent()" class="p-2 bg-indigo-500 rounded-full hover:bg-indigo-400 transition" title="Refresh App">
+                    <i id="refresh-icon" class="fa-solid fa-rotate text-sm"></i>
+                </button>
+                <button onclick="openVoiceSearch()" class="p-2 bg-indigo-500 rounded-full hover:bg-indigo-400 transition" title="Voice Search">
+                    <i class="fa-solid fa-microphone text-sm"></i>
+                </button>
+                <button onclick="openAdminModal()" class="p-2 bg-indigo-500 rounded-full hover:bg-indigo-400 transition" title="Admin Panel (PIN: 7869)">
+                    <i class="fa-solid fa-lock text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dynamic Screen Content Area with Pull-to-Refresh Handler -->
+        <main id="app-content" class="flex-1 overflow-y-auto no-scrollbar pb-20 p-4 relative">
+            <!-- Dynamically Loaded Views -->
+        </main>
+
+        <!-- Bottom Navigation Bar (App Standard) -->
+        <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-2 px-1 z-20 shadow-lg">
+            <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center text-indigo-600 transition">
+                <i class="fa-solid fa-house text-lg"></i>
+                <span class="text-[10px] font-medium mt-1">Home</span>
+            </button>
+            <button onclick="switchTab('search')" id="nav-search" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 transition">
+                <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                <span class="text-[10px] font-medium mt-1">Search</span>
+            </button>
+            <button onclick="switchTab('cart')" id="nav-cart" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 transition relative">
+                <i class="fa-solid fa-cart-shopping text-lg"></i>
+                <span id="cart-badge" class="absolute -top-1 -right-2 bg-red-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                <span class="text-[10px] font-medium mt-1">Cart</span>
+            </button>
+            <button onclick="switchTab('orders')" id="nav-orders" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 transition">
+                <i class="fa-solid fa-box text-lg"></i>
+                <span class="text-[10px] font-medium mt-1">Orders</span>
+            </button>
+            <button onclick="switchTab('profile')" id="nav-profile" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 transition">
+                <i class="fa-solid fa-user text-lg"></i>
+                <span class="text-[10px] font-medium mt-1">Profile</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- Admin Modal for Adding Real Products -->
+    <div id="admin-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl relative">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center justify-between">
+                <span>Admin Product Publisher</span>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark"></i></button>
+            </h3>
+            <div id="admin-login-section">
+                <p class="text-sm text-gray-600 mb-2">Enter Secure PIN (7869):</p>
+                <input type="password" id="admin-pin-input" placeholder="Enter PIN" class="w-full border border-gray-300 rounded-lg p-2.5 mb-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                <button onclick="verifyAdminPin()" class="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium text-sm hover:bg-indigo-700 transition">Login</button>
+            </div>
+            <div id="admin-dashboard-section" class="hidden">
+                <p class="text-xs text-green-600 font-semibold mb-3">✓ Authenticated Successfully</p>
+                <div class="space-y-3">
+                    <input type="text" id="new-prod-name" placeholder="Product Name" class="w-full border border-gray-300 rounded-lg p-2 text-sm outline-none">
+                    <input type="number" id="new-prod-price" placeholder="Price (₹)" class="w-full border border-gray-300 rounded-lg p-2 text-sm outline-none">
+                    <input type="text" id="new-prod-img" placeholder="Image URL (Optional)" class="w-full border border-gray-300 rounded-lg p-2 text-sm outline-none">
+                    <button onclick="addNewProduct()" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium text-sm hover:bg-green-700 transition">Publish Real Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Real Initial State / Local Storage Sync
+        let products = JSON.parse(localStorage.getItem('app_products')) || [
+            { id: 1, name: "Wireless Bluetooth Earbuds", price: 999, image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" },
+            { id: 2, name: "Smart Fitness Watch", price: 1499, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" },
+            { id: 3, name: "Fast Charging Power Bank", price: 799, image: "https://images.unsplash.com/photo-1609592424104-97d4a4f89d36?w=300" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('app_cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('app_orders')) || [];
+        let currentActiveTab = 'home';
+
+        // Update real-time clock
+        setInterval(() => {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('current-time').innerText = `${hours}:${minutes}`;
+        }, 1000);
+
+        function saveToStorage() {
+            localStorage.setItem('app_products', JSON.stringify(products));
+            localStorage.setItem('app_cart', JSON.stringify(cart));
+            localStorage.setItem('app_orders', JSON.stringify(orders));
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            if (cart.length > 0) {
+                badge.innerText = cart.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function switchTab(tab) {
+            currentActiveTab = tab;
+            ['home', 'search', 'cart', 'orders', 'profile'].forEach(t => {
+                const btn = document.getElementById(`nav-${t}`);
+                if (t === tab) {
+                    btn.className = "flex flex-col items-center text-indigo-600 transition";
+                } else {
+                    btn.className = "flex flex-col items-center text-gray-400 hover:text-indigo-600 transition";
+                }
+            });
+            renderContent();
+        }
+
+        // Refresh Function with Animation
+        function refreshAppContent() {
+            const icon = document.getElementById('refresh-icon');
+            icon.classList.add('animate-spin');
+            setTimeout(() => {
+                // Reload data from local storage
+                products = JSON.parse(localStorage.getItem('app_products')) || products;
+                cart = JSON.parse(localStorage.getItem('app_cart')) || cart;
+                orders = JSON.parse(localStorage.getItem('app_orders')) || orders;
+                renderContent();
+                icon.classList.remove('animate-spin');
+            }, 600);
+        }
+
+        function renderContent() {
+            const container = document.getElementById('app-content');
+            container.innerHTML = "";
+
+            if (currentActiveTab === 'home') {
+                container.innerHTML = `
+                    <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-4 text-white mb-4 shadow-md">
+                        <h2 class="font-bold text-lg">Special Offer! 🎉</h2>
+                        <p class="text-xs mt-1 opacity-90">Get free delivery on your first real order inside the app.</p>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-bold text-gray-800 text-sm">Trending Products</h3>
+                        <span class="text-[10px] text-gray-400">Pull down or click refresh to sync</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3" id="product-grid"></div>
+                `;
+                const grid = document.getElementById('product-grid');
+                products.forEach(p => {
+                    grid.innerHTML += `
+                        <div class="bg-white border border-gray-100 rounded-xl p-3 shadow-sm flex flex-col justify-between">
+                            <img src="${p.image || 'https://via.placeholder.com/150'}" class="w-full h-28 object-cover rounded-lg mb-2">
+                            <h4 class="font-semibold text-xs text-gray-800 line-clamp-1">${p.name}</h4>
+                            <p class="text-indigo-600 font-bold text-sm mt-1">₹${p.price}</p>
+                            <button onclick="addToCart(${p.id})" class="mt-2 w-full bg-indigo-50 text-indigo-600 py-1.5 rounded-lg text-xs font-semibold hover:bg-indigo-600 hover:text-white transition">Add to Cart</button>
+                        </div>
+                    `;
+                });
+            } else if (currentActiveTab === 'search') {
+                container.innerHTML = `
+                    <div class="relative mb-4">
+                        <input type="text" id="search-input" oninput="filterProducts(this.value)" placeholder="Search products..." class="w-full bg-gray-100 border border-gray-200 rounded-xl py-2 px-4 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3" id="search-grid"></div>
+                `;
+                filterProducts('');
+            } else if (currentActiveTab === 'cart') {
+                if (cart.length === 0) {
+                    container.innerHTML = `<div class="text-center py-20 text-gray-400"><i class="fa-solid fa-cart-arrow-down text-4xl mb-2"></i><p class="text-sm">Your Cart is Empty</p></div>`;
+                } else {
+                    let total = cart.reduce((sum, item) => sum + item.price, 0);
+                    container.innerHTML = `<h3 class="font-bold text-gray-800 text-sm mb-3">Cart Items</h3><div id="cart-items" class="space-y-2 mb-4"></div><div class="border-t pt-3"><div class="flex justify-between font-bold text-sm mb-3"><span>Total:</span><span>₹${total}</span></div><button onclick="placeOrder()" class="w-full bg-indigo-600 text-white py-2.5 rounded-xl font-medium text-sm hover:bg-indigo-700 transition">Place Real Order</button></div>`;
+                    const cItems = document.getElementById('cart-items');
+                    cart.forEach((item, index) => {
+                        cItems.innerHTML += `
+                            <div class="flex justify-between items-center bg-gray-50 p-2.5 rounded-xl">
+                                <span class="text-xs font-medium text-gray-800">${item.name}</span>
+                                <div class="flex items-center space-x-3"><span class="text-xs font-bold text-indigo-600">₹${item.price}</span><button onclick="removeFromCart(${index})" class="text-red-500 text-xs"><i class="fa-solid fa-trash"></i></button></div>
+                            </div>
+                        `;
+                    });
+                }
+            } else if (currentActiveTab === 'orders') {
+                if (orders.length === 0) {
+                    container.innerHTML = `<div class="text-center py-20 text-gray-400"><i class="fa-solid fa-box-open text-4xl mb-2"></i><p class="text-sm">No Active Orders</p></div>`;
+                } else {
+                    container.innerHTML = `<h3 class="font-bold text-gray-800 text-sm mb-3">My Orders History</h3><div id="orders-list" class="space-y-3"></div>`;
+                    const oList = document.getElementById('orders-list');
+                    orders.forEach(o => {
+                        oList.innerHTML += `
+                            <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs">
+                                <p class="font-bold text-indigo-600 mb-1">Order ID: #${o.id}</p>
+                                <p class="text-gray-600">Items: ${o.itemsCount} | Total: ₹${o.total}</p>
+                                <p class="text-green-600 font-semibold mt-1">Status: ${o.status}</p>
+                            </div>
+                        `;
+                    });
+                }
+            } else if (currentActiveTab === 'profile') {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center py-6">
+                        <div class="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl font-bold mb-3">U</div>
+                        <h3 class="font-bold text-gray-800 text-base">App User</h3>
+                        <p class="text-xs text-gray-500 mb-6">user@myrealapp.com</p>
+                        <div class="w-full space-y-2">
+                            <button onclick="switchTab('orders')" class="w-full text-left bg-gray-50 p-3 rounded-xl text-xs font-medium text-gray-700 flex justify-between items-center"><span>My Orders</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                            <button onclick="openAdminModal()" class="w-full text-left bg-indigo-50 p-3 rounded-xl text-xs font-medium text-indigo-700 flex justify-between items-center"><span>Admin Panel (Publish Items)</span><i class="fa-solid fa-lock text-[10px]"></i></button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function filterProducts(query) {
+            const grid = document.getElementById('search-grid');
+            if(!grid) return;
+            grid.innerHTML = "";
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-white border border-gray-100 rounded-xl p-3 shadow-sm flex flex-col justify-between">
+                        <img src="${p.image || 'https://via.placeholder.com/150'}" class="w-full h-28 object-cover rounded-lg mb-2">
+                        <h4 class="font-semibold text-xs text-gray-800 line-clamp-1">${p.name}</h4>
+                        <p class="text-indigo-600 font-bold text-sm mt-1">₹${p.price}</p>
+                        <button onclick="addToCart(${p.id})" class="mt-2 w-full bg-indigo-50 text-indigo-600 py-1.5 rounded-lg text-xs font-semibold hover:bg-indigo-600 hover:text-white transition">Add to Cart</button>
+                    </div>
+                `;
+            });
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            if (prod) {
+                cart.push(prod);
+                saveToStorage();
+                alert("Product added to cart successfully!");
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveToStorage();
+            renderContent();
+        }
+
+        function placeOrder() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const newOrder = {
+                id: Math.floor(100000 + Math.random() * 900000),
+                itemsCount: cart.length,
+                total: total,
+                status: "Out for Delivery 🚀"
+            };
+            orders.unshift(newOrder);
+            cart = [];
+            saveToStorage();
+            switchTab('orders');
+            alert("Order placed successfully!");
+        }
+
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+            document.getElementById('admin-pin-input').value = "";
+            document.getElementById('admin-dashboard-section').classList.add('hidden');
+            document.getElementById('admin-login-section').classList.remove('hidden');
+        }
+
+        function verifyAdminPin() {
+            const pin = document.getElementById('admin-pin-input').value;
+            if (pin === "7869") {
+                document.getElementById('admin-login-section').classList.add('hidden');
+                document.getElementById('admin-dashboard-section').classList.remove('hidden');
+            } else {
+                alert("Incorrect PIN! Try 7869");
+            }
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('new-prod-name').value;
+            const price = parseFloat(document.getElementById('new-prod-price').value);
+            const image = document.getElementById('new-prod-img').value;
+
+            if (!name || !price) {
+                alert("Please fill product name and price!");
+                return;
+            }
+
+            const newProd = {
+                id: Date.now(),
+                name: name,
+                price: price,
+                image: image || "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300"
+            };
+
+            products.push(newProd);
+            saveToStorage();
+            closeAdminModal();
+            renderContent();
+            alert("New product published successfully!");
+      
