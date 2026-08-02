@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyMart Product</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#131921;
+color:#fff;
+padding:18px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+.container{
+max-width:1100px;
+margin:20px auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.image{
+flex:1;
+min-width:300px;
+}
+
+.image img{
+width:100%;
+border-radius:10px;
+}
+
+.details{
+flex:1;
+min-width:300px;
+}
+
+.price{
+font-size:30px;
+color:#ff6600;
+margin:15px 0;
+font-weight:bold;
+}
+
+button{
+padding:15px;
+width:100%;
+margin-top:12px;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+.cart{
+background:#ff9900;
+color:#fff;
+}
+
+.buy{
+background:#28a745;
+color:#fff;
+}
+
+.desc{
+margin-top:20px;
+line-height:1.7;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+🛒 Product Details
+</header>
+
+<div class="container">
+
+<div class="image">
+<img id="image"
+src="https://via.placeholder.com/500x500?text=Product">
+</div>
+
+<div class="details">
+
+<h1 id="name">Sample Product</h1>
+
+<div class="price">
+₹ <span id="price">999</span>
+</div>
+
+<p class="desc" id="desc">
+High quality product with best performance.
+</p>
+
+<button class="cart" onclick="addCart()">
+🛒 Add To Cart
+</button>
+
+<button class="buy" onclick="buyNow()">
+⚡ Buy Now
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let product=JSON.parse(localStorage.getItem("selectedProduct"));
+
+if(product){
+
+document.getElementById("name").innerText=product.name;
+
+document.getElementById("price").innerText=product.price;
+
+document.getElementById("image").src=
+product.image || "https://via.placeholder.com/500x500?text=Product";
+
+document.getElementById("desc").innerText=
+product.desc || "No description available.";
+
+}
+
+function addCart(){
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+cart.push(product);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert("Product Added To Cart");
+
+}
+
+function buyNow(){
+
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+orders.push(product);
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+alert("Order Placed Successfully");
+
+window.location.href="orders.html";
+
+}
+
+</script>
+
+</body>
+  </html>
