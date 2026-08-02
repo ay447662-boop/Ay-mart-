@@ -1,67 +1,121 @@
-// AyMart v2 Script
+// ===== AyMart Script =====
 
-let cartCount = 0;
+// Cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(productName) {
-    cartCount++;
-    alert(productName + " added to cart 🛒");
-    updateCart();
+// Wishlist
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+// Update Counts
+function updateCounts() {
+  let cartCount = document.getElementById("cart-count");
+  let wishCount = document.getElementById("wish-count");
+
+  if (cartCount) cartCount.innerText = cart.length;
+  if (wishCount) wishCount.innerText = wishlist.length;
 }
 
-function updateCart() {
-    const cart = document.getElementById("cart-count");
-    if (cart) {
-        cart.innerText = cartCount;
-    }
+// Add to Cart
+function addToCart(id, name, price, image) {
+  cart.push({
+    id: id,
+    name: name,
+    price: price,
+    image: image
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCounts();
+
+  alert(name + " added to cart");
+}
+
+// Add to Wishlist
+function addToWishlist(id, name, price, image) {
+  wishlist.push({
+    id: id,
+    name: name,
+    price: price,
+    image: image
+  });
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+  updateCounts();
+
+  alert(name + " added to wishlist");
 }
 
 // Search
-function searchProduct() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const cards = document.querySelectorAll(".product-card");
+function searchProducts() {
 
-    cards.forEach(card => {
-        const title = card.querySelector("h3").innerText.toLowerCase();
+let input = document.getElementById("searchInput");
 
-        if (title.includes(input)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
+if(!input) return;
+
+let filter = input.value.toUpperCase();
+
+let products = document.querySelectorAll(".product-card");
+
+products.forEach(product=>{
+
+let title = product.querySelector("h3").innerText;
+
+if(title.toUpperCase().indexOf(filter)>-1){
+
+product.style.display="block";
+
+}else{
+
+product.style.display="none";
+
 }
 
-// Dark Mode
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
+});
+
 }
 
-// Welcome
-window.onload = function () {
-    console.log("Welcome to AyMart");
-};
-// Auto Banner Slider
+// Banner Slider
 
-let slideIndex = 0;
+let slide = 0;
 
-showSlides();
+function autoBanner(){
 
-function showSlides(){
+let banners = document.querySelectorAll(".banner");
 
-let slides = document.getElementsByClassName("slides");
+if(banners.length==0) return;
 
-for(let i=0;i<slides.length;i++){
-slides[i].style.display="none";
+banners.forEach(b=>b.style.display="none");
+
+slide++;
+
+if(slide>banners.length){
+
+slide=1;
+
 }
 
-slideIndex++;
+banners[slide-1].style.display="block";
 
-if(slideIndex>slides.length){
-slideIndex=1;
 }
 
-slides[slideIndex-1].style.display="block";
+setInterval(autoBanner,3000);
 
-setTimeout(showSlides,3000);
+// Start
+
+window.onload=function(){
+
+updateCounts();
+
+autoBanner();
+
+let search=document.getElementById("searchInput");
+
+if(search){
+
+search.addEventListener("keyup",searchProducts);
+
+}
 
 }
