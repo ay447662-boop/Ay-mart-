@@ -1,56 +1,239 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin - Secret</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyMart Admin Panel</title>
+
 <style>
-body{font-family:Arial;background:#131921;margin:0;padding:0;display:flex;justify-content:center;align-items:center;min-height:100vh}
-#lock{max-width:360px;width:90%;background:#fff;padding:25px;border-radius:16px;text-align:center;box-shadow:0 10px 30px #0005}
-#main{display:none;max-width:500px;width:100%;background:#fff;padding:20px;border-radius:16px;margin:15px;box-sizing:border-box}
-input,select,button{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;box-sizing:border-box}
-button{background:#2874f0;color:#fff;border:0;font-weight:bold;cursor:pointer}
-button.green{background:#0a8a00}.preview{width:100%;height:190px;object-fit:contain;background:#fafafa;border:1px dashed #ccc;border-radius:10px;display:none}
-.item{display:flex;gap:10px;border-bottom:1px solid #eee;padding:10px 0;align-items:center}.item img{width:55px;height:55px;object-fit:cover;border-radius:8px}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+}
+
+header{
+background:#131921;
+color:#fff;
+padding:18px;
+text-align:center;
+font-size:26px;
+font-weight:bold;
+}
+
+.container{
+max-width:1100px;
+margin:20px auto;
+padding:15px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.card h2{
+color:#ff9900;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:28px;
+font-weight:bold;
+}
+
+.panel{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+padding:12px 20px;
+background:#ff9900;
+color:#fff;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+}
+
+table th,table td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+table th{
+background:#131921;
+color:#fff;
+}
 </style>
 </head>
+
 <body>
-<div id="lock">
-<h2 style="color:#2874f0;margin:0">🔐 Secret Admin</h2>
-<p style="font-size:12px;color:#666">Sirf Owner ke liye - Anil Yadav<br>ID:2396277 | Ajaygarh</p>
-<input id="pin" type="password" placeholder="PIN dalo - 4 ank ka" inputmode="numeric">
-<button onclick="unlock()">Unlock Karo</button>
-<p id="err" style="color:red;font-size:12px;display:none">Galat PIN hai!</p>
+
+<header>
+🛠 AyMart Admin Panel
+</header>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<h2>Total Users</h2>
+<p id="users">0</p>
 </div>
 
-<div id="main">
-<h2 style="text-align:center;color:#2874f0;margin:0">🛒 Ay-Mart Admin</h2>
-<p style="text-align:center;font-size:11px;color:#666">ID:2396277 | Anil Yadav | Ajaygarh 488220</p>
-<input type="file" id="photo" accept="image/*">
-<img id="prev" class="preview">
-<input id="name" placeholder="Product Name * Ex: Ifazone Black Shirt">
-<input id="brand" placeholder="Brand Ex: Ifazone">
-<div style="display:flex;gap:8px"><input id="price" type="number" placeholder="Price * 699"><input id="mrp" type="number" placeholder="MRP 1499"></div>
-<input id="disc" placeholder="Discount Ex: 53% OFF (auto)">
-<input id="sku" placeholder="SKU Ex: IFZ-BLK-001">
-<select id="cat"><option>Men Shirt</option><option>Shoes</option><option>Perfume</option><option>Kit</option><option>Watch</option><option>Saree</option><option>Handbag</option></select>
-<button onclick="save()">✅ Save & Add to Store</button>
-<button class="green" onclick="copy()">📋 Store Code Copy</button>
-<button onclick="location.href='index.html'" style="background:#eee;color:#333">← Store Dekho</button>
-<h3 style="margin:15px 0 5px">Products (<span id="c">0</span>)</h3><div id="list"></div>
+<div class="card">
+<h2>Total Orders</h2>
+<p id="orders">0</p>
+</div>
+
+<div class="card">
+<h2>Total Products</h2>
+<p id="products">0</p>
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>Add Product</h2>
+
+<input id="pname" placeholder="Product Name">
+
+<input id="pprice" placeholder="Price">
+
+<input id="pimage" placeholder="Image URL">
+
+<button onclick="addProduct()">
+Add Product
+</button>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Price</th>
+<th>Image</th>
+</tr>
+
+<tbody id="list"></tbody>
+
+</table>
+
+</div>
+
 </div>
 
 <script>
-// SECRET PIN - Isko badal sakte ho
-const SECRET_PIN = "2396";
-function unlock(){ if(document.getElementById('pin').value===SECRET_PIN){ document.getElementById('lock').style.display='none'; document.getElementById('main').style.display='block'; } else { document.getElementById('err').style.display='block'; } }
-let products=JSON.parse(localStorage.getItem('ay_final')||'[]'),b64="";
-const photoEl=document.getElementById('photo'),prev=document.getElementById('prev');
-photoEl.onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=x=>{b64=x.target.result;prev.src=b64;prev.style.display='block'};r.readAsDataURL(f)};
-function save(){let n=document.getElementById('name').value.trim(),br=document.getElementById('brand').value.trim()||'Ifazone',pr=parseInt(document.getElementById('price').value),mr=parseInt(document.getElementById('mrp').value)||Math.round(pr*1.9),di=document.getElementById('disc').value.trim(),sk=document.getElementById('sku').value.trim()||'SKU'+Date.now().toString().slice(-5),cat=document.getElementById('cat').value;if(!n||!pr||!b64){alert('Name, Price, Photo jaruri hai');return}if(!di)di=Math.round((1-pr/mr)*100)+'% OFF';products.unshift({id:Date.now(),title:n,brand:br,price:pr,mrp:mr,disc:di,sku:sk,cat:cat,img:b64,rating:'4.6'});localStorage.setItem('ay_final',JSON.stringify(products));render();alert('✅ Add ho gaya');}
-function render(){document.getElementById('c').innerText=products.length;let h='';products.forEach((p,i)=>{h+=`<div class=item><img src="${p.img}"><div style=flex:1;font-size:13px><b>${p.title.slice(0,22)}</b><br>₹${p.price} | ${p.disc}</div><button onclick="del(${i})" style="width:auto;background:red;padding:6px 10px;border-radius:6px">X</button></div>`});document.getElementById('list').innerHTML=h||'<p style=color:#999;font-size:12px>No product</p>'}
-function del(i){if(confirm('Delete?')){products.splice(i,1);localStorage.setItem('ay_final',JSON.stringify(products));render()}}
-function copy(){if(!products.length){alert('Pehle product add karo');return}let code='const MY_PRODUCTS='+JSON.stringify(products,null,2)+';';navigator.clipboard.writeText(code).then(()=>alert('✅ Copy ho gaya')); }
-render();
+
+let products=
+JSON.parse(localStorage.getItem("products"))||[];
+
+function load(){
+
+document.getElementById("products").innerText=products.length;
+
+document.getElementById("users").innerText=
+localStorage.getItem("userEmail")?1:0;
+
+let orders=
+JSON.parse(localStorage.getItem("orders"))||[];
+
+document.getElementById("orders").innerText=
+orders.length;
+
+let list=document.getElementById("list");
+
+list.innerHTML="";
+
+products.forEach(p=>{
+
+list.innerHTML+=`
+<tr>
+<td>${p.name}</td>
+<td>₹${p.price}</td>
+<td>${p.image}</td>
+</tr>
+`;
+
+});
+
+}
+
+function addProduct(){
+
+let name=document.getElementById("pname").value;
+
+let price=document.getElementById("pprice").value;
+
+let image=document.getElementById("pimage").value;
+
+if(name==""||price==""){
+
+alert("Fill all fields");
+
+return;
+
+}
+
+products.push({
+
+name:name,
+
+price:price,
+
+image:image
+
+});
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+alert("Product Added");
+
+load();
+
+}
+
+load();
+
 </script>
+
 </body>
 </html>
