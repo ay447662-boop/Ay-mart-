@@ -5,17 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AyMart Login</title>
 
-<link rel="stylesheet" href="style.css">
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial,sans-serif;
 background:#f5f5f5;
 display:flex;
 justify-content:center;
@@ -23,114 +16,65 @@ align-items:center;
 height:100vh;
 }
 
-.login-box{
-width:350px;
+.box{
+width:90%;
+max-width:350px;
 background:#fff;
 padding:25px;
-border-radius:10px;
-box-shadow:0 0 20px rgba(0,0,0,.2);
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
-.logo{
+h2{
 text-align:center;
-font-size:30px;
-margin-bottom:20px;
-color:#ff6a00;
-font-weight:bold;
+color:#ff6600;
 }
 
 input{
 width:100%;
 padding:12px;
 margin:10px 0;
-border:1px solid #ccc;
-border-radius:6px;
+border:1px solid #ddd;
+border-radius:8px;
 font-size:16px;
+box-sizing:border-box;
 }
 
 button{
 width:100%;
 padding:12px;
-background:#ff6a00;
-color:white;
+margin-top:10px;
+background:#ff6600;
+color:#fff;
 border:none;
-border-radius:6px;
-font-size:18px;
+border-radius:8px;
+font-size:16px;
 cursor:pointer;
 }
 
 button:hover{
-background:#e55b00;
-}
-
-p{
-text-align:center;
-margin-top:15px;
-}
-
-a{
-color:#ff6a00;
-text-decoration:none;
-font-weight:bold;
+background:#e65c00;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="login-box">
+<div class="box">
 
-<div class="logo">
-🛒 AyMart
-</div>
+<h2>AyMart Login</h2>
 
-<h2 align="center">Login</h2>
+<input type="email" id="email" placeholder="Email">
 
-<input
-type="email"
-id="email"
-placeholder="Enter Email">
+<input type="password" id="password" placeholder="Password">
 
-<input
-type="password"
-id="password"
-placeholder="Enter Password">
+<button onclick="login()">Login</button>
 
-<button onclick="login()">
-Login
-</button>
-
-<p>
-Don't have an account?
-<a href="signup.html">Signup</a>
-</p>
+<button onclick="signup()">Create Account</button>
 
 </div>
 
-<script>
-function login(){
-
-let email=document.getElementById("email").value;
-
-let password=document.getElementById("password").value;
-
-if(email==""||password==""){
-
-alert("Please fill all fields");
-
-return;
-
-}
-
-localStorage.setItem("user",email);
-
-alert("Login Successful");
-
-window.location.href="index.html";
-
-}
-</script>
+<script type="module" src="firebase-auth.js"></script>
 
 </body>
 </html>
