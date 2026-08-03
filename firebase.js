@@ -1,30 +1,20 @@
-// Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-  getFirestore
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-  getAuth
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-// Firebase Configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBc2UF6IRYS_TtBTLnoSuxqrAhjy2tYruk",
+  authDomain: "aymart-4488a.firebaseapp.com",
+  projectId: "aymart-4488a",
+  storageBucket: "aymart-4488a.firebasestorage.app",
+  messagingSenderId: "325089901941",
+  appId: "1:325089901941:web:e35ade31fe25a270b7273c",
+  measurementId: "G-WP9EWV7MS5"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Services
-const db = getFirestore(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Export
-export { db, auth };
+export { app, auth, db };
